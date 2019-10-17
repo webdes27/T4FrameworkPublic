@@ -25,6 +25,44 @@ private:
 	FT4WorldCustomVersion() {}
 };
 
+USTRUCT()
+struct T4ASSET_API FT4WorldEditorTransientActorData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4WorldEditorTransientActorData()
+		: SubLevelPackageName(NAME_None)
+	{
+		
+	}
+
+	UPROPERTY(EditAnywhere, Transient)
+	FName SubLevelPackageName; // #85
+};
+
+USTRUCT()
+struct T4ASSET_API FT4WorldEditorTransientData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4WorldEditorTransientData()
+	{
+		Reset();
+	}
+
+	void Reset()
+	{
+#if WITH_EDITOR
+		TransientActorList.Empty();
+#endif
+	}
+
+	UPROPERTY(EditAnywhere, Transient)
+	TArray<FT4WorldEditorTransientActorData> TransientActorList; // #85
+};
+
 class UTexture2D;
 class UT4EntityAsset;
 
@@ -46,6 +84,7 @@ public:
 #if WITH_EDITOR
 	virtual void ResetEditorTransientData()
 	{
+		EditorTransientData.Reset();
 	}
 
 	DECLARE_MULTICAST_DELEGATE(FT4OnPropertiesChanged);
@@ -59,6 +98,11 @@ public:
 #if WITH_EDITORONLY_DATA
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
+
+	// #71 : WARN : CustomizeCharacterEntityDetails 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
+	// TODO : Transient 설정으로 Editor Dirty 가 발생함으로 다른 방법 고려 필요
+	UPROPERTY(EditAnywhere, Transient)
+	FT4WorldEditorTransientData EditorTransientData;
 #endif
 
 private:

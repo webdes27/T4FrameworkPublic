@@ -12,7 +12,7 @@
 
 // Common
 
-static const float DefaultLineTraceMaxDistance = 10000.0f;
+static const float DefaultLineTraceMaxDistance = 100000.0f;
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 // DefaultEngine.ini [/Script/Engine.CollisionProfile]
