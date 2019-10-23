@@ -31,7 +31,7 @@ struct T4ASSET_API FT4ContiBaseAction : public FT4BaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeCommonActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeCommonActionDetails
 	// #24 : Composite 일 경우 사용됨!
 	// #65 : Property 추가시에는 FT4ActionCompositeData::CloneAndAddAction 에도 반영할 것!
 	UPROPERTY(VisibleAnywhere)
@@ -88,7 +88,7 @@ struct T4ASSET_API FT4BranchAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeBranchActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeBranchActionDetails
 	UPROPERTY(EditAnywhere)
 	ET4BranchCondition Contition;
 
@@ -130,7 +130,7 @@ struct T4ASSET_API FT4SpecialMoveAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeSpecialMoveActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeSpecialMoveActionDetails
 
 public:
 	FT4SpecialMoveAction()
@@ -152,7 +152,7 @@ struct T4ASSET_API FT4AnimationAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeAnimationActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeAnimationActionDetails
 
 	UPROPERTY(EditAnywhere)
 	FName SectionName;
@@ -199,7 +199,7 @@ struct T4ASSET_API FT4ParticleAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeParticleActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeParticleActionDetails
 	UPROPERTY(EditAnywhere)
 	ET4AttachParent AttachParent;
 
@@ -253,7 +253,7 @@ struct T4ASSET_API FT4DecalAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeDecalActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeDecalActionDetails
 	UPROPERTY(EditAnywhere)
 	ET4AttachParent AttachParent;
 
@@ -319,7 +319,7 @@ struct T4ASSET_API FT4ProjectileAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeProjectileActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeProjectileActionDetails
 	UPROPERTY(EditAnywhere)
 	FName ActionPoint; // 어딘가에 붙어야 할 경우. 예) 오른손...
 
@@ -371,7 +371,7 @@ struct T4ASSET_API FT4ReactionAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeReactionActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeReactionActionDetails
 	UPROPERTY(EditAnywhere)
 	FName ReactionName;
 
@@ -402,7 +402,7 @@ struct T4ASSET_API FT4TimeScaleAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeTimeScaleActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeTimeScaleActionDetails
 
 public:
 	FT4TimeScaleAction()
@@ -425,7 +425,7 @@ struct T4ASSET_API FT4CameraWorkAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeDecalActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeDecalActionDetails
 
 public:
 	FT4CameraWorkAction()
@@ -448,7 +448,7 @@ struct T4ASSET_API FT4LayerSetAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeLayerSetActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeLayerSetActionDetails
 	UPROPERTY(EditAnywhere)
 	FName LayerTagName;
 

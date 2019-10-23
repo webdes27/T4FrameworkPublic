@@ -53,6 +53,8 @@ public:
 	virtual void OnNotifyAIEvent(const FName& InEventName) override {}; // #63
 #endif
 
+	APawn* GetDefaultPawn() const override; // #86
+
 	bool SetGameObject(const FT4ObjectID& InNewTargetID) override;
 	void ClearGameObject(bool bInSetDefaultPawn) override;
 
@@ -98,6 +100,7 @@ public:
 	void SwitchCameraType(ET4CameraType InCameraType) override; // #40
 
 	void SetCameraZoom(float InAmount) override;
+	void SetCameraZoomMaxScale(float InScale) override { CameraZoomMaxScale = InScale; } // #86
 	void SetCameraPitch(float InAmount) override;
 	void SetCameraYaw(float InAmount) override;
 
@@ -171,6 +174,7 @@ private:
 	float CameraZoomSpeed;
 	float CameraZoomDistanceMin;
 	float CameraZoomDistanceMax;
+	float CameraZoomMaxScale; // #86
 	// ~#40
 
 	// #48

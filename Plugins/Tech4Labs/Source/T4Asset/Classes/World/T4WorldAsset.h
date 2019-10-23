@@ -55,12 +55,60 @@ public:
 	void Reset()
 	{
 #if WITH_EDITOR
-		TransientActorList.Empty();
+		SubLevel = NAME_None;
+		PackageName = NAME_None;
+		ParentPackageName = NAME_None;
+		LayerName = NAME_None;
+		StreamingDistance = 0.0f;
+		DistanceStreamingEnabled = true;
+		BoundExtent = FVector2D::ZeroVector;
+		Position = FIntVector::ZeroValue;
+		AbsolutePosition = FIntVector::ZeroValue;
+		ZOrder = 0;
+		LODNums = 0;
+		LODIndex = 0;
 #endif
 	}
 
-	UPROPERTY(EditAnywhere, Transient)
-	TArray<FT4WorldEditorTransientActorData> TransientActorList; // #85
+	// Tile long package name (readonly)	
+	UPROPERTY(VisibleAnywhere, Transient)
+	FName							SubLevel;
+
+	// Tile long package name (readonly)	
+	UPROPERTY(VisibleAnywhere, Transient)
+	FName							PackageName;
+	
+	// Parent tile long package name	
+	UPROPERTY(VisibleAnywhere, Transient)
+	FName							ParentPackageName;
+
+	UPROPERTY(VisibleAnywhere, Transient)
+	FName							LayerName;
+
+	UPROPERTY(VisibleAnywhere, Transient)
+	float							StreamingDistance;
+
+	UPROPERTY(VisibleAnywhere, Transient)
+	bool							DistanceStreamingEnabled;
+
+	UPROPERTY(VisibleAnywhere, Transient)
+	FVector2D						BoundExtent;
+
+	// Tile position in the world, relative to parent 
+	UPROPERTY(VisibleAnywhere, Transient)
+	FIntVector						Position;
+
+	UPROPERTY(VisibleAnywhere, Transient)
+	FIntVector						AbsolutePosition;
+
+	UPROPERTY(VisibleAnywhere, Transient, meta=(ClampMin = "-1000", ClampMax = "1000", UIMin = "-1000", UIMax = "1000"))
+	int32							ZOrder;
+
+	UPROPERTY(VisibleAnywhere, Transient)
+	int32							LODNums;
+
+	UPROPERTY(VisibleAnywhere, Transient)
+	int32							LODIndex;
 };
 
 class UTexture2D;

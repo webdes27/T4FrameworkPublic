@@ -154,6 +154,8 @@ public:
 
 	virtual void ShowMouseCursor(bool InShow) = 0;
 	virtual void SetMouseCursorType(EMouseCursor::Type InMouseCursorType) = 0;
+
+	virtual void SetInitialLocationAndRotation(const FVector& InLocation, const FRotator& InRotation) = 0; // #86
 };
 
 class T4FRAMEWORK_API IT4EditorGameData // #60

@@ -15,7 +15,7 @@ struct T4ASSET_API FT4BaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiCustomizeDetails::CustomizeCommonActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeCommonActionDetails
 
 	UPROPERTY(VisibleAnywhere)
 	ET4ActionType ActionType;

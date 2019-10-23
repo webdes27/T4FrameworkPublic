@@ -24,6 +24,7 @@
 /**
   * 
  */
+class APawn; // #86
 class UWorld;
 class FCanvas;
 class FViewport;
@@ -34,6 +35,7 @@ class UInputComponent;
 class IT4GameObject;
 class IT4GameWorld;
 class AT4PlayerController;
+class IT4EditorViewportClient;
 
 // #30
 enum ET4FrameworkType
@@ -104,6 +106,8 @@ public:
 
 	virtual FViewport* GetViewport() const = 0; // #68
 
+	virtual APawn* GetDefaultPawn() const = 0; // #86
+
 	virtual FRotator GetViewControlRotation() const = 0;
 
 	virtual ET4CameraType GetCameraType() const = 0;
@@ -114,6 +118,7 @@ public:
 
 	virtual void SwitchCameraType(ET4CameraType InCameraType) = 0; // #40
 	virtual void SetCameraZoom(float InAmount) = 0;
+	virtual void SetCameraZoomMaxScale(float InScale) = 0; // #86
 	virtual void SetCameraPitch(float InAmount) = 0;
 	virtual void SetCameraYaw(float InAmount) = 0;
 
@@ -145,7 +150,7 @@ public:
 		bool bInGamepad
 	) = 0; // #30
 
-	virtual void EditorSetViewportClient(class IT4EditorViewportClient* InEditorViewportClient) = 0;
+	virtual void EditorSetViewportClient(IT4EditorViewportClient* InEditorViewportClient) = 0;
 
 	virtual FT4OnViewTargetChanged& GetOnViewTargetChanged() = 0;
 #endif
