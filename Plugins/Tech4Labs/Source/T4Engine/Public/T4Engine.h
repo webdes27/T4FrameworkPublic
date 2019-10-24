@@ -202,6 +202,12 @@ public:
 	virtual void EndWeaponHitOverlapEvent() = 0; // #49
 #endif
 
+	virtual bool IsLockOn() const = 0; // #33
+	virtual bool IsFalling() const = 0;
+	virtual bool IsFlying() const = 0;
+	virtual bool IsRolling() const = 0; // #46
+	virtual bool IsTurning() const = 0; // #46
+
 	virtual bool HasPlayingAnimState(const FName& InAnimStateName) const = 0; // #47
 	virtual bool HasPlayingPublicAction(const FT4ActionKey& InActionKey) const = 0; // #76 : Action Public Manager
 

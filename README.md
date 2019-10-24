@@ -19,6 +19,8 @@ Powerful toolset and Flexible layer solution
 - Warning
   - 2019.10 월 정식 버전 배포 예정입니다. 개발 버전이므로 테스트 용도로 만 사용해주시기 바랍니다.
 - Release Notes
+  - **[2019.10.24] [M4] Copying //Private to //Deploy (private commit 7a21ab2)**
+	- #85 [기능개선] Rehearsal World Editor, SubLevel Detail View 내 SearchBox 및 선택한 Actor 로 포커스 이동 추가
   - **[2019.10.23] [M4] Copying //Private to //Deploy (private commit dec3cb2)**
   	- #86 [기능개선] Rehearsal World Editor, Level Streaming Layer 설정 및 테스트 환경 추가
 	- #85 [기능개선] Rehearsal World Editor, PreviewWorld 에 로드된 SubLevel 상세 정보 업데이트 개선

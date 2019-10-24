@@ -61,6 +61,7 @@ public:
 		LayerName = NAME_None;
 		StreamingDistance = 0.0f;
 		DistanceStreamingEnabled = true;
+		Actors = 0;
 		BoundExtent = FVector2D::ZeroVector;
 		Position = FIntVector::ZeroValue;
 		AbsolutePosition = FIntVector::ZeroValue;
@@ -90,6 +91,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Transient)
 	bool							DistanceStreamingEnabled;
+
+	UPROPERTY(VisibleAnywhere, Transient)
+	int32							Actors;
 
 	UPROPERTY(VisibleAnywhere, Transient)
 	FVector2D						BoundExtent;
