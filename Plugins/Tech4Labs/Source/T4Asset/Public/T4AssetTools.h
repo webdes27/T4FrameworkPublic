@@ -24,6 +24,8 @@ class UT4ItemEntityAsset;
 class UT4WeaponEntityAsset;
 class UT4CostumeEntityAsset;
 class UT4CharacterEntityAsset;
+struct FT4WorldSubLevelThumbnail; // #84
+class UT4WorldAsset; // #84
 
 namespace T4AssetTool
 {
@@ -336,6 +338,18 @@ namespace T4AssetTool
 		FString& OutErrorMessage
 	); // #69
 
+	// #84
+	T4ASSET_API const FT4WorldSubLevelThumbnail* WorldGetSubLevelThumbnail(
+		UT4WorldAsset* InWorldAsset,
+		const FName InLevelAssetName
+	); 
+
+	T4ASSET_API bool WorldAddOrUpdateSubLevelThumbnail(
+		UT4WorldAsset* InWorldAsset,
+		const FName InLevelAssetName,
+		FObjectThumbnail* InObjectThumbnail
+	);
+	// ~#84
 }
 
 #endif

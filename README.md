@@ -19,6 +19,8 @@ Powerful toolset and Flexible layer solution
 - Warning
   - 2019.10 월 정식 버전 배포 예정입니다. 개발 버전이므로 테스트 용도로 만 사용해주시기 바랍니다.
 - Release Notes
+  - **[2019.10.25] [M4] Copying //Private to //Deploy (private commit 0d6e340)**
+	- #84 [기능추가] Rehearsal World Editor, SubLevel Thumbnail 생성 및 저장 기능 개선 (T4WorldAsset)
   - **[2019.10.25] [M4] Copying //Private to //Deploy (private commit 13ffc01)**
 	- #85 [버그수정] Rehearsal World Editor, SubLevel 변경시 간헐적으로 발생하는 크래시 수정 (SubLevel DetailView)
   - **[2019.10.24] [M4] Copying //Private to //Deploy (private commit 7a21ab2)**

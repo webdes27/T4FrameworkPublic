@@ -25,98 +25,33 @@ private:
 	FT4WorldCustomVersion() {}
 };
 
+// #84
 USTRUCT()
-struct T4ASSET_API FT4WorldEditorTransientActorData
+struct T4ASSET_API FT4WorldSubLevelThumbnail
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4WorldEditorTransientActorData()
-		: SubLevelPackageName(NAME_None)
+	FT4WorldSubLevelThumbnail()
+		: ImageWidth(0)
+		, ImageHeight(0)
 	{
-		
 	}
 
-	UPROPERTY(EditAnywhere, Transient)
-	FName SubLevelPackageName; // #85
-};
+	UPROPERTY(EditAnywhere) /** Thumbnail width (serialized) */
+	int32 ImageWidth;
 
-USTRUCT()
-struct T4ASSET_API FT4WorldEditorTransientData
-{
-	GENERATED_USTRUCT_BODY()
+	UPROPERTY(EditAnywhere) /** Thumbnail height (serialized) */
+	int32 ImageHeight;
 
-public:
-	FT4WorldEditorTransientData()
-	{
-		Reset();
-	}
+	UPROPERTY(EditAnywhere) /** Compressed image data (serialized) */
+	TArray<uint8> CompressedImageData;
 
-	void Reset()
-	{
-#if WITH_EDITOR
-		SubLevel = NAME_None;
-		PackageName = NAME_None;
-		ParentPackageName = NAME_None;
-		LayerName = NAME_None;
-		StreamingDistance = 0.0f;
-		DistanceStreamingEnabled = true;
-		Actors = 0;
-		BoundExtent = FVector2D::ZeroVector;
-		Position = FIntVector::ZeroValue;
-		AbsolutePosition = FIntVector::ZeroValue;
-		ZOrder = 0;
-		LODNums = 0;
-		LODIndex = 0;
-#endif
-	}
-
-	// Tile long package name (readonly)	
-	UPROPERTY(VisibleAnywhere, Transient)
-	FName							SubLevel;
-
-	// Tile long package name (readonly)	
-	UPROPERTY(VisibleAnywhere, Transient)
-	FName							PackageName;
-	
-	// Parent tile long package name	
-	UPROPERTY(VisibleAnywhere, Transient)
-	FName							ParentPackageName;
-
-	UPROPERTY(VisibleAnywhere, Transient)
-	FName							LayerName;
-
-	UPROPERTY(VisibleAnywhere, Transient)
-	float							StreamingDistance;
-
-	UPROPERTY(VisibleAnywhere, Transient)
-	bool							DistanceStreamingEnabled;
-
-	UPROPERTY(VisibleAnywhere, Transient)
-	int32							Actors;
-
-	UPROPERTY(VisibleAnywhere, Transient)
-	FVector2D						BoundExtent;
-
-	// Tile position in the world, relative to parent 
-	UPROPERTY(VisibleAnywhere, Transient)
-	FIntVector						Position;
-
-	UPROPERTY(VisibleAnywhere, Transient)
-	FIntVector						AbsolutePosition;
-
-	UPROPERTY(VisibleAnywhere, Transient, meta=(ClampMin = "-1000", ClampMax = "1000", UIMin = "-1000", UIMax = "1000"))
-	int32							ZOrder;
-
-	UPROPERTY(VisibleAnywhere, Transient)
-	int32							LODNums;
-
-	UPROPERTY(VisibleAnywhere, Transient)
-	int32							LODIndex;
+	UPROPERTY(Transient) /** Image data bytes */
+	TArray<uint8> RawImageData;
 };
 
 class UTexture2D;
-class UT4EntityAsset;
 
 UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs")
 class T4ASSET_API UT4WorldAsset : public UObject
@@ -134,11 +69,6 @@ public:
 	//~ End UObject interface
 
 #if WITH_EDITOR
-	virtual void ResetEditorTransientData()
-	{
-		EditorTransientData.Reset();
-	}
-
 	DECLARE_MULTICAST_DELEGATE(FT4OnPropertiesChanged);
 	FT4OnPropertiesChanged& OnPropertiesChanged() { return OnPropertiesChangedDelegate; }
 #endif // WITH_EDITOR
@@ -151,10 +81,8 @@ public:
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
 
-	// #71 : WARN : CustomizeCharacterEntityDetails 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
-	// TODO : Transient 설정으로 Editor Dirty 가 발생함으로 다른 방법 고려 필요
-	UPROPERTY(EditAnywhere, Transient)
-	FT4WorldEditorTransientData EditorTransientData;
+	UPROPERTY()
+	TMap<FName, FT4WorldSubLevelThumbnail> SubLevelThumbnails; // #84
 #endif
 
 private:
