@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Public/T4AssetDefinitions.h"
 #include "Public/Entity/T4EntityTypes.h"
 #include "T4EntityAsset.generated.h"
 
