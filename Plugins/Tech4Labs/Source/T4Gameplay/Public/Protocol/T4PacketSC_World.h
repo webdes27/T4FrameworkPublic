@@ -12,7 +12,7 @@
  */
  // #T4_ADD_PACKET_TAG_SC
 
-// ET4PacketStoC::ChangeWorld
+// ET4PacketStoC::WorldTravel
 
 // ET4PacketStoC::MyPCEnter
 // ET4PacketStoC::MyPCChange // #11, #52
@@ -30,7 +30,7 @@
 // ET4PacketStoC::ItemLeave // #41
 
 USTRUCT()
-struct FT4PacketChangeWorldSC : public FT4PacketStoC
+struct FT4PacketWorldTravelSC : public FT4PacketStoC
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -39,14 +39,14 @@ public:
 	FT4GameDataID WorldDataID;
 
 public:
-	FT4PacketChangeWorldSC()
-		: FT4PacketStoC(ET4PacketStoC::ChangeWorld)
+	FT4PacketWorldTravelSC()
+		: FT4PacketStoC(ET4PacketStoC::WorldTravel)
 	{
 	}
 
 	FString ToString() const override
 	{
-		return FString(TEXT("SC_Packet:ChangeWorld"));
+		return FString(TEXT("SC_Packet:WorldTravel"));
 	}
 };
 

@@ -49,10 +49,11 @@ enum class ET4ActionType : uint32
 
 	// begin World
 
-	ChangeWorld,
+	WorldTravel,
+	WorldComposition, // #86
 
-	ObjectEnter,
-	ObjectLeave,
+	SpawnObject,
+	DespawnObject,
 
 	// begin Object / #68 : #T4_ADD_ACTION_TAG_CODE
 

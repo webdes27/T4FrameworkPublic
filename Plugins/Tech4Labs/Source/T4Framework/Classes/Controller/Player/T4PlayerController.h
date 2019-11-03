@@ -109,10 +109,10 @@ public:
 	void SetCameraLock(bool bInLock) override;
 	bool IsCameraLocked() const override { return bCameraMoveLocked; }
 
-	bool GetMousePositionToWorldRay(
-		FVector& OutStartPosition,
-		FVector& OutStartDirection
-	) override;
+	void GetCameraInfoCached(FRotator& OutRotation, float& OutDistance) override; // #87
+	void SetCameraInfoCached(const FRotator& InRotation, const float& InDistance) override; // #87
+
+	bool GetMousePositionToWorldRay(FVector& OutStartPosition, FVector& OutStartDirection) override;
 
 	void SetMouseCursorType(EMouseCursor::Type InMouseCursorType) override;
 	void ShowMouseCursor(bool InShow) override;

@@ -36,6 +36,7 @@ class IT4GameObject;
 class IT4GameWorld;
 class AT4PlayerController;
 class IT4EditorViewportClient;
+class UT4MapEntityAsset; // #87
 
 // #30
 enum ET4FrameworkType
@@ -70,7 +71,6 @@ struct FT4HUDDrawInfo // #68
 
 class IT4GameFramework;
 class IT4GameObject;
-DECLARE_DELEGATE_OneParam(FT4OnRegisterGameplayLayerInstancce, IT4GameFramework*); // #42
 
 #if WITH_EDITOR
 DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnViewTargetChanged, IT4GameObject*);
@@ -126,6 +126,9 @@ public:
 
 	virtual void SetCameraLock(bool bInLock) = 0;
 	virtual bool IsCameraLocked() const = 0;
+
+	virtual void GetCameraInfoCached(FRotator& OutRotation, float& OutDistance) = 0; // #87
+	virtual void SetCameraInfoCached(const FRotator& InRotation, const float& InDistance) = 0; // #87
 
 	virtual bool GetMousePositionToWorldRay(
 		FVector& OutStartPosition,
@@ -212,6 +215,8 @@ public:
 	virtual void RegisterGameplayInstance(IT4GameplayInstance* InLayerInstance) = 0; // #42
 	virtual IT4GameplayInstance* GetGameplayInstance() const = 0; // #42
 
+	virtual bool OnWorldTravel(UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
+
 	// Client
 	virtual IT4PlayerController* GetPlayerController() const = 0;
 
@@ -248,6 +253,7 @@ public:
 };
 
 // #42
+DECLARE_DELEGATE_OneParam(FT4OnRegisterGameplayLayerInstancce, IT4GameFramework*); // #42
 class T4FRAMEWORK_API FT4FrameworkDelegates
 {
 public:
@@ -263,7 +269,7 @@ private:
 
 T4FRAMEWORK_API IT4GameFramework* T4FrameworkCreate(
 	ET4FrameworkType InFrameworkType,
-	FWorldContext* InWorldContext
+	const FT4WorldConstructionValues& InWorldConstructionValues // #87
 );
 T4FRAMEWORK_API void T4FrameworkDestroy(IT4GameFramework* InFramework);
 

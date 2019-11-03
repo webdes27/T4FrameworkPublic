@@ -88,6 +88,16 @@ enum ET4InputMode
 	GameOnly,
 };
 
+UENUM()
+enum class ET4GameWorldType : uint8 // #87
+{
+	Game,
+
+	Preview, // Only Editor
+
+	None,
+};
+
 enum ET4CameraType
 {
 	TPS,

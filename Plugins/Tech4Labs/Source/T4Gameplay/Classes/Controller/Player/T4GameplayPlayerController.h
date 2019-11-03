@@ -105,7 +105,7 @@ private:
 	void CS_RecvPacket_Attack(const FT4PacketAttackCS& InPacket);
 
 	UFUNCTION(Reliable, server, WithValidation)
-	void CS_RecvPacket_CmdChangeWorld(const FT4PacketCmdChangeWorldCS& InPacket);
+	void CS_RecvPacket_CmdWorldTravel(const FT4PacketCmdWorldTravelCS& InPacket);
 
 	UFUNCTION(Reliable, server, WithValidation)
 	void CS_RecvPacket_CmdChangePlayer(const FT4PacketCmdChangePlayerCS& InPacket); // #11, #52
@@ -123,7 +123,7 @@ private:
 	void CS_RecvPacket_CmdItemEnter(const FT4PacketCmdItemEnterCS& InPacket); // #41
 
 	UFUNCTION(Reliable, server, WithValidation)
-	void CS_RecvPacket_CmdObjectLeave(const FT4PacketCmdObjectLeaveCS& InPacket); // #68
+	void CS_RecvPacket_CmdLeave(const FT4PacketCmdLeaveCS& InPacket); // #68
 
 	UFUNCTION(Reliable, server, WithValidation)
 	void CS_RecvPacket_CmdTeleport(const FT4PacketCmdTeleportCS& InPacket);
@@ -133,7 +133,7 @@ private:
 
 	// #T4_ADD_PACKET_TAG_SC
 	UFUNCTION(Reliable, client)
-	void SC_RecvPacket_ChangeWorld(const FT4PacketChangeWorldSC& InPacket);
+	void SC_RecvPacket_WorldTravel(const FT4PacketWorldTravelSC& InPacket);
 
 	UFUNCTION(Reliable, client)
 	void SC_RecvPacket_MyPCEnter(const FT4PacketMyPCEnterSC& InPacket);

@@ -23,7 +23,7 @@ class IT4GameObject;
 
 struct FT4BaseAction;
 struct FT4StopAction;
-struct FT4ObjectEnterAction;
+struct FT4SpawnObjectAction;
 struct FT4ActionParameters; // #28
 
 struct FT4PacketCtoS;
@@ -264,10 +264,7 @@ public:
 
 	virtual float GetRecTimeSec() const = 0;
 
-	virtual bool RecWorldAction(
-		const FT4BaseAction* InAction,
-		const FT4ActionParameters* InActionParam
-	) = 0;
+	virtual bool RecWorldAction(const FT4BaseAction* InAction, const FT4ActionParameters* InActionParam) = 0;
 	virtual bool RecObjectAction(
 		const FT4ObjectID& InObjectID,
 		const FT4BaseAction* InAction,
@@ -301,91 +298,22 @@ public:
 	virtual void DoStopRecording() = 0;
 };
 
-class T4ENGINE_API IT4GameWorld
+class T4ENGINE_API IT4WorldContainerSystem // #87
 {
 public:
-	virtual ~IT4GameWorld() {}
+	virtual ~IT4WorldContainerSystem() {}
 
-	virtual ET4LayerType GetLayerType() const = 0;
-	virtual ET4WorldType GetType() const = 0;
-
-	virtual void OnReset() = 0;
-
-	virtual void OnProcessPre(float InDeltaTime) = 0; // #34 : OnWorldPreActorTick
-	virtual void OnProcessPost(float InDeltaTime) = 0; // #34 : OnWorldPostActorTick
-
-	virtual bool DoExecuteAction(const FT4BaseAction* InAction, const FT4ActionParameters* InActionParam = nullptr) = 0;
-
-	virtual UWorld* GetWorld() const = 0;
-	
 	virtual uint32 GetNumGameObjects() const = 0;
-	virtual bool GetGameObjects(
-		ET4SpawnMode InSpawnType, 
-		TArray<IT4GameObject*>& OutGameObjects
-	) = 0; // #68
+	virtual bool GetGameObjects(ET4SpawnMode InSpawnType, TArray<IT4GameObject*>& OutGameObjects) = 0; // #68
 
 	virtual bool HasGameObject(const FT4ObjectID& InObjectID) const = 0;;
 	virtual IT4GameObject* FindGameObject(const FT4ObjectID& InObjectID) const = 0;
-
-	virtual bool QueryLineTraceSingle(
-		ET4CollisionChannel InCollisionChannel,
-		const FVector& InStartLocation,
-		const FVector& InEndLocation,
-		const FCollisionQueryParams& InCollisionQueryParams, // FCollisionQueryParams::DefaultQueryParam
-		FT4HitSingleResult& OutHitResult
-	) = 0;
-
-	virtual bool QueryLineTraceSingle(
-		ET4CollisionChannel InCollisionChannel,
-		const FVector& InStartLocation, 
-		const FVector& InStartDirection,
-		const float InMaxDistance, // DefaultLineTraceMaxDistance
-		const FCollisionQueryParams& InCollisionQueryParams, // FCollisionQueryParams::DefaultQueryParam
-		FT4HitSingleResult& OutHitResult
-	) = 0;
 
 	virtual bool QueryNearestGameObjects(
 		const FVector& InOriginLocation,
 		const float InMaxDistance,
 		TArray<IT4GameObject*>& OutObjects
 	) = 0; // #34
-
-	virtual bool ProjectPointToNavigation(
-		const FVector& InGoal,
-		const FVector& InExtent, // T4_INVALID_NAVEXTENT, FVector::ZeroVector
-		FVector& OutLocation
-	) = 0; // #31
-
-	virtual bool HasReachedOnNavigation(
-		const FVector& InStartLocation,
-		const FVector& InEndLocation
-	) = 0; // #52
-
-	virtual bool GetRandomLocationInNavigableRadius(
-		const FVector& InOrigin,
-		float InMaxRadius,
-		FVector& OutLocation
-	) = 0; // #31
-
-	// Client Only
-	virtual FVector GetCameraLocation() const = 0;
-	virtual FRotator GetCameraRotation() const = 0;
-
-	virtual IT4GameplayControl* GetPlayerControl() = 0;
-	virtual bool SetPlayerControl(IT4GameplayControl* InPlayerControl) = 0;
-
-	virtual bool HasPlayerObject() const = 0;
-	virtual bool IsPlayerObject(const FT4ObjectID& InObjectID) const = 0;
-	virtual bool IsPlayerObject(IT4GameObject* InGameObject) const = 0;
-	virtual IT4GameObject* GetPlayerObject() const = 0;
-
-#if !UE_BUILD_SHIPPING
-	// #68
-	virtual IT4ActionPlaybackPlayer* GetActionPlaybackPlayer() const = 0;
-	virtual IT4ActionPlaybackRecorder* GetActionPlaybackRecorder() const = 0;
-	virtual IT4ActionPlaybackController* GetActionPlaybackController() = 0;
-	// ~#68
-#endif
 
 	// #54 : 현재는 ClientOnly
 	virtual IT4GameObject* PlayClientObject(
@@ -402,14 +330,121 @@ public:
 		const FVector& InLocation,
 		const FRotator& InRotation,
 		const FVector& InScale
-	) = 0; 
+	) = 0;
 	virtual bool DestroyClientObject(const FT4ObjectID& InObjectID) = 0;
 	// ~#54 : 현재는 ClientOnly
 };
 
+class T4ENGINE_API IT4WorldCollisionSystem // #87
+{
+public:
+	virtual ~IT4WorldCollisionSystem() {}
+
+	virtual bool QueryLineTraceSingle(
+		ET4CollisionChannel InCollisionChannel,
+		const FVector& InStartLocation,
+		const FVector& InEndLocation,
+		const FCollisionQueryParams& InCollisionQueryParams,
+		FT4HitSingleResult& OutHitResult
+	) = 0;
+
+	virtual bool QueryLineTraceSingle(
+		ET4CollisionChannel InCollisionChannel,
+		const FVector& InStartLocation,
+		const FVector& InStartDirection,
+		const float InMaxDistance,
+		const FCollisionQueryParams& InCollisionQueryParams,
+		FT4HitSingleResult& OutHitResult
+	) = 0;
+};
+
+class T4ENGINE_API IT4WorldNavigationSystem // #87
+{
+public:
+	virtual ~IT4WorldNavigationSystem() {}
+
+	virtual bool ProjectPoint(const FVector& InGoal, const FVector& InExtent, FVector& OutLocation) = 0; // #31 // INVALID_NAVEXTENT, FVector::ZeroVector
+
+	virtual bool HasReached(const FVector& InStartLocation, const FVector& InEndLocation) = 0; // #52
+
+	virtual bool GetRandomLocation(FVector& OutLocation) = 0; // #87
+	virtual bool GetRandomLocation(const FVector& InOrigin, float InMaxRadius, FVector& OutLocation) = 0; // #31
+};
+
+class T4ENGINE_API IT4WorldContext // #87
+{
+public:
+	virtual ~IT4WorldContext() {}
+
+	virtual ET4GameWorldType GetGameWorldType() const = 0; // #87
+
+	virtual bool CheckLevelLoadComplated() = 0; // #87
+
+	virtual UWorld* GetWorld() const = 0;
+
+#if WITH_EDITOR
+	virtual bool IsPreviewScene() const = 0; // #87
+#endif
+};
+
+class T4ENGINE_API IT4GameWorld
+{
+public:
+	virtual ~IT4GameWorld() {}
+
+	virtual ET4LayerType GetLayerType() const = 0;
+	virtual ET4WorldType GetType() const = 0;
+
+	virtual void OnReset() = 0;
+
+	virtual void OnProcessPre(float InDeltaTime) = 0; // #34 : OnWorldPreActorTick
+	virtual void OnProcessPost(float InDeltaTime) = 0; // #34 : OnWorldPostActorTick
+
+	virtual bool DoExecuteAction(const FT4BaseAction* InAction, const FT4ActionParameters* InActionParam = nullptr) = 0;
+
+	virtual ET4GameWorldType GetGameWorldType() const = 0; // #87
+
+	virtual UWorld* GetWorld() const = 0;
+	virtual IT4WorldContext* GetWorldContext() = 0; // #87
+
+	virtual IT4WorldContainerSystem* GetContainer() = 0; // #87
+	virtual IT4WorldCollisionSystem* GetCollision() = 0; // #87
+	virtual IT4WorldNavigationSystem* GetNavigation() = 0; // #87
+
+	// Client Only
+	virtual FVector GetCameraLocation() const = 0;
+	virtual FRotator GetCameraRotation() const = 0;
+
+	virtual IT4GameplayControl* GetPlayerControl() = 0;
+	virtual bool SetPlayerControl(IT4GameplayControl* InPlayerControl) = 0;
+
+	virtual bool HasPlayerObject() const = 0;
+	virtual bool IsPlayerObject(const FT4ObjectID& InObjectID) const = 0;
+	virtual bool IsPlayerObject(IT4GameObject* InGameObject) const = 0;
+	virtual IT4GameObject* GetPlayerObject() const = 0;
+
+#if !UE_BUILD_SHIPPING
+	virtual IT4ActionPlaybackPlayer* GetActionPlaybackPlayer() const = 0; // #68
+	virtual IT4ActionPlaybackRecorder* GetActionPlaybackRecorder() const = 0;
+	virtual IT4ActionPlaybackController* GetActionPlaybackController() = 0;
+#endif
+};
+
+// #87
+DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnGameWorldTravel, IT4GameWorld*);
+class T4ENGINE_API FT4EngineDelegates
+{
+public:
+	static FT4OnGameWorldTravel OnGameWorldTravelPre; // #87 : 월드 이동 playback 지원
+	static FT4OnGameWorldTravel OnGameWorldTravelPost; // #87 : 월드 이동 playback 지원
+
+private:
+	FT4EngineDelegates() {}
+};
+
 T4ENGINE_API IT4GameWorld* T4EngineWorldCreate(
 	ET4WorldType InWorldType,
-	FWorldContext* InWorldContext
+	const FT4WorldConstructionValues& InWorldConstructionValues // #87
 );
 T4ENGINE_API void T4EngineWorldDestroy(IT4GameWorld* InGameWorld);
 

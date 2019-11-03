@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "T4Asset/Classes/Entity/T4MapEntityAsset.h" // #87
 #include "T4WorldAsset.generated.h"
 
 /**
@@ -52,7 +53,6 @@ public:
 };
 
 class UTexture2D;
-
 UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs")
 class T4ASSET_API UT4WorldAsset : public UObject
 {
@@ -74,8 +74,8 @@ public:
 #endif // WITH_EDITOR
 
 public:
-	UPROPERTY(EditAnywhere, meta = (DisplayName = "Level Asset"))
-	TSoftObjectPtr<UWorld> LevelAsset;
+	UPROPERTY(EditAnywhere, meta = (DisplayName = "Map Entity Asset"))
+	TSoftObjectPtr<UT4MapEntityAsset> MapEntityAsset; // #87
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY()

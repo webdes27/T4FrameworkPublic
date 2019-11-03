@@ -104,13 +104,16 @@ public:
 	// T4ActionCodeWorld.h
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4ChangeWorldAction> ChangeWorldActions;
+	TArray<FT4WorldTravelAction> WorldTravelActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4ObjectEnterAction> ObjectEnterActions;
+	TArray<FT4WorldCompositionAction> WorldCompositionActions; // #87
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4ObjectLeaveAction> ObjectLeaveActions;
+	TArray<FT4SpawnObjectAction> SpawnObjectActions;
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<FT4DespawnObjectAction> DespawnObjectActions;
 
 
 	// T4ActionCodeMove.h

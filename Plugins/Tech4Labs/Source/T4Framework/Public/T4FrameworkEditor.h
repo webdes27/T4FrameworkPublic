@@ -140,11 +140,8 @@ public:
 	virtual ~IT4EditorViewportClient() {}
 
 	virtual FViewport* GetViewport() const = 0; // #68
-	virtual FWorldContext* GetWorldContext() const = 0; // #79
 
 	virtual bool IsPreviewMode() const = 0;
-
-	virtual ET4WorldTravelResult OnWorldTravel(const TCHAR* InTravelURL) = 0; // #79
 
 	virtual void SetUpdateCameraForPlayer(bool bEnable) = 0; // #79
 
@@ -174,7 +171,7 @@ public:
 	virtual bool GetEffectDataInfo(const FName& InEffectDataNameID, FT4EditorEffectDataInfo& OutEffectData) = 0;
 
 	virtual bool DoNPCSpawn(const FName& InNPCDataNameID, const FVector& InSpawnLocation) = 0; // #60 : to player
-	virtual bool DoLeaveAllSpawn(bool bClearPlayerObject) = 0; // #68
+	virtual bool DoDespawnAll(bool bClearPlayerObject) = 0; // #68
 
 	virtual bool DoEquipWeaponItem(const FName& InWeaponDataNameID, bool bInUnEquip) = 0; // #60 : to player
 	virtual bool DoExchangeCostumeItem(const FName& InCostumeDataNameID) = 0; // #60 : to player

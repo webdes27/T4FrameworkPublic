@@ -6,6 +6,7 @@
 #include "T4ActionCodeBase.h"
 #include "T4Asset/Public/T4AssetDefinitions.h" // #73
 #include "T4Asset/Public/Entity/T4EntityKey.h"
+
 #include "T4ActionCodeWorld.generated.h"
 
 /**
@@ -13,32 +14,41 @@
  */
  // #T4_ADD_ACTION_TAG_CODE
 
-// ET4ActionType::ChangeWorld
-// ET4ActionType::ObjectEnter
-// ET4ActionType::ObjectLeave
+// ET4ActionType::WorldTravel
+// ET4ActionType::WorldComposition // #86
+// ET4ActionType::SpawnObject
+// ET4ActionType::DespawnObject
 
 USTRUCT()
-struct T4ENGINE_API FT4ChangeWorldAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4WorldTravelAction : public FT4CodeBaseAction
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
 	UPROPERTY(EditAnywhere)
-	FSoftObjectPath EntityAssetPath;
+	FSoftObjectPath EntityOrLevelAssetPath; // def MapEntity or LevelAsset
+
+	UPROPERTY(EditAnywhere)
+	bool bPreveiwScene; // #87
+
+	UPROPERTY(Transient)
+	FVector StartLocation; // #87
 
 public:
-	FT4ChangeWorldAction()
+	FT4WorldTravelAction()
 		: FT4CodeBaseAction(StaticActionType())
+		, bPreveiwScene(false) // #87
+		, StartLocation(FVector::ZeroVector) // #87
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::ChangeWorld; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::WorldTravel; }
 
 	bool Validate(FString& OutMsg) override
 	{
-		if (!EntityAssetPath.IsValid())
+		if (!EntityOrLevelAssetPath.IsValid())
 		{
-			OutMsg = TEXT("Invalid EntityAssetPath");
+			OutMsg = TEXT("Invalid EntityOrLevelAssetPath");
 			return false;
 		}
 		return true;
@@ -46,12 +56,42 @@ public:
 
 	FString ToString() const override
 	{
-		return FString(TEXT("ChangeWorldAction"));
+		return FString(TEXT("WorldTravelAction"));
+	}
+};
+
+// #86 : World 의 UpdateStreamingState 를 제어하기 위한 옵션 처리
+USTRUCT()
+struct T4ENGINE_API FT4WorldCompositionAction : public FT4CodeBaseAction
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+	bool bLevelStreamingFrozen;
+
+public:
+	FT4WorldCompositionAction()
+		: FT4CodeBaseAction(StaticActionType())
+		, bLevelStreamingFrozen(false)
+	{
+	}
+
+	static ET4ActionType StaticActionType() { return ET4ActionType::WorldComposition; }
+
+	bool Validate(FString& OutMsg) override
+	{
+		return true;
+	}
+
+	FString ToString() const override
+	{
+		return FString(TEXT("WorldCompositionAction"));
 	}
 };
 
 USTRUCT()
-struct T4ENGINE_API FT4ObjectEnterAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4SpawnObjectAction : public FT4CodeBaseAction
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -86,7 +126,7 @@ public:
 	bool bPlayer;
 	   
 public:
-	FT4ObjectEnterAction()
+	FT4SpawnObjectAction()
 		: FT4CodeBaseAction(StaticActionType())
 		, Name(NAME_None)
 		, EntityType(ET4EntityType::None)
@@ -98,7 +138,7 @@ public:
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::ObjectEnter; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::SpawnObject; }
 
 	bool Validate(FString& OutMsg) override
 	{
@@ -117,12 +157,12 @@ public:
 
 	FString ToString() const override
 	{
-		return FString(TEXT("ObjectEnterAction"));
+		return FString(TEXT("SpawnObjectAction"));
 	}
 };
 
 USTRUCT()
-struct T4ENGINE_API FT4ObjectLeaveAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4DespawnObjectAction : public FT4CodeBaseAction
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -134,13 +174,13 @@ public:
 	float FadeOutTimeSec; // #67, #78
 
 public:
-	FT4ObjectLeaveAction()
+	FT4DespawnObjectAction()
 		: FT4CodeBaseAction(StaticActionType())
 		, FadeOutTimeSec(T4ObjectWorldLeaveTimeSec) // #67, #78
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::ObjectLeave; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::DespawnObject; }
 
 	bool Validate(FString& OutMsg) override
 	{
@@ -154,6 +194,6 @@ public:
 
 	FString ToString() const override
 	{
-		return FString(TEXT("ObjectLeaveAction"));
+		return FString(TEXT("DespawnObjectAction"));
 	}
 };

@@ -11,7 +11,7 @@
  */
  // #T4_ADD_PACKET_TAG_CS
 
-// ET4PacketCtoS::CmdChangeWorld
+// ET4PacketCtoS::CmdWorldTravel
 // ET4PacketCtoS::CmdChangePlayer // #11, #52
 
 // ET4PacketCtoS::CmdPCEnter
@@ -19,12 +19,12 @@
 // ET4PacketCtoS::CmdFOEnter // #31
 // ET4PacketCtoS::CmdItemEnter // #41
 
-// ET4PacketCtoS::CmdObjectLeave, // #68
+// ET4PacketCtoS::CmdLeave, // #68
 
 // ET4PacketCtoS::CmdTeleport
 
 USTRUCT()
-struct FT4PacketCmdChangeWorldCS : public FT4PacketCtoS
+struct FT4PacketCmdWorldTravelCS : public FT4PacketCtoS
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -33,14 +33,14 @@ public:
 	FT4GameDataID WorldDataID;
 
 public:
-	FT4PacketCmdChangeWorldCS()
-		: FT4PacketCtoS(ET4PacketCtoS::CmdChangeWorld)
+	FT4PacketCmdWorldTravelCS()
+		: FT4PacketCtoS(ET4PacketCtoS::CmdWorldTravel)
 	{
 	}
 
 	FString ToString() const override
 	{
-		return FString(TEXT("CS_Packet:CmdChangeWorld"));
+		return FString(TEXT("CS_Packet:CmdWorldTravel"));
 	}
 };
 
@@ -191,7 +191,7 @@ public:
 
 // #68
 USTRUCT()
-struct FT4PacketCmdObjectLeaveCS : public FT4PacketCtoS
+struct FT4PacketCmdLeaveCS : public FT4PacketCtoS
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -200,8 +200,8 @@ public:
 	FT4ObjectID LeaveObjectID;
 
 public:
-	FT4PacketCmdObjectLeaveCS()
-		: FT4PacketCtoS(ET4PacketCtoS::CmdObjectLeave)
+	FT4PacketCmdLeaveCS()
+		: FT4PacketCtoS(ET4PacketCtoS::CmdLeave)
 	{
 	}
 
@@ -217,7 +217,7 @@ public:
 
 	FString ToString() const override
 	{
-		return FString(TEXT("CS_Packet:CmdObjectLeave"));
+		return FString(TEXT("CS_Packet:CmdLeave"));
 	}
 };
 

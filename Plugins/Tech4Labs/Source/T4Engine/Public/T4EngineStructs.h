@@ -138,3 +138,24 @@ struct FT4HitSingleResult
 	IT4GameObject* ResultObject;
 	FVector ResultLocation;
 };
+
+struct FWorldContext;
+struct FT4WorldConstructionValues // #87
+{
+	FT4WorldConstructionValues()
+		: GameWorldType(ET4GameWorldType::None)
+		, WorldContextGameOrEditorOnly(nullptr)
+#if WITH_EDITOR
+		, bPreviewThumbnailMode(false)
+#endif
+	{
+	}
+
+	ET4GameWorldType GameWorldType;
+	FSoftObjectPath MapEntityOrLevelAssetPath; // MapEntity or LevelAsset
+	FWorldContext* WorldContextGameOrEditorOnly; // Game (PIE)만 설정
+
+#if WITH_EDITOR
+	bool bPreviewThumbnailMode;
+#endif
+};

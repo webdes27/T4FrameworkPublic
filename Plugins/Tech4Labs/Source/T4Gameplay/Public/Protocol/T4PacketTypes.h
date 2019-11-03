@@ -33,7 +33,7 @@ enum class ET4PacketCtoS : uint32
 	Attack,
 
 	// Test
-	CmdChangeWorld,
+	CmdWorldTravel,
 	CmdChangePlayer, // #11, #52
 
 	CmdPCEnter,
@@ -41,7 +41,7 @@ enum class ET4PacketCtoS : uint32
 	CmdFOEnter, // #31
 	CmdItemEnter, // #41
 
-	CmdObjectLeave, // #68
+	CmdLeave, // #68
 
 	CmdTeleport,
 
@@ -52,7 +52,7 @@ enum class ET4PacketCtoS : uint32
 UENUM()
 enum class ET4PacketStoC : uint32
 {
-	ChangeWorld,
+	WorldTravel,
 
 	MyPCEnter,
 	MyPCChange, // #11, #52
