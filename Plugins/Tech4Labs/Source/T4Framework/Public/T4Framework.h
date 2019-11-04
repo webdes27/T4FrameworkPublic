@@ -215,7 +215,7 @@ public:
 	virtual void RegisterGameplayInstance(IT4GameplayInstance* InLayerInstance) = 0; // #42
 	virtual IT4GameplayInstance* GetGameplayInstance() const = 0; // #42
 
-	virtual bool OnWorldTravel(UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
+	virtual bool OnWorldTravel(const UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
 
 	// Client
 	virtual IT4PlayerController* GetPlayerController() const = 0;

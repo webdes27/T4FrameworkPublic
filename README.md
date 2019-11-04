@@ -19,6 +19,8 @@ Powerful toolset and Flexible layer solution
 - Warning
   - 2019.10 월 정식 버전 배포 예정입니다. 개발 버전이므로 테스트 용도로 만 사용해주시기 바랍니다.
 - Release Notes
+  - **[2019.11.04] [M4] Copying //Private to //Deploy (private commit 6a736cb)**
+	- #87 [기능추가] Rehearsal Conti Editor 에서 지정한 월드가 자동으로 로딩 되도록 기능 추가
   - **[2019.11.02] [M4] Copying //Private to //Deploy (private commit 9594d94)**
 	- #87 [기능추가] 게임(PIE) 또는 Rehearsal Editor 에서의 World 이동 처리 개선 및 Playback 에서의 World Travel 동작 추가
   - **[2019.10.30] [M4] Copying //Private to //Deploy (private commit 3ebd5c1)**

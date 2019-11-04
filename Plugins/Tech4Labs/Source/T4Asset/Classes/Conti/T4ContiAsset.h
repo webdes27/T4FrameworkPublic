@@ -177,6 +177,9 @@ public:
 	
 	// #T4_ADD_EDITOR_PLAY_TAG
 	UPROPERTY(EditAnywhere, Category = Editor)
+	FName MapEntitySelected; // #87
+
+	UPROPERTY(EditAnywhere, Category = Editor)
 	FName StanceSelected; // #73
 
 	UPROPERTY(EditAnywhere, Category = Editor)
@@ -214,7 +217,8 @@ public:
 public:
 	FT4ContiTestSettings()
 #if WITH_EDITORONLY_DATA
-		: StanceSelected(NAME_None) // #73
+		: MapEntitySelected(NAME_None) // #87
+		, StanceSelected(NAME_None) // #73
 		, WeaponNameID(NAME_None) // #60
 		, SandbackNameID(NAME_None) // #60
 		, bAISystemDisabled(true) // #60

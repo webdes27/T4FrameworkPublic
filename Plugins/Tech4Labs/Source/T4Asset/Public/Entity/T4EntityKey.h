@@ -19,76 +19,76 @@ public:
 	ET4EntityType Type;
 
 	UPROPERTY(EditAnywhere)
-	FName AssetName;
+	FName Value;
 
 public:
 	FT4EntityKey()
 		: Type(ET4EntityType::None)
-		, AssetName(NAME_None)
+		, Value(NAME_None)
 	{
 	}
 
 	FT4EntityKey(const FName& InName)
 		: Type(ET4EntityType::None)
-		, AssetName(InName)
+		, Value(InName)
 	{
 	}
 
-	FT4EntityKey(const ET4EntityType InType, const TCHAR* InAssetName)
+	FT4EntityKey(const ET4EntityType InType, const TCHAR* InValue)
 		: Type(InType)
-		, AssetName(InAssetName)
+		, Value(InValue)
 	{
 	}
 
-	FT4EntityKey(const ET4EntityType InType, const FName& InAssetName)
+	FT4EntityKey(const ET4EntityType InType, const FName& InValue)
 		: Type(InType)
-		, AssetName(InAssetName)
+		, Value(InValue)
 	{
 	}
 
-	FT4EntityKey(const ET4EntityType InType, const FString& InAssetName)
+	FT4EntityKey(const ET4EntityType InType, const FString& InValue)
 		: Type(InType)
-		, AssetName(*InAssetName)
+		, Value(*InValue)
 	{
 	}
 
 	FT4EntityKey(const FT4EntityKey& InEntityKey)
 		: Type(InEntityKey.Type)
-		, AssetName(InEntityKey.AssetName)
+		, Value(InEntityKey.Value)
 	{
 	}
 
 	FORCEINLINE FT4EntityKey operator=(const FT4EntityKey& InRhs)
 	{
 		Type = InRhs.Type;
-		AssetName = InRhs.AssetName;
+		Value = InRhs.Value;
 		return *this;
 	}
 
 	FORCEINLINE FT4EntityKey operator=(const FString& InRhs)
 	{
-		AssetName = *(InRhs);
+		Value = *(InRhs);
 		return *this;
 	}
 
 	FORCEINLINE bool operator==(const FT4EntityKey& InRhs) const
 	{
-		return (AssetName == InRhs.AssetName && Type == InRhs.Type) ? true : false;
+		return (Value == InRhs.Value && Type == InRhs.Type) ? true : false;
 	}
 
 	FORCEINLINE bool operator!=(const FT4EntityKey& InRhs) const
 	{
-		return (AssetName != InRhs.AssetName || Type != InRhs.Type) ? true : false;
+		return (Value != InRhs.Value || Type != InRhs.Type) ? true : false;
 	}
 
 	FORCEINLINE friend uint32 GetTypeHash(const FT4EntityKey& InRhs)
 	{
-		return HashCombine(GetTypeHash(InRhs.Type), GetTypeHash(InRhs.AssetName.ToString()));
+		return HashCombine(GetTypeHash(InRhs.Type), GetTypeHash(InRhs.Value.ToString()));
 	}
 
 	FORCEINLINE bool IsValid() const
 	{
-		return (ET4EntityType::None != Type && AssetName != NAME_None) ? true : false;
+		return (ET4EntityType::None != Type && Value != NAME_None) ? true : false;
 	}
 
 	FORCEINLINE bool CheckType(const ET4EntityType InType) const
@@ -98,7 +98,7 @@ public:
 
 	FORCEINLINE FString ToNameString() const
 	{
-		return AssetName.ToString();
+		return Value.ToString();
 	}
 
 	FORCEINLINE const TCHAR* ToTypeString() const

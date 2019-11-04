@@ -251,6 +251,10 @@ public:
 
 public:
 	virtual ET4EntityType GetEntityType() const { return ET4EntityType::None; }
+	FName GetEntityKeyValue() const; // #37 : Make FT4EntityKey, ObjectPath
+
+	FString GetEntityDisplayName() const; // #87
+	const TCHAR* GetEntityTypeString() const; // #87
 
 #if WITH_EDITOR
 	virtual UStaticMesh* GetPrimaryStaticMeshAsset() const { return nullptr; } // #81
@@ -266,8 +270,6 @@ public:
 	DECLARE_MULTICAST_DELEGATE(FT4OnPropertiesChanged);
 	FT4OnPropertiesChanged& OnPropertiesChanged() { return OnPropertiesChangedDelegate; }
 #endif
-
-	FName GetEntityAssetName() const; // #37 : Make FT4EntityKey
 
 public:
 	UPROPERTY(EditAnywhere)

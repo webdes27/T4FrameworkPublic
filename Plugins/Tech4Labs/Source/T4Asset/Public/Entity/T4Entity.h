@@ -27,9 +27,11 @@ public:
 
 	virtual void Reset() = 0;
 
+	virtual bool GetEntities(ET4EntityType InEntityType, TArray<UT4EntityAsset*>& OutEntities) = 0; // #87
+
 	virtual const UT4EntityAsset* GetEntity(const FT4EntityKey& InKey) = 0;
 	virtual const UT4EntityAsset* GetEntity(const FSoftObjectPath& InPath) = 0;
-	
+
 	// #T4_ADD_ENTITY_TAG
 	virtual const UT4MapEntityAsset* GetMapEntity(const FT4EntityKey& InKey) = 0;
 	virtual const UT4MapEntityAsset* GetMapEntity(const FSoftObjectPath& InPath) = 0;
