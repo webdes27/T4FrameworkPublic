@@ -28,12 +28,12 @@ private:
 
 // #84
 USTRUCT()
-struct T4ASSET_API FT4WorldSubLevelThumbnail
+struct T4ASSET_API FT4WorldTileThumbnailData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4WorldSubLevelThumbnail()
+	FT4WorldTileThumbnailData()
 		: ImageWidth(0)
 		, ImageHeight(0)
 	{
@@ -82,7 +82,7 @@ public:
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
 
 	UPROPERTY()
-	TMap<FName, FT4WorldSubLevelThumbnail> SubLevelThumbnails; // #84
+	TMap<FName, FT4WorldTileThumbnailData> WorldTileThumbnailDatas; // #84
 #endif
 
 private:

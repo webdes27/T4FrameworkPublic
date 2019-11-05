@@ -19,6 +19,8 @@ Powerful toolset and Flexible layer solution
 - Warning
   - 현재 알파버전 개발 중입니다. 정식 버전 배포전까지 테스트 용도로 만 사용해주시기 바랍니다.
 - Release Notes
+  - **[2019.11.05] [M4] Copying //Private to //Deploy (private commit e439e28)**
+	- #91 [기능추가] Rehearsal World Editor, World Composition 을 사용하지 않는 월드의 World Grid 처리 추가
   - **[2019.11.04] [M4] Copying //Private to //Deploy (private commit 6a736cb)**
 	- #87 [기능추가] Rehearsal Conti Editor 에서 지정한 월드가 자동으로 로딩 되도록 기능 추가
   - **[2019.11.02] [M4] Copying //Private to //Deploy (private commit 9594d94)**
