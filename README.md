@@ -4,7 +4,7 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Supported Engine Versions
-  - UE4 : 4.23
+  - 4.23
   - Platforms : Win64 only (Binary version)
 - Website
   - <https://tech4labs.com/>
@@ -14,8 +14,7 @@ Powerful toolset and Flexible layer solution
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
-- Update Notes
-  - **Warning: THIS IS AN ALPHA VERSION!**
+- Update Notes (Warning: THIS IS AN ALPHA VERSION!)
   - **[2019.11.06] [M4] Copying //Private to //Deploy (private commit e84d31e)**
 	- #90 [내부수정] UE4 4.22.3 => 4.23.1 Migration
   - **[2019.11.05] [M4] Copying //Private to //Deploy (private commit e439e28)**
@@ -51,7 +50,7 @@ Powerful toolset and Flexible layer solution
 	- #79 [기능개선] Rehearsal Editor 뷰포트에 World 로딩 처리 추가 (캐릭터 스폰, 전투 테스트, 버그 수정)
   - **[2019.10.08] [M4] Copying //Private to //Deploy (private commit d540ab9)**
 	- #79 [기능추가] Rehearsal Editor 뷰포트에 World 로딩 처리 추가
-  - Older Release Notes
+  - **Older Update Notes**
     - 2019.07 ~ 2019.09 : ReleaseNotes.md
 - Contact
   - <info@tech4labs.com> (Twitter: @Tech4Labs)
