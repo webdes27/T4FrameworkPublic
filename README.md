@@ -3,22 +3,21 @@
 Powerful toolset and Flexible layer solution
 ``` 
 
+- Supported Engine Versions
+  - UE4 : 4.23
+  - Platforms : Win64 only (Binary version)
 - Website
   - <https://tech4labs.com/>
-- Twitter
-  - <https://twitter.com/Tech4Labs>
-- YouTube
-  - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
-- Repositories
-  - GitHub 공개 저장소
-    - <https://github.com/Tech4Labs/T4FrameworkPublic>
-  - GitHub 비공개 저장소 (Professional License)
+  - Twitter
+    - <https://twitter.com/Tech4Labs>
+  - YouTube
+    - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
+  - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
-- Contact
-  - <info@tech4labs.com> (Twitter: @Tech4Labs)
-- Warning
-  - 현재 알파버전 개발 중입니다. 정식 버전 배포전까지 테스트 용도로 만 사용해주시기 바랍니다.
-- Release Notes
+- Update Notes
+  - **Warning: THIS IS AN ALPHA VERSION!**
+  - **[2019.11.06] [M4] Copying //Private to //Deploy (private commit e84d31e)**
+	- #90 [내부수정] UE4 4.22.3 => 4.23.1 Migration
   - **[2019.11.05] [M4] Copying //Private to //Deploy (private commit e439e28)**
 	- #91 [기능추가] Rehearsal World Editor, World Composition 을 사용하지 않는 월드의 World Grid 처리 추가
   - **[2019.11.04] [M4] Copying //Private to //Deploy (private commit 6a736cb)**
@@ -52,5 +51,7 @@ Powerful toolset and Flexible layer solution
 	- #79 [기능개선] Rehearsal Editor 뷰포트에 World 로딩 처리 추가 (캐릭터 스폰, 전투 테스트, 버그 수정)
   - **[2019.10.08] [M4] Copying //Private to //Deploy (private commit d540ab9)**
 	- #79 [기능추가] Rehearsal Editor 뷰포트에 World 로딩 처리 추가
-- Older Release Notes
-  - 2019.07 ~ 2019.09 : ReleaseNotes.md
+  - Older Release Notes
+    - 2019.07 ~ 2019.09 : ReleaseNotes.md
+- Contact
+  - <info@tech4labs.com> (Twitter: @Tech4Labs)
