@@ -41,6 +41,7 @@ namespace UnrealBuildTool.Rules
                     "MovieSceneTools",
                     "MovieSceneTracks",
                     "LandscapeEditor",
+					"WorldBrowser",
                     "NavigationSystem",
                     "MaterialUtilities",
                     "MeshDescription",

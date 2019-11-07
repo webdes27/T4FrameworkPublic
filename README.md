@@ -15,6 +15,10 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: THIS IS AN ALPHA VERSION!)
+  - **[2019.11.07] [M4] Copying //Private to //Deploy (private commit 328dbe8)**
+	- #90 [기능추가] Rehearsal World Editor, PreviewDetail 창에서 Prop 더블클릭시 WorldMap 포커스 이동 처리 추가
+	- #90 [기능개선] Rehearsal World Editor, MapEntityAsset 교체시 WorldMap 업데이트
+	- #83 [버그수정] Rehearsal World Editor 창을 두개 열 경우 발생하던 크래시 수정
   - **[2019.11.06] [M4] Copying //Private to //Deploy (private commit e84d31e)**
 	- #90 [내부수정] UE4 4.22.3 => 4.23.1 Migration
   - **[2019.11.05] [M4] Copying //Private to //Deploy (private commit e439e28)**
