@@ -52,6 +52,53 @@ public:
 	TArray<uint8> RawImageData;
 };
 
+// #90
+class UT4MapEnvironmentAsset;
+USTRUCT()
+struct T4ASSET_API FT4WorldEditorTransientData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4WorldEditorTransientData()
+	{
+		Reset();
+	}
+
+	void Reset()
+	{
+#if WITH_EDITOR
+		TransientMapZoneName = NAME_None;
+		TransientMapEnvironmentAsset.Reset();
+		TransientBlendPriority = 10.0f;
+		TransientBlendInTimeSec = 1.0f;
+		TransientBlendOutTimeSec = 1.0f;
+		TransientDebugColor = FColor::White;
+#endif
+	}
+
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Name"))
+	FName TransientMapZoneName; // #92
+
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Map Environment Asset"))
+	TSoftObjectPtr<UT4MapEnvironmentAsset> TransientMapEnvironmentAsset; // #90
+
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Transform"))
+	FTransform TransientTransform; // #92
+
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend Priority", ClampMin = "0", UIMin = "0", UIMax = "10"))
+	int32 TransientBlendPriority; // #92
+
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend In TimeSec", ClampMin = "0.0", UIMin = "0.0", UIMax = "10.0"))
+	float TransientBlendInTimeSec; // #92
+
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend Out TimeSec", ClampMin = "0.0", UIMin = "0.0", UIMax = "10.0"))
+	float TransientBlendOutTimeSec; // #92
+
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "DebugColor"))
+	FColor TransientDebugColor; // #92
+};
+
 class UTexture2D;
 UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs")
 class T4ASSET_API UT4WorldAsset : public UObject
@@ -83,6 +130,10 @@ public:
 
 	UPROPERTY()
 	TMap<FName, FT4WorldTileThumbnailData> WorldTileThumbnailDatas; // #84
+
+	// #71 : WARN : FT4WorldDetailCustomization 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
+	UPROPERTY(EditAnywhere, Transient)
+	FT4WorldEditorTransientData EditorTransientData;
 #endif
 
 private:

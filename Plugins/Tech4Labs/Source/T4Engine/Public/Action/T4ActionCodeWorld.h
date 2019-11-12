@@ -60,36 +60,6 @@ public:
 	}
 };
 
-// #86 : World 의 UpdateStreamingState 를 제어하기 위한 옵션 처리
-USTRUCT()
-struct T4ENGINE_API FT4WorldCompositionAction : public FT4CodeBaseAction
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	UPROPERTY(EditAnywhere)
-	bool bLevelStreamingFrozen;
-
-public:
-	FT4WorldCompositionAction()
-		: FT4CodeBaseAction(StaticActionType())
-		, bLevelStreamingFrozen(false)
-	{
-	}
-
-	static ET4ActionType StaticActionType() { return ET4ActionType::WorldComposition; }
-
-	bool Validate(FString& OutMsg) override
-	{
-		return true;
-	}
-
-	FString ToString() const override
-	{
-		return FString(TEXT("WorldCompositionAction"));
-	}
-};
-
 USTRUCT()
 struct T4ENGINE_API FT4SpawnObjectAction : public FT4CodeBaseAction
 {

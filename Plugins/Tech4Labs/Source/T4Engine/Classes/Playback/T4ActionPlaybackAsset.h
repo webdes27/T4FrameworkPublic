@@ -107,9 +107,6 @@ public:
 	TArray<FT4WorldTravelAction> WorldTravelActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4WorldCompositionAction> WorldCompositionActions; // #87
-
-	UPROPERTY(VisibleAnywhere)
 	TArray<FT4SpawnObjectAction> SpawnObjectActions;
 
 	UPROPERTY(VisibleAnywhere)

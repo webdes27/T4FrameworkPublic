@@ -15,6 +15,9 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: THIS IS AN ALPHA VERSION!)
+  - **[2019.11.12] [M4] Copying //Private to //Deploy (private commit 4716c47)**
+	- #92 [기능추가] Environment 설정을 위한 Volume 및 World Editor 편집 기능 추가
+	- #90 [기능추가] RehearsalWorld Editor, TOD(Time of day) 기반 시스템 구현
   - **[2019.11.07] [M4] Copying //Private to //Deploy (private commit 328dbe8)**
 	- #90 [기능추가] Rehearsal World Editor, PreviewDetail 창에서 Prop 더블클릭시 WorldMap 포커스 이동 처리 추가
 	- #90 [기능개선] Rehearsal World Editor, MapEntityAsset 교체시 WorldMap 업데이트

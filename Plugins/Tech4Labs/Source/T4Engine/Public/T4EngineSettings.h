@@ -81,6 +81,12 @@ public:
 	UPROPERTY(config, EditAnywhere, Category= ShoulderViewCameraSettting)
 	FVector SV_SocketOffset;
 
+	UPROPERTY(config, EditAnywhere, Category=DataTable)
+	FSoftObjectPath MapZoneConstantTable; // #92
+
+	UPROPERTY(config, EditAnywhere, Category=DataTable)
+	FSoftObjectPath TimeOfDayConstantTable; // #90
+
 protected:
 #if WITH_EDITOR
 	static FT4OnEngineSettingsChanged SettingsChangedDelegate;

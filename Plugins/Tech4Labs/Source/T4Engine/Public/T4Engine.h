@@ -428,6 +428,11 @@ public:
 	virtual IT4ActionPlaybackRecorder* GetActionPlaybackRecorder() const = 0;
 	virtual IT4ActionPlaybackController* GetActionPlaybackController() = 0;
 #endif
+
+#if WITH_EDITOR
+	virtual void SetDisableLevelStreaming(bool bInDisable) = 0; // #86 : World 의 UpdateStreamingState 를 제어하기 위한 옵션 처리
+	virtual void SetDisableEnvironmentUpdating(bool bInDisable) = 0; // #92 : Map Environemnt Update 제어 옵션 처리
+#endif
 };
 
 // #87
