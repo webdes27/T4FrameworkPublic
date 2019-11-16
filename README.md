@@ -16,8 +16,8 @@ Powerful toolset and Flexible layer solution
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
   - **[2019.11.16] [M4] Copying //Private to //Deploy (private commit 1767792)**
-	- #91 [버그수정] World Editor, 사이즈가 큰 단일 월드 오픈시 발생하는 크래시 수정
-	- #87 [버그수정] MapEntityAsset 생성한 후 Entity Editor 를 열 경우 발생하는 크래시 수정
+	- #91 [버그수정] Rehearsal World Editor, 사이즈가 큰 단일 월드 오픈시 발생하는 크래시 수정
+	- #87 [버그수정] MapEntityAsset 생성한 후 Rehearsal Entity Editor 를 열 경우 발생하는 크래시 수정
   - **[2019.11.16] [M4] Copying //Private to //Deploy (private commit 5e026c4)**
 	- #93 [기능추가] Environment Interpolation 구현 및 Time Lapse 테스트 환경 만들기
   - **[2019.11.12] [M4] Copying //Private to //Deploy (private commit 4716c47)**
