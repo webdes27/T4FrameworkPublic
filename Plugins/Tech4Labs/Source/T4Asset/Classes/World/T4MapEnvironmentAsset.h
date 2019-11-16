@@ -182,12 +182,12 @@ public:
 
 // #90
 USTRUCT()
-struct T4ASSET_API FT4MapTimeOfDayData
+struct T4ASSET_API FT4MapTimeTagData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4MapTimeOfDayData()
+	FT4MapTimeTagData()
 		: Name(NAME_None)
 	{
 	}
@@ -213,17 +213,17 @@ public:
 
 // #90
 USTRUCT()
-struct T4ASSET_API FT4MapTimeOfDaySetData
+struct T4ASSET_API FT4MapTimeTagSetData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4MapTimeOfDaySetData()
+	FT4MapTimeTagSetData()
 	{
 	}
 
 	UPROPERTY(EditAnywhere)
-	TMap<FName, FT4MapTimeOfDayData> TimeOfDayMap;
+	TMap<FName, FT4MapTimeTagData> TimeTagMap;
 };
 
 class UTexture2D;
@@ -250,7 +250,7 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Time of Day"))
-	FT4MapTimeOfDaySetData TimeOfDaySetData; // #90 : 이후 별도 Asset 으로 분리!
+	FT4MapTimeTagSetData TimeTagSetData; // #90 : 이후 별도 Asset 으로 분리!
 
 public:
 #if WITH_EDITORONLY_DATA

@@ -87,7 +87,7 @@ public:
 	FSoftObjectPath MapZoneConstantTable; // #92
 
 	UPROPERTY(config, EditAnywhere, Category=DataTable)
-	FSoftObjectPath TimeOfDayConstantTable; // #90
+	FSoftObjectPath TimeTagConstantTable; // #90
 
 protected:
 #if WITH_EDITOR

@@ -28,14 +28,14 @@ static const FName T4MaterialParameterOpacityParamName = TEXT("T4OpacityParam");
 
 
 // #93 : World Zone & Environment & Time of Day
-static const FName T4WorldGlobalZoneName = TEXT("Global"); // #93 : MapZoneConstantTable 의 GlobalZone 과 같아야 함!!
+static const FName T4WorldGlobalMapZoneName = TEXT("Global"); // #93 : MapZoneConstantTable 의 GlobalZone 과 같아야 함!!
 
-static const FName T4WorldEivronmentDayTimeName = TEXT("Day");			// Hour : 9 ~ 18
-static const FName T4WorldEivronmentSunsetTimeName = TEXT("Sunset");	// Hour : 18 ~ 20
-static const FName T4WorldEivronmentNightTimeName = TEXT("Night");	    // Hour : 20 ~ 7
-static const FName T4WorldEivronmentSunriseTimeName = TEXT("Sunrise");  // Hour : 7 ~ 9
+static const FName T4WorldEivronmentTimeTagNameOfDay = TEXT("Day");			// Hour : 9 ~ 18
+static const FName T4WorldEivronmentTimeTagNameOfSunset = TEXT("Sunset");	// Hour : 18 ~ 20
+static const FName T4WorldEivronmentTimeTagNameOfNight = TEXT("Night");	    // Hour : 20 ~ 7
+static const FName T4WorldEivronmentTimeTagNameOfSunrise = TEXT("Sunrise");  // Hour : 7 ~ 9
 
-static const FName T4WorldEivronmentFallbackTimeName = TEXT("Fallback");
+static const FName T4WorldEivronmentTimeTagNameOfFallback = TEXT("Fallback");
 
 
 // #39 : AnimSet

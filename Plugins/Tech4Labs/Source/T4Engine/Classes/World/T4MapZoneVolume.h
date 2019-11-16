@@ -73,13 +73,9 @@ public:
 	FColor DebugColor; // #92
 #endif
 
-	UPROPERTY(Transient)
+public:
 	bool bEntered;
-
-	UPROPERTY(Transient)
 	bool bBlendStart;
-
-	UPROPERTY(Transient)
 	float BlendTimeLeft;
 
 private:

@@ -28,8 +28,8 @@ namespace T4EngineUtility
 		TArray<AT4MapZoneVolume*>& OutMapZoneVolumes
 	);
 
-	T4ENGINE_API FName GetTimeOfDayNextTimeName(FName InTimeName); // #93
-	T4ENGINE_API FName GetTimeOfDayPrevTimeName(FName InTimeName); // #93
+	T4ENGINE_API FName GetNextTimeTagName(FName InTimeName); // #93
+	T4ENGINE_API FName GetPrevTimeTagName(FName InTimeName); // #93
 
 	// #T4_ADD_TOD_TAG
 	T4ENGINE_API bool ApplyDirectional(
@@ -59,10 +59,10 @@ namespace T4EngineUtility
 	);
 
 
-	T4ENGINE_API void BlendTimeOfDayData(
-		const FT4MapTimeOfDayData& InTimeOfDayData,
+	T4ENGINE_API void BlendTimeTagData(
+		const FT4MapTimeTagData& InTimeTagData,
 		float InWeight,
-		FT4MapTimeOfDayData& OutTimeOfDayData
+		FT4MapTimeTagData& OutTimeTagData
 	); // #93
 
 	// #T4_ADD_TOD_TAG

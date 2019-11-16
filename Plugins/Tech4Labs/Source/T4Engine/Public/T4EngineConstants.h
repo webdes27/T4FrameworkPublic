@@ -15,7 +15,7 @@ enum ET4EngineConstantType
     // {
 
 		MapZone = Engine_Start, // #92 : Int Value
-        TimeOfDay, // #90 : Float Value
+        TimeTag, // #90 : Float Value
 
     // }
 

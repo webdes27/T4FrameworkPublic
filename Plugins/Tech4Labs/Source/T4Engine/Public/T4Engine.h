@@ -383,7 +383,7 @@ public:
 	virtual UWorld* GetWorld() const = 0;
 
 	// #93
-	virtual FName GetGameTimeName() const = 0;
+	virtual FName GetGameTimeTagName() const = 0;
 	virtual FString GetGameTimeString() = 0;
 
 	virtual void SetGameTimeHour(float InHour) = 0;

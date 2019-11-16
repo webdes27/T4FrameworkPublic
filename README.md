@@ -15,13 +15,16 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.11.16] [M4] Copying //Private to //Deploy (private commit 1767792)**
+	- #91 [버그수정] World Editor, 사이즈가 큰 단일 월드 오픈시 발생하는 크래시 수정
+	- #87 [버그수정] MapEntityAsset 생성한 후 Entity Editor 를 열 경우 발생하는 크래시 수정
   - **[2019.11.16] [M4] Copying //Private to //Deploy (private commit 5e026c4)**
 	- #93 [기능추가] Environment Interpolation 구현 및 Time Lapse 테스트 환경 만들기
   - **[2019.11.12] [M4] Copying //Private to //Deploy (private commit 4716c47)**
 	- #92 [기능추가] Environment 설정을 위한 Volume 및 World Editor 편집 기능 추가
 	- #90 [기능추가] RehearsalWorld Editor, TOD(Time of day) 기반 시스템 구현
   - **[2019.11.07] [M4] Copying //Private to //Deploy (private commit 328dbe8)**
-	- #90 [기능추가] Rehearsal World Editor, PreviewDetail 창에서 Prop 더블클릭시 WorldMap 포커스 이동 처리 추가
+	- #90 [기능추가] Rehearsal World Editor, PreviewDetail 에서 Prop 더블클릭시 WorldMap 포커스 이동 처리 추가
 	- #90 [기능개선] Rehearsal World Editor, MapEntityAsset 교체시 WorldMap 업데이트
 	- #83 [버그수정] Rehearsal World Editor 창을 두개 열 경우 발생하던 크래시 수정
   - **[2019.11.06] [M4] Copying //Private to //Deploy (private commit e84d31e)**
