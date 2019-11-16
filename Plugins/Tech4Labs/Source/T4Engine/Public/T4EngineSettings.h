@@ -32,6 +32,8 @@ public:
 
 public:
 	// Plugins/Tech4Labs/Config/DefaultTech4Labs.ini
+	UPROPERTY(config, EditAnywhere, Category = GeneralWorldSettting)
+	int32 GameTimeHoursPerDay; // #93
 
 	UPROPERTY(config, EditAnywhere, Category = GeneralControlSettting)
 	float ComboAttackKeepTimeSec; // #45

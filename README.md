@@ -8,13 +8,15 @@ Powerful toolset and Flexible layer solution
   - Platforms : Win64 only (Binary version)
 - Website
   - <https://tech4labs.com/>
-  - Twitter
-    - <https://twitter.com/Tech4Labs>
   - YouTube
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
+  - Twitter
+    - <https://twitter.com/Tech4Labs>
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
-- Update Notes (Warning: THIS IS AN ALPHA VERSION!)
+- Update Notes (Warning: Development Version!!)
+  - **[2019.11.16] [M4] Copying //Private to //Deploy (private commit 5e026c4)**
+	- #93 [기능추가] Environment Interpolation 구현 및 Time Lapse 테스트 환경 만들기
   - **[2019.11.12] [M4] Copying //Private to //Deploy (private commit 4716c47)**
 	- #92 [기능추가] Environment 설정을 위한 Volume 및 World Editor 편집 기능 추가
 	- #90 [기능추가] RehearsalWorld Editor, TOD(Time of day) 기반 시스템 구현

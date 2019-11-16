@@ -26,8 +26,33 @@ private:
 	FT4MapEnvironmentCustomVersion() {}
 };
 
+// WARN : Envrionment Data 추가 시는 아래 테그를 찾아 추가 구현을 해주어야 함! // #93
+// #T4_ADD_TOD_TAG
+
+// #93
+USTRUCT()
+struct T4ASSET_API FT4MapDirectionalData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4MapDirectionalData()
+		: bEnabled(false)
+		, Rotation(FRotator::ZeroRotator)
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	bool bEnabled;
+
+	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentBlender::BlendDirectional 구현 필요!!
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FRotator Rotation;
+};
+
+
 // #90
-class UTextureCube;
 USTRUCT()
 struct T4ASSET_API FT4MapDirectionalLightData
 {
@@ -36,7 +61,6 @@ struct T4ASSET_API FT4MapDirectionalLightData
 public:
 	FT4MapDirectionalLightData()
 		: bEnabled(false)
-		, Rotation(FRotator::ZeroRotator)
 		, Intensity(10.0f)
 		, LightColor(FColor::White)
 	{
@@ -46,9 +70,6 @@ public:
 	bool bEnabled;
 
 	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentBlender::BlendDirectionalLight 구현 필요!!
-
-	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
-	FRotator Rotation;
 
 	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
 	float Intensity;
@@ -173,6 +194,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	FName Name;
+
+	UPROPERTY(EditAnywhere)
+	FT4MapDirectionalData DirectionalData; // #93
 
 	UPROPERTY(EditAnywhere)
 	FT4MapDirectionalLightData DirectionalLightData;

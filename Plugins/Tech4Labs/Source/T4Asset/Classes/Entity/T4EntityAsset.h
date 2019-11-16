@@ -264,9 +264,7 @@ public:
 	{
 		EditorTransientData.Reset();
 	} // #73
-#endif
 
-#if WITH_EDITOR
 	DECLARE_MULTICAST_DELEGATE(FT4OnPropertiesChanged);
 	FT4OnPropertiesChanged& OnPropertiesChanged() { return OnPropertiesChangedDelegate; }
 #endif

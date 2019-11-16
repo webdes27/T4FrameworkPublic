@@ -11,8 +11,6 @@
 /**
   * #92
  */
-static const FName GGlobalZoneName = TEXT("Global"); // MapZoneConstantTable 의 GlobalZone 과 같아야 함!!
-
 class UT4MapEnvironmentAsset;
 UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs")
 class T4ENGINE_API AT4MapZoneVolume : public APostProcessVolume
@@ -36,11 +34,12 @@ public:
 	void Leave();
 
 	bool IsEntered() const { return bEntered; }
-	bool IsGlobalZone() const { return (MapZoneName == GGlobalZoneName) ? true : false; }
+	bool IsGlobalZone() const;
+
 	int32 GetBlendPriority() const { return (IsGlobalZone()) ? -1 : BlendPriority; }
 	float GetBlendWeight() const;
 
-	void ApplyBlend();
+	FColor GetPaintColor() const { return DebugColor; } // #92 : WorldMap 에서 사용하는 Color 값, 보통 Alpha 를 사용한다.
 
 #if WITH_EDITOR
 	virtual bool IsSelectable() const override;
@@ -48,16 +47,19 @@ public:
 	virtual bool CanEditChange(const UProperty* InProperty) const override;
 
 	virtual FColor GetWireColor() const override;
+
+	DECLARE_MULTICAST_DELEGATE(FT4OnPropertiesChanged);
+	FT4OnPropertiesChanged& OnPropertiesChanged() { return OnPropertiesChangedDelegate; } // #92
 #endif
 
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	FName MapZoneName;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	TSoftObjectPtr<UT4MapEnvironmentAsset> MapEnvironmentAsset; // #90, #92
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0", UIMin = "0", UIMax = "10"))
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0", UIMin = "0", UIMax = "5"))
 	int32 BlendPriority; // #92
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0", UIMax = "10.0"))
@@ -79,4 +81,7 @@ public:
 
 	UPROPERTY(Transient)
 	float BlendTimeLeft;
+
+private:
+	FT4OnPropertiesChanged OnPropertiesChangedDelegate; // #92
 };

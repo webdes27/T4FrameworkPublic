@@ -61,6 +61,7 @@ struct T4ASSET_API FT4WorldEditorTransientData
 
 public:
 	FT4WorldEditorTransientData()
+//		: TransientDebugColor(FColor(255, 255, 255, 32))
 	{
 		Reset();
 	}
@@ -69,24 +70,22 @@ public:
 	{
 #if WITH_EDITOR
 		TransientMapZoneName = NAME_None;
-		TransientMapEnvironmentAsset.Reset();
-		TransientBlendPriority = 10.0f;
+		TransientTransform.SetIdentity();
+		TransientBlendPriority = 0;
 		TransientBlendInTimeSec = 1.0f;
 		TransientBlendOutTimeSec = 1.0f;
-		TransientDebugColor = FColor::White;
+		TransientDebugColor = FColor(255, 255, 255, 32);
+		TransientMapEnvironmentAsset.Reset();
 #endif
 	}
 
 	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Name"))
 	FName TransientMapZoneName; // #92
 
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Map Environment Asset"))
-	TSoftObjectPtr<UT4MapEnvironmentAsset> TransientMapEnvironmentAsset; // #90
-
 	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Transform"))
 	FTransform TransientTransform; // #92
 
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend Priority", ClampMin = "0", UIMin = "0", UIMax = "10"))
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend Priority", ClampMin = "0", UIMin = "0", UIMax = "5"))
 	int32 TransientBlendPriority; // #92
 
 	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend In TimeSec", ClampMin = "0.0", UIMin = "0.0", UIMax = "10.0"))
@@ -97,6 +96,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "DebugColor"))
 	FColor TransientDebugColor; // #92
+
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Map Environment Asset"))
+	TSoftObjectPtr<UT4MapEnvironmentAsset> TransientMapEnvironmentAsset; // #90
 };
 
 class UTexture2D;

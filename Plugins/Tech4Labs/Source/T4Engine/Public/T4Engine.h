@@ -298,10 +298,10 @@ public:
 	virtual void DoStopRecording() = 0;
 };
 
-class T4ENGINE_API IT4WorldContainerSystem // #87
+class T4ENGINE_API IT4WorldContainer // #87
 {
 public:
-	virtual ~IT4WorldContainerSystem() {}
+	virtual ~IT4WorldContainer() {}
 
 	virtual uint32 GetNumGameObjects() const = 0;
 	virtual bool GetGameObjects(ET4SpawnMode InSpawnType, TArray<IT4GameObject*>& OutGameObjects) = 0; // #68
@@ -335,10 +335,10 @@ public:
 	// ~#54 : 현재는 ClientOnly
 };
 
-class T4ENGINE_API IT4WorldCollisionSystem // #87
+class T4ENGINE_API IT4WorldCollision // #87
 {
 public:
-	virtual ~IT4WorldCollisionSystem() {}
+	virtual ~IT4WorldCollision() {}
 
 	virtual bool QueryLineTraceSingle(
 		ET4CollisionChannel InCollisionChannel,
@@ -358,10 +358,10 @@ public:
 	) = 0;
 };
 
-class T4ENGINE_API IT4WorldNavigationSystem // #87
+class T4ENGINE_API IT4WorldNavigation // #87
 {
 public:
-	virtual ~IT4WorldNavigationSystem() {}
+	virtual ~IT4WorldNavigation() {}
 
 	virtual bool ProjectPoint(const FVector& InGoal, const FVector& InExtent, FVector& OutLocation) = 0; // #31 // INVALID_NAVEXTENT, FVector::ZeroVector
 
@@ -371,16 +371,27 @@ public:
 	virtual bool GetRandomLocation(const FVector& InOrigin, float InMaxRadius, FVector& OutLocation) = 0; // #31
 };
 
-class T4ENGINE_API IT4WorldContext // #87
+class T4ENGINE_API IT4WorldController // #87
 {
 public:
-	virtual ~IT4WorldContext() {}
+	virtual ~IT4WorldController() {}
 
 	virtual ET4GameWorldType GetGameWorldType() const = 0; // #87
 
 	virtual bool CheckLevelLoadComplated() = 0; // #87
 
 	virtual UWorld* GetWorld() const = 0;
+
+	// #93
+	virtual FName GetGameTimeName() const = 0;
+	virtual FString GetGameTimeString() = 0;
+
+	virtual void SetGameTimeHour(float InHour) = 0;
+	virtual float GetGameTimeHour() const = 0;
+
+	virtual void SetGameTimeScale(float InScale) = 0;
+	virtual float GetGameTimeScale() const = 0;
+	// ~#93
 
 #if WITH_EDITOR
 	virtual bool IsPreviewScene() const = 0; // #87
@@ -405,11 +416,11 @@ public:
 	virtual ET4GameWorldType GetGameWorldType() const = 0; // #87
 
 	virtual UWorld* GetWorld() const = 0;
-	virtual IT4WorldContext* GetWorldContext() = 0; // #87
 
-	virtual IT4WorldContainerSystem* GetContainer() = 0; // #87
-	virtual IT4WorldCollisionSystem* GetCollision() = 0; // #87
-	virtual IT4WorldNavigationSystem* GetNavigation() = 0; // #87
+	virtual IT4WorldController* GetController() = 0; // #87
+	virtual IT4WorldContainer* GetContainer() = 0; // #87
+	virtual IT4WorldCollision* GetCollision() = 0; // #87
+	virtual IT4WorldNavigation* GetNavigation() = 0; // #87
 
 	// Client Only
 	virtual FVector GetCameraLocation() const = 0;
@@ -432,16 +443,20 @@ public:
 #if WITH_EDITOR
 	virtual void SetDisableLevelStreaming(bool bInDisable) = 0; // #86 : World 의 UpdateStreamingState 를 제어하기 위한 옵션 처리
 	virtual void SetDisableEnvironmentUpdating(bool bInDisable) = 0; // #92 : Map Environemnt Update 제어 옵션 처리
+	virtual void SetDisableTimelapse(bool bInDisable) = 0; // #93 : 시간 경과 옵션 처리
 #endif
 };
 
 // #87
 DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnGameWorldTravel, IT4GameWorld*);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FT4OnGameWorldTimeTransition, IT4GameWorld*, const FName); // #93
 class T4ENGINE_API FT4EngineDelegates
 {
 public:
 	static FT4OnGameWorldTravel OnGameWorldTravelPre; // #87 : 월드 이동 playback 지원
 	static FT4OnGameWorldTravel OnGameWorldTravelPost; // #87 : 월드 이동 playback 지원
+
+	static FT4OnGameWorldTimeTransition OnGameWorldTimeTransition; // #93 : 월드 TimeName 변경 알림
 
 private:
 	FT4EngineDelegates() {}
