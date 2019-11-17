@@ -15,6 +15,8 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.11.17] [M4] Copying //Private to //Deploy (private commit 03ffd2a)**
+	- #96 [버그수정] Rehearsal Editor, Preview Viewport 에서의 Player 카메라 충돌 오류 수정 (Bugfix)
   - **[2019.11.16] [M4] Copying //Private to //Deploy (private commit 1767792)**
 	- #91 [버그수정] Rehearsal World Editor, 사이즈가 큰 단일 월드 오픈시 발생하는 크래시 수정
 	- #87 [버그수정] MapEntityAsset 생성한 후 Rehearsal Entity Editor 를 열 경우 발생하는 크래시 수정
