@@ -97,7 +97,7 @@ public:
 	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "DebugColor"))
 	FColor TransientDebugColor; // #92
 
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Map Environment Asset"))
+	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Zone Environment Asset"))
 	TSoftObjectPtr<UT4MapEnvironmentAsset> TransientMapEnvironmentAsset; // #90
 };
 

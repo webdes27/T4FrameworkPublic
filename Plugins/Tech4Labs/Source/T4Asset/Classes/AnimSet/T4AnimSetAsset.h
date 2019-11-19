@@ -217,10 +217,10 @@ public:
 
 	// CustomizeSkillAnimationDetails
 
-	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)
+	UPROPERTY(EditAnywhere, Category = EditAnimationLayer, meta = (DisplayName = "bAutoGen"))
 	bool bSkillAnimMontageAutoGen; // #69
 
-	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)
+	UPROPERTY(EditAnywhere, Category = EditAnimationLayer, meta = (DisplayName = "Anim Montage Asset"))
 	TSoftObjectPtr<UAnimMontage> SkillAnimMontageAsset; // #69
 
 	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)
@@ -229,10 +229,10 @@ public:
 
 	// CustomizeAdditiveAnimationDetails
 
-	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)
+	UPROPERTY(EditAnywhere, Category = EditAnimationLayer, meta = (DisplayName = "bAutoGen"))
 	bool bAdditiveAnimMontageAutoGen; // #69
 
-	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)
+	UPROPERTY(EditAnywhere, Category = EditAnimationLayer, meta = (DisplayName = "Anim Montage Asset"))
 	TSoftObjectPtr<UAnimMontage> AdditiveAnimMontageAsset; // #69
 
 	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)
@@ -241,10 +241,10 @@ public:
 
 	// CustomizeDefaultAnimationDetails
 
-	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)
+	UPROPERTY(EditAnywhere, Category = EditAnimationLayer, meta = (DisplayName = "bAutoGen"))
 	bool bDefaultAnimMontageAutoGen; // #69
 
-	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)
+	UPROPERTY(EditAnywhere, Category = EditAnimationLayer, meta = (DisplayName = "Anim Montage Asset"))
 	TSoftObjectPtr<UAnimMontage> DefaultAnimMontageAsset; // #38, #69
 
 	UPROPERTY(EditAnywhere, Category = EditAnimationLayer)

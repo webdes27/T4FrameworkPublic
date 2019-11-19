@@ -15,6 +15,8 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.11.19] [M4] Copying //Private to //Deploy (private commit 17d7a5d)**
+	- #95 [기능개선] Rehearsal Editor, Detail Panel 의 DropList ItemData Update UX 개선
   - **[2019.11.17] [M4] Copying //Private to //Deploy (private commit 03ffd2a)**
 	- #96 [버그수정] Rehearsal Editor, Preview Viewport 에서의 Player 카메라 충돌 오류 수정 (Bugfix)
   - **[2019.11.16] [M4] Copying //Private to //Deploy (private commit 1767792)**
@@ -36,13 +38,13 @@ Powerful toolset and Flexible layer solution
   - **[2019.11.04] [M4] Copying //Private to //Deploy (private commit 6a736cb)**
 	- #87 [기능추가] Rehearsal Conti Editor 에서 지정한 월드가 자동으로 로딩 되도록 기능 추가
   - **[2019.11.02] [M4] Copying //Private to //Deploy (private commit 9594d94)**
-	- #87 [기능추가] 게임(PIE) 또는 Rehearsal Editor 에서의 World 이동 처리 개선 및 Playback 에서의 World Travel 동작 추가
+	- #87 [기능추가] 게임(PIE) 또는 Editor 에서의 World 이동 처리 개선 및 Playback 에서의 World Travel 동작 추가
   - **[2019.10.30] [M4] Copying //Private to //Deploy (private commit 3ebd5c1)**
 	- #88 [버그수정] 모든 에디터의 리스트뷰 프로퍼티 선택시 에셋이 편집 상태로 변경되는 문제 수정
   - **[2019.10.25] [M4] Copying //Private to //Deploy (private commit 0d6e340)**
 	- #84 [기능추가] Rehearsal World Editor, SubLevel Thumbnail 생성 및 저장 기능 개선 (T4WorldAsset)
   - **[2019.10.25] [M4] Copying //Private to //Deploy (private commit 13ffc01)**
-	- #85 [버그수정] Rehearsal World Editor, SubLevel 변경시 간헐적으로 발생하는 크래시 수정 (SubLevel DetailView)
+	- #85 [버그수정] Rehearsal World Editor, SubLevel 변경시 간헐적으로 발생하는 크래시 수정
   - **[2019.10.24] [M4] Copying //Private to //Deploy (private commit 7a21ab2)**
 	- #85 [기능개선] Rehearsal World Editor, SubLevel Detail View 내 SearchBox 및 선택한 Actor 로 포커스 이동 추가
   - **[2019.10.23] [M4] Copying //Private to //Deploy (private commit dec3cb2)**
