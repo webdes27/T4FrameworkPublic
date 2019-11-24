@@ -53,7 +53,7 @@ public:
 };
 
 // #90
-class UT4MapEnvironmentAsset;
+class UT4EnvironmentAsset;
 USTRUCT()
 struct T4ASSET_API FT4WorldEditorTransientData
 {
@@ -75,7 +75,7 @@ public:
 		TransientBlendInTimeSec = 1.0f;
 		TransientBlendOutTimeSec = 1.0f;
 		TransientDebugColor = FColor(255, 255, 255, 32);
-		TransientMapEnvironmentAsset.Reset();
+		TransientEnvironmentAsset.Reset();
 #endif
 	}
 
@@ -98,7 +98,7 @@ public:
 	FColor TransientDebugColor; // #92
 
 	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Zone Environment Asset"))
-	TSoftObjectPtr<UT4MapEnvironmentAsset> TransientMapEnvironmentAsset; // #90
+	TSoftObjectPtr<UT4EnvironmentAsset> TransientEnvironmentAsset; // #90
 };
 
 class UTexture2D;

@@ -30,10 +30,14 @@ static const FName T4MaterialParameterOpacityParamName = TEXT("T4OpacityParam");
 // #93 : World Zone & Environment & Time of Day
 static const FName T4WorldGlobalMapZoneName = TEXT("Global"); // #93 : MapZoneConstantTable 의 GlobalZone 과 같아야 함!!
 
-static const FName T4WorldEivronmentTimeTagNameOfDay = TEXT("Day");			// Hour : 9 ~ 18
-static const FName T4WorldEivronmentTimeTagNameOfSunset = TEXT("Sunset");	// Hour : 18 ~ 20
-static const FName T4WorldEivronmentTimeTagNameOfNight = TEXT("Night");	    // Hour : 20 ~ 7
-static const FName T4WorldEivronmentTimeTagNameOfSunrise = TEXT("Sunrise");  // Hour : 7 ~ 9
+// #97 : TimeTag 를 추가할 경우 반드시 FT4WorldTimeControl::Initialize(float InStartHour) 에도 추가해줄 것!
+// #97 : 만약, 20 ~ 7 시 같은 시간대를 추가한다면 void FT4WorldTimeControl::AddConstantGameTimeData 처리를 체크해볼 것!
+static const FName T4WorldEivronmentTimeTagNameOfDay = TEXT("Day");				// Hour : 9 ~ 12
+static const FName T4WorldEivronmentTimeTagNameOfAtNoon = TEXT("AtNoon");		// Hour : 12 ~ 18 // #97 : 정오, 한밤 추가!
+static const FName T4WorldEivronmentTimeTagNameOfSunset = TEXT("Sunset");		// Hour : 18 ~ 20
+static const FName T4WorldEivronmentTimeTagNameOfNight = TEXT("Night");			// Hour : 20 ~ 24 // #97 : 정오, 한밤 추가!
+static const FName T4WorldEivronmentTimeTagNameOfMidnight = TEXT("Midnight");	// Hour : 0 ~ 7
+static const FName T4WorldEivronmentTimeTagNameOfSunrise = TEXT("Sunrise");		// Hour : 7 ~ 9
 
 static const FName T4WorldEivronmentTimeTagNameOfFallback = TEXT("Fallback");
 

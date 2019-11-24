@@ -15,6 +15,9 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.11.24] [M4] Copying //Private to //Deploy (private commit be5711c)**
+	- #97 [기능추가] Environment 블랜딩에 BP_Sky_Sphere 추가
+	- #94 [기능추가] Movable Environment Zone 기능 추가
   - **[2019.11.19] [M4] Copying //Private to //Deploy (private commit 17d7a5d)**
 	- #95 [기능개선] Rehearsal Editor, Detail Panel 의 DropList ItemData Update UX 개선
   - **[2019.11.17] [M4] Copying //Private to //Deploy (private commit 03ffd2a)**

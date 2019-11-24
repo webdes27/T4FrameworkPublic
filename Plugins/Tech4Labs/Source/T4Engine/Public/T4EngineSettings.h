@@ -89,6 +89,12 @@ public:
 	UPROPERTY(config, EditAnywhere, Category=DataTable)
 	FSoftObjectPath TimeTagConstantTable; // #90
 
+	UPROPERTY(config, EditAnywhere, Category=DataTable)
+	FSoftObjectPath PreviewSceneEnvironmentAsset; // #94
+
+	UPROPERTY(config, EditAnywhere, Category=DataTable)
+	FSoftObjectPath ThumbnailSceneEnvironmentAsset; // #97
+
 protected:
 #if WITH_EDITOR
 	static FT4OnEngineSettingsChanged SettingsChangedDelegate;

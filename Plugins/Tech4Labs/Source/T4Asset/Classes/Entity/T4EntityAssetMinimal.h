@@ -10,3 +10,4 @@
 #include "T4PropEntityAsset.h"
 #include "T4CostumeEntityAsset.h" // #37
 #include "T4WeaponEntityAsset.h"
+#include "T4ZoneEntityAsset.h" // #94

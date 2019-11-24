@@ -37,6 +37,7 @@ namespace UnrealBuildTool.Rules
                     "Sequencer",
                     "FoliageEdit",
                     "Foliage",
+					"CommonMenuExtensions",
                     "AdvancedPreviewScene",
                     "MovieSceneTools",
                     "MovieSceneTracks",

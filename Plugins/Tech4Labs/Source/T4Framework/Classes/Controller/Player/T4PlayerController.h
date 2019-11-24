@@ -105,6 +105,7 @@ public:
 	void SetCameraYaw(float InAmount) override;
 
 	void SetFreeCameraMoveDirection(const FVector& InLocation) override;
+	void SetFreeCameraLocationAndRotation(const FVector& InLocation, const FRotator& InRotation) override; // #94, #86
 
 	void SetCameraLock(bool bInLock) override;
 	bool IsCameraLocked() const override { return bCameraMoveLocked; }

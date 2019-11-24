@@ -103,6 +103,14 @@ public:
 
 	FORCEINLINE const TCHAR* ToTypeString() const
 	{
+#if 1
+		const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, TEXT("ET4EntityType"), true);
+		if (nullptr == EnumPtr)
+		{
+			return TEXT("None");
+		}
+		return *(EnumPtr->GetNameStringByIndex((int32)Type));
+#else
 		static const TCHAR* EntityTypeStrings[] =
 		{
 			TEXT("World"),
@@ -111,11 +119,13 @@ public:
 			TEXT("Item"), // #37 : Costume or Weapon
 			TEXT("Costume"), // #37
 			TEXT("Weapon"),
+			TEXT("Zone"),
 			TEXT("Max"),
 		};
 		static_assert(ARRAY_COUNT(EntityTypeStrings) == (uint8)(ET4EntityType::None) + 1, "Entity doesn't match!");
 		check(uint8(Type) < ARRAY_COUNT(EntityTypeStrings));
 		return EntityTypeStrings[uint8(Type)];
+#endif
 	}
 
 	FORCEINLINE FString ToString() const

@@ -50,6 +50,7 @@ enum class ET4ActionType : uint32
 	// begin World
 
 	WorldTravel,
+	WorldEnvironment, // #94
 
 	SpawnObject,
 	DespawnObject,

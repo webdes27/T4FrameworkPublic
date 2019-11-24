@@ -14,6 +14,8 @@ struct FWorldContext;
 
 namespace T4EngineLayer
 {
+	static const EWorldType::Type PreviewWorldType = EWorldType::GamePreview; // #94
+
 	T4ENGINE_API bool Add(const FWorldContext* InWorldContext); // #30
 	T4ENGINE_API void Remove(const FName& InWorldContextName); // #30
 

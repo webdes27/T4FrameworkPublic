@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 
+#include "Public/T4EngineTypes.h"
+
 #include "Engine/PostProcessVolume.h"
 
 #include "T4MapZoneVolume.generated.h"
@@ -11,7 +13,7 @@
 /**
   * #92
  */
-class UT4MapEnvironmentAsset;
+class UT4EnvironmentAsset;
 UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs")
 class T4ENGINE_API AT4MapZoneVolume : public APostProcessVolume
 {
@@ -54,10 +56,13 @@ public:
 
 public:
 	UPROPERTY(VisibleAnywhere)
-	FName MapZoneName;
+	FName ZoneName;
 
 	UPROPERTY(VisibleAnywhere)
-	TSoftObjectPtr<UT4MapEnvironmentAsset> MapEnvironmentAsset; // #90, #92
+	ET4ZoneType ZoneType; // #94
+
+	UPROPERTY(VisibleAnywhere)
+	TSoftObjectPtr<UT4EnvironmentAsset> EnvironmentAsset; // #90, #92
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0", UIMin = "0", UIMax = "5"))
 	int32 BlendPriority; // #92

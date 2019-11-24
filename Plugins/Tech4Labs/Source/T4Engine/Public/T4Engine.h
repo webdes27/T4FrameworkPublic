@@ -335,10 +335,10 @@ public:
 	// ~#54 : 현재는 ClientOnly
 };
 
-class T4ENGINE_API IT4WorldCollision // #87
+class T4ENGINE_API IT4WorldCollisionSystem // #87
 {
 public:
-	virtual ~IT4WorldCollision() {}
+	virtual ~IT4WorldCollisionSystem() {}
 
 	virtual bool QueryLineTraceSingle(
 		ET4CollisionChannel InCollisionChannel,
@@ -358,10 +358,10 @@ public:
 	) = 0;
 };
 
-class T4ENGINE_API IT4WorldNavigation // #87
+class T4ENGINE_API IT4WorldNavigationSystem // #87
 {
 public:
-	virtual ~IT4WorldNavigation() {}
+	virtual ~IT4WorldNavigationSystem() {}
 
 	virtual bool ProjectPoint(const FVector& InGoal, const FVector& InExtent, FVector& OutLocation) = 0; // #31 // INVALID_NAVEXTENT, FVector::ZeroVector
 
@@ -419,8 +419,8 @@ public:
 
 	virtual IT4WorldController* GetController() = 0; // #87
 	virtual IT4WorldContainer* GetContainer() = 0; // #87
-	virtual IT4WorldCollision* GetCollision() = 0; // #87
-	virtual IT4WorldNavigation* GetNavigation() = 0; // #87
+	virtual IT4WorldCollisionSystem* GetCollisionSystem() = 0; // #87
+	virtual IT4WorldNavigationSystem* GetNavigationSystem() = 0; // #87
 
 	// Client Only
 	virtual FVector GetCameraLocation() const = 0;
@@ -444,6 +444,7 @@ public:
 	virtual void SetDisableLevelStreaming(bool bInDisable) = 0; // #86 : World 의 UpdateStreamingState 를 제어하기 위한 옵션 처리
 	virtual void SetDisableEnvironmentUpdating(bool bInDisable) = 0; // #92 : Map Environemnt Update 제어 옵션 처리
 	virtual void SetDisableTimelapse(bool bInDisable) = 0; // #93 : 시간 경과 옵션 처리
+	virtual bool GetTimelapseDisabled() const = 0; // #94
 #endif
 };
 

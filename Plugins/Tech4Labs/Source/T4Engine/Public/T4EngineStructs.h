@@ -139,6 +139,16 @@ struct FT4HitSingleResult
 	FVector ResultLocation;
 };
 
+class UT4EnvironmentAsset;
+struct FT4EnvironmentZoneInfo // #94
+{
+	FName ZoneName;
+	ET4ZoneType ZoneType;
+	float LayerBlendWeight;
+	float BlendPriority;
+	UT4EnvironmentAsset* EnvironmentAsset;
+};
+
 struct FWorldContext;
 struct FT4WorldConstructionValues // #87
 {

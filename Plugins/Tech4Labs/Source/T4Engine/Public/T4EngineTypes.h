@@ -47,6 +47,7 @@ enum class ET4ObjectType : uint8
 	Entity_PropParticle,
 	Entity_ItemStatic,
 	Entity_ItemSkeletal,
+	Entity_Zone, // #94
 
 	World_Default, // #54
 	World_Projectile, // #63
@@ -203,6 +204,15 @@ enum class ET4TargetType : uint8
 	TargetObject,
 
 	TargetCustom, // #40, #44
+
+	Default, // Current
+};
+
+UENUM()
+enum class ET4ZoneType : uint8 // #94
+{
+	Static,
+	Dynamic,
 
 	Default, // Current
 };

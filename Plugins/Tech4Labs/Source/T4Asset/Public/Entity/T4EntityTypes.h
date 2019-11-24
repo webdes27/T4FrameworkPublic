@@ -19,6 +19,7 @@ enum class ET4EntityType : uint8
 	Item, // #37 : Costume or Weapon
 	Costume, // #37
 	Weapon, // #37
+	Zone, // #94
 
 	None
 };
@@ -67,6 +68,15 @@ enum class ET4EntityReactionType : uint8 // #76
 	Resurrect,
 	
 	Hit,
+
+	None,
+};
+
+UENUM()
+enum class ET4EntityZoneBrushType : uint8 // #94
+{
+	Cylinder,
+	Cube, // todo
 
 	None,
 };

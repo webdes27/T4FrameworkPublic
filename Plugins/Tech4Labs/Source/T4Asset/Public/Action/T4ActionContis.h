@@ -193,6 +193,8 @@ public:
 	}
 };
 
+class UParticleSystem;
+
 USTRUCT()
 struct T4ASSET_API FT4ParticleAction : public FT4ContiBaseAction
 {
@@ -210,7 +212,7 @@ public:
 	FName ActionPoint; // #57
 
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<class UParticleSystem> ParticleAsset;
+	TSoftObjectPtr<UParticleSystem> ParticleAsset;
 
 	UPROPERTY(EditAnywhere)
 	ET4LoadingPolicy LoadingPolicy;
@@ -247,6 +249,8 @@ public:
 };
 
 // #54
+class UMaterialInterface;
+
 USTRUCT()
 struct T4ASSET_API FT4DecalAction : public FT4ContiBaseAction
 {
@@ -264,7 +268,7 @@ public:
 	FName ActionPoint;
 
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<class UMaterialInterface> DecalMaterial;
+	TSoftObjectPtr<UMaterialInterface> DecalMaterial;
 
 	UPROPERTY(EditAnywhere)
 	ET4LoadingPolicy LoadingPolicy;

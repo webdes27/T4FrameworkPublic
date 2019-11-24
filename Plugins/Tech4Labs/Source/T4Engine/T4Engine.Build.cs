@@ -32,7 +32,6 @@ namespace UnrealBuildTool.Rules
 
             if (Target.bBuildEditor == true)
             {
-                PublicDependencyModuleNames.Add("AdvancedPreviewScene"); // #87
                 PrivateDependencyModuleNames.Add("UnrealEd");
             }
         }

@@ -122,7 +122,11 @@ public:
 	virtual void SetCameraPitch(float InAmount) = 0;
 	virtual void SetCameraYaw(float InAmount) = 0;
 
-	virtual void SetFreeCameraMoveDirection(const FVector& InLocation) = 0;
+	virtual void SetFreeCameraMoveDirection(const FVector& InDirection) = 0;
+	virtual void SetFreeCameraLocationAndRotation(
+		const FVector& InLocation, 
+		const FRotator& InRotation
+	) = 0; // #94, #86
 
 	virtual void SetCameraLock(bool bInLock) = 0;
 	virtual bool IsCameraLocked() const = 0;

@@ -1,0 +1,295 @@
+// Copyright 2019 SoonBo Noh. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Components/ExponentialHeightFogComponent.h" // #90
+#include "Components/SkyLightComponent.h" // #97
+#include "T4EnvironmentAsset.generated.h"
+
+/**
+  * #90
+ */
+struct FT4EnvironmentCustomVersion
+{
+	enum Type
+	{
+		InitializeVer = 0,
+
+		// -----<new versions can be added above this line>-------------------------------------------------
+		VersionPlusOne,
+		LatestVersion = VersionPlusOne - 1,
+	};
+
+	T4ASSET_API const static FGuid GUID;
+
+private:
+	FT4EnvironmentCustomVersion() {}
+};
+
+// WARN : Envrionment Data 추가 시는 아래 테그를 찾아 추가 구현을 해주어야 함! // #93
+// #T4_ADD_TOD_TAG
+
+// #93
+USTRUCT()
+struct T4ASSET_API FT4EnvDirectionalData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvDirectionalData()
+		: bEnabled(false)
+		, Rotation(FRotator::ZeroRotator)
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	bool bEnabled;
+
+	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentControl::BlendDirectional 구현 필요!!
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FRotator Rotation;
+};
+
+
+// #90
+USTRUCT()
+struct T4ASSET_API FT4EnvDirectionalLightData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvDirectionalLightData()
+		: bEnabled(false)
+		, Intensity(10.0f)
+		, LightColor(FColor::White)
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	bool bEnabled;
+
+	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentControl::BlendDirectionalLight 구현 필요!!
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float Intensity;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FColor LightColor;
+};
+
+// #97
+USTRUCT()
+struct T4ASSET_API FT4EnvBPSkySphereData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvBPSkySphereData()
+		: bEnabled(false)
+		, bColorsDeterminedBySunPosition(true) // #97
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	bool bEnabled;
+
+	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentControl::BlendBPSkySphere 구현 필요!!
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	bool bColorsDeterminedBySunPosition;
+};
+
+// #90
+class UTextureCube;
+USTRUCT()
+struct T4ASSET_API FT4EnvSkyLightData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvSkyLightData()
+		: bEnabled(false)
+		, SourceType(ESkyLightSourceType::SLS_CapturedScene) // #97
+		, CubemapResolution(1024)
+		, Intensity(10.0f)
+		, LightColor(FColor::White)
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	bool bEnabled;
+
+	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentControl::BlendSkyLight 구현 필요!!
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	TEnumAsByte<enum ESkyLightSourceType> SourceType; // #97
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	TSoftObjectPtr<UTextureCube> CubemapPtr;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	int32 CubemapResolution;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float Intensity;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FColor LightColor;
+};
+
+// #90
+// https://docs.unrealengine.com/ko/Engine/Actors/FogEffects/AtmosphericFog/index.html
+USTRUCT()
+struct T4ASSET_API FT4EnvAtmosphericFogData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvAtmosphericFogData()
+		: bEnabled(false)
+		, SunMultiplier(0.0f)
+		, FogMultiplier(0.0f)
+		, DensityMultiplier(0.0f)
+		, DensityOffset(0.0f)
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	bool bEnabled;
+
+	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentControl::BlendAtmosphericFog 구현 필요!!
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float SunMultiplier;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float FogMultiplier;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float DensityMultiplier;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float DensityOffset;
+};
+
+// #90
+USTRUCT()
+struct T4ASSET_API FT4EnvExponentialHeightFogData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvExponentialHeightFogData()
+		: bEnabled(false)
+		, FogDensity(0.02f)
+		, FogHeightFalloff(0.2f)
+		, FogInscatteringColor(FLinearColor::White)
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	bool bEnabled;
+
+	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentControl::BlendExponentialHeightFog 구현 필요!!
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float FogDensity;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float FogHeightFalloff;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FExponentialHeightFogData SecondFogData;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FLinearColor FogInscatteringColor;
+};
+
+// #90
+USTRUCT()
+struct T4ASSET_API FT4EnvTimeTagData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvTimeTagData()
+		: Name(NAME_None)
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	FName Name;
+
+	UPROPERTY(EditAnywhere)
+	FT4EnvDirectionalData DirectionalData; // #93
+
+	UPROPERTY(EditAnywhere)
+	FT4EnvDirectionalLightData DirectionalLightData;
+
+	UPROPERTY(EditAnywhere)
+	FT4EnvBPSkySphereData BPSkySphereData; // #97
+
+	UPROPERTY(EditAnywhere)
+	FT4EnvSkyLightData SkyLightData;
+
+	UPROPERTY(EditAnywhere)
+	FT4EnvAtmosphericFogData AtmosphericFogData;
+
+	UPROPERTY(EditAnywhere)
+	FT4EnvExponentialHeightFogData ExponentialHeightFogData;
+};
+
+// #90
+USTRUCT()
+struct T4ASSET_API FT4EnvTimeTagSetData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvTimeTagSetData()
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	TMap<FName, FT4EnvTimeTagData> TimeTagMap;
+};
+
+class UTexture2D;
+class UT4WorldAsset;
+UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs")
+class T4ASSET_API UT4EnvironmentAsset : public UObject
+{
+	GENERATED_UCLASS_BODY()
+
+public:
+	//~ Begin UObject interface
+	void Serialize(FArchive& Ar) override;
+	virtual void PostLoad() override;
+#if WITH_EDITOR
+	void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+#endif
+	void GetAssetRegistryTags(TArray<FAssetRegistryTag>& OutTags) const override;
+	//~ End UObject interface
+
+#if WITH_EDITOR
+	DECLARE_MULTICAST_DELEGATE(FT4OnPropertiesChanged);
+	FT4OnPropertiesChanged& OnPropertiesChanged() { return OnPropertiesChangedDelegate; }
+#endif // WITH_EDITOR
+
+public:
+	UPROPERTY(EditAnywhere, meta = (DisplayName = "Time of Day"))
+	FT4EnvTimeTagSetData TimeTagSetData; // #90 : 이후 별도 Asset 으로 분리!
+
+public:
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = Editor)
+	TSoftObjectPtr<UT4WorldAsset> PreviewWorldAsset;
+#endif
+
+private:
+#if WITH_EDITOR
+	FT4OnPropertiesChanged OnPropertiesChangedDelegate;
+#endif
+};

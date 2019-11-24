@@ -17,6 +17,7 @@ class UT4PropEntityAsset;
 class UT4ItemEntityAsset;
 class UT4CostumeEntityAsset; // #37
 class UT4WeaponEntityAsset;
+class UT4ZoneEntityAsset; // #94
 class T4ASSET_API IT4EntityManager
 {
 public:
@@ -50,6 +51,9 @@ public:
 
 	virtual const UT4WeaponEntityAsset* GetWeaponEntity(const FT4EntityKey& InKey) = 0;
 	virtual const UT4WeaponEntityAsset* GetWeaponEntity(const FSoftObjectPath& InPath) = 0;
+
+	virtual const UT4ZoneEntityAsset* GetZoneEntity(const FT4EntityKey& InKey) = 0; // #94
+	virtual const UT4ZoneEntityAsset* GetZoneEntity(const FSoftObjectPath& InPath) = 0; // #94
 };
 
 T4ASSET_API IT4EntityManager* T4AssetEntityManagerGet();
