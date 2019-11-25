@@ -38,6 +38,7 @@ enum class ET4ActionType : uint32
 
 	Reaction, // #76
 
+	Environment, // #99
 	TimeScale, // #54
 	CameraWork, // #54
 
@@ -50,7 +51,6 @@ enum class ET4ActionType : uint32
 	// begin World
 
 	WorldTravel,
-	WorldEnvironment, // #94
 
 	SpawnObject,
 	DespawnObject,

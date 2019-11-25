@@ -19,6 +19,7 @@
 // ET4ActionType::Decal // #52
 // ET4ActionType::Projectile // #63
 // ET4ActionType::Reaction // #76
+// ET4ActionType::Environment // #99
 // ET4ActionType::TimeScale // #52
 // ET4ActionType::CameraWork // #52
 // ET4ActionType::LayerSet // #81
@@ -206,7 +207,7 @@ public:
 	ET4AttachParent AttachParent;
 
 	UPROPERTY(EditAnywhere)
-	bool bParentInheritPoint; // #76
+	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
 
 	UPROPERTY(EditAnywhere)
 	FName ActionPoint; // #57
@@ -262,7 +263,7 @@ public:
 	ET4AttachParent AttachParent;
 
 	UPROPERTY(EditAnywhere)
-	bool bParentInheritPoint; // #76
+	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
 
 	UPROPERTY(EditAnywhere)
 	FName ActionPoint;
@@ -396,6 +397,61 @@ public:
 	FString ToDisplayText() override
 	{
 		return FString::Printf(TEXT("Reaction '%s'"), *(ReactionName.ToString())); // #67
+	}
+};
+
+// #99
+class UT4ZoneEntityAsset;
+USTRUCT()
+struct T4ASSET_API FT4EnvironmentAction : public FT4ContiBaseAction
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	// #39 : FT4ContiDetailCustomization::CustomizeEnvironmentActionDetails
+	UPROPERTY(EditAnywhere)
+	ET4AttachParent AttachParent;
+
+	UPROPERTY(EditAnywhere)
+	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
+
+	UPROPERTY(EditAnywhere)
+	FName ActionPoint;
+
+	UPROPERTY(EditAnywhere)
+	bool bOverrideBlendTime;
+
+	UPROPERTY(EditAnywhere)
+	float OverrideBlendInTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	float OverrideBlendOutTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	TSoftObjectPtr<UT4ZoneEntityAsset> ZoneEntityAsset;
+
+public:
+	FT4EnvironmentAction()
+		: FT4ContiBaseAction(StaticActionType())
+		, AttachParent(ET4AttachParent::Default)
+		, bParentInheritPoint(false) // #76
+		, ActionPoint(T4ContiDefaultActionPontName)
+		, bOverrideBlendTime(false)
+		, OverrideBlendInTimeSec(1.0f)
+		, OverrideBlendOutTimeSec(1.0f)
+	{
+	}
+
+	static ET4ActionType StaticActionType() { return ET4ActionType::Environment; }
+
+	FString ToString() const override
+	{
+		return FString(TEXT("EnvironmentAction"));
+	}
+
+	FString ToDisplayText() override
+	{
+		return FString::Printf(TEXT("Environment '%s'"), *(ZoneEntityAsset.GetAssetName()));
 	}
 };
 

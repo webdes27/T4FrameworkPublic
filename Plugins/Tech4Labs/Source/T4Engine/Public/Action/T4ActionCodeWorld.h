@@ -15,7 +15,6 @@
  // #T4_ADD_ACTION_TAG_CODE
 
 // ET4ActionType::WorldTravel
-// ET4ActionType::WorldComposition // #86
 // ET4ActionType::SpawnObject
 // ET4ActionType::DespawnObject
 

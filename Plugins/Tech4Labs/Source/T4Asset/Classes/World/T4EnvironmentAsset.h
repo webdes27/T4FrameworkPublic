@@ -88,8 +88,17 @@ struct T4ASSET_API FT4EnvBPSkySphereData
 public:
 	FT4EnvBPSkySphereData()
 		: bEnabled(false)
+		, SunBrightness(5.0f) // #97
+		, CloudSpeed(10.0f) // #97
+		, CloudOpacity(0.7f) // #97
+		, StarsBrightness(0.1f) // #97
 		, bColorsDeterminedBySunPosition(true) // #97
+		, ZenithColor(FLinearColor(0.034046f, 0.102947f, 0.295f, 1.0f).ToFColor(true)) // #97
+		, HorizonColor(FLinearColor(1.979559f, 2.586644f, 3.0f, 1.0f).ToFColor(true)) // #97
+		, CloudColor(FLinearColor(0.855778f, 0.91902f, 1.0f, 1.0f).ToFColor(true)) // #97
+		, OverallColor(255) // #97
 	{
+
 	}
 
 	UPROPERTY(EditAnywhere)
@@ -98,7 +107,31 @@ public:
 	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentControl::BlendBPSkySphere 구현 필요!!
 
 	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float SunBrightness; // #98
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float CloudSpeed; // #98
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float CloudOpacity; // #98
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	float StarsBrightness; // #98
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
 	bool bColorsDeterminedBySunPosition;
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FColor ZenithColor; // #98
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FColor HorizonColor; // #98
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FColor CloudColor; // #98
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FColor OverallColor; // #98
 };
 
 // #90

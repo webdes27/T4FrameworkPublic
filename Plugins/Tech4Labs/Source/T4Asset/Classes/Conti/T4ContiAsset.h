@@ -119,6 +119,9 @@ public:
 	TArray<FT4ReactionAction> ReactionActions; // #76
 
 	UPROPERTY(EditAnywhere)
+	TArray<FT4EnvironmentAction> EnvironmentActions; // #99
+
+	UPROPERTY(EditAnywhere)
 	TArray<FT4TimeScaleAction> TimeScaleActions; // #54
 
 	UPROPERTY(EditAnywhere)
