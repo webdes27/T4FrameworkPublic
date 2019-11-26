@@ -15,6 +15,10 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.11.26] [M4] Copying //Private to //Deploy (private commit 40ac097)**
+	- #99 [버그수정] Rehearsal Conti Editor, Environment Action Paused 가 정상적이지 않던 문제 수정
+	- #99 [버그수정] Rehearsal Conti Editor, 월드 이동을 할 경우 발생하는 크래시 수정
+	- #99 [버그수정] Rehearsal Viewport 의 ToolBar 메뉴가 동작하지 않던 문제 수정
   - **[2019.11.25] [M4] Copying //Private to //Deploy (private commit 697c44a)**
 	- #99 [버그수정] Rehearsal Conti Editor, Track Section Range 및 Lifecycle 변경 오류 수정
   - **[2019.11.24] [M4] Copying //Private to //Deploy (private commit be5711c)**

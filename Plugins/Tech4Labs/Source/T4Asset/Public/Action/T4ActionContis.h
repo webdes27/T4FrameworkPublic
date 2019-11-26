@@ -419,6 +419,9 @@ public:
 	FName ActionPoint;
 
 	UPROPERTY(EditAnywhere)
+	TSoftObjectPtr<UT4ZoneEntityAsset> ZoneEntityAsset;
+
+	UPROPERTY(EditAnywhere)
 	bool bOverrideBlendTime;
 
 	UPROPERTY(EditAnywhere)
@@ -426,9 +429,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	float OverrideBlendOutTimeSec;
-
-	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<UT4ZoneEntityAsset> ZoneEntityAsset;
 
 public:
 	FT4EnvironmentAction()
