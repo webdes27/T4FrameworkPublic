@@ -6,6 +6,7 @@
 #include "T4EngineTypes.h"
 #include "T4Asset/Public/Entity/T4EntityTypes.h" // #94
 #include "T4Asset/Classes/World/T4EnvironmentAsset.h"
+#include "FinalPostProcessSettings.h" // #98
 
 /**
   * #92
@@ -76,13 +77,18 @@ namespace T4EngineUtility
 		const FT4EnvExponentialHeightFogData* InData,
 		AExponentialHeightFog* InCachedActor = nullptr // #92
 	);
+	T4ENGINE_API bool ApplyPostProcess(
+		UWorld* InWorld,
+		const FPostProcessSettings* InData,
+		AT4MapZoneVolume* InCachedVolume = nullptr // #98
+	);
 
 
 	T4ENGINE_API void BlendTimeTagData(
 		const FT4EnvTimeTagData& InTimeTagData,
 		float InWeight,
 		FT4EnvTimeTagData& OutTimeTagData
-	); // #93
+	); // #93, #98 : BlendPostProcess 는 별도로 처리!!
 
 	// #T4_ADD_TOD_TAG
 	T4ENGINE_API void BlendDirectional(
@@ -114,6 +120,11 @@ namespace T4EngineUtility
 		const FT4EnvExponentialHeightFogData* InData,
 		float InWeight,
 		FT4EnvExponentialHeightFogData& OutData // #93
+	);
+	T4ENGINE_API void BlendPostProcess(
+		const FPostProcessSettings* InData,
+		float InWeight,
+		FFinalPostProcessSettings& OutData // #98
 	);
 
 	// #T4_ADD_TOD_TAG
@@ -151,6 +162,7 @@ namespace T4EngineUtility
 	T4ENGINE_API ASkyLight* FindSkyLightActor(UWorld* InWorld);
 	T4ENGINE_API AAtmosphericFog* FindAtmosphericFogActor(UWorld* InWorld);
 	T4ENGINE_API AExponentialHeightFog* FindExponentialHeightFogActor(UWorld* InWorld);
+	T4ENGINE_API AT4MapZoneVolume* FindGlobalMapZoneVolume(UWorld* InWorld); // #98
 	// #97
 
 #if WITH_EDITOR
@@ -161,5 +173,6 @@ namespace T4EngineUtility
 	T4ENGINE_API bool GetSkyLightData(UWorld* InWorld, FT4EnvSkyLightData* OutData);
 	T4ENGINE_API bool GetAtmosphericFogData(UWorld* InWorld, FT4EnvAtmosphericFogData* OutData);
 	T4ENGINE_API bool GetExponentialHeightFogData(UWorld* InWorld, FT4EnvExponentialHeightFogData* OutData);
+	T4ENGINE_API bool GetGlobalPostProcessData(UWorld* InWorld, FT4EnvPostProcessData* OutData); // #98
 #endif
 }

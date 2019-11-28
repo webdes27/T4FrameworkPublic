@@ -6,28 +6,38 @@
 
 #include "Public/T4EngineTypes.h"
 
-#include "Engine/PostProcessVolume.h"
+#include "GameFramework/Volume.h" // #98
+#include "Engine/Scene.h" // #98
+#include "Interfaces/Interface_PostProcessVolume.h" // #98
 
 #include "T4MapZoneVolume.generated.h"
 
 /**
   * #92
  */
+// #98 : APostProcessVolume 이 MinimalAPI 를 사용중이라 직접 구현한다.
 class UT4EnvironmentAsset;
-UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs")
-class T4ENGINE_API AT4MapZoneVolume : public APostProcessVolume
+UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs", hidecategories = (Advanced, Collision, Volume, Brush, Attachment))
+class T4ENGINE_API AT4MapZoneVolume : public AVolume, public IInterface_PostProcessVolume
 {
 	GENERATED_UCLASS_BODY()
 
 public:
-	virtual void PostUnregisterAllComponents();
-
-public:
 	//~ Begin UObject interface
 	virtual void BeginPlay() override;
-	virtual void PostRegisterAllComponents() override;
 
 	virtual void Serialize(FArchive& Ar) override;
+
+	//~ Begin IInterface_PostProcessVolume Interface
+	virtual bool EncompassesPoint(FVector Point, float SphereRadius/*=0.f*/, float* OutDistanceToPoint) override;
+	virtual FPostProcessVolumeProperties GetProperties() const override;
+	//~ End IInterface_PostProcessVolume Interface
+
+	//~ Begin AActor interface
+	virtual void PostUnregisterAllComponents() override; // #98
+
+protected:
+	virtual void PostRegisterAllComponents() override; // #98
 
 public:
 	void Update(float InDeltaTime);
@@ -82,6 +92,8 @@ public:
 	bool bEntered;
 	bool bBlendStart;
 	float BlendTimeLeft;
+
+	FPostProcessSettings* PostProcessingSettings; // #98 : T4WorldEnvironmentControl 에서 Global 만 값을 채운다.
 
 private:
 	FT4OnPropertiesChanged OnPropertiesChangedDelegate; // #92

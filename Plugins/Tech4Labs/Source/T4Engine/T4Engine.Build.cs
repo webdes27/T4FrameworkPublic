@@ -12,7 +12,8 @@ namespace UnrealBuildTool.Rules
             PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 			PrivateIncludePaths.AddRange(
-				new string[] {
+				new string[] 
+				{
                     "T4Engine/Private",
 					// ... add other private include paths required here ...
 				}

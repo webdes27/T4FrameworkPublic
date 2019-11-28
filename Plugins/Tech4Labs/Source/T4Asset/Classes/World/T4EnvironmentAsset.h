@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/Scene.h" // #98
 #include "Components/ExponentialHeightFogComponent.h" // #90
 #include "Components/SkyLightComponent.h" // #97
 #include "T4EnvironmentAsset.generated.h"
@@ -89,7 +90,7 @@ public:
 	FT4EnvBPSkySphereData()
 		: bEnabled(false)
 		, SunBrightness(5.0f) // #97
-		, CloudSpeed(10.0f) // #97
+		, CloudSpeed(1.0f) // #97
 		, CloudOpacity(0.7f) // #97
 		, StarsBrightness(0.1f) // #97
 		, bColorsDeterminedBySunPosition(true) // #97
@@ -240,6 +241,27 @@ public:
 	FLinearColor FogInscatteringColor;
 };
 
+// #98
+USTRUCT()
+struct T4ASSET_API FT4EnvPostProcessData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EnvPostProcessData()
+		: bEnabled(false)
+	{
+	}
+
+	UPROPERTY(EditAnywhere)
+	bool bEnabled;
+
+	// #92 : 프로퍼티 추가시 FT4WorldEnvironmentControl::BlendPostProcess 구현 필요!!
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnabled"))
+	FPostProcessSettings Settings; // #98
+};
+
 // #90
 USTRUCT()
 struct T4ASSET_API FT4EnvTimeTagData
@@ -272,6 +294,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	FT4EnvExponentialHeightFogData ExponentialHeightFogData;
+
+	UPROPERTY(EditAnywhere)
+	FT4EnvPostProcessData PostProcessData; // #98
 };
 
 // #90

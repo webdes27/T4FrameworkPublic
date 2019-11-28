@@ -15,6 +15,8 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.11.28] [M4] Copying //Private to //Deploy (private commit 6df11ee)**
+	- #98 [기능추가] Static & Movable Environment Zone 내 PostProcess 기능 추가
   - **[2019.11.27] [M4] Copying //Private to //Deploy (private commit c41a6c6)**
 	- #99 [기능추가] Rehearsal Conti Editor, Environment Action 추가
   - **[2019.11.26] [M4] Copying //Private to //Deploy (private commit 40ac097)**
