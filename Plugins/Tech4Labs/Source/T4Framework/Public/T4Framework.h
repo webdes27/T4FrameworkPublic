@@ -63,10 +63,10 @@ enum ET4ControllerType // #42
 struct FT4HUDDrawInfo // #68
 {
 	FT4HUDDrawInfo()
-		: LineOffset(4.0f)
+		: NoticeLineOffset(0.0f)
 	{
 	}
-	float LineOffset;
+	float NoticeLineOffset;
 };
 
 class IT4GameFramework;

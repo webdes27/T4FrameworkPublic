@@ -80,6 +80,7 @@ public:
 	bool HasPlayingPublicAction(const FT4ActionKey& InActionKey) const override; // #20
 
 	AController* GetAController() override;
+	APlayerCameraManager* GetCameraManager() const override { return nullptr; } // #100
 	IT4GameplayController* GetGameplayController() override { return static_cast<IT4GameplayController*>(this); } // #63
 
 	// IT4GameplayController

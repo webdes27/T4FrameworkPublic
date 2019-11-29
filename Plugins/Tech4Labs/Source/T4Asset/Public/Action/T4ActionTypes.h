@@ -37,12 +37,13 @@ enum class ET4ActionType : uint32
 	Projectile, // #63
 
 	Reaction, // #76
+	LayerSet, // #81
 
-	Environment, // #99
 	TimeScale, // #54
 	CameraWork, // #54
 
-	LayerSet, // #81
+	PostProcess, // #100
+	Environment, // #99
 
 	// #62 : End Conti Format
 
@@ -135,6 +136,15 @@ enum class ET4AttachParent : uint8 // #54
 {
 	Object, // Default
 	World,
+
+	Default,
+};
+
+UENUM()
+enum class ET4PlayTarget : uint8 // #100
+{
+	Player, // Default
+	All,
 
 	Default,
 };

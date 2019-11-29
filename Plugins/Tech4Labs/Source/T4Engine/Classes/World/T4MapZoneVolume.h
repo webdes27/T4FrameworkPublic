@@ -7,7 +7,6 @@
 #include "Public/T4EngineTypes.h"
 
 #include "GameFramework/Volume.h" // #98
-#include "Engine/Scene.h" // #98
 #include "Interfaces/Interface_PostProcessVolume.h" // #98
 
 #include "T4MapZoneVolume.generated.h"
@@ -17,6 +16,7 @@
  */
 // #98 : APostProcessVolume 이 MinimalAPI 를 사용중이라 직접 구현한다.
 class UT4EnvironmentAsset;
+struct FPostProcessSettings; // #98
 UCLASS(ClassGroup = Tech4Labs, Category = "Tech4Labs", hidecategories = (Advanced, Collision, Volume, Brush, Attachment))
 class T4ENGINE_API AT4MapZoneVolume : public AVolume, public IInterface_PostProcessVolume
 {

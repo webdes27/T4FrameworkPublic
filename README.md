@@ -15,6 +15,10 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.11.28] [M4] Copying //Private to //Deploy (private commit 2b31e11)**
+	- #100 [버그수정] Rehearsal Conti Editor, Folder 및 Track 의 Sorting 문제 수정
+	- #100 [기능개선] Rehearsal Conti Editor, Track 및 Section 에 Debug ColorTint 설정 기능 추가
+	- #100 [기능추가] Rehearsal Conti Editor, PostProcessing Action 추가
   - **[2019.11.28] [M4] Copying //Private to //Deploy (private commit 6df11ee)**
 	- #98 [기능추가] Static & Movable Environment Zone 내 PostProcess 기능 추가
   - **[2019.11.27] [M4] Copying //Private to //Deploy (private commit c41a6c6)**

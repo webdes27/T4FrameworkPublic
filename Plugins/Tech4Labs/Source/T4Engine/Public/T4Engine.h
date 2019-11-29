@@ -34,6 +34,7 @@ class UT4EntityAsset;
 struct FWorldContext;
 class UAnimSequence;
 class AController;
+class APlayerCameraManager; // #100
 class APlayerController; // #42
 
 class T4ENGINE_API IT4AnimState
@@ -156,6 +157,7 @@ public:
 	virtual bool HasPlayingPublicAction(const FT4ActionKey& InActionKey) const = 0; // #20
 
 	virtual AController* GetAController() = 0;
+	virtual APlayerCameraManager* GetCameraManager() const = 0; // #100
 	virtual class IT4GameplayController* GetGameplayController() = 0; // #63 : T4Engine 에서 호출 금지!!! (WARNING)
 };
 
@@ -181,6 +183,7 @@ public:
 	virtual bool IsPlayer() const = 0;
 
 	virtual APawn* GetPawn() = 0;
+	virtual IT4GameWorld* GetGameWorld() const = 0; // #100
 
 	// #76 : Only Public Action, Playback used
 	virtual bool DoExecuteAction(const FT4BaseAction* InAction, const FT4ActionParameters* InParam = nullptr) = 0;

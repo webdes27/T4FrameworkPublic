@@ -30,7 +30,7 @@ public:
 	float DurationSec; // #20 : TotalTimeSec = DelayTimeSec + DurationSec;
 
 	UPROPERTY(VisibleAnywhere)
-	uint32 SortOrder; // #56 : lower win
+	int32 SortOrder; // #56 : lower win
 
 public:
 	FT4BaseAction()
@@ -38,7 +38,7 @@ public:
 		, LifecyclePolicy(ET4LifecyclePolicy::Default)
 		, DelayTimeSec(0.0f)
 		, DurationSec(0.0f)
-		, SortOrder(TNumericLimits<uint32>::Max()) // #56 : lower win
+		, SortOrder(TNumericLimits<int32>::Max()) // #56 : lower win
 	{
 	}
 
@@ -47,7 +47,7 @@ public:
 		, LifecyclePolicy(ET4LifecyclePolicy::Default)
 		, DelayTimeSec(0.0f)
 		, DurationSec(0.0f)
-		, SortOrder(TNumericLimits<uint32>::Max()) // #56 : lower win
+		, SortOrder(TNumericLimits<int32>::Max()) // #56 : lower win
 	{
 	}
 

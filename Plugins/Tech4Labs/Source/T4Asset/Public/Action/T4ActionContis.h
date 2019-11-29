@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "T4ActionBase.h"
 #include "Public/T4AssetDefinitions.h"
+#include "Engine/Scene.h" // #100
 #include "T4ActionContis.generated.h"
 
 /**
@@ -19,10 +20,11 @@
 // ET4ActionType::Decal // #52
 // ET4ActionType::Projectile // #63
 // ET4ActionType::Reaction // #76
-// ET4ActionType::Environment // #99
+// ET4ActionType::LayerSet // #81
 // ET4ActionType::TimeScale // #52
 // ET4ActionType::CameraWork // #52
-// ET4ActionType::LayerSet // #81
+// ET4ActionType::PostProcess // #100
+// ET4ActionType::Environment // #99
 
 class UT4ContiAsset;
 
@@ -41,6 +43,9 @@ public:
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere)
 	FName DisplayName;
+
+	UPROPERTY(EditAnywhere)
+	FColor DebugColorTint;
 #endif
 
 public:
@@ -49,6 +54,7 @@ public:
 		, HeaderKey(INDEX_NONE) // #24
 #if WITH_EDITORONLY_DATA
 		, DisplayName(NAME_None)
+		, DebugColorTint(FColor::Black)
 #endif
 	{
 	}
@@ -58,6 +64,7 @@ public:
 		, HeaderKey(INDEX_NONE) // #24
 #if WITH_EDITORONLY_DATA
 		, DisplayName(NAME_None)
+		, DebugColorTint(FColor::Black)
 #endif
 	{
 	}
@@ -400,58 +407,38 @@ public:
 	}
 };
 
-// #99
-class UT4ZoneEntityAsset;
+// #81
 USTRUCT()
-struct T4ASSET_API FT4EnvironmentAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4LayerSetAction : public FT4ContiBaseAction
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiDetailCustomization::CustomizeEnvironmentActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeLayerSetActionDetails
 	UPROPERTY(EditAnywhere)
-	ET4AttachParent AttachParent;
+	FName LayerTagName;
 
 	UPROPERTY(EditAnywhere)
-	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
-
-	UPROPERTY(EditAnywhere)
-	FName ActionPoint;
-
-	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<UT4ZoneEntityAsset> ZoneEntityAsset;
-
-	UPROPERTY(EditAnywhere)
-	bool bOverrideBlendTime;
-
-	UPROPERTY(EditAnywhere)
-	float OverrideBlendInTimeSec;
-
-	UPROPERTY(EditAnywhere)
-	float OverrideBlendOutTimeSec;
+	ET4LayerTagType LayerTagType;
 
 public:
-	FT4EnvironmentAction()
+	FT4LayerSetAction()
 		: FT4ContiBaseAction(StaticActionType())
-		, AttachParent(ET4AttachParent::Default)
-		, bParentInheritPoint(false) // #76
-		, ActionPoint(T4ContiDefaultActionPontName)
-		, bOverrideBlendTime(false)
-		, OverrideBlendInTimeSec(1.0f)
-		, OverrideBlendOutTimeSec(1.0f)
+		, LayerTagName(NAME_None)
+		, LayerTagType(ET4LayerTagType::All)
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::Environment; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::LayerSet; }
 
 	FString ToString() const override
 	{
-		return FString(TEXT("EnvironmentAction"));
+		return FString(TEXT("LayerSetAction"));
 	}
 
 	FString ToDisplayText() override
 	{
-		return FString::Printf(TEXT("Environment '%s'"), *(ZoneEntityAsset.GetAssetName()));
+		return FString::Printf(TEXT("LayerSet '%s'"), *(LayerTagName.ToString()));
 	}
 };
 
@@ -501,37 +488,103 @@ public:
 	}
 };
 
-// #81
+// #100
 USTRUCT()
-struct T4ASSET_API FT4LayerSetAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4PostProcessAction : public FT4ContiBaseAction
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiDetailCustomization::CustomizeLayerSetActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizePostProcessActionDetails
 	UPROPERTY(EditAnywhere)
-	FName LayerTagName;
+	ET4PlayTarget PlayTarget; // #100
 
 	UPROPERTY(EditAnywhere)
-	ET4LayerTagType LayerTagType;
+	float BlendInTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	float BlendOutTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	FPostProcessSettings PostProcessSettings; // #98 에서는 Zone 처리,
 
 public:
-	FT4LayerSetAction()
+	FT4PostProcessAction()
 		: FT4ContiBaseAction(StaticActionType())
-		, LayerTagName(NAME_None)
-		, LayerTagType(ET4LayerTagType::All)
+		, PlayTarget(ET4PlayTarget::Default)
+		, BlendInTimeSec(1.0f)
+		, BlendOutTimeSec(1.0f)
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::LayerSet; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::PostProcess; }
 
 	FString ToString() const override
 	{
-		return FString(TEXT("LayerSetAction"));
+		return FString(TEXT("PostProcessAction"));
 	}
 
 	FString ToDisplayText() override
 	{
-		return FString::Printf(TEXT("LayerSet '%s'"), *(LayerTagName.ToString()));
+		return FString::Printf(TEXT("PostProcess"));
+	}
+};
+
+// #99
+class UT4ZoneEntityAsset;
+USTRUCT()
+struct T4ASSET_API FT4EnvironmentAction : public FT4ContiBaseAction
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	// #39 : FT4ContiDetailCustomization::CustomizeEnvironmentActionDetails
+	UPROPERTY(EditAnywhere)
+	ET4AttachParent AttachParent;
+
+	UPROPERTY(EditAnywhere)
+	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
+
+	UPROPERTY(EditAnywhere)
+	FName ActionPoint;
+
+	UPROPERTY(EditAnywhere)
+	ET4PlayTarget PlayTarget; // #100
+
+	UPROPERTY(EditAnywhere)
+	TSoftObjectPtr<UT4ZoneEntityAsset> ZoneEntityAsset;
+
+	UPROPERTY(EditAnywhere)
+	bool bOverrideBlendTime;
+
+	UPROPERTY(EditAnywhere)
+	float OverrideBlendInTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	float OverrideBlendOutTimeSec;
+
+public:
+	FT4EnvironmentAction()
+		: FT4ContiBaseAction(StaticActionType())
+		, AttachParent(ET4AttachParent::Default)
+		, bParentInheritPoint(false) // #76
+		, ActionPoint(T4ContiDefaultActionPontName)
+		, PlayTarget(ET4PlayTarget::Default)
+		, bOverrideBlendTime(false)
+		, OverrideBlendInTimeSec(1.0f)
+		, OverrideBlendOutTimeSec(1.0f)
+	{
+	}
+
+	static ET4ActionType StaticActionType() { return ET4ActionType::Environment; }
+
+	FString ToString() const override
+	{
+		return FString(TEXT("EnvironmentAction"));
+	}
+
+	FString ToDisplayText() override
+	{
+		return FString::Printf(TEXT("Environment '%s'"), *(ZoneEntityAsset.GetAssetName()));
 	}
 };

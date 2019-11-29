@@ -67,14 +67,14 @@ public:
 	FName ParentFolderName; // #56 : lower win
 
 	UPROPERTY(VisibleAnywhere)
-	uint32 SortOrder; // #56 : lower win
+	int32 SortOrder; // #56 : lower win
 #endif
 
 public:
 	FT4ActionFolderInfo()
 #if WITH_EDITOR
 		: ParentFolderName(NAME_None)
-		, SortOrder(INDEX_NONE)
+		, SortOrder(TNumericLimits<int32>::Max())
 #endif
 	{
 	}
@@ -119,7 +119,7 @@ public:
 	TArray<FT4ReactionAction> ReactionActions; // #76
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4EnvironmentAction> EnvironmentActions; // #99
+	TArray<FT4LayerSetAction> LayerSetActions; // #81
 
 	UPROPERTY(EditAnywhere)
 	TArray<FT4TimeScaleAction> TimeScaleActions; // #54
@@ -128,7 +128,10 @@ public:
 	TArray<FT4CameraWorkAction> CameraWorkActions; // #54
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4LayerSetAction> LayerSetActions; // #81
+	TArray<FT4PostProcessAction> PostProcessActions; // #100
+
+	UPROPERTY(EditAnywhere)
+	TArray<FT4EnvironmentAction> EnvironmentActions; // #99
 
 public:
 	void Reset();
