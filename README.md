@@ -88,4 +88,4 @@ Powerful toolset and Flexible layer solution
   - **Older Update Notes**
     - 2019.07 ~ 2019.09 : ReleaseNotes.md
 - Contact
-  - <info@tech4labs.com> (Twitter: @Tech4Labs)
+  - <niceofer@hotmail.com> (Twitter: @Tech4Labs)
