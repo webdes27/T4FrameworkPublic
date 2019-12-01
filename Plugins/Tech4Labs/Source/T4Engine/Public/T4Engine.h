@@ -417,6 +417,7 @@ public:
 	virtual bool DoExecuteAction(const FT4BaseAction* InAction, const FT4ActionParameters* InActionParam = nullptr) = 0;
 
 	virtual ET4GameWorldType GetGameWorldType() const = 0; // #87
+	virtual const FName GetEntityKeyName() const = 0; // #100 : 현재 로딩된 Entity KeyName 만약, 없다면 NAME_None (preview or Level 을 직접) 로 리턴됨
 
 	virtual UWorld* GetWorld() const = 0;
 

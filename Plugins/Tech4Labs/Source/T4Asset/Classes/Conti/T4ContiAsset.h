@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Classes/Common/T4CommonAssetStructs.h" // #100
 #include "Public/Action/T4ActionContis.h"
 #include "T4ContiAsset.generated.h"
 
@@ -276,6 +277,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FT4ContiTestSettings TestSettings; // #60
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FT4EditorTestAutomation TestAutomation; // #100
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image

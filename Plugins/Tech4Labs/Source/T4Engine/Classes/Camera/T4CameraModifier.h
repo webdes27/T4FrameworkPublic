@@ -26,9 +26,4 @@ public:
 public:
 	TArray<float> PostProcessBlendWeights;
 	TArray<FPostProcessSettings*> PostProcessSettings;
-
-#if WITH_EDITOR
-	float EditorPostProcessWeight;
-	FPostProcessSettings EditorPostProcessSetting;
-#endif
 };
