@@ -15,6 +15,8 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.02] [M4] Copying //Private to //Deploy (private commit 96a7a72)**
+	- #101 [버그수정] Rehearsal Conti Editor, Camera Shake 추가 후 PostProcess Action 이 동작하지 않던 문제 수정
   - **[2019.12.02] [M4] Copying //Private to //Deploy (private commit d36e8a7)**
 	- #101 [기능개선] Rehearsal Conti Editor, Track 메뉴에서 Action Raname 및 DebugColorTint 수정 기능 지원
 	- #101 [기능추가] Rehearsal Conti Editor, CameraShake Action 기능 추가

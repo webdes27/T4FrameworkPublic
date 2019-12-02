@@ -12,7 +12,7 @@
 UCLASS()
 class T4ENGINE_API AT4PlayerCameraManager : public APlayerCameraManager
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 
 public:
 	void UpdateCamera(float InDeltaTime) override;

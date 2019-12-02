@@ -75,6 +75,10 @@ public:
 
 	ET4BaseActionType GetBaseActionType() const override { return ET4BaseActionType::Conti; } // #52
 
+	virtual void Initialize() // #58 : 액션별 커스텀 초기화 (CameraWork)
+	{
+	}
+
 	virtual bool Validate(FString& OutMsg)
 	{
 		return true;
@@ -467,7 +471,52 @@ public:
 	}
 };
 
-// #54
+// #58
+USTRUCT()
+struct T4ASSET_API FT4CameraWorkSectionKeyData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	// #58 : Property 수정시 UT4EditorCameraSectionKey 에도 추가해줄 것!
+
+	UPROPERTY(EditAnywhere)
+	float DelayTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	FName LookAtPoint; // ActionPoint
+
+	UPROPERTY(EditAnywhere)
+	float Distance;
+
+	UPROPERTY(EditAnywhere)
+	float FOVDegree;
+
+public:
+	FT4CameraWorkSectionKeyData()
+		: DelayTimeSec(0.0f)
+		, LookAtPoint(NAME_None)
+		, Distance(0.0f)
+		, FOVDegree(0.0f)
+	{
+	}
+};
+
+USTRUCT()
+struct T4ASSET_API FT4CameraWorkSectionData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+	TArray<FT4CameraWorkSectionKeyData> KeyDatas;
+
+public:
+	FT4CameraWorkSectionData()
+	{
+	}
+};
+
 USTRUCT()
 struct T4ASSET_API FT4CameraWorkAction : public FT4ContiBaseAction
 {
@@ -477,7 +526,10 @@ public:
 	// #39 : FT4ContiDetailCustomization::CustomizeCameraWorkActionDetails
 
 	UPROPERTY(EditAnywhere)
-	ET4PlayTarget PlayTarget; // #100
+	ET4PlayTarget PlayTarget;
+
+	UPROPERTY(EditAnywhere)
+	FT4CameraWorkSectionData SectionData;
 
 public:
 	FT4CameraWorkAction()
@@ -486,27 +538,30 @@ public:
 	{
 	}
 
-#if WITH_EDITOR
-	void Reset()
-	{
-		PlayTarget = ET4PlayTarget::Default;
-	}
-#endif
-
 	static ET4ActionType StaticActionType() { return ET4ActionType::CameraWork; }
+
+	void Initialize() override // #58 : 액션별 커스텀 초기화 (CameraWork)
+	{
+		FT4CameraWorkSectionKeyData& NewSectionKey = SectionData.KeyDatas.AddDefaulted_GetRef();
+		NewSectionKey.DelayTimeSec = DelayTimeSec;
+	}
 
 	FString ToString() const override
 	{
 		return FString(TEXT("CameraWorkAction"));
 	}
 
+#if WITH_EDITOR
+	void Reset()
+	{
+		PlayTarget = ET4PlayTarget::Default;
+	}
+
 	FString ToDisplayText() override
 	{
-		return FString::Printf(
-			TEXT("CameraShake 'PlayTarget => %s'"),
-			(ET4PlayTarget::All == PlayTarget) ? TEXT("All") : TEXT("Player")
-		);
+		return FString::Printf(TEXT("")); // SectionKey 가 여려개 생성됨으로 출력을 제외!
 	}
+#endif
 };
 
 // #101
@@ -522,13 +577,13 @@ public:
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
 
-	UPROPERTY(EditAnywhere, Category=Oscillation)
+	UPROPERTY(EditAnywhere)
 	FROscillator RotOscillation;
 
-	UPROPERTY(EditAnywhere, Category=Oscillation)
+	UPROPERTY(EditAnywhere)
 	FVOscillator LocOscillation;
 
-	UPROPERTY(EditAnywhere, Category=Oscillation)
+	UPROPERTY(EditAnywhere)
 	FFOscillator FOVOscillation;
 
 public:
@@ -615,6 +670,14 @@ public:
 		, PlaySpace(ECameraAnimPlaySpace::CameraLocal)
 		, UserDefinedPlaySpace(ForceInitToZero)
 	{
+		LifecyclePolicy = ET4LifecyclePolicy::Duration; // Duration 만!, 시스템으로 제어 필요
+	}
+
+	static ET4ActionType StaticActionType() { return ET4ActionType::CameraShake; }
+
+	FString ToString() const override
+	{
+		return FString(TEXT("CameraShakeAction"));
 	}
 
 #if WITH_EDITOR
@@ -627,14 +690,6 @@ public:
 		OscillationData = FT4CameraShakeOscillationData();
 		AnimData = FT4CameraShakeAnimData();
 	}
-#endif
-
-	static ET4ActionType StaticActionType() { return ET4ActionType::CameraShake; }
-
-	FString ToString() const override
-	{
-		return FString(TEXT("CameraShakeAction"));
-	}
 
 	FString ToDisplayText() override
 	{
@@ -643,6 +698,7 @@ public:
 			(ET4PlayTarget::All == PlayTarget) ? TEXT("All") : TEXT("Player")
 		);
 	}
+#endif
 };
 
 // #100
@@ -674,6 +730,13 @@ public:
 	{
 	}
 
+	static ET4ActionType StaticActionType() { return ET4ActionType::PostProcess; }
+
+	FString ToString() const override
+	{
+		return FString(TEXT("PostProcessAction"));
+	}
+
 #if WITH_EDITOR
 	void Reset()
 	{
@@ -681,14 +744,6 @@ public:
 		BlendInTimeSec = 0.0f;
 		BlendOutTimeSec = 0.0f;
 		PostProcessSettings.SetBaseValues();
-	}
-#endif
-
-	static ET4ActionType StaticActionType() { return ET4ActionType::PostProcess; }
-
-	FString ToString() const override
-	{
-		return FString(TEXT("PostProcessAction"));
 	}
 
 	FString ToDisplayText() override
@@ -698,6 +753,7 @@ public:
 			(ET4PlayTarget::All == PlayTarget) ? TEXT("All") : TEXT("Player")
 		);
 	}
+#endif
 };
 
 // #99
