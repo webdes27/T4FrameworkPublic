@@ -15,16 +15,19 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.02] [M4] Copying //Private to //Deploy (private commit d36e8a7)**
+	- #101 [기능개선] Rehearsal Conti Editor, Track 메뉴에서 Action Raname 및 DebugColorTint 수정 기능 지원
+	- #101 [기능추가] Rehearsal Conti Editor, CameraShake Action 기능 추가
   - **[2019.12.01] [M4] Copying //Private to //Deploy (private commit 75935fe)**
 	- #100 [기능개선] Rehearsal Conti Editor, Point Of Interest 및 Detail Panel 에서 Action Play/Stop 기능 추가
   - **[2019.11.29] [M4] Copying //Private to //Deploy (private commit 2b31e11)**
 	- #100 [버그수정] Rehearsal Conti Editor, Folder 및 Track 의 Sorting 문제 수정
 	- #100 [기능개선] Rehearsal Conti Editor, Track 및 Section 에 Debug ColorTint 설정 기능 추가
-	- #100 [기능추가] Rehearsal Conti Editor, PostProcessing Action 추가
+	- #100 [기능추가] Rehearsal Conti Editor, PostProcessing Action 기능 추가
   - **[2019.11.28] [M4] Copying //Private to //Deploy (private commit 6df11ee)**
 	- #98 [기능추가] Static & Movable Environment Zone 내 PostProcess 기능 추가
   - **[2019.11.27] [M4] Copying //Private to //Deploy (private commit c41a6c6)**
-	- #99 [기능추가] Rehearsal Conti Editor, Environment Action 추가
+	- #99 [기능추가] Rehearsal Conti Editor, Environment Action 기능 추가
   - **[2019.11.26] [M4] Copying //Private to //Deploy (private commit 40ac097)**
 	- #99 [버그수정] Rehearsal Conti Editor, 일부 Action Paused 가 정상적이지 않던 문제 수정
 	- #99 [버그수정] Rehearsal Conti Editor, 월드 이동을 할 경우 발생하는 크래시 수정

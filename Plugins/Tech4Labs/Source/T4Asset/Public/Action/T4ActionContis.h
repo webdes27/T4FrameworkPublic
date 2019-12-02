@@ -6,6 +6,7 @@
 #include "T4ActionBase.h"
 #include "Public/T4AssetDefinitions.h"
 #include "Engine/Scene.h" // #100
+#include "Camera/CameraShake.h" // #101
 #include "T4ActionContis.generated.h"
 
 /**
@@ -23,6 +24,7 @@
 // ET4ActionType::LayerSet // #81
 // ET4ActionType::TimeScale // #52
 // ET4ActionType::CameraWork // #52
+// ET4ActionType::CameraShake // #101
 // ET4ActionType::PostProcess // #100
 // ET4ActionType::Environment // #99
 
@@ -165,10 +167,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	FName SectionName;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
 
 	UPROPERTY(EditAnywhere)
@@ -472,19 +474,174 @@ struct T4ASSET_API FT4CameraWorkAction : public FT4ContiBaseAction
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiDetailCustomization::CustomizeDecalActionDetails
+	// #39 : FT4ContiDetailCustomization::CustomizeCameraWorkActionDetails
+
+	UPROPERTY(EditAnywhere)
+	ET4PlayTarget PlayTarget; // #100
 
 public:
 	FT4CameraWorkAction()
 		: FT4ContiBaseAction(StaticActionType())
+		, PlayTarget(ET4PlayTarget::Default)
 	{
 	}
+
+#if WITH_EDITOR
+	void Reset()
+	{
+		PlayTarget = ET4PlayTarget::Default;
+	}
+#endif
 
 	static ET4ActionType StaticActionType() { return ET4ActionType::CameraWork; }
 
 	FString ToString() const override
 	{
 		return FString(TEXT("CameraWorkAction"));
+	}
+
+	FString ToDisplayText() override
+	{
+		return FString::Printf(
+			TEXT("CameraShake 'PlayTarget => %s'"),
+			(ET4PlayTarget::All == PlayTarget) ? TEXT("All") : TEXT("Player")
+		);
+	}
+};
+
+// #101
+USTRUCT()
+struct T4ASSET_API FT4CameraShakeOscillationData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	float BlendInTimeSec;
+
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	float BlendOutTimeSec;
+
+	UPROPERTY(EditAnywhere, Category=Oscillation)
+	FROscillator RotOscillation;
+
+	UPROPERTY(EditAnywhere, Category=Oscillation)
+	FVOscillator LocOscillation;
+
+	UPROPERTY(EditAnywhere, Category=Oscillation)
+	FFOscillator FOVOscillation;
+
+public:
+	FT4CameraShakeOscillationData()
+		: BlendInTimeSec(0.0f)
+		, BlendOutTimeSec(0.0f)
+	{
+	}
+};
+
+USTRUCT()
+struct T4ASSET_API FT4CameraShakeAnimData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, meta=(ClampMin = "0.001"))
+	float AnimPlayRate;
+
+	UPROPERTY(EditAnywhere, meta=(ClampMin = "0.0"))
+	float AnimScale;
+
+	UPROPERTY(EditAnywhere, meta=(ClampMin = "0.0"))
+	float AnimBlendInTime;
+
+	UPROPERTY(EditAnywhere, meta=(ClampMin = "0.0"))
+	float AnimBlendOutTime;
+
+	UPROPERTY(EditAnywhere)
+	uint32 bRandomAnimSegment : 1;
+
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", editcondition = "bRandomAnimSegment"))
+	float RandomAnimSegmentDuration;
+
+	UPROPERTY(EditAnywhere)
+	class UCameraAnim* CameraAnim;
+
+public:
+	FT4CameraShakeAnimData()
+		: AnimPlayRate(1.0f)
+		, AnimScale(0.0f)
+		, AnimBlendInTime(0.0f)
+		, AnimBlendOutTime(0.0f)
+		, bRandomAnimSegment(0)
+		, RandomAnimSegmentDuration(0.0f)
+		, CameraAnim(nullptr)
+	{
+	}
+};
+
+USTRUCT()
+struct T4ASSET_API FT4CameraShakeAction : public FT4ContiBaseAction
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	// #39 : FT4ContiDetailCustomization::CustomizeShakeActionDetails
+
+	// #101 : UCameraShake : Property
+
+	UPROPERTY(EditAnywhere)
+	ET4PlayTarget PlayTarget; // #100
+
+	UPROPERTY(EditAnywhere)
+	float PlayScale;
+
+	UPROPERTY(EditAnywhere)
+	TEnumAsByte<ECameraAnimPlaySpace::Type> PlaySpace;
+
+	UPROPERTY(EditAnywhere)
+	FRotator UserDefinedPlaySpace;
+
+	UPROPERTY(EditAnywhere)
+	FT4CameraShakeOscillationData OscillationData;
+
+	UPROPERTY(EditAnywhere)
+	FT4CameraShakeAnimData AnimData;
+
+public:
+	FT4CameraShakeAction()
+		: FT4ContiBaseAction(StaticActionType())
+		, PlayTarget(ET4PlayTarget::Default)
+		, PlayScale(1.0f)
+		, PlaySpace(ECameraAnimPlaySpace::CameraLocal)
+		, UserDefinedPlaySpace(ForceInitToZero)
+	{
+	}
+
+#if WITH_EDITOR
+	void Reset()
+	{
+		PlayTarget = ET4PlayTarget::Default;
+		PlayScale = 1.0f;
+		PlaySpace = ECameraAnimPlaySpace::CameraLocal;
+		UserDefinedPlaySpace = FRotator::ZeroRotator;
+		OscillationData = FT4CameraShakeOscillationData();
+		AnimData = FT4CameraShakeAnimData();
+	}
+#endif
+
+	static ET4ActionType StaticActionType() { return ET4ActionType::CameraShake; }
+
+	FString ToString() const override
+	{
+		return FString(TEXT("CameraShakeAction"));
+	}
+
+	FString ToDisplayText() override
+	{
+		return FString::Printf(
+			TEXT("CameraShake 'PlayTarget => %s'"), 
+			(ET4PlayTarget::All == PlayTarget) ? TEXT("All") : TEXT("Player")
+		);
 	}
 };
 
@@ -499,10 +656,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	ET4PlayTarget PlayTarget; // #100
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
 
 	UPROPERTY(EditAnywhere)
@@ -512,10 +669,20 @@ public:
 	FT4PostProcessAction()
 		: FT4ContiBaseAction(StaticActionType())
 		, PlayTarget(ET4PlayTarget::Default)
-		, BlendInTimeSec(1.0f)
-		, BlendOutTimeSec(1.0f)
+		, BlendInTimeSec(0.0f)
+		, BlendOutTimeSec(0.0f)
 	{
 	}
+
+#if WITH_EDITOR
+	void Reset()
+	{
+		PlayTarget = ET4PlayTarget::Default;
+		BlendInTimeSec = 0.0f;
+		BlendOutTimeSec = 0.0f;
+		PostProcessSettings.SetBaseValues();
+	}
+#endif
 
 	static ET4ActionType StaticActionType() { return ET4ActionType::PostProcess; }
 
@@ -526,7 +693,10 @@ public:
 
 	FString ToDisplayText() override
 	{
-		return FString::Printf(TEXT("PostProcess"));
+		return FString::Printf(
+			TEXT("PostProcess 'PlayTarget => %s'"), 
+			(ET4PlayTarget::All == PlayTarget) ? TEXT("All") : TEXT("Player")
+		);
 	}
 };
 
@@ -557,10 +727,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	bool bOverrideBlendTime;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bOverrideBlendTime", ClampMin = "0.0"))
 	float OverrideBlendInTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bOverrideBlendTime", ClampMin = "0.0"))
 	float OverrideBlendOutTimeSec;
 
 public:

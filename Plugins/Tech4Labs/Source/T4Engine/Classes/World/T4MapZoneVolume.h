@@ -51,9 +51,9 @@ public:
 	int32 GetBlendPriority() const { return (IsGlobalZone()) ? -1 : BlendPriority; }
 	float GetBlendWeight() const;
 
+#if WITH_EDITOR
 	FColor GetPaintColor() const { return DebugColor; } // #92 : WorldMap 에서 사용하는 Color 값, 보통 Alpha 를 사용한다.
 
-#if WITH_EDITOR
 	virtual bool IsSelectable() const override;
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 	virtual bool CanEditChange(const UProperty* InProperty) const override;
@@ -96,5 +96,7 @@ public:
 	FPostProcessSettings* PostProcessingSettings; // #98 : T4WorldEnvironmentControl 에서 Global 만 값을 채운다.
 
 private:
+#if WITH_EDITOR
 	FT4OnPropertiesChanged OnPropertiesChangedDelegate; // #92
+#endif
 };

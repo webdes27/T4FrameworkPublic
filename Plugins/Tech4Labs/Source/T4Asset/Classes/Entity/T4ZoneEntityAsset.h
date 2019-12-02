@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "T4EntityAsset.h"
+#include "Classes/World/T4EnvironmentAsset.h"
 #include "T4ZoneEntityAsset.generated.h"
 
 /**
@@ -88,8 +89,6 @@ public:
 	FT4EntityZoneDebugData DebugData; // #92
 #endif
 };
-
-class UT4EnvironmentAsset;
 
 USTRUCT()
 struct T4ASSET_API FT4EntityZoneEnvironmentData

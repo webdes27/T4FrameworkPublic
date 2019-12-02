@@ -40,7 +40,9 @@ enum class ET4ActionType : uint32
 	LayerSet, // #81
 
 	TimeScale, // #54
+
 	CameraWork, // #54
+	CameraShake, // #101
 
 	PostProcess, // #100
 	Environment, // #99

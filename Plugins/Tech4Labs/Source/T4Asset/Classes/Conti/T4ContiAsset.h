@@ -129,6 +129,9 @@ public:
 	TArray<FT4CameraWorkAction> CameraWorkActions; // #54
 
 	UPROPERTY(EditAnywhere)
+	TArray<FT4CameraShakeAction> CameraShakeActions; // #101
+
+	UPROPERTY(EditAnywhere)
 	TArray<FT4PostProcessAction> PostProcessActions; // #100
 
 	UPROPERTY(EditAnywhere)
