@@ -162,7 +162,7 @@ struct FT4WorldConstructionValues // #87
 	}
 
 	ET4GameWorldType GameWorldType;
-	FSoftObjectPath MapEntityOrLevelAssetPath; // MapEntity or LevelAsset
+	FSoftObjectPath MapEntityOrLevelObjectPath; // MapEntity or LevelAsset ObjectPath <LongPackageName.AssetName>
 	FWorldContext* WorldContextGameOrEditorOnly; // Game (PIE)만 설정
 
 #if WITH_EDITOR

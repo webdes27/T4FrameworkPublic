@@ -25,6 +25,19 @@ public:
 	void Reset();
 
 public:
+	void UpdateCameraAnimBlend(
+		const FVector& InLocation, 
+		const FRotator& InRotation, 
+		float InFOVDegree,
+		float InBlendWeight
+	); // #58
+
+public:
+	float CameraBlendWeight; // #58
+	float CameraBlendFOVDegree; // #58
+	FVector CameraBlendLocation; // #58
+	FRotator CameraBlendRotation; // #58
+
 	TArray<float> PostProcessBlendWeights;
 	TArray<FPostProcessSettings*> PostProcessSettings;
 };

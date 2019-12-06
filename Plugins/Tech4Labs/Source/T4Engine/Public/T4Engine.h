@@ -234,8 +234,16 @@ public:
 	virtual bool GetSocketLocation(const FName& InSocketName, FVector& OutLocation) const = 0; // #18
 	virtual bool GetSocketRotation(const FName& InSocketName, ERelativeTransformSpace InTransformSpace, FRotator& OutRotation) const = 0; // #18
 	virtual bool GetSocketScale(const FName& InSocketName, ERelativeTransformSpace InTransformSpace, FVector& OutScale) const = 0; // #54
+	virtual bool GetSocketTransform(const FName& InSocketName, ERelativeTransformSpace InTransformSpace, FTransform& OutTransform) const = 0; // #58
 
 	virtual void SetHeightOffset(float InOffset) = 0; // #18
+	
+	virtual void SetCameraTargetBlend(
+		float InLocalBlendWeight,
+		FName InSourceSocketName,
+		FName InTargetSocketName, 
+		float InBlendWeight
+	) = 0; // #58 : Only Player obj
 
 #if !UE_BUILD_SHIPPING
 	virtual FT4GameObjectDebugInfo& GetDebugInfo() = 0; // #76
@@ -401,6 +409,7 @@ public:
 #endif
 };
 
+class AT4EditorCameraActor; // #58
 class T4ENGINE_API IT4GameWorld
 {
 public:
@@ -445,6 +454,9 @@ public:
 #endif
 
 #if WITH_EDITOR
+	virtual AT4EditorCameraActor* FindOrCreateEditorCameraActor(uint32 InKey, bool bCreate) = 0; // #58 : Only Client
+	virtual void DestroyEditorCameraActor(uint32 InKey) = 0; // #58 : Only Client
+
 	virtual void SetDisableLevelStreaming(bool bInDisable) = 0; // #86 : World 의 UpdateStreamingState 를 제어하기 위한 옵션 처리
 	virtual void SetDisableEnvironmentUpdating(bool bInDisable) = 0; // #92 : Map Environemnt Update 제어 옵션 처리
 	virtual void SetDisableTimelapse(bool bInDisable) = 0; // #93 : 시간 경과 옵션 처리

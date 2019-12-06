@@ -23,7 +23,7 @@
 // ET4ActionType::Reaction // #76
 // ET4ActionType::LayerSet // #81
 // ET4ActionType::TimeScale // #52
-// ET4ActionType::CameraWork // #52
+// ET4ActionType::CameraWork // #58
 // ET4ActionType::CameraShake // #101
 // ET4ActionType::PostProcess // #100
 // ET4ActionType::Environment // #99
@@ -74,10 +74,6 @@ public:
 	virtual ~FT4ContiBaseAction() {}
 
 	ET4BaseActionType GetBaseActionType() const override { return ET4BaseActionType::Conti; } // #52
-
-	virtual void Initialize() // #58 : 액션별 커스텀 초기화 (CameraWork)
-	{
-	}
 
 	virtual bool Validate(FString& OutMsg)
 	{
@@ -479,12 +475,18 @@ struct T4ASSET_API FT4CameraWorkSectionKeyData
 
 public:
 	// #58 : Property 수정시 UT4EditorCameraSectionKey 에도 추가해줄 것!
+	//       SaveCameraSectionKeyObject, UpdateCameraSectionKeyObject
+	UPROPERTY(EditAnywhere)
+	int32 ChannelKey; // Track Section 의 FFrameNumber 즉, FrameNumber 가 Unique Key 가 됨으로 저장해준다.
 
 	UPROPERTY(EditAnywhere)
-	float DelayTimeSec;
+	float DelayTimeSec; // FrameNumber 를 Sec 으로 변환
 
 	UPROPERTY(EditAnywhere)
 	FName LookAtPoint; // ActionPoint
+
+	UPROPERTY(EditAnywhere)
+	FVector ViewDirection; // Local
 
 	UPROPERTY(EditAnywhere)
 	float Distance;
@@ -494,9 +496,11 @@ public:
 
 public:
 	FT4CameraWorkSectionKeyData()
-		: DelayTimeSec(0.0f)
+		: ChannelKey(INDEX_NONE)
+		, DelayTimeSec(0.0f)
 		, LookAtPoint(NAME_None)
-		, Distance(0.0f)
+		, ViewDirection(FVector::BackwardVector)
+		, Distance(100.0f)
 		, FOVDegree(0.0f)
 	{
 	}
@@ -528,6 +532,12 @@ public:
 	UPROPERTY(EditAnywhere)
 	ET4PlayTarget PlayTarget;
 
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	float BlendInTimeSec;
+
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	float BlendOutTimeSec;
+
 	UPROPERTY(EditAnywhere)
 	FT4CameraWorkSectionData SectionData;
 
@@ -535,16 +545,12 @@ public:
 	FT4CameraWorkAction()
 		: FT4ContiBaseAction(StaticActionType())
 		, PlayTarget(ET4PlayTarget::Default)
+		, BlendInTimeSec(0.0f)
+		, BlendOutTimeSec(0.0f)
 	{
 	}
 
 	static ET4ActionType StaticActionType() { return ET4ActionType::CameraWork; }
-
-	void Initialize() override // #58 : 액션별 커스텀 초기화 (CameraWork)
-	{
-		FT4CameraWorkSectionKeyData& NewSectionKey = SectionData.KeyDatas.AddDefaulted_GetRef();
-		NewSectionKey.DelayTimeSec = DelayTimeSec;
-	}
 
 	FString ToString() const override
 	{

@@ -25,7 +25,7 @@ struct T4ENGINE_API FT4WorldTravelAction : public FT4CodeBaseAction
 
 public:
 	UPROPERTY(EditAnywhere)
-	FSoftObjectPath EntityOrLevelAssetPath; // def MapEntity or LevelAsset
+	FSoftObjectPath MapEntityOrLevelObjectPath; // def MapEntity or LevelAsset
 
 	UPROPERTY(EditAnywhere)
 	bool bPreveiwScene; // #87
@@ -45,9 +45,9 @@ public:
 
 	bool Validate(FString& OutMsg) override
 	{
-		if (!EntityOrLevelAssetPath.IsValid())
+		if (!MapEntityOrLevelObjectPath.IsValid())
 		{
-			OutMsg = TEXT("Invalid EntityOrLevelAssetPath");
+			OutMsg = TEXT("Invalid MapEntityOrLevelObjectPath");
 			return false;
 		}
 		return true;

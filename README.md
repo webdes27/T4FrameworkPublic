@@ -15,6 +15,11 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.06] [M4] Copying //Private to //Deploy (private commit c7b21f6)**
+	- #58 [버그수정] Rehearsal Conti Editor, 툴바의 Preview 이동시 캐릭터 미스폰, Envionment 이상 문제 수정
+	- #58 [버그수정] Rehearsal Conti Editor, Detail Panel 의 Chang Wolrd 리스트에 중복 MapEntity 출력 문제 수정
+	- #58 [버그수정] Rehearsal Conti Editor, Player Settings 에 설정한 무기 장착이 정상적이지 않던 문제 수정
+	- #58 [버그수정] Rehearsal Conti Editor, Action Track 삭제가 정상적으로 동작하지 않던 문제 수정
   - **[2019.12.02] [M4] Copying //Private to //Deploy (private commit 96a7a72)**
 	- #101 [버그수정] Rehearsal Conti Editor, Camera Shake 추가 후 PostProcess Action 이 동작하지 않던 문제 수정
   - **[2019.12.02] [M4] Copying //Private to //Deploy (private commit d36e8a7)**

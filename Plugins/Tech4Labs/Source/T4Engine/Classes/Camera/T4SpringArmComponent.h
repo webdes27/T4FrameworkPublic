@@ -21,6 +21,15 @@ public:
 		FActorComponentTickFunction* ThisTickFunction
 	) override;
 
+public:
+	void UpdateBlendSocketOffset(const FVector& InBlendSocketOffset, float InBlendWeight); // #58
+
 protected:
 	void BeginPlay() override;
+
+public:
+	FVector BackupSocketOffset; // #58
+
+	float BlendWeight; // #58
+	FVector BlendSocketOffset; // #58
 };
