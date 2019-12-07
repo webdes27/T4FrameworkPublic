@@ -19,5 +19,9 @@ public:
 	void Tick(float DeltaSeconds) override;
 
 public:
+	void Initialize(uint32 InCameraKey, bool bInEmulMode);
+
+public:
 	uint32 CameraKey;
+	bool bEmulMode;
 };

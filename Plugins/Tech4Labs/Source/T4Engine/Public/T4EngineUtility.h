@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "T4EngineTypes.h"
 #include "T4Asset/Public/Entity/T4EntityTypes.h" // #94
+#include "T4Asset/Public/Action/T4ActionTypes.h" // #102
 #include "T4Asset/Classes/World/T4EnvironmentAsset.h"
 #include "FinalPostProcessSettings.h" // #98
 
@@ -20,6 +21,12 @@ class UT4EnvironmentAsset; // #94
 class AT4MapZoneVolume;
 namespace T4EngineUtility
 {
+	// #102
+	T4ENGINE_API float Evaluate(
+		ET4BuiltInEasing InBlendCurve,
+		float InInterp // 0 ~ 1
+	);
+
 	// #90, #92 : World Editor 등의 툴에서의 호출을 위해 Utility 로 노출함!
 	T4ENGINE_API AT4MapZoneVolume* FindMapZomeVolumeOnWorld(
 		UWorld* InWorld,

@@ -123,10 +123,10 @@ public:
 	TArray<FT4LayerSetAction> LayerSetActions; // #81
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4TimeScaleAction> TimeScaleActions; // #54
+	TArray<FT4TimeScaleAction> TimeScaleActions; // ##102
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4CameraWorkAction> CameraWorkActions; // #54
+	TArray<FT4CameraWorkAction> CameraWorkActions; // #58
 
 	UPROPERTY(EditAnywhere)
 	TArray<FT4CameraShakeAction> CameraShakeActions; // #101

@@ -22,7 +22,7 @@
 // ET4ActionType::Projectile // #63
 // ET4ActionType::Reaction // #76
 // ET4ActionType::LayerSet // #81
-// ET4ActionType::TimeScale // #52
+// ET4ActionType::TimeScale // #102
 // ET4ActionType::CameraWork // #58
 // ET4ActionType::CameraShake // #101
 // ET4ActionType::PostProcess // #100
@@ -444,7 +444,7 @@ public:
 	}
 };
 
-// #54
+// #102
 USTRUCT()
 struct T4ASSET_API FT4TimeScaleAction : public FT4ContiBaseAction
 {
@@ -453,10 +453,35 @@ struct T4ASSET_API FT4TimeScaleAction : public FT4ContiBaseAction
 public:
 	// #39 : FT4ContiDetailCustomization::CustomizeTimeScaleActionDetails
 
+	UPROPERTY(EditAnywhere)
+	ET4PlayTarget PlayTarget;
+
+	UPROPERTY(EditAnywhere)
+	ET4BuiltInEasing BlendInCurve;
+
+	UPROPERTY(EditAnywhere)
+	float BlendInTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	ET4BuiltInEasing BlendOutCurve;
+
+	UPROPERTY(EditAnywhere)
+	float BlendOutTimeSec;
+
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0", UIMin = "0", UIMax = "5"))
+	float TimeScale;
+
 public:
 	FT4TimeScaleAction()
 		: FT4ContiBaseAction(StaticActionType())
+		, PlayTarget(ET4PlayTarget::Default)
+		, BlendInCurve(ET4BuiltInEasing::Linear)
+		, BlendInTimeSec(0.0f)
+		, BlendOutCurve(ET4BuiltInEasing::Linear)
+		, BlendOutTimeSec(0.0f)
+		, TimeScale(1.0f)
 	{
+		LifecyclePolicy = ET4LifecyclePolicy::Duration; // Duration 만!, 시스템으로 제어 필요
 	}
 
 	static ET4ActionType StaticActionType() { return ET4ActionType::TimeScale; }
@@ -465,6 +490,18 @@ public:
 	{
 		return FString(TEXT("TimeScaleAction"));
 	}
+
+#if WITH_EDITOR
+	void Reset()
+	{
+		PlayTarget = ET4PlayTarget::Default;
+	}
+
+	FString ToDisplayText() override
+	{
+		return FString::Printf(TEXT("TimeScale '%.1f'"), TimeScale);
+	}
+#endif
 };
 
 // #58
@@ -474,7 +511,7 @@ struct T4ASSET_API FT4CameraWorkSectionKeyData
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #58 : Property 수정시 UT4EditorCameraSectionKey 에도 추가해줄 것!
+	// #58 : Property 수정시 UT4CameraWorkSectionKeyObject 에도 추가해줄 것!
 	//       SaveCameraSectionKeyObject, UpdateCameraSectionKeyObject
 	UPROPERTY(EditAnywhere)
 	int32 ChannelKey; // Track Section 의 FFrameNumber 즉, FrameNumber 가 Unique Key 가 됨으로 저장해준다.
@@ -483,7 +520,13 @@ public:
 	float DelayTimeSec; // FrameNumber 를 Sec 으로 변환
 
 	UPROPERTY(EditAnywhere)
+	ET4BuiltInEasing EasingCurve; // #102 : Droplist 선택시 PropertyChanged event 가 와서 변경을 못하는 문제가 있어 하드코딩한 처리가 있음. 이름으로 검색!!
+
+	UPROPERTY(EditAnywhere)
 	FName LookAtPoint; // ActionPoint
+
+	UPROPERTY(EditAnywhere)
+	bool bInverse; // LookAtPoint Inverse
 
 	UPROPERTY(EditAnywhere)
 	FVector ViewDirection; // Local
@@ -498,7 +541,9 @@ public:
 	FT4CameraWorkSectionKeyData()
 		: ChannelKey(INDEX_NONE)
 		, DelayTimeSec(0.0f)
+		, EasingCurve(ET4BuiltInEasing::Linear)
 		, LookAtPoint(NAME_None)
+		, bInverse(false)
 		, ViewDirection(FVector::BackwardVector)
 		, Distance(100.0f)
 		, FOVDegree(0.0f)
@@ -532,8 +577,14 @@ public:
 	UPROPERTY(EditAnywhere)
 	ET4PlayTarget PlayTarget;
 
+	UPROPERTY(EditAnywhere)
+	ET4BuiltInEasing BlendInCurve;
+
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	ET4BuiltInEasing BlendOutCurve;
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
@@ -545,7 +596,9 @@ public:
 	FT4CameraWorkAction()
 		: FT4ContiBaseAction(StaticActionType())
 		, PlayTarget(ET4PlayTarget::Default)
+		, BlendInCurve(ET4BuiltInEasing::Linear)
 		, BlendInTimeSec(0.0f)
+		, BlendOutCurve(ET4BuiltInEasing::Linear)
 		, BlendOutTimeSec(0.0f)
 	{
 	}
@@ -718,8 +771,14 @@ public:
 	UPROPERTY(EditAnywhere)
 	ET4PlayTarget PlayTarget; // #100
 
+	UPROPERTY(EditAnywhere)
+	ET4BuiltInEasing BlendInCurve;
+
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
+
+	UPROPERTY(EditAnywhere)
+	ET4BuiltInEasing BlendOutCurve;
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
@@ -731,7 +790,9 @@ public:
 	FT4PostProcessAction()
 		: FT4ContiBaseAction(StaticActionType())
 		, PlayTarget(ET4PlayTarget::Default)
+		, BlendInCurve(ET4BuiltInEasing::Linear)
 		, BlendInTimeSec(0.0f)
+		, BlendOutCurve(ET4BuiltInEasing::Linear)
 		, BlendOutTimeSec(0.0f)
 	{
 	}

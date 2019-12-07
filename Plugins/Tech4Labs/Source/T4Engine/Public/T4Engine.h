@@ -237,13 +237,6 @@ public:
 	virtual bool GetSocketTransform(const FName& InSocketName, ERelativeTransformSpace InTransformSpace, FTransform& OutTransform) const = 0; // #58
 
 	virtual void SetHeightOffset(float InOffset) = 0; // #18
-	
-	virtual void SetCameraTargetBlend(
-		float InLocalBlendWeight,
-		FName InSourceSocketName,
-		FName InTargetSocketName, 
-		float InBlendWeight
-	) = 0; // #58 : Only Player obj
 
 #if !UE_BUILD_SHIPPING
 	virtual FT4GameObjectDebugInfo& GetDebugInfo() = 0; // #76
@@ -454,7 +447,11 @@ public:
 #endif
 
 #if WITH_EDITOR
-	virtual AT4EditorCameraActor* FindOrCreateEditorCameraActor(uint32 InKey, bool bCreate) = 0; // #58 : Only Client
+	virtual AT4EditorCameraActor* FindOrCreateEditorCameraActor(
+		uint32 InKey, 
+		bool bInCreate,
+		bool bInEmulMode
+	) = 0; // #58 : Only Client
 	virtual void DestroyEditorCameraActor(uint32 InKey) = 0; // #58 : Only Client
 
 	virtual void SetDisableLevelStreaming(bool bInDisable) = 0; // #86 : World 의 UpdateStreamingState 를 제어하기 위한 옵션 처리

@@ -39,7 +39,7 @@ enum class ET4ActionType : uint32
 	Reaction, // #76
 	LayerSet, // #81
 
-	TimeScale, // #54
+	TimeScale, // #102
 
 	CameraWork, // #54
 	CameraShake, // #101
@@ -149,6 +149,28 @@ enum class ET4PlayTarget : uint8 // #100
 	All,
 
 	Default,
+};
+
+// #102 : ref EMovieSceneBuiltInEasing
+UENUM()
+enum class ET4BuiltInEasing : uint8
+{
+	Linear UMETA(Grouping = Linear),
+
+	// Sinusoidal easing
+	SinIn UMETA(Grouping = Sinusoidal), SinOut UMETA(Grouping = Sinusoidal), SinInOut UMETA(Grouping = Sinusoidal),
+	// Quadratic easing
+	QuadIn UMETA(Grouping = Quadratic), QuadOut UMETA(Grouping = Quadratic), QuadInOut UMETA(Grouping = Quadratic),
+	// Cubic easing
+	CubicIn UMETA(Grouping = Cubic), CubicOut UMETA(Grouping = Cubic), CubicInOut UMETA(Grouping = Cubic),
+	// Quartic easing
+	QuartIn UMETA(Grouping = Quartic), QuartOut UMETA(Grouping = Quartic), QuartInOut UMETA(Grouping = Quartic),
+	// Quintic easing
+	QuintIn UMETA(Grouping = Quintic), QuintOut UMETA(Grouping = Quintic), QuintInOut UMETA(Grouping = Quintic),
+	// Exponential easing
+	ExpoIn UMETA(Grouping = Exponential), ExpoOut UMETA(Grouping = Exponential), ExpoInOut UMETA(Grouping = Exponential),
+	// Circular easing
+	CircIn UMETA(Grouping = Circular), CircOut UMETA(Grouping = Circular), CircInOut UMETA(Grouping = Circular),
 };
 
 UENUM()
