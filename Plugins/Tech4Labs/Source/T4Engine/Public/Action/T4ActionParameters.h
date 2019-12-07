@@ -29,6 +29,8 @@ enum class ET4TimeParamBits
 
 	ProjectileSpeedBit, // #63
 	ProjectileDurationBit, // #63
+
+	OverrideMaxPlayTimeBit, // #58 : 코드 호출 또는 툴에서 최대 시간 제한에 사용
 };
 
 UENUM(Meta = (Bitflags))
@@ -89,6 +91,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	float ProjectileDurationSec; // #63
 
+	UPROPERTY(EditAnywhere)
+	float OverrideMaxPlayTimeSec; // #58 : 코드 호출 또는 툴에서 최대 시간 제한에 사용
+
 public:
 	FT4ActionTimeParameters()
 		: SetBits(0)
@@ -96,6 +101,7 @@ public:
 		, OffsetTimeSec(0.0f) // #56
 		, ProjectileSpeed(0.0f) // #63
 		, ProjectileDurationSec(0.0f) // #63
+		, OverrideMaxPlayTimeSec(0.0f) // #58
 	{
 	}
 };
@@ -149,8 +155,20 @@ struct FT4EditorParameters
 	GENERATED_USTRUCT_BODY()
 
 public:
+#if WITH_EDITOR
+	bool bDebugPlay; // #58 : 테스트 옵션 활성!
+
 	TSet<uint32> InvisibleActionSet; // #56 : Conti Editor 에서 Invisible or Isolate 로 출력을 제어한다.
 	TSet<uint32> IsolationActionSet; // #56 : Conti Editor 에서 Invisible or Isolate 로 출력을 제어한다.
+#endif
+
+public:
+	FT4EditorParameters()
+#if WITH_EDITOR
+		: bDebugPlay(false) // #58 : 테스트 옵션 활성!
+#endif
+	{
+	}
 };
 
 USTRUCT()
@@ -267,6 +285,14 @@ public:
 	{
 		TimeParams.ProjectileDurationSec = InProjectileDurationSec;
 		TimeParams.SetBits |= BIT_LEFTSHIFT(ET4TimeParamBits::ProjectileDurationBit);
+		bDirty = true; // #68
+	}
+
+	FORCEINLINE void SetOverrideMaxPlayTimSec(float InOverrideMaxPlayTimSec)
+	{
+		// #58 : 코드 호출 또는 툴에서 최대 시간 제한에 사용
+		TimeParams.OverrideMaxPlayTimeSec = InOverrideMaxPlayTimSec;
+		TimeParams.SetBits |= BIT_LEFTSHIFT(ET4TimeParamBits::OverrideMaxPlayTimeBit);
 		bDirty = true; // #68
 	}
 
