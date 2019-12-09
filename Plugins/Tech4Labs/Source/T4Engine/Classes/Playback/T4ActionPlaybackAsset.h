@@ -176,9 +176,6 @@ public:
 	TArray<FT4ContiAction> ContiActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4PauseAction> PauseActions;
-
-	UPROPERTY(VisibleAnywhere)
 	TArray<FT4StopAction> StopActions;
 
 

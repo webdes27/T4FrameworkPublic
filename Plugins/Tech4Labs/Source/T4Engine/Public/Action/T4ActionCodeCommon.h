@@ -41,31 +41,6 @@ public:
 	}
 };
 
-// #63
-USTRUCT()
-struct T4ENGINE_API FT4PauseAction : public FT4CodeBaseAction
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	UPROPERTY(EditAnywhere)
-	bool bPause;
-
-public:
-	FT4PauseAction()
-		: FT4CodeBaseAction(StaticActionType())
-		, bPause(false)
-	{
-	}
-
-	static ET4ActionType StaticActionType() { return ET4ActionType::Pause; }
-
-	FString ToString() const override
-	{
-		return FString(TEXT("PauseAction"));
-	}
-};
-
 USTRUCT()
 struct T4ENGINE_API FT4StopAction : public FT4CodeBaseAction
 {

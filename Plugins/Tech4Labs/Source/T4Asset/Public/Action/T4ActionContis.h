@@ -468,7 +468,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	float BlendOutTimeSec;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0", UIMin = "0", UIMax = "5"))
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.1", UIMin = "0.1", UIMax = "5"))
 	float TimeScale;
 
 public:
@@ -499,7 +499,7 @@ public:
 
 	FString ToDisplayText() override
 	{
-		return FString::Printf(TEXT("TimeScale '%.1f'"), TimeScale);
+		return FString::Printf(TEXT("TimeScale 'x%.1f'"), TimeScale);
 	}
 #endif
 };

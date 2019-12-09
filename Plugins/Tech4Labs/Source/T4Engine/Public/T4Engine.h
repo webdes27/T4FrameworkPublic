@@ -46,7 +46,7 @@ public:
 	virtual ET4AnimStatePriority GetPriority() const = 0;
 
 	virtual void OnEnter() = 0;
-	virtual void OnUpdate(float InDeltaTime) = 0;
+	virtual void OnUpdate(const FT4UpdateTime& InUpdateTime) = 0;
 	virtual void OnLeave() = 0;
 };
 
@@ -80,7 +80,9 @@ public:
 	virtual bool StopAnimation(const FName& InAnimMontageName, float InBlendOutTimeSec) = 0; // #38
 	virtual bool StopAnimation(FT4AnimInstanceID InPlayInstanceID, float InBlendOutTimeSec) = 0; // #47
 
-	virtual void PauseAnimation(FT4AnimInstanceID InPlayInstanceID, bool bPause) = 0; // #54
+#if !UE_BUILD_SHIPPING
+	virtual void DebugPauseAnimation(FT4AnimInstanceID InPlayInstanceID, bool bInPause) = 0; // #54
+#endif
 
 #if WITH_EDITOR
 	virtual bool EditorPlayAnimation(
@@ -99,7 +101,8 @@ public:
 
 	virtual bool IsPlaying() const = 0;
 	virtual bool IsLooping() const = 0;
-	virtual bool IsPaused() const = 0; // #56
+
+	virtual float GetElapsedTimeSec() const = 0; // #102
 
 	virtual IT4ActionNode* GetParentNode() const = 0;
 	virtual const FName GetActionPoint() const = 0; // #63
@@ -108,6 +111,10 @@ public:
 	virtual bool RemoveChildNode(const FT4StopAction* InAction) = 0;
 
 	virtual uint32 NumChildActions() const = 0;
+
+#if !UE_BUILD_SHIPPING
+	virtual bool IsDebugPaused() const = 0;
+#endif
 };
 
 class T4ENGINE_API IT4ActionControl // #23
@@ -115,12 +122,12 @@ class T4ENGINE_API IT4ActionControl // #23
 public:
 	virtual ~IT4ActionControl() {}
 
+	virtual bool HasAction(const FT4ActionKey& InActionKey) const = 0; // #102
+
 	virtual bool IsPlaying(const FT4ActionKey& InActionKey) const = 0;
 	virtual bool IsLooping(const FT4ActionKey& InActionKey) const = 0;
-	virtual bool IsPaused(const FT4ActionKey& InActionKey) const = 0; // #54
 
-	virtual void SetPaused(const FT4ActionKey& InActionKey, bool bPause) = 0; // #54
-	virtual void SetPaused(bool bPause) = 0; // #63
+	virtual float GetElapsedTimeSec(const FT4ActionKey& InActionKey) const = 0; // #102
 
 	virtual IT4ActionNode* GetChildNodeByPrimary(const FT4ActionKey& InPrimaryActionKey) const = 0;
 	virtual bool GetChildNodes(const FT4ActionKey& InSameActionKey, TArray<IT4ActionNode*>& OutNodes) const = 0;
@@ -154,7 +161,8 @@ public:
 
 	virtual IT4GameWorld* GetGameWorld() const = 0; // #52
 
-	virtual bool HasPlayingPublicAction(const FT4ActionKey& InActionKey) const = 0; // #20
+	virtual bool HasPublicAction(const FT4ActionKey& InActionKey) const = 0; // #102 : 존재만 해도 true 리턴
+	virtual bool IsPlayingPublicAction(const FT4ActionKey& InActionKey) const = 0; // #20 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
 	virtual AController* GetAController() = 0;
 	virtual APlayerCameraManager* GetCameraManager() const = 0; // #100
@@ -205,6 +213,9 @@ public:
 	virtual void EndWeaponHitOverlapEvent() = 0; // #49
 #endif
 
+	virtual float GetLifeTimeSec() const = 0; // #102
+	virtual float GetTimeScale() const = 0; // #102
+
 	virtual bool IsLockOn() const = 0; // #33
 	virtual bool IsFalling() const = 0;
 	virtual bool IsFlying() const = 0;
@@ -212,7 +223,9 @@ public:
 	virtual bool IsTurning() const = 0; // #46
 
 	virtual bool HasPlayingAnimState(const FName& InAnimStateName) const = 0; // #47
-	virtual bool HasPlayingPublicAction(const FT4ActionKey& InActionKey) const = 0; // #76 : Action Public Manager
+
+	virtual bool HasPublicAction(const FT4ActionKey& InActionKey) const = 0; // #102 : 존재만 해도 true 리턴
+	virtual bool IsPlayingPublicAction(const FT4ActionKey& InActionKey) const = 0; // #20, #76 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
 	virtual const FVector GetCOMLocation() const = 0; // #18 : WARN : Center of mass 캐릭터의 경우 Coll Capsule 의 중점이다.
 	virtual const FVector GetRootLocation() const = 0;
@@ -240,6 +253,8 @@ public:
 
 #if !UE_BUILD_SHIPPING
 	virtual FT4GameObjectDebugInfo& GetDebugInfo() = 0; // #76
+
+	virtual void SetDebugPause(bool bInPause) = 0; // #102
 #endif
 };
 

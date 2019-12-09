@@ -68,7 +68,8 @@ public:
 
 	IT4GameWorld* GetGameWorld() const override; // #52
 
-	bool HasPlayingPublicAction(const FT4ActionKey& InActionKey) const override; // #20
+	bool HasPublicAction(const FT4ActionKey& InActionKey) const override; // #20
+	bool IsPlayingPublicAction(const FT4ActionKey& InActionKey) const override; // #20 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
 	AController* GetAController() override;
 	APlayerCameraManager* GetCameraManager() const override; // #100

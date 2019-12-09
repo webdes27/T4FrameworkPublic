@@ -15,6 +15,8 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.09] [M4] Copying //Private to //Deploy (private commit 00ac461)**
+	- #102 [기능추가] Rehearsal Conti Editor, TimeSacle Action 추가
   - **[2019.12.08] [M4] Copying //Private to //Deploy (private commit a69014e)**
 	- #58 [버그수정] Rehearsal Conti Editor, CameraWork Action Test Play 후 종료가 되지 않던 문제 수정
 	- #58 [기능추가] Rehearsal Conti Editor, CameraWork Action 내 EasingCurve 및 Inverse 옵션 추가

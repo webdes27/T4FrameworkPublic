@@ -11,6 +11,16 @@
 /**
   *
  */
+struct FT4UpdateTime // #102
+{
+	float RealTimeSec;
+	float ScaledTimeSec;
+	float TimeScale;
+	bool bPaused;
+
+	static FT4UpdateTime EmptyUpdateTime;
+};
+
 struct FT4GameObjectProperty // #34
 {
 	FT4GameObjectProperty()
