@@ -187,7 +187,9 @@ class T4FRAMEWORK_API IT4EditorGameplayAIHandler
 public:
 	virtual ~IT4EditorGameplayAIHandler() {}
 	
+	virtual bool IsSimulating() const = 0; // #102
 	virtual bool IsAISystemDisabled() const = 0;
+
 	virtual bool IsSandbackAttackable() const = 0;
 	virtual bool IsSandbackOneHitDie() const = 0; // #76
 

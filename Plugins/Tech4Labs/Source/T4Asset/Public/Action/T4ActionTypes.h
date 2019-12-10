@@ -13,7 +13,7 @@
 // #T4_ADD_ACTION_TAG
 
 UENUM()
-enum class ET4BaseActionType : uint32
+enum class ET4ActionStructType : uint32
 {
 	// #62
 	Code,
@@ -101,7 +101,7 @@ enum class ET4ActionType : uint32
 
 // #24
 UENUM()
-enum class ET4LifecyclePolicy : uint8
+enum class ET4LifecycleType : uint8
 {
 	Auto, // #56
 	Duration,

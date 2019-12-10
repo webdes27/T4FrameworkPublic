@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "T4ActionBase.h"
+#include "T4ActionStruct.h"
 #include "Public/T4AssetDefinitions.h"
 #include "Engine/Scene.h" // #100
 #include "Camera/CameraShake.h" // #101
-#include "T4ActionContis.generated.h"
+#include "T4ActionContiStructs.generated.h"
 
 /**
   *
@@ -31,7 +31,7 @@
 class UT4ContiAsset;
 
 USTRUCT()
-struct T4ASSET_API FT4ContiBaseAction : public FT4BaseAction
+struct T4ASSET_API FT4ContiActionStruct : public FT4ActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -51,8 +51,8 @@ public:
 #endif
 
 public:
-	FT4ContiBaseAction()
-		: FT4BaseAction()
+	FT4ContiActionStruct()
+		: FT4ActionStruct()
 		, HeaderKey(INDEX_NONE) // #24
 #if WITH_EDITORONLY_DATA
 		, DisplayName(NAME_None)
@@ -61,8 +61,8 @@ public:
 	{
 	}
 
-	FT4ContiBaseAction(ET4ActionType InObjectAction)
-		: FT4BaseAction(InObjectAction)
+	FT4ContiActionStruct(ET4ActionType InObjectAction)
+		: FT4ActionStruct(InObjectAction)
 		, HeaderKey(INDEX_NONE) // #24
 #if WITH_EDITORONLY_DATA
 		, DisplayName(NAME_None)
@@ -71,9 +71,9 @@ public:
 	{
 	}
 
-	virtual ~FT4ContiBaseAction() {}
+	virtual ~FT4ContiActionStruct() {}
 
-	ET4BaseActionType GetBaseActionType() const override { return ET4BaseActionType::Conti; } // #52
+	ET4ActionStructType GetActionStructType() const override { return ET4ActionStructType::Conti; } // #52
 
 	virtual bool Validate(FString& OutMsg)
 	{
@@ -82,7 +82,7 @@ public:
 
 	virtual FString ToString() const
 	{
-		return FString(TEXT("ContiBaseAction"));
+		return FString(TEXT("ContiActionStruct"));
 	}
 
 	virtual FString ToDisplayText()
@@ -93,7 +93,7 @@ public:
 
 // #54
 USTRUCT()
-struct T4ASSET_API FT4BranchAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4BranchAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -113,7 +113,7 @@ public:
 
 public:
 	FT4BranchAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, Contition(ET4BranchCondition::Default)
 		, ConditionName(NAME_None)
 		, LoadingPolicy(ET4LoadingPolicy::Default)
@@ -135,7 +135,7 @@ public:
 
 // #54
 USTRUCT()
-struct T4ASSET_API FT4SpecialMoveAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4SpecialMoveAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -144,7 +144,7 @@ public:
 
 public:
 	FT4SpecialMoveAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 	{
 	}
 
@@ -157,7 +157,7 @@ public:
 };
 
 USTRUCT()
-struct T4ASSET_API FT4AnimationAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4AnimationAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -181,7 +181,7 @@ public:
 
 public:
 	FT4AnimationAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, SectionName(NAME_None)
 		, BlendInTimeSec(T4AnimSetBlendTimeSec)
 		, BlendOutTimeSec(T4AnimSetBlendTimeSec)
@@ -206,7 +206,7 @@ public:
 class UParticleSystem;
 
 USTRUCT()
-struct T4ASSET_API FT4ParticleAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4ParticleAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -235,7 +235,7 @@ public:
 
 public:
 	FT4ParticleAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, AttachParent(ET4AttachParent::Default) // #54
 		, bParentInheritPoint(false) // #76
 		, ActionPoint(T4ContiDefaultActionPontName)
@@ -262,7 +262,7 @@ public:
 class UMaterialInterface;
 
 USTRUCT()
-struct T4ASSET_API FT4DecalAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4DecalAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -300,7 +300,7 @@ public:
 
 public:
 	FT4DecalAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, AttachParent(ET4AttachParent::Default)
 		, bParentInheritPoint(false) // #76
 		, ActionPoint(T4ContiDefaultActionPontName)
@@ -328,7 +328,7 @@ public:
 
 // #63
 USTRUCT()
-struct T4ASSET_API FT4ProjectileAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4ProjectileAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -357,7 +357,7 @@ public:
 
 public:
 	FT4ProjectileAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, ActionPoint(NAME_None)
 		, LoadingPolicy(ET4LoadingPolicy::Default)
 		, ThrowDelayTimeSec(0.0f)
@@ -380,7 +380,7 @@ public:
 
 // #76
 USTRUCT()
-struct T4ASSET_API FT4ReactionAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4ReactionAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -391,7 +391,7 @@ public:
 
 public:
 	FT4ReactionAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, ReactionName(NAME_None)
 	{
 	}
@@ -411,7 +411,7 @@ public:
 
 // #81
 USTRUCT()
-struct T4ASSET_API FT4LayerSetAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4LayerSetAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -425,7 +425,7 @@ public:
 
 public:
 	FT4LayerSetAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, LayerTagName(NAME_None)
 		, LayerTagType(ET4LayerTagType::All)
 	{
@@ -446,7 +446,7 @@ public:
 
 // #102
 USTRUCT()
-struct T4ASSET_API FT4TimeScaleAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4TimeScaleAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -473,7 +473,7 @@ public:
 
 public:
 	FT4TimeScaleAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, PlayTarget(ET4PlayTarget::Default)
 		, BlendInCurve(ET4BuiltInEasing::Linear)
 		, BlendInTimeSec(0.0f)
@@ -481,7 +481,7 @@ public:
 		, BlendOutTimeSec(0.0f)
 		, TimeScale(1.0f)
 	{
-		LifecyclePolicy = ET4LifecyclePolicy::Duration; // Duration 만!, 시스템으로 제어 필요
+		LifecycleType = ET4LifecycleType::Duration; // Duration 만!, 시스템으로 제어 필요
 	}
 
 	static ET4ActionType StaticActionType() { return ET4ActionType::TimeScale; }
@@ -517,7 +517,10 @@ public:
 	int32 ChannelKey; // Track Section 의 FFrameNumber 즉, FrameNumber 가 Unique Key 가 됨으로 저장해준다.
 
 	UPROPERTY(EditAnywhere)
-	float DelayTimeSec; // FrameNumber 를 Sec 으로 변환
+	float StartTimeSec; // FrameNumber 를 Sec 으로 변환
+
+	UPROPERTY()
+	float DelayTimeSec_DEPRECATED; // FrameNumber 를 Sec 으로 변환
 
 	UPROPERTY(EditAnywhere)
 	ET4BuiltInEasing EasingCurve; // #102 : Droplist 선택시 PropertyChanged event 가 와서 변경을 못하는 문제가 있어 하드코딩한 처리가 있음. 이름으로 검색!!
@@ -540,7 +543,7 @@ public:
 public:
 	FT4CameraWorkSectionKeyData()
 		: ChannelKey(INDEX_NONE)
-		, DelayTimeSec(0.0f)
+		, StartTimeSec(0.0f)
 		, EasingCurve(ET4BuiltInEasing::Linear)
 		, LookAtPoint(NAME_None)
 		, bInverse(false)
@@ -567,7 +570,7 @@ public:
 };
 
 USTRUCT()
-struct T4ASSET_API FT4CameraWorkAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4CameraWorkAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -594,7 +597,7 @@ public:
 
 public:
 	FT4CameraWorkAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, PlayTarget(ET4PlayTarget::Default)
 		, BlendInCurve(ET4BuiltInEasing::Linear)
 		, BlendInTimeSec(0.0f)
@@ -694,7 +697,7 @@ public:
 };
 
 USTRUCT()
-struct T4ASSET_API FT4CameraShakeAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4CameraShakeAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -723,13 +726,13 @@ public:
 
 public:
 	FT4CameraShakeAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, PlayTarget(ET4PlayTarget::Default)
 		, PlayScale(1.0f)
 		, PlaySpace(ECameraAnimPlaySpace::CameraLocal)
 		, UserDefinedPlaySpace(ForceInitToZero)
 	{
-		LifecyclePolicy = ET4LifecyclePolicy::Duration; // Duration 만!, 시스템으로 제어 필요
+		LifecycleType = ET4LifecycleType::Duration; // Duration 만!, 시스템으로 제어 필요
 	}
 
 	static ET4ActionType StaticActionType() { return ET4ActionType::CameraShake; }
@@ -762,7 +765,7 @@ public:
 
 // #100
 USTRUCT()
-struct T4ASSET_API FT4PostProcessAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4PostProcessAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -788,7 +791,7 @@ public:
 
 public:
 	FT4PostProcessAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, PlayTarget(ET4PlayTarget::Default)
 		, BlendInCurve(ET4BuiltInEasing::Linear)
 		, BlendInTimeSec(0.0f)
@@ -826,7 +829,7 @@ public:
 // #99
 class UT4ZoneEntityAsset;
 USTRUCT()
-struct T4ASSET_API FT4EnvironmentAction : public FT4ContiBaseAction
+struct T4ASSET_API FT4EnvironmentAction : public FT4ContiActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -858,7 +861,7 @@ public:
 
 public:
 	FT4EnvironmentAction()
-		: FT4ContiBaseAction(StaticActionType())
+		: FT4ContiActionStruct(StaticActionType())
 		, AttachParent(ET4AttachParent::Default)
 		, bParentInheritPoint(false) // #76
 		, ActionPoint(T4ContiDefaultActionPontName)

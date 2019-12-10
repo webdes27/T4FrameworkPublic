@@ -21,7 +21,7 @@
 class IT4GameWorld;
 class IT4GameObject;
 
-struct FT4BaseAction;
+struct FT4ActionStruct;
 struct FT4StopAction;
 struct FT4SpawnObjectAction;
 struct FT4ActionParameters; // #28
@@ -107,7 +107,7 @@ public:
 	virtual IT4ActionNode* GetParentNode() const = 0;
 	virtual const FName GetActionPoint() const = 0; // #63
 
-	virtual IT4ActionNode* AddChildNode(const FT4BaseAction* InAction, float InOffsetTimeSec) = 0; // #23, #54
+	virtual IT4ActionNode* AddChildNode(const FT4ActionStruct* InAction, float InOffsetTimeSec) = 0; // #23, #54
 	virtual bool RemoveChildNode(const FT4StopAction* InAction) = 0;
 
 	virtual uint32 NumChildActions() const = 0;
@@ -194,7 +194,7 @@ public:
 	virtual IT4GameWorld* GetGameWorld() const = 0; // #100
 
 	// #76 : Only Public Action, Playback used
-	virtual bool DoExecuteAction(const FT4BaseAction* InAction, const FT4ActionParameters* InParam = nullptr) = 0;
+	virtual bool DoExecuteAction(const FT4ActionStruct* InAction, const FT4ActionParameters* InParam = nullptr) = 0;
 
 	// #34 : for Server All or Client Only Player
 	virtual IT4GameplayControl* GetGameplayControl() = 0; // #34, #42, #36
@@ -283,10 +283,10 @@ public:
 
 	virtual float GetRecTimeSec() const = 0;
 
-	virtual bool RecWorldAction(const FT4BaseAction* InAction, const FT4ActionParameters* InActionParam) = 0;
+	virtual bool RecWorldAction(const FT4ActionStruct* InAction, const FT4ActionParameters* InActionParam) = 0;
 	virtual bool RecObjectAction(
 		const FT4ObjectID& InObjectID,
-		const FT4BaseAction* InAction,
+		const FT4ActionStruct* InAction,
 		const FT4ActionParameters* InActionParam
 	) = 0;
 };
@@ -431,7 +431,7 @@ public:
 	virtual void OnProcessPre(float InDeltaTime) = 0; // #34 : OnWorldPreActorTick
 	virtual void OnProcessPost(float InDeltaTime) = 0; // #34 : OnWorldPostActorTick
 
-	virtual bool DoExecuteAction(const FT4BaseAction* InAction, const FT4ActionParameters* InActionParam = nullptr) = 0;
+	virtual bool DoExecuteAction(const FT4ActionStruct* InAction, const FT4ActionParameters* InActionParam = nullptr) = 0;
 
 	virtual ET4GameWorldType GetGameWorldType() const = 0; // #87
 	virtual const FName GetEntityKeyName() const = 0; // #100 : 현재 로딩된 Entity KeyName 만약, 없다면 NAME_None (preview or Level 을 직접) 로 리턴됨

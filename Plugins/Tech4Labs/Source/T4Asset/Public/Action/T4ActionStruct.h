@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "T4ActionTypes.h"
-#include "T4ActionBase.generated.h"
+#include "T4ActionStruct.generated.h"
 
 /**
   *
  */
 USTRUCT()
-struct T4ASSET_API FT4BaseAction
+struct T4ASSET_API FT4ActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -21,41 +21,47 @@ public:
 	ET4ActionType ActionType;
 
 	UPROPERTY(EditAnywhere)
-	ET4LifecyclePolicy LifecyclePolicy;
+	ET4LifecycleType LifecycleType;
+
+	UPROPERTY()
+	ET4LifecycleType LifecyclePolicy_DEPRECATED;
 
 	UPROPERTY(EditAnywhere)
-	float DelayTimeSec;
+	float StartTimeSec;
+
+	UPROPERTY()
+	float DelayTimeSec_DEPRECATED;
 
 	UPROPERTY(EditAnywhere)
-	float DurationSec; // #20 : TotalTimeSec = DelayTimeSec + DurationSec;
+	float DurationSec; // #20 : TotalTimeSec = StartTimeSec + DurationSec;
 
 	UPROPERTY(VisibleAnywhere)
 	int32 SortOrder; // #56 : lower win
 
 public:
-	FT4BaseAction()
+	FT4ActionStruct()
 		: ActionType(ET4ActionType::None)
-		, LifecyclePolicy(ET4LifecyclePolicy::Default)
-		, DelayTimeSec(0.0f)
+		, LifecycleType(ET4LifecycleType::Default)
+		, StartTimeSec(0.0f)
 		, DurationSec(0.0f)
 		, SortOrder(TNumericLimits<int32>::Max()) // #56 : lower win
 	{
 	}
 
-	FT4BaseAction(ET4ActionType InObjectAction)
+	FT4ActionStruct(ET4ActionType InObjectAction)
 		: ActionType(InObjectAction)
-		, LifecyclePolicy(ET4LifecyclePolicy::Default)
-		, DelayTimeSec(0.0f)
+		, LifecycleType(ET4LifecycleType::Default)
+		, StartTimeSec(0.0f)
 		, DurationSec(0.0f)
 		, SortOrder(TNumericLimits<int32>::Max()) // #56 : lower win
 	{
 	}
 
-	virtual ~FT4BaseAction() {}
+	virtual ~FT4ActionStruct() {}
 
-	virtual ET4BaseActionType GetBaseActionType() const // #62
+	virtual ET4ActionStructType GetActionStructType() const // #62
 	{
-		return ET4BaseActionType::None;
+		return ET4ActionStructType::None;
 	}
 
 	virtual bool Validate(FString& OutMsg)
@@ -65,7 +71,7 @@ public:
 
 	virtual FString ToString() const
 	{
-		return FString(TEXT("BaseAction"));
+		return FString(TEXT("ActionStruct"));
 	}
 
 	virtual FString ToDisplayText()

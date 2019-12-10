@@ -15,7 +15,7 @@
 // ET4ActionType::Stop
 
 USTRUCT()
-struct T4ENGINE_API FT4ContiAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4ContiAction : public FT4CodeActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -28,7 +28,7 @@ public:
 
 public:
 	FT4ContiAction()
-		: FT4CodeBaseAction(StaticActionType())
+		: FT4CodeActionStruct(StaticActionType())
 		, LoadingPolicy(ET4LoadingPolicy::Default)
 	{
 	}
@@ -42,7 +42,7 @@ public:
 };
 
 USTRUCT()
-struct T4ENGINE_API FT4StopAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4StopAction : public FT4CodeActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -52,7 +52,7 @@ public:
 
 public:
 	FT4StopAction()
-		: FT4CodeBaseAction(StaticActionType())
+		: FT4CodeActionStruct(StaticActionType())
 		, bSameKeyNameRemoveAll(false)
 	{
 	}

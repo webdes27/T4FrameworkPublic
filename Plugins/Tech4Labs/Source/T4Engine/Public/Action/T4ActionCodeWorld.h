@@ -19,7 +19,7 @@
 // ET4ActionType::DespawnObject
 
 USTRUCT()
-struct T4ENGINE_API FT4WorldTravelAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4WorldTravelAction : public FT4CodeActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -35,7 +35,7 @@ public:
 
 public:
 	FT4WorldTravelAction()
-		: FT4CodeBaseAction(StaticActionType())
+		: FT4CodeActionStruct(StaticActionType())
 		, bPreveiwScene(false) // #87
 		, StartLocation(FVector::ZeroVector) // #87
 	{
@@ -60,7 +60,7 @@ public:
 };
 
 USTRUCT()
-struct T4ENGINE_API FT4SpawnObjectAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4SpawnObjectAction : public FT4CodeActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -96,7 +96,7 @@ public:
 	   
 public:
 	FT4SpawnObjectAction()
-		: FT4CodeBaseAction(StaticActionType())
+		: FT4CodeActionStruct(StaticActionType())
 		, Name(NAME_None)
 		, EntityType(ET4EntityType::None)
 		, StanceName(NAME_None) // #73
@@ -131,7 +131,7 @@ public:
 };
 
 USTRUCT()
-struct T4ENGINE_API FT4DespawnObjectAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4DespawnObjectAction : public FT4CodeActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -144,7 +144,7 @@ public:
 
 public:
 	FT4DespawnObjectAction()
-		: FT4CodeBaseAction(StaticActionType())
+		: FT4CodeActionStruct(StaticActionType())
 		, FadeOutTimeSec(T4ObjectWorldLeaveTimeSec) // #67, #78
 	{
 	}

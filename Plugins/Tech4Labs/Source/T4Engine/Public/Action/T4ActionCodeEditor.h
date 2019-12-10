@@ -14,7 +14,7 @@
 // ET4ActionType::Editor
 
 USTRUCT()
-struct T4ENGINE_API FT4EditorAction : public FT4CodeBaseAction
+struct T4ENGINE_API FT4EditorAction : public FT4CodeActionStruct
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -30,7 +30,7 @@ public:
 
 public:
 	FT4EditorAction()
-		: FT4CodeBaseAction(StaticActionType())
+		: FT4CodeActionStruct(StaticActionType())
 		, EditorActionType(ET4EditorAction::None)
 		, LayerTagName(NAME_None) // #81 : LayerSet, LayerSetClear
 		, LayerTagType(ET4LayerTagType::All) // #81 : LayerSet, LayerSetClear

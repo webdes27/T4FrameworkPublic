@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Classes/Common/T4CommonAssetStructs.h" // #100
-#include "Public/Action/T4ActionContis.h"
+#include "Public/Action/T4ActionContiStructs.h"
 #include "T4ContiAsset.generated.h"
 
 /**
@@ -15,6 +15,8 @@ struct FT4ContiCustomVersion
 	enum Type
 	{
 		InitializeVer = 0,
+
+		CommonPropertyNameChanged, // #102
 
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
@@ -152,19 +154,19 @@ public:
 
 	template <class T>
 	void CopyAction(
-		const FT4ContiBaseAction* InSourceAction,
+		const FT4ContiActionStruct* InSourceAction,
 		T* InOutTargetAction
 	); // #65
 
-	FT4ContiBaseAction* NewAndAddAction(
+	FT4ContiActionStruct* NewAndAddAction(
 		ET4ActionType InNewActionType
 	); // #24, #65
 
-	FT4ContiBaseAction* CloneAndAddAction(
+	FT4ContiActionStruct* CloneAndAddAction(
 		uint32 InSourceHeaderKey
 	); // #65
 
-	FT4ContiBaseAction* GetActionBase(
+	FT4ContiActionStruct* GetActionBase(
 		uint32 InActionHeaderKey
 	); // #65
 #endif
@@ -255,7 +257,7 @@ class T4ASSET_API UT4ContiAsset : public UObject
 public:
 	//~ Begin UObject interface
 	void Serialize(FArchive& Ar) override;
-	virtual void PostLoad() override;
+	void PostLoad() override;
 #if WITH_EDITOR
 	void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 #endif
@@ -272,7 +274,10 @@ public:
 	FT4ActionCompositeData CompositeData;
 
 	UPROPERTY(EditAnywhere, Category = Default)
-	float MaxPlayTimeSec; // #56
+	float TotalPlayTimeSec; // #56
+
+	UPROPERTY()
+	float MaxPlayTimeSec_DEPRECATED; // #56
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor, AssetRegistrySearchable)
