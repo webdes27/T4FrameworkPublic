@@ -24,20 +24,21 @@ class T4ENGINE_API AT4MapZoneVolume : public AVolume, public IInterface_PostProc
 
 public:
 	//~ Begin UObject interface
-	virtual void BeginPlay() override;
+	void BeginPlay() override;
 
-	virtual void Serialize(FArchive& Ar) override;
+	void Serialize(FArchive& Ar) override;
+	void PostLoad() override;
 
 	//~ Begin IInterface_PostProcessVolume Interface
-	virtual bool EncompassesPoint(FVector Point, float SphereRadius/*=0.f*/, float* OutDistanceToPoint) override;
-	virtual FPostProcessVolumeProperties GetProperties() const override;
+	bool EncompassesPoint(FVector Point, float SphereRadius/*=0.f*/, float* OutDistanceToPoint) override;
+	FPostProcessVolumeProperties GetProperties() const override;
 	//~ End IInterface_PostProcessVolume Interface
 
 	//~ Begin AActor interface
-	virtual void PostUnregisterAllComponents() override; // #98
+	void PostUnregisterAllComponents() override; // #98
 
 protected:
-	virtual void PostRegisterAllComponents() override; // #98
+	void PostRegisterAllComponents() override; // #98
 
 public:
 	void Update(float InDeltaTime);
@@ -50,6 +51,8 @@ public:
 
 	int32 GetBlendPriority() const { return (IsGlobalZone()) ? -1 : BlendPriority; }
 	float GetBlendWeight() const;
+
+	void CheckGlobalPostProcessSettings(); // #104
 
 #if WITH_EDITOR
 	FColor GetPaintColor() const { return DebugColor; } // #92 : WorldMap 에서 사용하는 Color 값, 보통 Alpha 를 사용한다.

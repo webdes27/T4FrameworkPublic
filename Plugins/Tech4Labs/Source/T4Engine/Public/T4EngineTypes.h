@@ -345,8 +345,8 @@ public:
 			TEXT("Editor"),
 			TEXT("Max"),
 		};
-		static_assert(ARRAY_COUNT(WorldSpawneStrings) == (uint8)(ET4SpawnMode::Max) + 1, "SpawnMode doesn't match!");
-		check(uint8(SpawnMode) < ARRAY_COUNT(WorldSpawneStrings));
+		static_assert(UE_ARRAY_COUNT(WorldSpawneStrings) == (uint8)(ET4SpawnMode::Max) + 1, "SpawnMode doesn't match!");
+		check(uint8(SpawnMode) < UE_ARRAY_COUNT(WorldSpawneStrings));
 		return WorldSpawneStrings[uint8(SpawnMode)];
 	}
 

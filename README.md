@@ -4,7 +4,7 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Supported Engine Versions
-  - 4.23
+  - 4.24
   - Platforms : Win64 only (Binary version)
 - Website
   - <https://tech4labs.com/>
@@ -15,9 +15,11 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
-  - **[2019.12.10] [M4] Copying //Private to //Deploy (private commit a8a0b13)**
-	- #91 [버그수정] World Editor, World Asset 로드시 발생하는 크래시 수정
-	- #102 [기능개선] Conti Editor, Gameplay Simulation 을 Toggle Button 으로 동작하도록 개선
+  - **[2019.12.11] [M4] Copying //Private to //Deploy (private commit f631897)**
+    - #104 [버그수정] World Editor, Global MapZoneVolume 설치시 발생하는 크래시 수정
+    - #104 [버그수정] Entity Editor, LayerSet Conti, Weapon 설정이 동작하지 않던 문제 수정
+	- #104 [버그수정] Entity Editor, Reaction 설정이 동작하지 않던 문제 수정
+	- #104 [기능개선] UE4 4.24 Migration
   - **[2019.12.09] [M4] Copying //Private to //Deploy (private commit 00ac461)**
 	- #102 [기능추가] Conti Editor, TimeSacle Action 추가
   - **[2019.12.08] [M4] Copying //Private to //Deploy (private commit a69014e)**

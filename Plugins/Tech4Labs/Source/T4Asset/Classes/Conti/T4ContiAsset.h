@@ -165,11 +165,11 @@ public:
 	FT4ContiActionStruct* CloneAndAddAction(
 		uint32 InSourceHeaderKey
 	); // #65
+#endif
 
-	FT4ContiActionStruct* GetActionBase(
+	FT4ContiActionStruct* GetActionStruct(
 		uint32 InActionHeaderKey
 	); // #65
-#endif
 
 private:
 #if WITH_EDITOR

@@ -114,8 +114,8 @@ public:
 			TEXT("Zone"),
 			TEXT("Max"),
 		};
-		static_assert(ARRAY_COUNT(EntityTypeStrings) == (uint8)(ET4EntityType::None) + 1, "Entity doesn't match!");
-		check(uint8(Type) < ARRAY_COUNT(EntityTypeStrings));
+		static_assert(UE_ARRAY_COUNT(EntityTypeStrings) == (uint8)(ET4EntityType::None) + 1, "Entity doesn't match!");
+		check(uint8(Type) < UE_ARRAY_COUNT(EntityTypeStrings));
 		return EntityTypeStrings[uint8(Type)];
 	}
 

@@ -143,8 +143,8 @@ public:
 			TEXT("Effect"),
 			TEXT("None"),
 		};
-		static_assert(ARRAY_COUNT(GameTableTypeStrings) == (uint8)(ET4GameDataType::Nums) + 1, "GameTableType doesn't match!");
-		check(uint8(Type) < ARRAY_COUNT(GameTableTypeStrings));
+		static_assert(UE_ARRAY_COUNT(GameTableTypeStrings) == (uint8)(ET4GameDataType::Nums) + 1, "GameTableType doesn't match!");
+		check(uint8(Type) < UE_ARRAY_COUNT(GameTableTypeStrings));
 		return GameTableTypeStrings[uint8(Type)];
 	}
 
