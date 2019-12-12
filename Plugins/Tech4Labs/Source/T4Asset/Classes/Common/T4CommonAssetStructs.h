@@ -15,6 +15,9 @@ struct T4ASSET_API FT4EditorPointOfInterest
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
+	FString Name; // #103
+
+	UPROPERTY(EditAnywhere, Category = Editor)
 	FName MapEntityName;
 
 	UPROPERTY(EditAnywhere, Category = Editor)
@@ -41,6 +44,11 @@ struct T4ASSET_API FT4EditorTestAutomation
 	GENERATED_USTRUCT_BODY()
 
 public:
+#if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
 	TArray<FT4EditorPointOfInterest> PointOfInterests;
+
+	UPROPERTY(EditAnywhere, meta = (DisplayName = "Name"))
+	FString TransientName; // #103
+#endif
 };

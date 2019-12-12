@@ -55,6 +55,8 @@ public:
 	{
 	}
 
+	// CustomizeCharacterEntityDetails
+
 	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1000"))
 	float RunSpeed;
 
@@ -83,6 +85,8 @@ public:
 	FT4EntityCharacterRenderingAttribute()
 	{
 	}
+
+	// CustomizeCharacterEntityDetails
 };
 
 USTRUCT()
@@ -511,10 +515,10 @@ public:
 	UPROPERTY(EditAnywhere, Category=Reaction)
 	FT4EntityCharacterReactionSetData ReactionSetData; // #76
 
-	UPROPERTY(EditAnywhere, Category= Attributes)
+	UPROPERTY(EditAnywhere, Category= Physical)
 	FT4EntityCharacterPhysicalAttribute Physical;
 
-	UPROPERTY(EditAnywhere, Category= Attributes)
+	UPROPERTY(EditAnywhere, Category= Rendering)
 	FT4EntityCharacterRenderingAttribute Rendering;
 
 #if WITH_EDITORONLY_DATA

@@ -16,7 +16,7 @@
 #include "Public/Protocol/T4PacketSC_Status.h"
 #include "Public/Protocol/T4PacketSC_World.h"
 
-#include "T4Framework/Classes/Controller/Player/T4PlayerController.h"
+#include "T4Frame/Classes/Controller/Player/T4PlayerController.h"
 
 #include "T4GameplayPlayerController.generated.h"
 

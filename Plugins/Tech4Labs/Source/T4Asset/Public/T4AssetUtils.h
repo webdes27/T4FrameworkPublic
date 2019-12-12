@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Classes/Common/T4CommonAssetStructs.h" // #103
 
 /**
   * #39
@@ -39,6 +40,30 @@ namespace T4AssetUtil
 		UObject* InSaveObject,
 		UTexture2D* InThumbnail
 	);
+
+	T4ASSET_API bool GetPointOfInterest(
+		FT4EditorTestAutomation& InTestAutomation,
+		int32 InSelectIndex,
+		FT4EditorPointOfInterest& OutData
+	); // #103
+
+	T4ASSET_API bool UpdatePointOfInterest(
+		UObject* InSaveObject,
+		FT4EditorTestAutomation& InTestAutomation,
+		int32 InSelectIndex
+	); // #103
+
+	T4ASSET_API bool AddPointOfInterest(
+		UObject* InSaveObject,
+		FT4EditorTestAutomation& InTestAutomation,
+		FT4EditorPointOfInterest& InNewData
+	); // #103
+
+	T4ASSET_API bool DeletePointOfInterest(
+		UObject* InSaveObject,
+		FT4EditorTestAutomation& InTestAutomation,
+		int32 InRemoveIndex
+	); // #103
 
 }
 

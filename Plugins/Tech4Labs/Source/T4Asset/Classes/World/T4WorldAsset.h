@@ -3,7 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "T4Asset/Classes/Entity/T4MapEntityAsset.h" // #87
+#include "Classes/Entity/T4MapEntityAsset.h" // #87
+#include "Classes/Common/T4CommonAssetStructs.h" // #103
 #include "T4WorldAsset.generated.h"
 
 /**
@@ -127,6 +128,9 @@ public:
 	TSoftObjectPtr<UT4MapEntityAsset> MapEntityAsset; // #87
 
 #if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FT4EditorTestAutomation TestAutomation; // #100, #103
+
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
 

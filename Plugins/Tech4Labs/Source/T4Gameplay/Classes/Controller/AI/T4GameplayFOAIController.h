@@ -7,7 +7,7 @@
 #include "Public/T4GameplayTypes.h"
 #include "Classes/GameTable/T4GameTableDataTypes.h" // #48
 
-#include "T4Framework/Classes/Controller/AI/T4NPCAIController.h"
+#include "T4Frame/Classes/Controller/AI/T4NPCAIController.h"
 #include "T4GameplayFOAIController.generated.h"
 
 /**

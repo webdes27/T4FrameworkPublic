@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "T4PacketSC.h"
-#include "T4Framework/Public/T4FrameworkNet.h" // #42
+#include "T4Frame/Public/T4FrameNetwork.h" // #42
 #include "T4PacketSC_World.generated.h"
 
 /**

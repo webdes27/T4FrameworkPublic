@@ -15,6 +15,12 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.12] [M4] Copying //Private to //Deploy (private commit 209cfc1)**
+    - #104 [내부수정] T4Framework 모듈 리네임 (T4Frame)
+    - #104 [기능개선] World Editor, Preview World 의 Sumulation 옵션과 Game AI 연동 처리 추가
+    - #104 [버그수정] World Editor, Map Environment 데이터 Copy & Paste 기능 추가
+	- #104 [버그수정] World Editor, 레벨에 배치한 Static Map Zone Volume 이 동작하지 않던 문제 수정
+	- #103 [기능추가] Entity & World Editor, Point Of Interest 기능 추가
   - **[2019.12.11] [M4] Copying //Private to //Deploy (private commit f631897)**
     - #104 [버그수정] World Editor, Global MapZoneVolume 설치시 발생하는 크래시 수정
     - #104 [버그수정] Entity Editor, LayerSet Conti, Weapon 설정이 동작하지 않던 문제 수정

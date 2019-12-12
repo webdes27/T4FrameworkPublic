@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Classes/GameTable/T4GameTableDataTypes.h" // #48
 #include "T4Engine/Public/T4EngineTypes.h" // #63
-#include "T4Framework/Public/T4FrameworkGameplay.h" // #68
+#include "T4Frame/Public/T4FrameGameplayTypes.h" // #68
 #include "Classes/Engine/DataTable.h"
 
 #include "T4GameTable_Skill.generated.h"

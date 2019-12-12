@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Public/T4AssetDefinitions.h"
 #include "Public/Entity/T4EntityTypes.h"
+#include "Classes/Common/T4CommonAssetStructs.h" // #103
 #include "T4EntityAsset.generated.h"
 
 /**
@@ -46,6 +47,8 @@ public:
 	{
 	}
 
+	// CustomizeCharacterEntityDetails
+
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "10.0", ClampMax = "1000"))
 	float CapsuleHeight;
 
@@ -65,6 +68,8 @@ public:
 		, bReceivesDecals(false) // #54
 	{
 	}
+
+	// CustomizeCharacterEntityDetails
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.1", ClampMax = "10"))
 	float Scale;
@@ -274,7 +279,10 @@ public:
 	FT4EntityLayerTagData LayerTagData; // #74, #81
 
 #if WITH_EDITORONLY_DATA
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FT4EditorTestAutomation TestAutomation; // #100, #103
+
+	UPROPERTY(EditAnywhere, Category = Editor)
 	FT4EntityEditorThumbnailAttribute ThumbnailCameraInfo;
 
 	UPROPERTY()
