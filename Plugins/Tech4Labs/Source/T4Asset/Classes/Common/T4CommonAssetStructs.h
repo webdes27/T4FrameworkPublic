@@ -21,6 +21,9 @@ struct T4ASSET_API FT4EditorPointOfInterest
 	FName MapEntityName;
 
 	UPROPERTY(EditAnywhere, Category = Editor)
+	float GameTimeHour;
+
+	UPROPERTY(EditAnywhere, Category = Editor)
 	FVector SpawnLocation;
 
 	UPROPERTY(EditAnywhere, Category = Editor)
@@ -31,6 +34,7 @@ public:
 	FT4EditorPointOfInterest()
 #if WITH_EDITORONLY_DATA
 		: MapEntityName(NAME_None)
+		, GameTimeHour(12.0f)
 		, SpawnLocation(FVector::ZeroVector)
 		, SpawnRotation(FRotator::ZeroRotator)
 #endif
@@ -48,7 +52,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = Editor)
 	TArray<FT4EditorPointOfInterest> PointOfInterests;
 
-	UPROPERTY(EditAnywhere, meta = (DisplayName = "Name"))
+	UPROPERTY(EditAnywhere, meta = (DisplayName = "POI Name"))
 	FString TransientName; // #103
 #endif
 };

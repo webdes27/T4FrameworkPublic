@@ -15,6 +15,11 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.13] [M4] Copying //Private to //Deploy (private commit 3cf1a18)**
+	- #104 [버그수정] World Editor, World Composition 레벨 오픈시 발생하는 크래시 수정
+    - #104 [버그수정] Projectile 사용시 렌덤하게 발생하는 크래시 수정
+    - #104 [기능개선] NPC 전투 AI 개선 (NPC 간 전투)
+	- #103 [기능개선] Point Of Interest 저장시 현재 월드의 시간도 함께 저장/복원할 수 있도록 수정
   - **[2019.12.12] [M4] Copying //Private to //Deploy (private commit 209cfc1)**
     - #104 [내부수정] T4Framework 모듈 리네임 (T4Frame)
     - #104 [기능개선] World Editor, Preview World 의 Sumulation 옵션과 Game AI 연동 처리 추가

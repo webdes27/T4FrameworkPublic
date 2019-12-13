@@ -50,7 +50,10 @@ public:
 	ET4LayerType GetLayerType() const override { return LayerType; }
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
-	virtual void OnNotifyAIEvent(const FName& InEventName) override {}; // #63
+	virtual void OnNotifyAIEvent(
+		const FName& InEventName,
+		const FT4ObjectID& InSenderObjectID
+	) override {}; // #63
 #endif
 
 	APawn* GetDefaultPawn() const override; // #86

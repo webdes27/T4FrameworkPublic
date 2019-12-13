@@ -145,7 +145,10 @@ public:
 	virtual ET4LayerType GetLayerType() const = 0;
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
-	virtual void OnNotifyAIEvent(const FName& InEventName) = 0; // #63
+	virtual void OnNotifyAIEvent(
+		const FName& InEventName, 
+		const FT4ObjectID& InSenderObjectID
+	) = 0; // #63
 #endif
 
 	virtual bool SetGameObject(const FT4ObjectID& InNewTargetID) = 0;

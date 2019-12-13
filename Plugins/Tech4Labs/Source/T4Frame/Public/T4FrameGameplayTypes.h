@@ -26,3 +26,24 @@ enum class ET4GameEffectType : uint8 // #68
 
 	None UMETA(Hidden),
 };
+
+UENUM()
+enum class ET4GameTribeType : uint8 // #104
+{
+	Team_Red,
+	Team_Blue,
+
+	Neutral,
+};
+
+UENUM()
+enum class ET4GameEnemyType : uint8 // #104
+{
+	Player,
+	Hostile,
+	PlayerAndHostile,
+
+	All,
+
+	NoEnemy,
+};

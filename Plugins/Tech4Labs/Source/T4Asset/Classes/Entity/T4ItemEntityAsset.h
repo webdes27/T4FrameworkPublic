@@ -19,6 +19,8 @@ struct T4ASSET_API FT4EntityItemPhysicalAttribute : public FT4EntityBasePhysical
 {
 	GENERATED_USTRUCT_BODY()
 
+	// CustomizeItemCommonEntityDetails
+
 public:
 	FT4EntityItemPhysicalAttribute()
 	{
@@ -31,6 +33,8 @@ USTRUCT()
 struct T4ASSET_API FT4EntityItemRenderingAttribute : public FT4EntityBaseRenderingAttribute
 {
 	GENERATED_USTRUCT_BODY()
+
+	// CustomizeItemCommonEntityDetails
 
 public:
 	FT4EntityItemRenderingAttribute()

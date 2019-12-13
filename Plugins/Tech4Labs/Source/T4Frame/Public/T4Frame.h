@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "T4FrameNetwork.h"
+#include "T4FrameGameplayTypes.h" // #104
 
 #if WITH_EDITOR
 #include "T4FrameEditorGameplay.h" // #60
@@ -22,7 +23,7 @@
 #endif
 
 /**
-  * 
+  *
  */
 class APawn; // #86
 class UWorld;
@@ -77,6 +78,9 @@ DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnViewTargetChanged, IT4GameObject*);
 DECLARE_DELEGATE_OneParam(FT4OnCreateEditorPlayerController, IT4Frame*); // #42
 #endif
 
+//
+// #104 : M5 테크 데모를 제작하며 재정리 한다.
+//
 class T4FRAME_API IT4GameplayController : public IT4GameplayControl
 {
 public:
@@ -89,6 +93,9 @@ class T4FRAME_API IT4NPCAIController : public IT4GameplayController
 {
 public:
 	virtual ~IT4NPCAIController() {}
+
+	virtual ET4GameTribeType GetTribeType() const = 0; // #104 : TODO
+	virtual ET4GameEnemyType GetEnemyType() const = 0; // #104 : TODO
 };
 
 class T4FRAME_API IT4PlayerController : public IT4GameplayController

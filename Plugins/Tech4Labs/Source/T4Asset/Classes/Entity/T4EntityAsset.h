@@ -48,6 +48,7 @@ public:
 	}
 
 	// CustomizeCharacterEntityDetails
+	// CustomizeItemCommonEntityDetails
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "10.0", ClampMax = "1000"))
 	float CapsuleHeight;
@@ -70,6 +71,7 @@ public:
 	}
 
 	// CustomizeCharacterEntityDetails
+	// CustomizeItemCommonEntityDetails
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.1", ClampMax = "10"))
 	float Scale;

@@ -28,7 +28,7 @@ public:
 
 public:
 	// IT4GameplayController
-	virtual ET4ControllerType GetControllerType() const override
+	ET4ControllerType GetControllerType() const override
 	{
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 		return ET4ControllerType::Controller_FieldObject;

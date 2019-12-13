@@ -61,7 +61,10 @@ public:
 	ET4LayerType GetLayerType() const override { return LayerType; }
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
-	virtual void OnNotifyAIEvent(const FName& InEventName) override {}; // #63
+	virtual void OnNotifyAIEvent(
+		const FName& InEventName,
+		const FT4ObjectID& InSenderObjectID
+	) override {}; // #63
 #endif
 
 	bool SetGameObject(const FT4ObjectID& InNewTargetID) override;
@@ -90,9 +93,14 @@ public:
 		return ET4ControllerType::Controller_None; 
 	}
 
+	virtual ET4GameTribeType GetTribeType() const override { return ET4GameTribeType::Neutral; } // #104 : TODO
+	virtual ET4GameEnemyType GetEnemyType() const override { return ET4GameEnemyType::NoEnemy; } // #104 : TODO
+
 public:
 	void SetNetID(const FT4NetID& InNetID) { NetID = InNetID;}
 	const FT4NetID& GetNetID() const { return NetID; }
+
+	IT4GameObject* FindGameObject(const FT4ObjectID& InObjectID) const; // #104
 
 protected:
 	virtual void NotifyAIReady() {} // #50

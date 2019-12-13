@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Classes/GameTable/T4GameTableDataTypes.h" // #48
+#include "T4Frame/Public/T4FrameGameplayTypes.h" // #104
 
 #include "Classes/Engine/DataTable.h"
 
@@ -27,6 +28,9 @@ public:
 	UPROPERTY(EditAnywhere, Category= Common)
 	FGuid Guid;
 
+	UPROPERTY(EditAnywhere, Category = ServerOnly)
+	ET4GameTribeType TribeType; // #104
+
 	UPROPERTY(EditAnywhere, Category= ServerOnly)
 	TSoftObjectPtr<UBehaviorTree> BehaviorTreePath;
 
@@ -35,6 +39,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = All)
 	FT4GameItemWeaponDataID MainWeaponDataID; // #50
+
+	UPROPERTY(EditAnywhere, Category = ServerOnly)
+	ET4GameEnemyType EnemyType; // #104
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	bool bAggressive; // #50
@@ -62,7 +69,10 @@ public:
 
 public:
 	FT4GameNPCTableRow()
-		: bAggressive(false)
+		: Name(NAME_None)
+		, TribeType(ET4GameTribeType::Neutral) // #104
+		, EnemyType(ET4GameEnemyType::NoEnemy) // #104
+		, bAggressive(false)
 		, PassiveApproachTimeSec(5.0f/*60.0f * 5.0f*/)
 		, RunSpeed(600.0f)
 		, WalkSpeed(200.0f)

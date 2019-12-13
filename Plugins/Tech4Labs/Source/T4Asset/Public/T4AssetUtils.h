@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Classes/Common/T4CommonAssetStructs.h" // #103
 
 /**
   * #39
@@ -13,6 +12,9 @@
 class UObject;
 class UTexture2D;
 class UT4EntityAsset;
+
+struct FT4EditorTestAutomation; // #103
+struct FT4EditorPointOfInterest; // #103
 
 namespace T4AssetUtil
 {
@@ -42,26 +44,27 @@ namespace T4AssetUtil
 	);
 
 	T4ASSET_API bool GetPointOfInterest(
-		FT4EditorTestAutomation& InTestAutomation,
+		FT4EditorTestAutomation* InTestAutomation,
 		int32 InSelectIndex,
-		FT4EditorPointOfInterest& OutData
+		FT4EditorPointOfInterest* OutData
 	); // #103
 
 	T4ASSET_API bool UpdatePointOfInterest(
 		UObject* InSaveObject,
-		FT4EditorTestAutomation& InTestAutomation,
-		int32 InSelectIndex
+		FT4EditorTestAutomation* InTestAutomation,
+		int32 InSelectIndex,
+		FT4EditorPointOfInterest* InUpdateData
 	); // #103
 
 	T4ASSET_API bool AddPointOfInterest(
 		UObject* InSaveObject,
-		FT4EditorTestAutomation& InTestAutomation,
-		FT4EditorPointOfInterest& InNewData
+		FT4EditorTestAutomation* InTestAutomation,
+		FT4EditorPointOfInterest* InNewData
 	); // #103
 
-	T4ASSET_API bool DeletePointOfInterest(
+	T4ASSET_API bool RemovePointOfInterest(
 		UObject* InSaveObject,
-		FT4EditorTestAutomation& InTestAutomation,
+		FT4EditorTestAutomation* InTestAutomation,
 		int32 InRemoveIndex
 	); // #103
 

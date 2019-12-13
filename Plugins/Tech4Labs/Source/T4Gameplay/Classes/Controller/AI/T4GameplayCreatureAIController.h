@@ -77,11 +77,14 @@ public:
 public:
 	// class IT4GameplayControl
 #if (WITH_EDITOR || WITH_SERVER_CODE)
-	virtual void OnNotifyAIEvent(const FName& InEventName) override; // #63
+	virtual void OnNotifyAIEvent(
+		const FName& InEventName,
+		const FT4ObjectID& InSenderObjectID
+	) override; // #63
 #endif
 
 	// IT4GameplayController
-	virtual ET4ControllerType GetControllerType() const override
+	ET4ControllerType GetControllerType() const override
 	{
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 		return ET4ControllerType::Controller_Creature;
@@ -90,12 +93,18 @@ public:
 #endif
 	}
 
+	ET4GameTribeType GetTribeType() const override; // #104 : TODO
+	ET4GameEnemyType GetEnemyType() const override; // #104 : TODO
+
 public:
 	bool Bind(const FT4GameDataID& InNPCGameDataID); // #31, #50
 
 	bool IsMoving() const; // #50
 	bool IsAttacking() const; // #50
 	bool IsCurrentAggressive() const; // #50
+	bool IsOriginAggressive() const; // #104 : 테이블 설정
+
+	bool CheckNormalAttackRange(); // #104 : AttackTarget 이 Normal Attack 이 가능한 거리인지 체크!
 
 	IT4GameObject* FindNearestEnemyByAttackRange(); // #50
 	IT4GameObject* FindNearestEnemyBySensoryRange(); // #34, #50
@@ -146,10 +155,7 @@ protected:
 private:
 	bool CheckAsyncLoading();
 
-	IT4GameObject* FindNearestObject(
-		ET4AITargetType InAITargetType,
-		float InMaxDistance
-	); // #50
+	IT4GameObject* FindNearestObject(float InMaxDistance); // #50
 
 	float GetMoveSpeedSelected() const; // #50
 
