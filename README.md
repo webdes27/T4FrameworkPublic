@@ -15,6 +15,9 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.14] [M4] Copying //Private to //Deploy (private commit 6b972b1)**
+    - #104 [기능개선] Mannequin 모델의 피아식별을 위한 Blue/Red Costume Entity 추가
+	- #104 [버그수정] NPC AI 가 같은 Tribe 에서도 Hit 가 되는 문제 수정
   - **[2019.12.13] [M4] Copying //Private to //Deploy (private commit 3cf1a18)**
 	- #104 [버그수정] World Editor, World Composition 레벨 오픈시 발생하는 크래시 수정
     - #104 [버그수정] Projectile 사용시 렌덤하게 발생하는 크래시 수정

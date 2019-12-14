@@ -104,6 +104,7 @@ public:
 	bool IsCurrentAggressive() const; // #50
 	bool IsOriginAggressive() const; // #104 : 테이블 설정
 
+	bool CheckValidAttackTarget(IT4GameObject* InTargetObject); // #104 : tribe 와 enemy 설정을 보고 hit 전달 여부를 결정해야 한다.
 	bool CheckNormalAttackRange(); // #104 : AttackTarget 이 Normal Attack 이 가능한 거리인지 체크!
 
 	IT4GameObject* FindNearestEnemyByAttackRange(); // #50

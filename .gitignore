@@ -63,7 +63,12 @@ Saved/
 Intermediate/
 Config/Localization/
 Plugins/Tech4Labs/Source/T4Asset/Private
+Plugins/Tech4Labs/Source/T4Asset/Public
 Plugins/Tech4Labs/Source/T4Engine/Private
+Plugins/Tech4Labs/Source/T4Engine/Public
 Plugins/Tech4Labs/Source/T4Frame/Private
+Plugins/Tech4Labs/Source/T4Frame/Public
 Plugins/Tech4Labs/Source/T4Gameplay/Private
+Plugins/Tech4Labs/Source/T4Gameplay/Public
 Plugins/Tech4Labs/Source/T4RehearsalEditor/Private
+Plugins/Tech4Labs/Source/T4RehearsalEditor/Public
