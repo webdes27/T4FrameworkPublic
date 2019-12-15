@@ -15,6 +15,8 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.15] [M4] Copying //Private to //Deploy (private commit 899087c)**
+    - #104 [리팩토링] NPC AI 관련 코드 정리 (M5 데모 제작을 위한 사전 준비)
   - **[2019.12.14] [M4] Copying //Private to //Deploy (private commit 6b972b1)**
     - #104 [기능개선] Mannequin 모델의 피아식별을 위한 Blue/Red Costume Entity 추가
 	- #104 [버그수정] NPC AI 가 같은 Tribe 에서도 Hit 가 되는 문제 수정
