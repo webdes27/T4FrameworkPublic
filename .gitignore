@@ -62,6 +62,7 @@ BuildRules/
 Saved/
 Intermediate/
 Config/Localization/
+Config/Windows/
 Plugins/Tech4Labs/Source/T4Asset/Classes
 Plugins/Tech4Labs/Source/T4Asset/Private
 Plugins/Tech4Labs/Source/T4Asset/Public

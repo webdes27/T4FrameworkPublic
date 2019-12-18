@@ -15,6 +15,9 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
+  - **[2019.12.18] [M4] Copying //Private to //Deploy (private commit 9b2f92e)**
+    - #104 [기능개선] DefaultInput.ini 에서 T4Framework 용 키 설정 제거 및 이전 (DefaultTech4Labs.ini)
+    - #104 [기능개선] World Editor, World or Preview Detail Panel 에서 SubLevel 선택시 동작 처리 개선
   - **[2019.12.15] [M4] Copying //Private to //Deploy (private commit 899087c)**
     - #104 [리팩토링] NPC AI 관련 코드 정리 (M5 데모 제작을 위한 사전 준비)
   - **[2019.12.14] [M4] Copying //Private to //Deploy (private commit 6b972b1)**
