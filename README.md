@@ -15,7 +15,11 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version!!)
-  - **[2019.12.18] [M4] Copying //Private to //Deploy (private commit e296ee4)**
+  - **[2019.12.21] [M4] Copying //Private to //Deploy (private commit 5e4cec0)**
+    - #104 [버그수정] World Editor 가 오픈된 상태에서 레벨을 재오픈 할 경우 발생하던 크래시 수정
+    - #104 [버그수정] World Editor, Action playback 에서 스폰한 오브젝트의 위치 정보가 표시되지 않던 문제 수정
+    - #104 [내부수정] 불필요한 Warning 로그 제거
+  - **[2019.12.20] [M4] Copying //Private to //Deploy (private commit e296ee4)**
     - #104 [기능개선] World/Conti Editor 의 Simulation 옵션과 Action Playback Play/Pause 처리 연동
     - #104 [버그수정] Action Playback Play 시 발생하는 크래시 수정
     - #104 [버그수정] World Editor 의 Update TileThumbnail 시 해상도가 떨어지던 문제 수정
