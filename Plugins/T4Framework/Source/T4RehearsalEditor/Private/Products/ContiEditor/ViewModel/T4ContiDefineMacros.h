@@ -1,0 +1,27 @@
+// Copyright 2019 SoonBo Noh. All Rights Reserved.
+
+/**
+  * #30 : T4ActionTypes.h ET4ActionType
+ */
+
+// WARN : 툴에서만 사용할 것!! 멀티플랫폼(Android) 에서는 빌드 오류를 유발함
+// #T4_ADD_ACTION_TAG_CONTI
+
+#ifdef DEFINE_CONTI_ACTION_MACRO
+
+DEFINE_CONTI_ACTION_MACRO(Branch) // #54
+DEFINE_CONTI_ACTION_MACRO(SpecialMove) // #54
+DEFINE_CONTI_ACTION_MACRO(Animation) // #17
+DEFINE_CONTI_ACTION_MACRO(Particle) // #20
+DEFINE_CONTI_ACTION_MACRO(Decal) // #54
+DEFINE_CONTI_ACTION_MACRO(Projectile) // #63
+DEFINE_CONTI_ACTION_MACRO(Reaction) // #76
+DEFINE_CONTI_ACTION_MACRO(LayerSet) // #81
+DEFINE_CONTI_ACTION_MACRO(TimeScale) // ##102
+DEFINE_CONTI_ACTION_MACRO(CameraWork) // #58
+DEFINE_CONTI_ACTION_MACRO(CameraShake) // #101
+DEFINE_CONTI_ACTION_MACRO(PostProcess) // #100
+DEFINE_CONTI_ACTION_MACRO(Environment) // #99
+
+#undef DEFINE_CONTI_ACTION_MACRO
+#endif

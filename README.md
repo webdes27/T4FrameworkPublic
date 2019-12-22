@@ -14,7 +14,10 @@ Powerful toolset and Flexible layer solution
     - <https://twitter.com/Tech4Labs>
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
-- Update Notes (Warning: Development Version!!)
+- Update Notes (Warning: Development Version)
+  - **[2019.12.22] [M5] Copying //Private to //Deploy (private commit 13d9543)**
+    - #105 [내부수정] 사용하지 않는 테스트용 에셋 삭제
+    - #105 [내부수정] 배포 가능한 T4Framework 패키지 만들기 (소스와 에셋 리네임. Tech4Labs => T4Framework)
   - **[2019.12.21] [M4] Copying //Private to //Deploy (private commit 5e4cec0)**
     - #104 [버그수정] World Editor 가 오픈된 상태에서 레벨을 재오픈 할 경우 발생하던 크래시 수정
     - #104 [버그수정] World Editor, Action playback 에서 스폰한 오브젝트의 위치 정보가 표시되지 않던 문제 수정
