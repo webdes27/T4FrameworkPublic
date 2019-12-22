@@ -61,6 +61,7 @@ docs/
 BuildRules/
 Saved/
 Intermediate/
+DerivedDataCache/
 Config/Localization/
 Config/Windows/
 Plugins/Tech4Labs/Source/T4Asset/Classes
