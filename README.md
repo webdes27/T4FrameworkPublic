@@ -15,7 +15,8 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version)
-  - **[2019.12.23] [M5] Copying //Private to //Deploy (private commit 51cfb7b)**
+  - **[2019.12.23] [M5] Copying //Private to //Deploy (private commit 8c2da8c)**
+    - #105 [내부수정] T4Asset 에 대한 TypeAction Name 및 Color 설정 추가
     - #105 [내부수정] 테스트용 에셋을 Examples 폴더로 이동 및 불필요한 에셋 삭제
   - **[2019.12.22] [M5] Copying //Private to //Deploy (private commit 13d9543)**
     - #105 [내부수정] 사용하지 않는 테스트용 에셋 삭제
