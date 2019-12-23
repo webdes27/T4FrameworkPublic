@@ -14,7 +14,7 @@ Powerful toolset and Flexible layer solution
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
-- Milestone
+- Current Milestone
   - M5
     - 2020.01.06 ~ 2020.03.13
   - Goal
@@ -23,13 +23,13 @@ Powerful toolset and Flexible layer solution
       - 게임 오브젝트 Spawn, Combat/Interaction AI 등의 게임 디자인 관련 컨텐츠 툴 개발
         - NPC, Monster, FieldObject, DropItem
     - 게임 데모 만들기
-- Update Notes (Warning: Development Version)
-  - **[2019.12.23] [M5] Copying //Private to //Deploy (private commit 8c2da8c)**
-    - #105 [내부수정] T4Asset 에 대한 TypeAction Name 및 Color 설정 추가
-    - #105 [내부수정] 테스트용 에셋을 Examples 폴더로 이동 및 불필요한 에셋 삭제
-  - **[2019.12.22] [M5] Copying //Private to //Deploy (private commit 13d9543)**
-    - #105 [내부수정] 사용하지 않는 테스트용 에셋 삭제
-    - #105 [내부수정] 배포 가능한 T4Framework 패키지 만들기 (소스와 에셋 리네임. Tech4Labs => T4Framework)
+  - Update Notes (Warning: Development Version)
+    - **[2019.12.23] [M5] Copying //Private to //Deploy (private commit 8c2da8c)**
+      - #105 [내부수정] T4Asset 에 대한 TypeAction Name 및 Color 설정 추가
+      - #105 [내부수정] 테스트용 에셋을 Examples 폴더로 이동 및 불필요한 에셋 삭제
+    - **[2019.12.22] [M5] Copying //Private to //Deploy (private commit 13d9543)**
+      - #105 [내부수정] 사용하지 않는 테스트용 에셋 삭제
+      - #105 [내부수정] 배포 가능한 T4Framework 패키지 만들기 (소스와 에셋 리네임. Tech4Labs => T4Framework)
   - **Older Update Notes**
     - 2019.10 ~ 2019.12 : [`UpdateNotes_2019_10-2019_12.md`](./UpdateNotes_2019_10-2019_12.md)
     - 2019.07 ~ 2019.09 : [`UpdateNotes_2019_07-2019_09.md`](./UpdateNotes_2019_07-2019_09.md)
