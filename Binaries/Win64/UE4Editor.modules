@@ -2,6 +2,6 @@
 	"BuildId": "10570792",
 	"Modules": 
 	{
-		"T4Framework": "UE4Editor-T4Framework.dll"
+		"T4FrameworkExample": "UE4Editor-T4FrameworkExample.dll"
 	}
 }
