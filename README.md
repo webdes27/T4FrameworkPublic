@@ -3,11 +3,11 @@
 Powerful toolset and Flexible layer solution
 ``` 
 
-- Supported Engine Versions
-  - 4.24
-  - Platforms : Win64 only (Binary version)
-- Website
-  - <https://tech4labs.com/>
+- Information
+  - Supported Engine Versions
+    - 4.24
+  - Website
+    - <https://tech4labs.com/>
   - YouTube
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
   - Twitter
