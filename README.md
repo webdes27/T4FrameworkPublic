@@ -31,7 +31,7 @@ Powerful toolset and Flexible layer solution
     - #105 [내부수정] 사용하지 않는 테스트용 에셋 삭제
     - #105 [내부수정] 배포 가능한 T4Framework 패키지 만들기 (소스와 에셋 리네임. Tech4Labs => T4Framework)
   - **Older Update Notes**
-    - 2019.10 ~ 2019.12 : UpdateNotes_2019_10-2019_12.md
-    - 2019.07 ~ 2019.09 : UpdateNotes_2019_07-2019_09.md
+    - 2019.10 ~ 2019.12 : [`UpdateNotes_2019_10-2019_12.md`]
+    - 2019.07 ~ 2019.09 : [`UpdateNotes_2019_07-2019_09.md`]
 - Contact
   - <niceofer@hotmail.com> (Twitter: @Tech4Labs)
