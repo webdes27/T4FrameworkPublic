@@ -101,12 +101,12 @@ TSharedRef<FSlateStyleSet> FT4RehearsalEditorStyle::Create()
 	// LevelEditor_Mode
 	Style->Set(
 		"T4RehearsalEditorStyle.LevelEditorMode_40x",
-		new IMAGE_BRUSH("Icons/icon_file_ProjectOpen_40x", Icon40x40)
+		new IMAGE_PLUGIN_BRUSH("Editor/Icons/T4EditorMode_40x", Icon40x40)
 	);
 
 	Style->Set(
 		"T4RehearsalEditorStyle.LevelEditorMode_16x",
-		new IMAGE_BRUSH("Icons/icon_file_ProjectOpen_16x", Icon16x16)
+		new IMAGE_PLUGIN_BRUSH("Editor/Icons/T4EditorMode_16x", Icon16x16)
 	);
 
 	Style->Set(

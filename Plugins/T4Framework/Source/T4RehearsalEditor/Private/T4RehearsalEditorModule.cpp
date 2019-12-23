@@ -117,7 +117,7 @@ void FT4RehearsalEditorModule::StartupModule()
 
 		EditorModeRegistry.RegisterMode<FT4LevelEditorMode>(
 			FT4LevelEditorMode::EM_T4LevelEditorMode,
-			LOCTEXT("T4RehearsalEditorModeName", "T4EditorMode"),
+			LOCTEXT("T4RehearsalEditorModeName", "T4Framework"),
 			FSlateIcon(
 				FT4RehearsalEditorStyle::GetStyleSetName(),
 				"T4RehearsalEditorStyle.LevelEditorMode_40x",

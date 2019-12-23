@@ -9,6 +9,7 @@
 /**
   * #39
  */
+class SWidget;
 class FT4AssetTypeActions_AnimSetAsset : public FAssetTypeActions_Base
 {
 public:

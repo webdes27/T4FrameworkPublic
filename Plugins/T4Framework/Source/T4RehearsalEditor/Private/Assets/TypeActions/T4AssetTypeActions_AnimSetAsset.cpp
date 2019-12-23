@@ -1,8 +1,10 @@
 // Copyright 2019 SoonBo Noh. All Rights Reserved.
 
 #include "T4AssetTypeActions_AnimSetAsset.h"
+#include "T4RehearsalEditorStyle.h"
 
 #include "T4Asset/Public/T4AssetUtils.h" // #42, #62
+#include "T4Asset/Classes/Entity/T4EntityAsset.h"
 #include "T4Asset/Classes/AnimSet/T4AnimSetAsset.h"
 
 #include "T4RehearsalEditorInternal.h"

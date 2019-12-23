@@ -15,6 +15,8 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Update Notes (Warning: Development Version)
+  - **[2019.12.23] [M5] Copying //Private to //Deploy (private commit 51cfb7b)**
+    - #105 [내부수정] 테스트용 에셋을 Examples 폴더로 이동 및 불필요한 에셋 삭제
   - **[2019.12.22] [M5] Copying //Private to //Deploy (private commit 13d9543)**
     - #105 [내부수정] 사용하지 않는 테스트용 에셋 삭제
     - #105 [내부수정] 배포 가능한 T4Framework 패키지 만들기 (소스와 에셋 리네임. Tech4Labs => T4Framework)

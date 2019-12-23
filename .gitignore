@@ -35,7 +35,6 @@
 # Resources
 *.fbx
 *.tga
-*.png
 *_BuiltData.uasset
 
 # Intermediate
