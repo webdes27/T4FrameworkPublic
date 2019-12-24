@@ -24,7 +24,10 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 게임 데모 만들기
   - Update Notes (Warning: Development Version)
-    - **[2019.12.24] [M5] Copying //Private to //Deploy (private commit ea079d0)**
+    - **[2019.12.24] [M5] Copying //Private to //Deploy (private commit 34127b8)**
+	  - #105 [버그수정] Entity Editor, Stance 변경 후 AnimSet Detail Panel 비정상 출력 문제 수정
+	  - #105 [버그수정] Entity Editor, Fullbody Skeletal Mesh 변경이 즉시 반영되지 않던 문제 수정
+	  - #105 [버그수정] Entity Editor, Composite Part 추가시 잘못된 MsgBox 출력 문제 수정
 	  - #105 [내부수정] 불필요한 로직, 에셋 관련 Warning 일괄 수정
     - **[2019.12.23] [M5] Copying //Private to //Deploy (private commit 4018e53)**
 	  - #105 [내부수정] T4Framework.uproject 에서 T4FrameworkExample.uproject 로 변경
@@ -33,7 +36,7 @@ Powerful toolset and Flexible layer solution
       - #105 [내부수정] 테스트용 에셋을 Examples 폴더로 이동 및 불필요한 에셋 삭제
     - **[2019.12.22] [M5] Copying //Private to //Deploy (private commit 13d9543)**
       - #105 [내부수정] 사용하지 않는 테스트용 에셋 삭제
-      - #105 [내부수정] 배포 가능한 T4Framework 패키지 만들기 (소스와 에셋 리네임. Tech4Labs => T4Framework)
+      - #105 [내부수정] 배포 가능한 T4Framework 패키지 만들기 (/Game/Tech4Labs => T4Framework)
   - Older Update Notes
     - 2019.10 ~ 2019.12 : [`UpdateNotes_2019_10-2019_12.md`](./UpdateNotes_2019_10-2019_12.md)
     - 2019.07 ~ 2019.09 : [`UpdateNotes_2019_07-2019_09.md`](./UpdateNotes_2019_07-2019_09.md)
