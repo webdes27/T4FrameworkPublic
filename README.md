@@ -18,7 +18,7 @@ Powerful toolset and Flexible layer solution
   - M5
     - 2020.01.06 ~ 2020.03.13
     - Goal
-      - 게임 데모 콘텐츠 제작을 위한 기반 기능 및 툴 개발
+      - 게임 콘텐츠 제작을 위한 기반 기능 및 툴 개발
         - 캐릭터(Entity) 제작 및 스킬(Conti) 툴 개선 (상시)
         - 게임 오브젝트 Spawn, Combat/Interaction AI 등의 게임 디자인 관련 컨텐츠 툴 개발
           - NPC, Monster, FieldObject, DropItem
