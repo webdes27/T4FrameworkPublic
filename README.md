@@ -24,6 +24,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 게임 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2019.12.24] [M5] Copying //Private to //Deploy (private commit ea079d0)**
+	  - #105 [내부수정] 불필요한 로직, 에셋 관련 Warning 일괄 수정
     - **[2019.12.23] [M5] Copying //Private to //Deploy (private commit 4018e53)**
 	  - #105 [내부수정] T4Framework.uproject 에서 T4FrameworkExample.uproject 로 변경
 	  - #105 [내부수정] 로그 정보 및 출력 보강 ('소스명 (라인): 함수명' 으로 통일)
