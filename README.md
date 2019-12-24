@@ -17,12 +17,12 @@ Powerful toolset and Flexible layer solution
 - Current Milestone
   - M5
     - 2020.01.06 ~ 2020.03.13
-  - Goal
-    - 게임 데모 콘텐츠 제작을 위한 기반 기능 및 툴 개발
-      - 캐릭터(Entity) 제작 및 스킬(Conti) 툴 개선 (상시)
-      - 게임 오브젝트 Spawn, Combat/Interaction AI 등의 게임 디자인 관련 컨텐츠 툴 개발
-        - NPC, Monster, FieldObject, DropItem
-    - 게임 데모 만들기
+    - Goal
+      - 게임 데모 콘텐츠 제작을 위한 기반 기능 및 툴 개발
+        - 캐릭터(Entity) 제작 및 스킬(Conti) 툴 개선 (상시)
+        - 게임 오브젝트 Spawn, Combat/Interaction AI 등의 게임 디자인 관련 컨텐츠 툴 개발
+          - NPC, Monster, FieldObject, DropItem
+      - 게임 데모 만들기
   - Update Notes (Warning: Development Version)
     - **[2019.12.23] [M5] Copying //Private to //Deploy (private commit 4018e53)**
 	  - #105 [내부수정] T4Framework.uproject 에서 T4FrameworkExample.uproject 로 변경
