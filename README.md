@@ -22,7 +22,7 @@ Powerful toolset and Flexible layer solution
         - 캐릭터(Entity) 제작 및 스킬(Conti) 툴 개선 (상시)
         - 게임 오브젝트 Spawn, Combat/Interaction AI 등의 게임 디자인 관련 컨텐츠 툴 개발
           - NPC, Monster, FieldObject, DropItem
-      - 게임 데모 만들기
+      - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
     - **[2019.12.24] [M5] Copying //Private to //Deploy (private commit 34127b8)**
 	  - #105 [버그수정] Entity Editor, Stance 변경 후 AnimSet Detail Panel 비정상 출력 문제 수정
