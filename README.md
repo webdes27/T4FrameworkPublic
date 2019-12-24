@@ -24,7 +24,10 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
-    - **[2019.12.24] [M5] Copying //Private to //Deploy (private commit 34127b8)**
+    - **[2019.12.24] [M5] Copying //Private to //Deploy (private commit 2781351)**
+	  - #106 [기능개선] Entity Editor, DropItem Mesh 수정 즉시 반영 및 Offset/Rotation 프로퍼티 추가
+	  - #105 [기능개선] Entity Editor, Preview Viewport 에 카메라 스피드, 썸네일 업데이트 메뉴 추가
+	  - #105 [버그수정] Console 커맨드 중복 등록 Warning 제거
 	  - #105 [버그수정] Entity Editor, Stance 변경 후 AnimSet Detail Panel 비정상 출력 문제 수정
 	  - #105 [버그수정] Entity Editor, Fullbody Skeletal Mesh 변경이 즉시 반영되지 않던 문제 수정
 	  - #105 [버그수정] Entity Editor, Composite Part 추가시 잘못된 MsgBox 출력 문제 수정
