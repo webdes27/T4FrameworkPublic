@@ -24,6 +24,9 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2019.12.25] [M5] Copying //Private to //Deploy (private commit 8a3ab4a)**
+	  - #106 [버그수정] Entity Editor, Stance 변경 시 AnimSet Detail Panel 이 업데이트되지 않던 문제 수정
+	  - #105 [버그수정] AT4GameObject 의 DebugString 에 쓰레기 값이 저장되던 문제 수정 
     - **[2019.12.24] [M5] Copying //Private to //Deploy (private commit 2781351)**
 	  - #106 [기능개선] Entity Editor, DropItem Mesh 수정 즉시 반영 및 Offset/Rotation 프로퍼티 추가
 	  - #105 [기능개선] Entity Editor, Preview Viewport 에 카메라 스피드, 썸네일 업데이트 메뉴 추가
