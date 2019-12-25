@@ -24,7 +24,9 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
-    - **[2019.12.25] [M5] Copying //Private to //Deploy (private commit 8a3ab4a)**
+    - **[2019.12.25] [M5] Copying //Private to //Deploy (private commit 9f13885)**
+	  - #106 [기능추가] Entity Editor, AnimSet Detail Panel 에 편집 캐릭터의 Stance 변경 기능 추가
+	  - #106 [버그수정] Entity Editor, BlendSpace Item 삭제시 발생하는 Debug assert 수정
 	  - #106 [버그수정] Entity Editor, Stance 변경 시 AnimSet Detail Panel 이 업데이트되지 않던 문제 수정
 	  - #105 [버그수정] AT4GameObject 의 DebugString 에 쓰레기 값이 저장되던 문제 수정 
     - **[2019.12.24] [M5] Copying //Private to //Deploy (private commit 2781351)**
