@@ -24,6 +24,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2019.12.26] [M5] Copying //Private to //Deploy (private commit c36d89a)**
+	  - #106 [버그수정] Entity Editor, AnimSection/BlendSpace Name 의 DropList Item 변경 오류 수정
     - **[2019.12.25] [M5] Copying //Private to //Deploy (private commit 9f13885)**
 	  - #106 [기능추가] Entity Editor, AnimSet Detail Panel 에 편집 캐릭터의 Stance 변경 기능 추가
 	  - #106 [버그수정] Entity Editor, BlendSpace Item 삭제시 발생하는 Debug assert 수정
