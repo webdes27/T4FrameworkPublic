@@ -26,7 +26,7 @@ Powerful toolset and Flexible layer solution
   - Update Notes (Warning: Development Version)
     - **[2019.12.26] [M5] Copying //Private to //Deploy (private commit 593b858)**
 	  - #106 [기능추가] Skeletal Mesh Item Equip 기능 추가 (Bow 대응)
-	  - #106 [기능추가] SubStance 기능 추가 및 툴에서의 테스트 기능 추가
+	  - #106 [기능추가] 전투/비전투 애니메이션 처리를 위한 SubStance 기능 추가 및 툴 테스트 기능 추가
 	  - #106 [버그수정] Entity Editor, AnimSection/BlendSpace Name 의 DropList Item 변경 오류 수정
     - **[2019.12.25] [M5] Copying //Private to //Deploy (private commit 9f13885)**
 	  - #106 [기능추가] Entity Editor, AnimSet Detail Panel 에 편집 캐릭터의 Stance 변경 기능 추가
