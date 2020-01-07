@@ -24,6 +24,9 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.07] [M5] Copying //Private to //Deploy (private commit 5b7ffc9)**
+	  - #108 [기능추가] 장착 무기에 대한 Fade In/Out 처리 추가 (Material Opacity)
+	  - #106 [버그수정] Conti Editor, Preview Player 에 대한 Stance 리스트 출력 오류 수정
     - **[2020.01.06] [M5] Copying //Private to //Deploy (private commit 201c20d)**
 	  - #107 [기능추가] Entity Editor, 장착 무기에 대한 애니메이션 시스템 구현
 	  - #107 [버그수정] Conti Editor, PlayerSettingEditor 의 GameData 출력이 정상적이지 않던 문제 수정
