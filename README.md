@@ -24,6 +24,11 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.08] [M5] Copying //Private to //Deploy (private commit 05fbea7)**
+	  - #109 [기능추가] SubStance 별 MoveSpeed 를 설정할 수 있도록 추가
+	  - #109 [버그수정] NPC 이동 애니메이션이 비정상적으로 출력되던 문제 수정
+	  - #108 [기능추가] Weapon GameData 에 N개의 Weapon Entity Asset 을 지정할 수 있도록 추가
+	  - #106 [기능추가] NPC Archer 동작 및 에셋 추가
     - **[2020.01.07] [M5] Copying //Private to //Deploy (private commit 5b7ffc9)**
 	  - #108 [기능추가] 장착 무기에 대한 Fade In/Out 처리 추가 (Material Opacity)
 	  - #106 [버그수정] Conti Editor, Preview Player 에 대한 Stance 리스트 출력 오류 수정
