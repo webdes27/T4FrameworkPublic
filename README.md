@@ -24,6 +24,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.10] [M5] Copying //Private to //Deploy (private commit 912b676)**
+	  - #110 [기능추가] Weapon Entity 에 Particle System 을 사용할 수 있도록 추가
     - **[2020.01.08] [M5] Copying //Private to //Deploy (private commit 05fbea7)**
 	  - #109 [기능추가] SubStance 별 MoveSpeed 를 설정할 수 있도록 추가
 	  - #109 [버그수정] NPC 이동 애니메이션이 비정상적으로 출력되던 문제 수정
