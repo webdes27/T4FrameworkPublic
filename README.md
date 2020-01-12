@@ -24,7 +24,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
-    - **[2020.01.12] [M5] Copying //Private to //Deploy (private commit b5220d2)**
+    - **[2020.01.12] [M5] Copying //Private to //Deploy (private commit a98a8f2)**
+	  - #110 [기능개선] Weapon Entity 의 Stance 설정이 무기 교체시 자동으로 반영되도록 기능 추가
 	  - #109 [버그수정] Combat SubStance 상태에서의 LockOn 이동 시작 애니메이션이 튀는 문제 개선
     - **[2020.01.10] [M5] Copying //Private to //Deploy (private commit 912b676)**
 	  - #110 [기능추가] Weapon Entity 에 Particle System 을 사용할 수 있도록 추가
