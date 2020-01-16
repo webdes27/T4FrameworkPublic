@@ -8,10 +8,10 @@ Powerful toolset and Flexible layer solution
     - 4.24
   - Website
     - <https://tech4labs.com/>
-  - Twitter
-    - <https://twitter.com/Tech4Labs>
   - YouTube
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
+  - Twitter
+    - <https://twitter.com/Tech4Labs>
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Current Milestone
@@ -24,6 +24,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.16] [M5] Copying //Private to //Deploy (private commit dce4150)**
+	  - #113 [기능추가] GameSkillData bAiming 과 bLockOn 프로퍼티 기반 캐릭터 Aiming 동작 추가 (C/S)
     - **[2020.01.14] [M5] Copying //Private to //Deploy (private commit 238c643)**
 	  - #112 [기능개선] Conti Editor, 툴바에 Sandbag NPC Spawn 기능 추가
 	  - #112 [기능추가] Projectile Collision 설정 및 Arrow Hit Attached 기능 추가
