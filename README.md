@@ -24,6 +24,10 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.18] [M5] Copying //Private to //Deploy (private commit 10a380f)**
+	  - #113 [기능추가] 공격 타겟팅시 Outline 표시 및 마우스 커서 변경
+	  - #113 [기능개선] Miss 판정 Projectile 이동에 장애물(캐릭터) 발생시 굴절 처리 추가
+	  - #115 [기능추가] PostProcess Outline 효과 및 MPC(Material Parameter Collection) 추가 (Example)
     - **[2020.01.16] [M5] Copying //Private to //Deploy (private commit dce4150)**
 	  - #113 [기능추가] GameSkillData bAiming 과 bLockOn 프로퍼티 기반 캐릭터 Aiming 동작 추가 (C/S)
     - **[2020.01.14] [M5] Copying //Private to //Deploy (private commit 238c643)**
