@@ -24,7 +24,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
-    - **[2020.01.19] [M5] Copying //Private to //Deploy (private commit 4e9bc6e)**
+    - **[2020.01.19] [M5] Copying //Private to //Deploy (private commit 6f0cc58)**
+	  - #115 [버그수정] Dedicated Server & Multiple PIE 사용시 발생하는 크래시 수정
 	  - #113 [버그수정] PIE(Game) 에서 Aiming Attack 이 정상적으로 동작하지 않던 문제 수정
 	  - #114 [버그수정] Rehearsal Editor 툴바의 DespawnAll 실행시 발생하는 크래시 수정
     - **[2020.01.18] [M5] Copying //Private to //Deploy (private commit 10a380f)**
