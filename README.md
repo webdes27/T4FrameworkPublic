@@ -24,6 +24,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.19] [M5] Copying //Private to //Deploy (private commit a3997d1)**
+	  - #114 [버그수정] Rehearsal Editor 툴바의 DespawnAll 실행시 발생하는 크래시 수정
     - **[2020.01.18] [M5] Copying //Private to //Deploy (private commit 10a380f)**
 	  - #113 [기능추가] 공격 타겟팅시 Outline 표시 및 마우스 커서 변경
 	  - #113 [기능개선] Miss 판정 Projectile 이동에 장애물(캐릭터) 발생시 굴절 처리 추가
