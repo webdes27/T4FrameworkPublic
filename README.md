@@ -24,6 +24,10 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.20] [M5] Copying //Private to //Deploy (private commit a94b1d6)**
+	  - #111 [버그수정] Entity AnimSet 업데이트 후 특정 Stance 애니메이션 출력 이상 문제 수정
+	  - #113 [버그수정] Normal Attack 1회 사용후 이동 불가 문제 수정
+	  - #113 [버그수정] PIE(Game) 에서 Aiming 스킬 사용시 마우스 움직임이 끊어지던 문제 수정
     - **[2020.01.19] [M5] Copying //Private to //Deploy (private commit 6f0cc58)**
 	  - #115 [버그수정] Dedicated Server & Multiple PIE 사용시 발생하는 크래시 수정
 	  - #113 [버그수정] PIE(Game) 에서 Aiming Attack 이 정상적으로 동작하지 않던 문제 수정
