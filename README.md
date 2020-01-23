@@ -24,7 +24,10 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
-    - **[2020.01.23] [M5] Copying //Private to //Deploy (private commit 982683c)**
+    - **[2020.01.23] [M5] Copying //Private to //Deploy (private commit b3d701c)**
+	  - #111 [기능추가] Entity Editor, AnimSet 별 테스트 무기를 장착, 저장할 수 있도록 기능 추가
+	  - #111 [기능개선] Entity Editor, AnimSet AnimLayer 편집 UI 를 MultiBoxBuiilder 로 변경
+    - **[2020.01.22] [M5] Copying //Private to //Deploy (private commit c57a561)**
 	  - #111 [기능추가] 캐릭터 Stance/SubStance 전환 연출(애니메이션) 처리 추가
 	  - #111 [기능추가] Entity Editor 에 'Toggle Simulation' 을 통한 InGame 테스트 환경 지원
 	  - #115 [버그수정] Rehearsal Editor 오픈시 간헐적으로 발생하는 FSceneView ViewMatrices 오류 수정
