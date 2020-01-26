@@ -72,9 +72,9 @@ Plugins/T4Framework/Source/T4Engine/Public
 Plugins/T4Framework/Source/T4Frame/Classes
 Plugins/T4Framework/Source/T4Frame/Private
 Plugins/T4Framework/Source/T4Frame/Public
-Plugins/T4Framework/Source/T4Gameplay/Classes
-Plugins/T4Framework/Source/T4Gameplay/Private
-Plugins/T4Framework/Source/T4Gameplay/Public
+Plugins/T4Framework/Source/T4GameBuiltin/Classes
+Plugins/T4Framework/Source/T4GameBuiltin/Private
+Plugins/T4Framework/Source/T4GameBuiltin/Public
 Plugins/T4Framework/Source/T4RehearsalEditor/Classes
 Plugins/T4Framework/Source/T4RehearsalEditor/Private
 Plugins/T4Framework/Source/T4RehearsalEditor/Public

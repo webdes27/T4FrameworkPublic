@@ -24,6 +24,10 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.26] [M5] Copying //Private to //Deploy (private commit 8491c81)**
+	  - #111 [버그수정] 캐릭터 로딩 시점에 장착한 무기가 화면에 보이지 않던 문제 수정
+	  - #116 [기능추가] Left Shift 키를 이용해 CombatMode (SubStance) 전환을 할 수 있도록 추가
+	  - #116 [버그수정] Dedicated Server 에서 무기 교체가 정상적으로 보이지 않던 문제 수정
     - **[2020.01.25] [M5] Copying //Private to //Deploy (private commit e33b38b)**
 	  - #111 [버그수정] 캐릭터 무기 교체시 랜덤하게 이전 무기가 계속 출력되는 문제 수정 (Editor & PIE)
     - **[2020.01.24] [M5] Copying //Private to //Deploy (private commit 2fa9458)**

@@ -32,7 +32,7 @@
 			"LoadingPhase": "PreDefault"
 		},
 		{
-			"Name": "T4Gameplay",
+			"Name": "T4GameBuiltin",
 			"Type": "Runtime",
 			"LoadingPhase": "PostDefault"
 		},
