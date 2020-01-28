@@ -25,7 +25,7 @@ Powerful toolset and Flexible layer solution
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
     - **[2020.01.28] [M5] Copying //Private to //Deploy (private commit f38f9a3)**
-	  - #116 [기능개선] Editor Constant NameTable 의 Description 을 한글(KOR)에서 영어(EN)으로 변경
+	  - #116 [기능개선] Editor Constant NameTable 의 Description 을 한국어(KOR)에서 영어(EN)로 변경
 	  - #111 [버그수정] Entity Editor, Character AnimSection 이름 변경이 되지 않던 문제 수정
 	  - #111 [버그수정] Entity Editor, Weapon AnimSection 추가, 변경이 되지 않던 문제 수정
     - **[2020.01.26] [M5] Copying //Private to //Deploy (private commit 8491c81)**
