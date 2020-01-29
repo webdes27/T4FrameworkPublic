@@ -5,7 +5,7 @@ Powerful toolset and Flexible layer solution
 
 - Information
   - Supported Engine Versions
-    - 4.24
+    - 4.24 (Binary Build : 4.24.2)
   - Website
     - <https://tech4labs.com/>
   - YouTube
@@ -24,7 +24,9 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
-    - **[2020.01.29] [M5] Copying //Private to //Deploy (private commit e067039)**
+    - **[2020.01.29] [M5] Copying //Private to //Deploy (private commit bf29ab6)**
+	  - #116 [버그수정] 연속기를 사용하는 무기(Sword, Magic)의 설정과 다른 스킬이 사용되던 문제 수정
+	  - #111 [기능추가] Entity Editor, AnimSet Details 에서 AnimSequence 의 AnimNotify 를 표시하도록 추가
 	  - #114 [내부수정] 전투 테스트용 GridLevel 추가
 	  - #116 [버그수정] PIE 에서 카메라 회전시 마우스 위치 및 움직임이 튀는 문제 수정
     - **[2020.01.28] [M5] Copying //Private to //Deploy (private commit f38f9a3)**
