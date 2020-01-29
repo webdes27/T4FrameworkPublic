@@ -24,6 +24,9 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.29] [M5] Copying //Private to //Deploy (private commit e067039)**
+	  - #114 [내부수정] 전투 테스트용 GridLevel 추가
+	  - #116 [버그수정] PIE 에서 카메라 회전시 마우스 위치 및 움직임이 튀는 문제 수정
     - **[2020.01.28] [M5] Copying //Private to //Deploy (private commit f38f9a3)**
 	  - #116 [기능개선] Editor Constant NameTable 의 Description 을 한국어(KOR)에서 영어(EN)로 변경
 	  - #111 [버그수정] Entity Editor, Character AnimSection 이름 변경이 되지 않던 문제 수정
