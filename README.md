@@ -26,7 +26,7 @@ Powerful toolset and Flexible layer solution
   - Update Notes (Warning: Development Version)
     - **[2020.01.30] [M5] Copying //Private to //Deploy (private commit 49e91cd)**
 	  - #117 [기능추가] Aiming 스킬 타겟 위치에 Indicator 및 시전자에게 사용될 Aiming Conti 출력 처리 추가
-	  - #117 [기능추가] Rehearsal Editor, Viewport 내 Playback Speed (TimeScale) 기능 추가
+	  - #117 [기능추가] Rehearsal Editor, Viewport ToolBar 에 Playback Speed (TimeScale) 기능 추가
 	  - #114 [버그수정] Conti Editor, NPC AI Test 에서 Game Die 로직이 동작하지 않도록 수정
 	  - #111 [버그수정] Entity Editor, AnimSet 의 AnimLayer 에 AnimSequence Asset 설정이 안되던 문제 수정
     - **[2020.01.29] [M5] Copying //Private to //Deploy (private commit bf29ab6)**
