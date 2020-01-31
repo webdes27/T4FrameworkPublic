@@ -24,6 +24,9 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.01.31] [M5] Copying //Private to //Deploy (private commit d0f41d7)**
+	  - #117 [기능개선] 스킬 재사용, 스킬 타입에 따른 Indicator (MouseCursor) 변경 처리 추가
+	  - #113 [버그수정] 캐릭터 Combat SubStance 에서 회전 이동이 간헐적으로 튀는 문제 수정
     - **[2020.01.30] [M5] Copying //Private to //Deploy (private commit 49e91cd)**
 	  - #117 [기능추가] Aiming 스킬 타겟 위치에 Indicator 및 시전자에게 사용될 Aiming Conti 출력 처리 추가
 	  - #117 [기능추가] Rehearsal Editor, Viewport ToolBar 에 Playback Speed (TimeScale) 기능 추가
