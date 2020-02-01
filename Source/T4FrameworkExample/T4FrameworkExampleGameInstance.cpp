@@ -1,4 +1,4 @@
-// Copyright 2019 SoonBo Noh. All Rights Reserved.
+// Copyright 2019-2020 SoonBo Noh. All Rights Reserved.
 
 #include "T4FrameworkExampleGameInstance.h"
 #include "T4FrameworkExampleGameMode.h"

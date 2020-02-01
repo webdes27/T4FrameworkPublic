@@ -1,4 +1,4 @@
-// Copyright 2019 SoonBo Noh. All Rights Reserved.
+// Copyright 2019-2020 SoonBo Noh. All Rights Reserved.
 
 namespace UnrealBuildTool.Rules
 {
