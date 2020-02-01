@@ -29,7 +29,7 @@ Powerful toolset and Flexible layer solution
 	  - #116 [버그수정] Conti Editor, Timeline 에서 마지막 Action Track 이 삭제되지 않던 문제 수정
     - **[2020.01.31] [M5] Copying //Private to //Deploy (private commit 9f95d38)**
 	  - #117 [기능개선] Area Skill 에서 Indicator Conti 를 사용할 경우 마우스 커서를 감출 수 있는 기능 추가
-	  - #113 [기능추가] Aiming 사용시 타겟 위치까지 특정각도 이상 벌어지면 회전 애니메이션을 출력하도록 추가
+	  - #113 [기능추가] Aiming 스킬 사용시 제자리 회전 애니메이션 출력 처리 추가
 	  - #117 [기능개선] 스킬 재사용, 스킬 타입에 따른 Indicator (MouseCursor) 변경 처리 추가
 	  - #113 [버그수정] 캐릭터 Combat SubStance 에서 회전 이동이 간헐적으로 튀는 문제 수정
     - **[2020.01.30] [M5] Copying //Private to //Deploy (private commit 49e91cd)**
