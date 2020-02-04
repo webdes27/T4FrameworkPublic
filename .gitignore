@@ -63,15 +63,6 @@ Intermediate/
 DerivedDataCache/
 Config/Localization/
 Config/Windows/
-Plugins/T4Framework/Source/T4Asset/Classes
-Plugins/T4Framework/Source/T4Asset/Private
-Plugins/T4Framework/Source/T4Asset/Public
-Plugins/T4Framework/Source/T4Engine/Classes
-Plugins/T4Framework/Source/T4Engine/Private
-Plugins/T4Framework/Source/T4Engine/Public
-Plugins/T4Framework/Source/T4Frame/Classes
-Plugins/T4Framework/Source/T4Frame/Private
-Plugins/T4Framework/Source/T4Frame/Public
 Plugins/T4Framework/Source/T4GameBuiltin/Classes
 Plugins/T4Framework/Source/T4GameBuiltin/Private
 Plugins/T4Framework/Source/T4GameBuiltin/Public

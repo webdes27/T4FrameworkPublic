@@ -24,6 +24,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.02.04] [M5] Copying //Private to //Deploy (private commit 3ca5ddc)**
+	  - #0 [내부수정] T4Asset, T4Engine, T4Frame 모듈 소스 추가 (MIT License, Rehearsal Editor 모듈 제외)
     - **[2020.02.01] [M5] Copying //Private to //Deploy (private commit 6206a31)**
 	  - #116 [기능추가] 키보드 핫키 (1/2/3/4) 를 이용해 Wizard Skill 을 선택, 사용하도록 개선
 	  - #116 [기능개선] Wizard Aiming 스킬의 Indicator 와 제자리 회전 처리를 C/S 에서도 동작하도록 처리
