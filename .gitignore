@@ -63,6 +63,9 @@ Intermediate/
 DerivedDataCache/
 Config/Localization/
 Config/Windows/
+Plugins/T4Asset/Source/T4GameBuiltin/Private
+Plugins/T4Engine/Source/T4GameBuiltin/Private
+Plugins/T4Frame/Source/T4GameBuiltin/Private
 Plugins/T4Framework/Source/T4GameBuiltin/Classes
 Plugins/T4Framework/Source/T4GameBuiltin/Private
 Plugins/T4Framework/Source/T4GameBuiltin/Public
