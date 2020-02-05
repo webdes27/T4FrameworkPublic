@@ -10,8 +10,6 @@ Powerful toolset and Flexible layer solution
     - <https://tech4labs.com/>
   - YouTube
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
-  - Twitter
-    - <https://twitter.com/Tech4Labs>
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - Current Milestone
