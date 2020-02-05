@@ -22,6 +22,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.02.05] [M5] Copying //Private to //Deploy (private commit 6d3e257)**
+	  - #118 [내부수정] Game DataTable Struct 변경에 따른 일괄 업데이트 (Content Editor 추가 대응)
     - **[2020.02.04] [M5] Copying //Private to //Deploy (private commit 3ca5ddc)**
 	  - #0 [소스추가] T4Asset, T4Engine, T4Frame 헤더 파일 추가 (GameBuiltIn, Rehearsal Editor 모듈 제외)
     - **[2020.02.01] [M5] Copying //Private to //Deploy (private commit 6206a31)**

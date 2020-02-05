@@ -27,8 +27,8 @@ struct FT4StopAction;
 struct FT4SpawnObjectAction;
 struct FT4ActionParameters; // #28
 
-struct FT4PacketCtoS;
-struct FT4PacketStoC;
+struct FT4GameBuiltin_PacketCS_Base;
+struct FT4GameBuiltin_PacketSC_Base;
 
 class UT4EntityAsset;
 

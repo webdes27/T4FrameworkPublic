@@ -38,11 +38,6 @@ namespace T4AssetUtil
 		bool bInCheckDirty
 	);
 
-	T4ASSET_API bool SaveThumbnailImage(
-		UObject* InSaveObject,
-		UTexture2D* InThumbnail
-	);
-
 	T4ASSET_API bool GetPointOfInterest(
 		FT4EditorTestAutomation* InTestAutomation,
 		int32 InSelectIndex,
