@@ -22,6 +22,9 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.02.06] [M5] Copying //Private to //Deploy (private commit 1c4c53c)**
+	  - #118 [내부수정] Content Editor, 게임 DataTable 편집을 위한 기본 레이아웃 및 프리뷰 출력 연동
+	  - #118 [내부수정] 게임 및 에디터의 AspectRationAxisConstraint 를 MaintainX 에서 MaintainY 로 변경
     - **[2020.02.05] [M5] Copying //Private to //Deploy (private commit 6d3e257)**
 	  - #118 [내부수정] Game DataTable Struct 변경에 따른 일괄 업데이트 (Content Editor 추가 대응)
     - **[2020.02.04] [M5] Copying //Private to //Deploy (private commit 3ca5ddc)**

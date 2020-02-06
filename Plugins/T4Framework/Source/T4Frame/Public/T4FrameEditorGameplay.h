@@ -182,12 +182,9 @@ class T4FRAME_API IT4EditorGameData // #60
 public:
 	virtual ~IT4EditorGameData() {}
 
-	virtual void GetNameIDList(ET4EditorGameDataType InEditorGameDataType, TArray<FName>& OutDataNameIDs) = 0;
-
-	virtual class UT4EntityAsset* GetEntityAsset(
-		ET4EditorGameDataType InEditorGameDataType,
-		const FName& InDataNameID
-	) = 0;
+	virtual FName GetGameDataTypeName(ET4EditorGameDataType InEditorGameDataType) = 0; // #118
+	virtual void GetGameDataIDList(ET4EditorGameDataType InEditorGameDataType, TArray<FName>& OutDataNameIDs) = 0;
+	virtual class UT4EntityAsset* GetGameDataEntityAsset(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0;
 
 	virtual bool GetSkillDataInfo(const FName& InSkillDataNameID, FT4EditorSkillDataInfo& OutSkillData) = 0;
 	virtual bool GetEffectDataInfo(const FName& InEffectDataNameID, FT4EditorEffectDataInfo& OutEffectData) = 0;
