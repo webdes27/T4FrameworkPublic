@@ -24,7 +24,7 @@ Powerful toolset and Flexible layer solution
   - Update Notes (Warning: Development Version)
     - **[2020.02.07] [M5] Copying //Private to //Deploy (private commit 3ec801d)**
 	  - #118 [기능추가] Content Editor, Data Table 편집을 위한 Game Database Detail View 추가
-	  - #111 [버그수정] Conti Editor, 테스트로 설정한 장비가 일부 장착이 되지 않던 문제 수정
+	  - #111 [버그수정] Conti Editor, 테스트로 설정한 장비가 장착되지 않던 문제 수정
     - **[2020.02.06] [M5] Copying //Private to //Deploy (private commit 1c4c53c)**
 	  - #118 [내부수정] Content Editor, 게임 DataTable 편집을 위한 기본 레이아웃 및 프리뷰 출력 연동
 	  - #118 [내부수정] 게임 및 에디터의 AspectRationAxisConstraint 를 MaintainX 에서 MaintainY 로 변경
