@@ -3,8 +3,6 @@
 Powerful toolset and Flexible layer solution
 ``` 
 
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/kLaktT5w3As/0.jpg)](http://www.youtube.com/watch?v=kLaktT5w3As?t=100 "[T4Framework] Development clip #52 (2020.02.07)")
-
 - Information
   - Supported Engine Versions
     - 4.24 (Binary Build : 4.24.2)
