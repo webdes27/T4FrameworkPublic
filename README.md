@@ -22,8 +22,11 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.02.09] [M5] Copying //Private to //Deploy (private commit 01115ce)**
+	  - #118 [기능개선] Content Editor, Database DetailView Tab 이동시 이전 GameDataID 자동 선택 기능 개선
+	  - #118 [기능추가] Content Editor, Database DetailView 에서 GameDataID 설정 오류 검출 기능 추가
     - **[2020.02.08] [M5] Copying //Private to //Deploy (private commit c929752)**
-	  - #118 [버그수정] Content Editor, Game Database DetailView 에서 Enum Property 수정 불가 문제 수정
+	  - #118 [버그수정] Content Editor, Database DetailView 에서 Enum Property 수정 불가 문제 수정
     - **[2020.02.07] [M5] Copying //Private to //Deploy (private commit 3ec801d)**
 	  - #118 [기능추가] Content Editor, Data Table 편집을 위한 Game Database DetailView 추가
 	  - #111 [버그수정] Conti Editor, 테스트로 설정한 장비가 장착되지 않던 문제 수정
