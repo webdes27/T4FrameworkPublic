@@ -9,8 +9,7 @@
   *
  */
 static const FName DefaultPlayerClassName = TEXT("Player"); // #104
-static const FName DefaultCreatureClassName = TEXT("Creature"); // #104
-static const FName DefaultFOClassName = TEXT("FO"); // #104
+static const FName DefaultNPCClassName = TEXT("NPC"); // #104
 static const FName DefaultItemClassName = TEXT("Item"); // #104
 
 UENUM()

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "T4EntityAsset.h"
+#include "T4ActorEntityAsset.h"
 #include "T4PropEntityAsset.generated.h"
 
 /**
@@ -79,7 +79,7 @@ public:
 };
 
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
-class T4ASSET_API UT4PropEntityAsset : public UT4EntityAsset
+class T4ASSET_API UT4PropEntityAsset : public UT4ActorEntityAsset
 {
 	GENERATED_UCLASS_BODY()
 

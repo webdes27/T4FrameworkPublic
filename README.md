@@ -22,6 +22,8 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.02.10] [M5] Copying //Private to //Deploy (private commit 8c4fd4b)**
+	  - #118 [기능개선] T4GameBuiltin 콘텐츠 구성에서 FO (FieldObject) 관련 처리를 NPC 와 통합 후 정리
     - **[2020.02.09] [M5] Copying //Private to //Deploy (private commit 01115ce)**
 	  - #118 [기능개선] Content Editor, Database DetailView Tab 이동시 이전 GameDataID 선택 기능 추가
 	  - #118 [기능추가] Content Editor, Database DetailView 에서 GameDataID 설정 오류 검출 기능 추가
