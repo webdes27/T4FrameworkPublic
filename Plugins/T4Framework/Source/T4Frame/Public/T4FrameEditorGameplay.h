@@ -175,6 +175,9 @@ public:
 	virtual void SetMouseCursorType(EMouseCursor::Type InMouseCursorType) = 0;
 
 	virtual void SetInitialLocationAndRotation(const FVector& InLocation, const FRotator& InRotation) = 0; // #86
+
+	virtual bool IsEditWidgetModeEnabled() const = 0; // #94, #118
+	virtual void SetEnableEditWidgetMode(bool bInEnable) = 0; // #94, #118
 };
 
 class T4FRAME_API IT4EditorGameData // #60

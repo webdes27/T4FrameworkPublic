@@ -22,6 +22,9 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.02.12] [M5] Copying //Private to //Deploy (private commit 7889d50)**
+	  - #118 [기능추가] Content Editor, Spawn DetailView 및 Viewport WidgetMode 추가
+	  - #118 [기능개선] Content Editor, Database DetailView 의 GameID 설정 기능 개선
     - **[2020.02.10] [M5] Copying //Private to //Deploy (private commit 8c4fd4b)**
 	  - #118 [기능개선] T4GameBuiltin 콘텐츠 구성에서 FO (FieldObject) 관련 처리를 NPC 와 통합 후 정리
     - **[2020.02.09] [M5] Copying //Private to //Deploy (private commit 01115ce)**
