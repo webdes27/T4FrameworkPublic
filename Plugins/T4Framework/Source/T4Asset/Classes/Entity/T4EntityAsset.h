@@ -41,7 +41,8 @@ struct T4ASSET_API FT4EntityBasePhysicalAttribute
 
 public:
 	FT4EntityBasePhysicalAttribute()
-		: CapsuleHeight(200.0f)
+		: bCollisionDisabled(false) // #118
+		, CapsuleHeight(200.0f)
 		, CapsuleRadius(25.0f)
 
 	{
@@ -50,7 +51,10 @@ public:
 	// CustomizeCharacterEntityDetails
 	// CustomizeItemCommonEntityDetails
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "10.0", ClampMax = "1000"))
+	UPROPERTY(EditAnywhere)
+	bool bCollisionDisabled; // #118
+
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", ClampMax = "1000"))
 	float CapsuleHeight;
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "10.0", ClampMax = "500"))

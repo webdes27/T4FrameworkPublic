@@ -210,8 +210,8 @@ public:
 	virtual void SetPlayerChangeDisable(bool bDisable) = 0; // #72
 	virtual void SetEditoAISystemPaused(bool bInPaused) = 0; // #52
 
-	virtual IT4EditorGameplayHandler* GetEditorGameplayCustomHandler() const = 0; // #60
-	virtual void SetEditorGameplayCustomHandler(IT4EditorGameplayHandler* bInGameplayHandler) = 0; // #60
+	virtual IT4EditorGameplayHandler* GetEditorGameplayHandler() const = 0; // #60
+	virtual void SetEditorGameplayHandler(IT4EditorGameplayHandler* bInGameplayHandler) = 0; // #60
 
 	virtual AT4PlayerController* GetEditorPlayerController() const = 0; // #79
 	virtual void SetEditorPlayerController(AT4PlayerController* InPlayerController) = 0; // #42

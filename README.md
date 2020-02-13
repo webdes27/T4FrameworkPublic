@@ -22,6 +22,10 @@ Powerful toolset and Flexible layer solution
           - NPC, Monster, FieldObject, DropItem
       - 테크 데모 만들기
   - Update Notes (Warning: Development Version)
+    - **[2020.02.13] [M5] Copying //Private to //Deploy (private commit 119487d)**
+	  - #118 [기능추가] Content Editor, SimulationMode 사용시 NPC AI 가 동작하도록 처리
+	  - #118 [기능개선] Content Editor, SimulationMode 사용하지 않을 경우 더미 캐릭터 스폰 처리
+	  - #118 [버그수정] Entity Editor, Prop Entity Asset 생성 후 에디터 오픈시 발생하는 크래시 수정
     - **[2020.02.12] [M5] Copying //Private to //Deploy (private commit 7889d50)**
 	  - #118 [기능추가] Content Editor, Spawn DetailView 및 Viewport WidgetMode 추가
 	  - #118 [기능개선] Content Editor, Database DetailView 의 GameID 설정 기능 개선

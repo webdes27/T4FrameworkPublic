@@ -192,7 +192,7 @@ public:
 	virtual bool GetSkillDataInfo(const FName& InSkillDataNameID, FT4EditorSkillDataInfo& OutSkillData) = 0;
 	virtual bool GetEffectDataInfo(const FName& InEffectDataNameID, FT4EditorEffectDataInfo& OutEffectData) = 0;
 
-	virtual bool DoNPCSpawn(const FName& InNPCDataNameID, const FVector& InLocation, const FRotator& InRotation) = 0; // #60 : to player
+	virtual bool DoNPCSpawn(const FName& InNPCDataNameID, const FVector& InLocation, const FRotator& InRotation, uint32 InReservedObjectID) = 0; // #60 : to player
 	virtual bool DoDespawnAll(bool bClearPlayerObject) = 0; // #68
 
 	virtual bool DoEquipWeaponItem(const FName& InWeaponDataNameID, bool bInUnequip) = 0; // #60 : to player

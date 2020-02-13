@@ -112,7 +112,7 @@ protected:
 	bool HasServerGameplayCustomSettings() const; // #104 : check 편의를 위하 editor define 을 사용하지 않음
 
 #if WITH_EDITOR
-	IT4EditorGameplayHandler* GetEditorGameplayCustomHandler() const; // #60
+	IT4EditorGameplayHandler* GetEditorGameplayHandler() const; // #60
 #endif
 
 protected:

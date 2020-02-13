@@ -147,7 +147,7 @@ protected:
 	IT4GameObject* FindGameObject(const FT4ObjectID& InObjectID) const; // #49
 
 #if WITH_EDITOR
-	IT4EditorGameplayHandler* GetEditorGameplayCustomHandler() const; // #60
+	IT4EditorGameplayHandler* GetEditorGameplayHandler() const; // #60
 #endif
 
 private:
