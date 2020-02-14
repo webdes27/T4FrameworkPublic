@@ -17,7 +17,7 @@
  */
 class UT4SpringArmComponent;
 class UT4CameraComponent;
-class IT4GameObject;
+class IT4WorldObject;
 
 UCLASS()
 class T4FRAME_API AT4PlayerController : public APlayerController, public IT4PlayerController
@@ -50,7 +50,7 @@ protected:
 	void OnUnPossess() override;
 
 public:
-	// IT4NetworkControl
+	// IT4ObjectControl
 	ET4LayerType GetLayerType() const override { return LayerType; }
 
 	FName GetClassTypeName() const override { return DefaultPlayerClassName; } // #104 : Object type 을 Enum 이 아니라 FName 으로 처리. N개가 될 수 있음을 가정하겠음
@@ -63,12 +63,12 @@ public:
 
 	APawn* GetDefaultPawn() const override; // #86
 
-	bool SetGameObject(const FT4ObjectID& InNewTargetID) override;
-	void ClearGameObject(bool bInSetDefaultPawn) override;
+	bool SetWorldObject(const FT4ObjectID& InNewTargetID) override;
+	void ResetWorldObject(bool bInSetDefaultPawn) override;
 
-	bool HasGameObject() const override { return GameObjectID.IsValid(); }
-	const FT4ObjectID& GetGameObjectID() const override { return GameObjectID; }
-	IT4GameObject* GetGameObject() const override;
+	bool HasWorldObject() const override { return WorldObjectID.IsValid(); }
+	const FT4ObjectID& GetWorldObjectID() const override { return WorldObjectID; }
+	IT4WorldObject* GetWorldObject() const override;
 
 	bool HasObserverObject() const override { return ObserverObjectID.IsValid(); } // #52
 	bool SetObserverObject(const FT4ObjectID& InNewObserverID) override; // #52
@@ -141,13 +141,14 @@ public:
 
 protected:
 	virtual void NotifyAdvance(float InDeltaTime) {} // #49
-	virtual void NotifyPossess(IT4GameObject* InNewGameObject) {} // #49
-	virtual void NotifyUnPossess(IT4GameObject* InOldGameObject) {} // #49
+	virtual void NotifyBeginPlay() {} // #114
+	virtual void NotifyPossess(IT4WorldObject* InNewWorldObject) {} // #49
+	virtual void NotifyUnPossess(IT4WorldObject* InOldWorldObject) {} // #49
 
-	IT4GameObject* FindGameObject(const FT4ObjectID& InObjectID) const; // #49
+	IT4WorldObject* FindWorldObject(const FT4ObjectID& InObjectID) const; // #49
 
 #if WITH_EDITOR
-	IT4EditorGameplayHandler* GetEditorGameplayHandler() const; // #60
+	IT4EditorGameplayContoller* GetEditorGameplayController() const; // #60
 #endif
 
 private:
@@ -160,7 +161,7 @@ protected:
 	ET4LayerType LayerType;
 
 private:
-	FT4ObjectID GameObjectID;
+	FT4ObjectID WorldObjectID;
 	FT4ObjectID ObserverObjectID; // #52
 
 	TWeakObjectPtr<APawn> CachedDefaultPawn;

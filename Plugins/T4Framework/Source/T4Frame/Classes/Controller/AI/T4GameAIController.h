@@ -33,11 +33,7 @@ class T4FRAME_API AT4GameAIController : public AAIController, public IT4GameAICo
 public:
 	void PostInitializeComponents();
 
-	virtual void TickActor(
-		float InDeltaTime,
-		enum ELevelTick InTickType,
-		FActorTickFunction& InThisTickFunction
-	) override;
+	void TickActor(float InDeltaTime, enum ELevelTick InTickType, FActorTickFunction& InThisTickFunction) override;
 
 	/** If true, actor is ticked even if TickType==LEVELTICK_ViewportsOnly	 */
 	bool ShouldTickIfViewportsOnly() const override; // #17
@@ -57,7 +53,7 @@ protected:
 	// End AController interface
 
 public:
-	// IT4NetworkControl
+	// IT4ObjectControl
 	ET4LayerType GetLayerType() const override { return LayerType; }
 
 	virtual FName GetClassTypeName() const override { return NAME_None; } // #104 : Object type 을 Enum 이 아니라 FName 으로 처리. N개가 될 수 있음을 가정하겠음
@@ -68,12 +64,12 @@ public:
 	virtual void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) override {} // #63
 #endif
 
-	bool SetGameObject(const FT4ObjectID& InNewTargetID) override;
-	void ClearGameObject(bool bInSetDefaultPawn) override;
+	bool SetWorldObject(const FT4ObjectID& InNewTargetID) override;
+	void ResetWorldObject(bool bInSetDefaultPawn) override;
 
-	bool HasGameObject() const override  { return GameObjectID.IsValid(); }
-	const FT4ObjectID& GetGameObjectID() const override { return GameObjectID; }
-	IT4GameObject* GetGameObject() const override;
+	bool HasWorldObject() const override  { return WorldObjectID.IsValid(); }
+	const FT4ObjectID& GetWorldObjectID() const override { return WorldObjectID; }
+	IT4WorldObject* GetWorldObject() const override;
 
 	bool HasObserverObject() const override { return false; } // #52
 	bool SetObserverObject(const FT4ObjectID& InNewObserverID) override { return false; } // #52 : 서버는 필요없다!
@@ -98,28 +94,29 @@ public:
 	void SetNetID(const FT4NetID& InNetID) { NetID = InNetID;}
 	const FT4NetID& GetNetID() const { return NetID; }
 
-	IT4GameObject* FindGameObject(const FT4ObjectID& InObjectID) const; // #104
-	bool FindNearestGameObjects(float InMaxDistance, TArray<IT4GameObject*>& OutObjects); // #104
+	IT4WorldObject* FindWorldObject(const FT4ObjectID& InObjectID) const; // #104
+	bool FindNearestWorldObjects(float InMaxDistance, TArray<IT4WorldObject*>& OutObjects); // #104
 
 protected:
-	virtual void NotifyAIReady() {} // #50
+	virtual void NotifyAdvance(float InDeltaTime) {} // #114
+	virtual void NotifyBeginPlay() {} // #50
 	virtual void NotifyAIStart() {} // #50
 	virtual void NotifyAIEnd() {} // #50
 
-	IT4GameObject* FindGameObjectForServer(const FT4ObjectID& InObjectID) const; // #49
+	IT4WorldObject* FindWorldObjectForServer(const FT4ObjectID& InObjectID) const; // #49
 
 	bool IsServerRunning() const; // #104 : check 편의를 위하 editor define 을 사용하지 않음
 	bool HasServerGameplayCustomSettings() const; // #104 : check 편의를 위하 editor define 을 사용하지 않음
 
 #if WITH_EDITOR
-	IT4EditorGameplayHandler* GetEditorGameplayHandler() const; // #60
+	IT4EditorGameplayContoller* GetEditorGameplayController() const; // #60
 #endif
 
 protected:
 	ET4LayerType LayerType;
 
 	FT4NetID NetID; // #15
-	FT4ObjectID GameObjectID;
+	FT4ObjectID WorldObjectID;
 
 	UPROPERTY(transient)
 	UT4PathFollowingComponent* OverridePathFollowingComponent; // #34

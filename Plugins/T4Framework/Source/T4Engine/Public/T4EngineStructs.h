@@ -21,9 +21,9 @@ struct FT4UpdateTime // #102
 	static FT4UpdateTime EmptyUpdateTime;
 };
 
-struct FT4GameObjectProperty // #34
+struct FT4WorldObjectProperty // #34
 {
-	FT4GameObjectProperty()
+	FT4WorldObjectProperty()
 	{
 		Reset();
 	}
@@ -74,9 +74,9 @@ struct FT4GameObjectProperty // #34
 };
 
 #if !UE_BUILD_SHIPPING
-struct FT4GameObjectDebugInfo
+struct FT4WorldObjectDebugInfo
 {
-	FT4GameObjectDebugInfo()
+	FT4WorldObjectDebugInfo()
 	{
 		Reset();
 	}
@@ -91,9 +91,9 @@ struct FT4GameObjectDebugInfo
 #endif
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
-struct FT4ServerGameObjectDelegates // #49
+struct FT4ServerWorldObjectDelegates // #49
 {
-	DECLARE_MULTICAST_DELEGATE_ThreeParams(FT4OnHitOverlap, const FName&, class IT4GameObject*, const FHitResult&);
+	DECLARE_MULTICAST_DELEGATE_ThreeParams(FT4OnHitOverlap, const FName&, class IT4WorldObject*, const FHitResult&);
 	FT4OnHitOverlap OnHitOverlap;
 };
 #endif
@@ -122,7 +122,7 @@ struct FT4AnimParameters // #38
 	int32 LoopCount;
 };
 
-class IT4GameObject;
+class IT4WorldObject;
 struct FT4HitSingleResult
 {
 	FT4HitSingleResult()
@@ -136,7 +136,7 @@ struct FT4HitSingleResult
 
 	ECollisionChannel QueryCollisionChannel;
 
-	IT4GameObject* ResultObject;
+	IT4WorldObject* ResultObject;
 	FVector ResultLocation;
 	FVector ResultImpactNormal; // #112
 	FName ResultHitBone; // #112 : Only Skeletal Mesh

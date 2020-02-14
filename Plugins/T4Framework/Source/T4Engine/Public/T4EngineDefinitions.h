@@ -16,7 +16,7 @@ static const float T4Const_DefaultLineTraceMaxDistance = 100000.0f;
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 // DefaultEngine.ini [/Script/Engine.CollisionProfile]
-#define T4COLLISION_GAMEOBJECT		ECC_GameTraceChannel1
+#define T4COLLISION_WorldObject		ECC_GameTraceChannel1
 #define T4COLLISION_WEAPON			ECC_GameTraceChannel2
 #endif
 

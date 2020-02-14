@@ -193,7 +193,7 @@ public:
 	}
 };
 
-class IT4GameObject;
+class IT4WorldObject;
 
 USTRUCT()
 struct FT4ActionParameters
@@ -381,7 +381,7 @@ public:
 		bDirty = true; // #68
 	}
 
-	bool T4ENGINE_API GetTargetObject(ET4LayerType InLayerType, IT4GameObject** OutTargetObject, const TCHAR* InDebugString = nullptr) const; // #28
+	bool T4ENGINE_API GetTargetObject(ET4LayerType InLayerType, IT4WorldObject** OutTargetObject, const TCHAR* InDebugString = nullptr) const; // #28
 	bool T4ENGINE_API GetTargetLocation(FVector& OutTargetLocation, const TCHAR* InDebugString = nullptr) const; // #28
 	bool T4ENGINE_API GetTargetDirection(FVector& OutTargetDirection, const TCHAR* InDebugString = nullptr) const; // #28
 

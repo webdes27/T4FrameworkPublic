@@ -41,17 +41,19 @@ enum class ET4WorldType : uint8
 UENUM()
 enum class ET4ObjectType : uint8
 {
-	Entity_Character,
-	Entity_PropStatic,
-	Entity_PropSkeletal,
-	Entity_PropParticle,
-	Entity_ItemStatic,
-	Entity_ItemSkeletal,
-	Entity_Zone, // #94
+	// entity base
+	Character,
+	PropStatic,
+	PropSkeletal,
+	PropParticle,
+	ItemStatic,
+	ItemSkeletal,
+	Zone, // #94
 
-	World_Default, // #54
-	World_Indicator, // #117
-	World_Projectile, // #63
+	// code base
+	Projectile, // #63
+	Indicator, // #117
+	Default, // #54
 
 	None UMETA(Hidden)
 };
@@ -242,7 +244,7 @@ enum ET4EngineDebugFlag // #76
 };
 #endif
 
-static const uint32 T4InvalidGameObjectID = (uint32)-1;
+static const uint32 T4InvalidWorldObjectID = (uint32)-1;
 
 USTRUCT()
 struct FT4ObjectID
@@ -258,7 +260,7 @@ public:
 
 public:
 	FT4ObjectID()
-		: Value(T4InvalidGameObjectID)
+		: Value(T4InvalidWorldObjectID)
 		, SpawnMode(ET4SpawnMode::All)
 	{
 	}
@@ -289,7 +291,7 @@ public:
 	FORCEINLINE FT4ObjectID& operator++()
 	{
 		Value++;
-		if (T4InvalidGameObjectID == Value)
+		if (T4InvalidWorldObjectID == Value)
 		{
 			Value = 1; // reserved 0
 		}
@@ -299,7 +301,7 @@ public:
 	FORCEINLINE FT4ObjectID& operator++(int)
 	{
 		Value++;
-		if (T4InvalidGameObjectID == Value)
+		if (T4InvalidWorldObjectID == Value)
 		{
 			Value = 1;
 		}
@@ -323,12 +325,12 @@ public:
 
 	FORCEINLINE bool IsValid() const
 	{
-		return (0 != Value && T4InvalidGameObjectID != Value) ? true : false;
+		return (0 != Value && T4InvalidWorldObjectID != Value) ? true : false;
 	}
 
 	FORCEINLINE void Empty()
 	{
-		Value = T4InvalidGameObjectID;
+		Value = T4InvalidWorldObjectID;
 	}
 
 	FORCEINLINE const TCHAR* ToModeString() const

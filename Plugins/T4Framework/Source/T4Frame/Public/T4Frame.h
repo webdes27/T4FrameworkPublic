@@ -8,7 +8,7 @@
 #include "T4FrameGameTypes.h" // #104
 
 #if WITH_EDITOR
-#include "T4FrameEditorGameplay.h" // #60
+#include "T4FrameEditorSupport.h" // #60
 #endif
 
 #include "T4Engine/Public/T4EngineTypes.h"
@@ -34,7 +34,7 @@ struct FWorldContext;
 class AController;
 class AAIController;
 class UInputComponent;
-class IT4GameObject;
+class IT4WorldObject;
 class IT4GameWorld;
 class AT4PlayerController;
 class IT4EditorViewportClient;
@@ -50,17 +50,24 @@ enum ET4FrameType
 };
 
 class IT4GameFrame;
-class IT4GameObject;
+class IT4WorldObject;
 
 #if WITH_EDITOR
-DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnViewTargetChanged, IT4GameObject*);
+DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnViewTargetChanged, IT4WorldObject*);
 #endif
 
-//
-// #104 : M5 테크 데모를 제작하며 재정리 한다.
-//
+// #114
+class T4FRAME_API IT4GameObject
+{
+public:
+	virtual ~IT4GameObject() {}
+
+	virtual ET4LayerType GetLayerType() const = 0;
+	virtual const FT4ObjectID& GetObjectID() const = 0;
+};
+
 class AAIController;
-class T4FRAME_API IT4GameAIController : public IT4NetworkControl
+class T4FRAME_API IT4GameAIController : public IT4ObjectControl
 {
 public:
 	virtual ~IT4GameAIController() {}
@@ -71,7 +78,7 @@ public:
 	virtual ET4GameEnemyType GetEnemyType() const = 0; // #104 : TODO M5
 };
 
-class T4FRAME_API IT4PlayerController : public IT4NetworkControl
+class T4FRAME_API IT4PlayerController : public IT4ObjectControl
 {
 public:
 	virtual ~IT4PlayerController() {}
@@ -146,13 +153,15 @@ public:
 	virtual void OnDrawHUD(FViewport* InViewport, FCanvas* InCanvas, FT4HUDDrawInfo& InOutDrawInfo) = 0; // #68 : Only Client
 
 #if WITH_EDITOR
-	virtual IT4EditorGameData* GetEditorGameData() = 0; // #60
-	
+	virtual IT4EditorGameDatabase* GetEditorGameDatabase() = 0; // #60
+	virtual IT4EditorGameplayCommand* GetEditorGameplayCommand() = 0; // #114
+
 	virtual void SetInputControlLock(bool bLock) = 0; // #30
 	virtual void SetPlayerChangeDisable(bool bDisable) = 0; // #72
 #endif
 };
 
+class UT4GameObject;
 class T4FRAME_API IT4GameFrame
 {
 public:
@@ -184,21 +193,20 @@ public:
 
 	virtual bool GetMousePositionToWorldRay(FVector& OutLocation, FVector& OutDirection) = 0; // #113
 
-	virtual IT4GameObject* GetMousePickingObject() = 0;
-	virtual IT4GameObject* GetMousePickingObject(const FVector& InLocation, const FVector& InDirection, FVector& OutHitLocation) = 0; // #111
+	virtual IT4WorldObject* GetMousePickingObject() = 0;
+	virtual IT4WorldObject* GetMousePickingObject(const FVector& InLocation, const FVector& InDirection, FVector& OutHitLocation) = 0; // #111
 
 	virtual bool GetMousePickingLocation(FVector& OutLocation) = 0;
-	virtual bool GetMousePickingLocation(
-		ET4CollisionChannel InCollisionChannel, // #117
-		const FVector& InLocation, 
-		const FVector& InDirection, 
-		FVector& OutLocation
-	) = 0;
+	virtual bool GetMousePickingLocation(ET4CollisionChannel InChannel, const FVector& InLocation, const FVector& InDirection, FVector& OutLocation) = 0; // #117
 
 	virtual FViewport* GetViewport() const = 0; // #68
 
 	virtual void ClearOutline() = 0; // #115
 	virtual void SetOutlineTarget(const FT4ObjectID& InObjectID, const FLinearColor& InColor) = 0; // #115
+
+	virtual bool AddClientGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
+	virtual void RemoveClientGameObject(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual UT4GameObject* GetClientGameObject(const FT4ObjectID& InObjectID) const = 0; // #114
 
 #if WITH_EDITOR
 	virtual bool IsPreviewMode() const = 0; // #68
@@ -210,8 +218,8 @@ public:
 	virtual void SetPlayerChangeDisable(bool bDisable) = 0; // #72
 	virtual void SetEditoAISystemPaused(bool bInPaused) = 0; // #52
 
-	virtual IT4EditorGameplayHandler* GetEditorGameplayHandler() const = 0; // #60
-	virtual void SetEditorGameplayHandler(IT4EditorGameplayHandler* bInGameplayHandler) = 0; // #60
+	virtual IT4EditorGameplayContoller* GetEditorGameplayController() const = 0; // #60
+	virtual void SetEditorGameplayContoller(IT4EditorGameplayContoller* bInGameplayHandler) = 0; // #60
 
 	virtual AT4PlayerController* GetEditorPlayerController() const = 0; // #79
 	virtual void SetEditorPlayerController(AT4PlayerController* InPlayerController) = 0; // #42
@@ -229,6 +237,10 @@ public:
 	virtual void UnregisterGameAIController(const FT4NetID& InUniqueID) = 0; // #31
 
 	virtual IT4GameAIController* FindGameAIController(const FT4NetID& InUniqueID) const = 0; // #31
+
+	virtual bool AddServerGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
+	virtual void RemoveServerGameObject(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual UT4GameObject* GetServerGameObject(const FT4ObjectID& InObjectID) const = 0; // #114
 #endif
 };
 
