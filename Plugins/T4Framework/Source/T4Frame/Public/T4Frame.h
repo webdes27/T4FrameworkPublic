@@ -189,6 +189,7 @@ public:
 	virtual bool OnWorldTravel(const UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
 
 	// Client
+	virtual UT4GameObject* GetPlayerGameObject() const = 0; // #114 : Only Client
 	virtual IT4PlayerController* GetPlayerController() const = 0;
 
 	virtual bool GetMousePositionToWorldRay(FVector& OutLocation, FVector& OutDirection) = 0; // #113
@@ -206,6 +207,7 @@ public:
 
 	virtual bool AddClientGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
 	virtual void RemoveClientGameObject(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual void RemoveAllClientGameObjects() = 0; // #114
 	virtual UT4GameObject* GetClientGameObject(const FT4ObjectID& InObjectID) const = 0; // #114
 
 #if WITH_EDITOR
@@ -240,6 +242,7 @@ public:
 
 	virtual bool AddServerGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
 	virtual void RemoveServerGameObject(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual void RemoveAllServerGameObjects() = 0; // #114
 	virtual UT4GameObject* GetServerGameObject(const FT4ObjectID& InObjectID) const = 0; // #114
 #endif
 };

@@ -253,8 +253,8 @@ public:
 	virtual bool GetSocketTransform(const FName& InSocketName, ERelativeTransformSpace InTransformSpace, FTransform& OutTransform) const = 0; // #58
 
 	virtual void SetHeightOffset(float InOffset) = 0; // #18
-
 	virtual void SetOutline(bool bInUse) = 0; // #115
+	virtual void SetNameplateText(const TCHAR* InText, float InHeightOffset) = 0; // #119 : InText == nullptr Hide
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 	virtual FT4ServerWorldObjectDelegates& GetServerDelegates() = 0; // #49

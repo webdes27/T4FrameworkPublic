@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "T4FrameGameTypes.h"
+#include "T4Asset/Public/Entity/T4EntityKey.h" // #114
 #include "T4Engine/Public/T4EngineTypes.h" // #63
 #include "T4FrameEditorSupport.generated.h"
 
@@ -178,6 +179,10 @@ public:
 
 	virtual bool IsEditWidgetModeEnabled() const = 0; // #94, #118
 	virtual void SetEnableEditWidgetMode(bool bInEnable) = 0; // #94, #118
+
+	virtual bool IsKeyLeftShiftPressed() const = 0; // #118
+	virtual bool IsMouseLeftButtonPressed() const = 0; // #111
+	virtual bool IsMouseRightButtonPressed() const = 0; // #111, #118
 };
 
 // #114 : 에디터에서 N종의 게임 컨텐츠 데이터에서 정보를 얻기 위한 인터페이스
@@ -236,10 +241,26 @@ class T4FRAME_API IT4EditorGameplayCommand
 public:
 	virtual ~IT4EditorGameplayCommand() {}
 
-	virtual bool DoNPCSpawn(const FName& InNPCDataNameID, const FVector& InLocation, const FRotator& InRotation, uint32 InReservedObjectID) = 0; // #60 : to player
+	virtual bool DoNPCSpawn(
+		const FName& InNPCDataNameID, 
+		const FVector& InLocation, 
+		const FRotator& InRotation, 
+		uint32 InReservedObjectID
+	) = 0; // #60 : to player
+
+	virtual bool DoNPCSpawn(
+		const FT4EntityKey& InEntityKey,
+		const FVector& InLocation,
+		const FRotator& InRotation,
+		uint32 InReservedObjectID,
+		bool bInPlayer
+	) = 0; // #114: Conti Editor
 
 	virtual bool DoDespawn(const FT4ObjectID& InObjectID) = 0; // #114
 	virtual bool DoDespawnAll(bool bClearPlayerObject) = 0; // #68
+
+	virtual bool DoChangeStance(FName InStanceName) = 0;// #73, #114
+	virtual bool DoChangeSubStance(FName InSubStanceName) = 0; // #106, #114
 
 	virtual bool DoEquipWeaponItem(const FName& InWeaponDataNameID, bool bInUnequip) = 0; // #60 : to player
 	virtual bool DoExchangeCostumeItem(const FName& InCostumeDataNameID) = 0; // #60 : to player
