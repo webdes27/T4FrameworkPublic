@@ -24,7 +24,7 @@ Powerful toolset and Flexible layer solution
   - Update Notes (Warning: Development Version)
     - **[2020.02.15] [M5] Copying //Private to //Deploy (private commit 5cd3fce)**
 	  - #119 [기능추가] Content Editor, SpawnActorID 를 뷰포트 캐릭터의 Nameplate 로 출력 처리 추가
-	  - #119 [기능추가] Content Editor, SpawnActorID 를 뷰포트 캐릭터의 Nameplate 로 출력 처리 추가
+	  - #118 [기능개선] Content Editor, Left-Shift 와 마우스 우클릭으로 SpawnActor 선택 처리 추가
     - **[2020.02.14] [M5] Copying //Private to //Deploy (private commit e797044)**
 	  - #114 [내부수정] 게임 콘텐츠 관리를 위한 Server/Client GameObject Class 추가 및 동작 처리
     - **[2020.02.13] [M5] Copying //Private to //Deploy (private commit 119487d)**
