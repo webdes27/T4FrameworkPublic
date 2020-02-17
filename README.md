@@ -22,7 +22,7 @@ Powerful toolset and Flexible layer solution
         - 캐릭터(Entity) 제작 및 스킬(Conti) 툴 개선 (상시)
         - 게임 오브젝트 Spawn, Combat/Interaction AI 등의 게임 디자인 관련 컨텐츠 툴 개발
           - NPC, Monster, FieldObject, DropItem
-      - 테크 데모 준비
+      - 테크 데모 제작 준비
   - M1 ~ M4
     - <https://tech4labs.com/T4Framework_Milestones>
 - **Default Key Settings**
