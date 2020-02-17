@@ -6,7 +6,7 @@ Powerful toolset and Flexible layer solution
 - **Supported Engine Versions**
   - 4.24 (Binary Build : 4.24.2)
 - **Information**
-  - Website
+  - **Website**
     - <https://tech4labs.com/>
   - YouTube
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
@@ -15,7 +15,7 @@ Powerful toolset and Flexible layer solution
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
 - **Milestones**
-  - M5 (Current)
+  - **M5 (Current)**
     - 2020.01.06 ~ 2020.03.13
     - Goal
       - 게임 콘텐츠 제작을 위한 기반 기능 및 툴 개발
@@ -26,7 +26,7 @@ Powerful toolset and Flexible layer solution
   - M1 ~ M4
     - <https://tech4labs.com/T4Framework_Milestones>
 - **Update Notes (WIP)**
-  - 2020.01 ~ ING : [`UpdateNotes_Current.md`](./UpdateNotes_Current.md)
+  - **2020.01 ~ ING : [`UpdateNotes_Current.md`](./UpdateNotes_Current.md)**
   - 2019.10 ~ 2019.12 : [`UpdateNotes_2019_10-2019_12.md`](./UpdateNotes_2019_10-2019_12.md)
   - 2019.07 ~ 2019.09 : [`UpdateNotes_2019_07-2019_09.md`](./UpdateNotes_2019_07-2019_09.md)
 - **Default Key Settings**
@@ -43,4 +43,4 @@ Powerful toolset and Flexible layer solution
   - Right MouseButton Hold : Camera Rotation
   - Ctrl + Right MouseButton Pressed : Change Player Object
 - **Contact**
-  - <niceofer@hotmail.com> (Twitter: @Tech4Labs)
+  - <niceofer@hotmail.com>
