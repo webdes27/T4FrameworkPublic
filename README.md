@@ -25,7 +25,7 @@ Powerful toolset and Flexible layer solution
     - Left MouseButton Pressed : Use Skill
     - Right MouseButton Hold : Camera Rotation
     - Ctrl + Right MouseButton Pressed : Change Player Object
-- Current Milestone
+- Milestones
   - M5
     - 2020.01.06 ~ 2020.03.13
     - Goal
