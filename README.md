@@ -12,6 +12,19 @@ Powerful toolset and Flexible layer solution
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
+  - Default Key Settings
+    - M : Next Play Mode (TPS or ShoulderView)
+    - TAB : Toggle Default or Combat Mode
+    - 1~4 : HotKey (SkillTable, SkillSet UseType : HotKey Selected)
+    - Shift + 1~3 : Toggle Equipment (T4GameBuiltin_Settings : WeaponDataRowName_Key*)
+	  - 1: Sword, 2: HandRing, 3: Bow
+    - Alt + 1~2 : Player Spawn (T4GameBuiltin_Settings : PlayerDataRowName_Key*)
+    - Ctrl + 1~7 : NPC Spawn (T4GameBuiltin_Settings : NPCDataRowName_Key*)
+    - Del : Control Player Despawn
+    - SpaceBar : Jump or Roll
+    - Left MouseButton Pressed : Use Skill
+    - Right MouseButton Hold : Camera Rotation
+    - Ctrl + Right MouseButton Pressed : Change Player Object
 - Current Milestone
   - M5
     - 2020.01.06 ~ 2020.03.13
