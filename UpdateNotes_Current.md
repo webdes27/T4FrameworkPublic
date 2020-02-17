@@ -4,7 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.02)
-  - **[2020.02.17] [M5] Copying //Private to //Deploy (private commit c76af77)**
+  - **[2020.02.17] [M5] Copying //Private to //Deploy (private commit f146466)**
+    - #114 [내부수정] NPC AI 기능 개선을 위한 Stat, Experience DataTable 추가
     - #116 [기능개선] 기본 키 설정 변경
       - M : Next Play Mode (TPS or ShoulderView)
       - TAB : Toggle Default or Combat Mode
