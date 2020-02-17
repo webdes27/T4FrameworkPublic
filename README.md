@@ -12,8 +12,8 @@ Powerful toolset and Flexible layer solution
     - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
   - Twitter
     - <https://twitter.com/Tech4Labs> (@Tech4Labs)
-- **Sources Repositories (Private)**
-  - <https://github.com/Tech4Labs/T4Framework>
+  - Sources Repositories (Private)
+    - <https://github.com/Tech4Labs/T4Framework>
 - **Milestones**
   - M5 (Current)
     - 2020.01.06 ~ 2020.03.13
@@ -25,6 +25,10 @@ Powerful toolset and Flexible layer solution
       - 테크 데모 제작 준비
   - M1 ~ M4
     - <https://tech4labs.com/T4Framework_Milestones>
+- **Update Notes (WIP)**
+  - 2020.01 ~ ING : [`UpdateNotes_Current.md`](./UpdateNotes_Current.md)
+  - 2019.10 ~ 2019.12 : [`UpdateNotes_2019_10-2019_12.md`](./UpdateNotes_2019_10-2019_12.md)
+  - 2019.07 ~ 2019.09 : [`UpdateNotes_2019_07-2019_09.md`](./UpdateNotes_2019_07-2019_09.md)
 - **Default Key Settings**
   - M : Next Play Mode (TPS or ShoulderView)
   - TAB : Toggle Default or Combat Mode
@@ -38,9 +42,5 @@ Powerful toolset and Flexible layer solution
   - Left MouseButton Pressed : Use Skill
   - Right MouseButton Hold : Camera Rotation
   - Ctrl + Right MouseButton Pressed : Change Player Object
-- **Update Notes (WIP)**
-  - 2020.01 ~ ING : [`UpdateNotes_Current.md`](./UpdateNotes_Current.md)
-  - 2019.10 ~ 2019.12 : [`UpdateNotes_2019_10-2019_12.md`](./UpdateNotes_2019_10-2019_12.md)
-  - 2019.07 ~ 2019.09 : [`UpdateNotes_2019_07-2019_09.md`](./UpdateNotes_2019_07-2019_09.md)
 - **Contact**
   - <niceofer@hotmail.com> (Twitter: @Tech4Labs)
