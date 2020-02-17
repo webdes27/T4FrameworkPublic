@@ -9,6 +9,9 @@
 /**
   * #114 : BP 로 노출해서 게임 로직에서 사용한다.
  */
+class UWorld;
+class IT4GameFrame;
+class IT4GameWorld;
 UCLASS()
 class T4FRAME_API UT4GameObject : public UObject, public IT4GameObject
 {
@@ -21,8 +24,8 @@ class T4FRAME_API UT4GameObject : public UObject, public IT4GameObject
 
 public:
 	// IT4GameObject
-	FORCEINLINE ET4LayerType GetLayerType() const override { return LayerType; }
-	FORCEINLINE const FT4ObjectID& GetObjectID() const override { return ObjectID; }
+	ET4LayerType GetLayerType() const override { return LayerType; }
+	const FT4ObjectID& GetObjectID() const override { return ObjectID; } // #114
 
 public:
 	void OnInitialize(ET4LayerType InLayerType, const FT4ObjectID& InObjectID);
@@ -40,6 +43,12 @@ protected:
 	virtual void Finalize() {}
 
 	virtual void Process(float InDeltaTime) {}
+
+	UWorld* GetWorld() const;
+	IT4GameFrame* GetGameFrame() const;
+	IT4GameWorld* GetGameWorld() const;
+
+	IT4WorldActor* FindWorldActor(const FT4ActorID& InActorID) const;
 
 private:
 	ET4LayerType LayerType;

@@ -15,8 +15,8 @@
  // #T4_ADD_ACTION_TAG_CODE
 
 // ET4ActionType::WorldTravel
-// ET4ActionType::SpawnObject
-// ET4ActionType::DespawnObject
+// ET4ActionType::SpawnActor
+// ET4ActionType::DespawnActor
 
 USTRUCT()
 struct T4ENGINE_API FT4WorldTravelAction : public FT4ActionCodeCommand
@@ -60,7 +60,7 @@ public:
 };
 
 USTRUCT()
-struct T4ENGINE_API FT4SpawnObjectAction : public FT4ActionCodeCommand
+struct T4ENGINE_API FT4SpawnActorAction : public FT4ActionCodeCommand
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -68,7 +68,10 @@ public:
 	// SaveActionReplaySnapshot() // #68
 
 	UPROPERTY(EditAnywhere)
-	FT4ObjectID ObjectID;
+	FT4ActorID ActorID;
+
+	UPROPERTY(EditAnywhere)
+	FT4ObjectID OwnerObjectID; // #114 : GameObject ID
 
 	UPROPERTY(EditAnywhere)
 	FName Name;
@@ -98,7 +101,7 @@ public:
 	bool bPlayer;
 	   
 public:
-	FT4SpawnObjectAction()
+	FT4SpawnActorAction()
 		: FT4ActionCodeCommand(StaticActionType())
 		, Name(NAME_None)
 		, EntityType(ET4EntityType::None)
@@ -111,7 +114,7 @@ public:
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::SpawnObject; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::SpawnActor; }
 
 	bool Validate(FString& OutMsg) override
 	{
@@ -130,36 +133,36 @@ public:
 
 	FString ToString() const override
 	{
-		return FString(TEXT("SpawnObjectAction"));
+		return FString(TEXT("SpawnActorAction"));
 	}
 };
 
 USTRUCT()
-struct T4ENGINE_API FT4DespawnObjectAction : public FT4ActionCodeCommand
+struct T4ENGINE_API FT4DespawnActorAction : public FT4ActionCodeCommand
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
 	UPROPERTY(EditAnywhere)
-	FT4ObjectID ObjectID;
+	FT4ActorID ActorID;
 
 	UPROPERTY(EditAnywhere)
 	float FadeOutTimeSec; // #67, #78
 
 public:
-	FT4DespawnObjectAction()
+	FT4DespawnActorAction()
 		: FT4ActionCodeCommand(StaticActionType())
 		, FadeOutTimeSec(T4Const_ObjectWorldLeaveTimeSec) // #67, #78
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::DespawnObject; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::DespawnActor; }
 
 	bool Validate(FString& OutMsg) override
 	{
-		if (!ObjectID.IsValid())
+		if (!ActorID.IsValid())
 		{
-			OutMsg = TEXT("Invalid ObjectID");
+			OutMsg = TEXT("Invalid ActorID");
 			return false;
 		}
 		return true;
@@ -167,6 +170,6 @@ public:
 
 	FString ToString() const override
 	{
-		return FString(TEXT("DespawnObjectAction"));
+		return FString(TEXT("DespawnActorAction"));
 	}
 };

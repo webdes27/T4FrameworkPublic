@@ -24,7 +24,7 @@ enum class ET4DefaultParamBits
 UENUM(Meta = (Bitflags))
 enum class ET4TargetParamBits
 {
-	ObjectIDBit,
+	ActorIDBit,
 	LocationBit,
 	DirectionBit,
 };
@@ -40,7 +40,7 @@ enum class ET4OverrideParamBits // #112
 
 	MaxPlayTimeBit, // #58 : 코드 호출 또는 툴에서 최대 시간 제한에 사용
 
-	TargetBoneBit, // #112 : TargetObject 가 있을 경우 Attacker 가 선택한(또는 서버가 지정한) 연출용 HitBone 위치
+	TargetBoneBit, // #112 : TargetActor 가 있을 경우 Attacker 가 선택한(또는 서버가 지정한) 연출용 HitBone 위치
 	ActionPointBit, // #112 : 설정된 ActionPoint 를 Override 한다.
 	ProjectileAttachTransformRuleBit, // #112 : Projectile 용 AttachTransformRuleBit 사용
 	LocalOrWorldLocationBit, // #112 : 설정된 RelativeRotation 을 Override 한다. (아직 Particle Action 에는 값은 없음)
@@ -86,7 +86,7 @@ public:
 	uint32 SetBits; // ET4TargetParamBits
 
 	UPROPERTY(EditAnywhere)
-	FT4ObjectID TargetObjectID;
+	FT4ActorID TargetActorID;
 
 	UPROPERTY(EditAnywhere)
 	FVector TargetLocation;
@@ -128,7 +128,7 @@ public:
 	float MaxPlayTimeSec; // #58 : 코드 호출 또는 툴에서 최대 시간 제한에 사용
 
 	UPROPERTY(EditAnywhere)
-	FName TargetBoneName; // #112 : Attacker 가 설정한 TargetObject HitBone (또는 서버에서 전달해준...)
+	FName TargetBoneName; // #112 : Attacker 가 설정한 TargetActor HitBone (또는 서버에서 전달해준...)
 
 	UPROPERTY(EditAnywhere)
 	FName ActionPoint; // #112 : 설정된 ActionPoint 를 Override 한다.
@@ -193,7 +193,7 @@ public:
 	}
 };
 
-class IT4WorldObject;
+class IT4WorldActor;
 
 USTRUCT()
 struct FT4ActionParameters
@@ -284,10 +284,10 @@ public:
 		bDirty = true; // #68
 	}
 
-	FORCEINLINE void SetTargetObjectID(const FT4ObjectID& InTargetObjectID)
+	FORCEINLINE void SetTargetActorID(const FT4ActorID& InTargetActorID)
 	{
-		TargetParams.TargetObjectID = InTargetObjectID;
-		TargetParams.SetBits |= BIT_LEFTSHIFT(ET4TargetParamBits::ObjectIDBit);
+		TargetParams.TargetActorID = InTargetActorID;
+		TargetParams.SetBits |= BIT_LEFTSHIFT(ET4TargetParamBits::ActorIDBit);
 		bDirty = true; // #68
 	}
 
@@ -381,7 +381,7 @@ public:
 		bDirty = true; // #68
 	}
 
-	bool T4ENGINE_API GetTargetObject(ET4LayerType InLayerType, IT4WorldObject** OutTargetObject, const TCHAR* InDebugString = nullptr) const; // #28
+	bool T4ENGINE_API GetTargetActor(ET4LayerType InLayerType, IT4WorldActor** OutTargetActor, const TCHAR* InDebugString = nullptr) const; // #28
 	bool T4ENGINE_API GetTargetLocation(FVector& OutTargetLocation, const TCHAR* InDebugString = nullptr) const; // #28
 	bool T4ENGINE_API GetTargetDirection(FVector& OutTargetDirection, const TCHAR* InDebugString = nullptr) const; // #28
 

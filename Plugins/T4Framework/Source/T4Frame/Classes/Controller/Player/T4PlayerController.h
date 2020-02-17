@@ -17,7 +17,7 @@
  */
 class UT4SpringArmComponent;
 class UT4CameraComponent;
-class IT4WorldObject;
+class IT4WorldActor;
 
 UCLASS()
 class T4FRAME_API AT4PlayerController : public APlayerController, public IT4PlayerController
@@ -50,7 +50,7 @@ protected:
 	void OnUnPossess() override;
 
 public:
-	// IT4ObjectControl
+	// IT4ActorController
 	ET4LayerType GetLayerType() const override { return LayerType; }
 
 	FName GetClassTypeName() const override { return DefaultPlayerClassName; } // #104 : Object type 을 Enum 이 아니라 FName 으로 처리. N개가 될 수 있음을 가정하겠음
@@ -63,16 +63,16 @@ public:
 
 	APawn* GetDefaultPawn() const override; // #86
 
-	bool SetWorldObject(const FT4ObjectID& InNewTargetID) override;
-	void ResetWorldObject(bool bInSetDefaultPawn) override;
+	bool SetWorldActor(const FT4ActorID& InNewTargetID) override;
+	void ResetWorldActor(bool bInSetDefaultPawn) override;
 
-	bool HasWorldObject() const override { return WorldObjectID.IsValid(); }
-	const FT4ObjectID& GetWorldObjectID() const override { return WorldObjectID; }
-	IT4WorldObject* GetWorldObject() const override;
+	bool HasWorldActor() const override { return WorldActorID.IsValid(); }
+	const FT4ActorID& GetWorldActorID() const override { return WorldActorID; }
+	IT4WorldActor* GetWorldActor() const override;
 
-	bool HasObserverObject() const override { return ObserverObjectID.IsValid(); } // #52
-	bool SetObserverObject(const FT4ObjectID& InNewObserverID) override; // #52
-	void ClearObserverObject() override; // #52
+	bool HasObserverActor() const override { return ObserverActorID.IsValid(); } // #52
+	bool SetObserverActor(const FT4ActorID& InNewObserverID) override; // #52
+	void ClearObserverActor() override; // #52
 
 	IT4GameWorld* GetGameWorld() const override; // #52
 
@@ -83,7 +83,11 @@ public:
 	APlayerCameraManager* GetCameraManager() const override; // #100
 
 public:
+	void SetObjectID(const FT4ObjectID& InObjectID) { ObjectID = InObjectID; }
+
 	// IT4PlayerController
+	const FT4ObjectID& GetObjectID() const override { return ObjectID; }
+
 	bool CheckAuthority() const override { return HasAuthority(); }
 
 	UInputComponent* NewInputComponent() override;
@@ -142,10 +146,10 @@ public:
 protected:
 	virtual void NotifyAdvance(float InDeltaTime) {} // #49
 	virtual void NotifyBeginPlay() {} // #114
-	virtual void NotifyPossess(IT4WorldObject* InNewWorldObject) {} // #49
-	virtual void NotifyUnPossess(IT4WorldObject* InOldWorldObject) {} // #49
+	virtual void NotifyPossess(IT4WorldActor* InNewWorldActor) {} // #49
+	virtual void NotifyUnPossess(IT4WorldActor* InOldWorldActor) {} // #49
 
-	IT4WorldObject* FindWorldObject(const FT4ObjectID& InObjectID) const; // #49
+	IT4WorldActor* FindWorldActor(const FT4ActorID& InActorID) const; // #49
 
 #if WITH_EDITOR
 	IT4EditorGameplayContoller* GetEditorGameplayController() const; // #60
@@ -159,10 +163,11 @@ private:
 
 protected:
 	ET4LayerType LayerType;
+	FT4ObjectID ObjectID; // #114
 
 private:
-	FT4ObjectID WorldObjectID;
-	FT4ObjectID ObserverObjectID; // #52
+	FT4ActorID WorldActorID;
+	FT4ActorID ObserverActorID; // #52
 
 	TWeakObjectPtr<APawn> CachedDefaultPawn;
 

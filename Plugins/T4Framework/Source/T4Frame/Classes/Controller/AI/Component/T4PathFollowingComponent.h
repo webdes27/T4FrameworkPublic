@@ -10,7 +10,7 @@
 /**
   *
  */
-class IT4WorldObject;
+class IT4WorldActor;
 UCLASS()
 class T4FRAME_API UT4PathFollowingComponent : public UPathFollowingComponent
 {
@@ -34,8 +34,8 @@ public:
 	FT4OnCallbackMoveTo& GetOnCallbackMoveTo() { return OnCallbackMoveTo; } // #42, #50
 	FT4OnCallbackMoveStop& GetOnCallbackMoveStop() { return OnCallbackMoveStop; } // #52
 
-	void SetWorldObjectID(const FT4ObjectID& InObjectID) { TargetObjectID = InObjectID; }
-	void ClearWorldObjectID() { TargetObjectID.Empty(); }
+	void SetWorldActorID(const FT4ActorID& InActorID) { TargetActorID = InActorID; }
+	void ClearWorldActorID() { TargetActorID.Empty(); }
 
 protected:
 	void BeginPlay() override;
@@ -47,11 +47,11 @@ protected:
 	void UpdatePathSegment() override;
 
 protected:
-	IT4WorldObject* GetWorldObject() const;
+	IT4WorldActor* GetWorldActor() const;
 
 private:
 	ET4LayerType LayerType;
-	FT4ObjectID TargetObjectID;
+	FT4ActorID TargetActorID;
 
 	FT4OnCallbackMoveTo OnCallbackMoveTo;
 	FT4OnCallbackMoveStop OnCallbackMoveStop; // #52

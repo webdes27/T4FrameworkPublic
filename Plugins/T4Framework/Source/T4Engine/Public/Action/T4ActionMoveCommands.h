@@ -319,7 +319,7 @@ struct T4ENGINE_API FT4LaunchAction : public FT4ActionCodeCommand
 
 public:
 	UPROPERTY(EditAnywhere)
-	FT4ObjectID OwnerObjectID; // #112
+	FT4ActorID OwnerActorID; // #112
 
 	UPROPERTY(EditAnywhere)
 	float MoveSpeed;

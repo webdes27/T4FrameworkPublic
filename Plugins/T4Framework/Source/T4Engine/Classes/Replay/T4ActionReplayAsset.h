@@ -65,7 +65,7 @@ public:
 	uint32 UniqueKey;
 
 	UPROPERTY(VisibleAnywhere)
-	FT4ObjectID ObjectID;
+	FT4ActorID ActorID;
 
 	UPROPERTY(VisibleAnywhere)
 	ET4ActionType ActionType;
@@ -107,10 +107,10 @@ public:
 	TArray<FT4WorldTravelAction> WorldTravelActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4SpawnObjectAction> SpawnObjectActions;
+	TArray<FT4SpawnActorAction> SpawnActorActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4DespawnObjectAction> DespawnObjectActions;
+	TArray<FT4DespawnActorAction> DespawnActorActions;
 
 
 	// T4ActionMoveCommands.h

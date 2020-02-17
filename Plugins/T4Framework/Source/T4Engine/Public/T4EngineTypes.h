@@ -171,7 +171,7 @@ enum class ET4TargetType : uint8
 {
 	TargetLocation,
 	TargetDirection,
-	TargetObject,
+	TargetActor,
 
 	TargetCustom, // #40, #44
 
@@ -244,10 +244,10 @@ enum ET4EngineDebugFlag // #76
 };
 #endif
 
-static const uint32 T4InvalidWorldObjectID = (uint32)-1;
+static const uint32 T4Const_EmptyActorID = (uint32)-1;
 
 USTRUCT()
-struct FT4ObjectID
+struct FT4ActorID
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -259,25 +259,25 @@ public:
 	ET4SpawnMode SpawnMode; // #54
 
 public:
-	FT4ObjectID()
-		: Value(T4InvalidWorldObjectID)
+	FT4ActorID()
+		: Value(T4Const_EmptyActorID)
 		, SpawnMode(ET4SpawnMode::All)
 	{
 	}
 
-	FT4ObjectID(const uint32& InValue)
+	FT4ActorID(const uint32& InValue)
 		: Value(InValue)
 		, SpawnMode(ET4SpawnMode::All)
 	{
 	}
 
-	FT4ObjectID(const uint32& InValue, const ET4SpawnMode InMode)
+	FT4ActorID(const uint32& InValue, const ET4SpawnMode InMode)
 		: Value(InValue)
 		, SpawnMode(InMode)
 	{
 	}
 
-	FT4ObjectID(const FT4ObjectID& InValue)
+	FT4ActorID(const FT4ActorID& InValue)
 		: Value(InValue.Value)
 		, SpawnMode(InValue.SpawnMode)
 	{
@@ -288,49 +288,49 @@ public:
 		return Value;
 	}
 
-	FORCEINLINE FT4ObjectID& operator++()
+	FORCEINLINE FT4ActorID& operator++()
 	{
 		Value++;
-		if (T4InvalidWorldObjectID == Value)
+		if (T4Const_EmptyActorID == Value)
 		{
 			Value = 1; // reserved 0
 		}
 		return *this;
 	}
 
-	FORCEINLINE FT4ObjectID& operator++(int)
+	FORCEINLINE FT4ActorID& operator++(int)
 	{
 		Value++;
-		if (T4InvalidWorldObjectID == Value)
+		if (T4Const_EmptyActorID == Value)
 		{
 			Value = 1;
 		}
 		return *this;
 	}
 
-	FORCEINLINE bool operator==(const FT4ObjectID& InRhs) const
+	FORCEINLINE bool operator==(const FT4ActorID& InRhs) const
 	{
 		return (Value == InRhs.Value && SpawnMode == InRhs.SpawnMode) ? true : false;
 	}
 
-	FORCEINLINE bool operator!=(const FT4ObjectID& InRhs) const
+	FORCEINLINE bool operator!=(const FT4ActorID& InRhs) const
 	{
 		return (Value != InRhs.Value || SpawnMode != InRhs.SpawnMode) ? true : false;
 	}
 
-	FORCEINLINE friend uint32 GetTypeHash(const FT4ObjectID& InRhs)
+	FORCEINLINE friend uint32 GetTypeHash(const FT4ActorID& InRhs)
 	{
 		return HashCombine(GetTypeHash(InRhs.Value), GetTypeHash(InRhs.SpawnMode));
 	}
 
 	FORCEINLINE bool IsValid() const
 	{
-		return (0 != Value && T4InvalidWorldObjectID != Value) ? true : false;
+		return (0 != Value && T4Const_EmptyActorID != Value) ? true : false;
 	}
 
 	FORCEINLINE void Empty()
 	{
-		Value = T4InvalidWorldObjectID;
+		Value = T4Const_EmptyActorID;
 	}
 
 	FORCEINLINE const TCHAR* ToModeString() const
@@ -351,6 +351,97 @@ public:
 
 	FORCEINLINE FString ToString() const
 	{
-		return FString::Printf(TEXT("FT4ObjectID:%u=%s"), Value, ToModeString());
+		return FString::Printf(TEXT("FT4ActorID:%u=%s"), Value, ToModeString());
+	}
+};
+
+static const uint32 T4Const_EmptyObjectID = (uint32)-1;
+static const uint32 T4Const_EditorReservedObjectID = 1000000; // #114
+
+// #34, #114 : C/S GameObject
+USTRUCT()
+struct FT4ObjectID
+{
+public:
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere)
+	uint32 Value;
+
+public:
+	FT4ObjectID()
+		: Value(T4Const_EmptyObjectID)
+	{
+	}
+
+	FT4ObjectID(const uint32& InValue)
+		: Value(InValue)
+	{
+	}
+
+	FT4ObjectID(const FT4ObjectID& InValue)
+		: Value(InValue.Value)
+	{
+	}
+
+	FORCEINLINE uint32 operator*() const
+	{
+		return Value;
+	}
+
+	FORCEINLINE FT4ObjectID& operator++()
+	{
+		Value++;
+		if (T4Const_EmptyObjectID == Value)
+		{
+			Value = 1; // reserved 0
+		}
+		return *this;
+	}
+
+	FORCEINLINE FT4ObjectID& operator++(int)
+	{
+		Value++;
+		if (T4Const_EmptyObjectID == Value)
+		{
+			Value = 1;
+		}
+		return *this;
+	}
+
+	FORCEINLINE FT4ObjectID operator=(const FT4ObjectID& InRhs)
+	{
+		Value = InRhs.Value;
+		return *this;
+	}
+
+	FORCEINLINE bool operator==(const FT4ObjectID& InRhs) const
+	{
+		return (Value == InRhs.Value) ? true : false;
+	}
+
+	FORCEINLINE bool operator!=(const FT4ObjectID& InRhs) const
+	{
+		return (Value != InRhs.Value) ? true : false;
+	}
+
+	FORCEINLINE friend uint32 GetTypeHash(const FT4ObjectID& InRhs)
+	{
+		return InRhs.Value;
+	}
+
+	FORCEINLINE void Empty()
+	{
+		Value = T4Const_EmptyObjectID;
+	}
+
+	FORCEINLINE bool IsValid() const
+	{
+		return (T4Const_EmptyObjectID != Value) ? true : false;
+	}
+
+	FORCEINLINE FString ToString() const
+	{
+		return FString::Printf(TEXT("FT4ObjectID '%u'"), Value);
 	}
 };

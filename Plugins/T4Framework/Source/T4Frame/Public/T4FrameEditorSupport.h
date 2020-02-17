@@ -257,7 +257,7 @@ public:
 	) = 0; // #114: Conti Editor
 
 	virtual bool DoDespawn(const FT4ObjectID& InObjectID) = 0; // #114
-	virtual bool DoDespawnAll(bool bClearPlayerObject) = 0; // #68
+	virtual bool DoDespawnAll(bool bClearPlayerActor) = 0; // #68
 
 	virtual bool DoChangeStance(FName InStanceName) = 0;// #73, #114
 	virtual bool DoChangeSubStance(FName InSubStanceName) = 0; // #106, #114

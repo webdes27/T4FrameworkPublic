@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "T4FrameStructs.h"
-#include "T4FrameNetwork.h"
+#include "T4FrameTypes.h"
 #include "T4FrameGameTypes.h" // #104
+#include "T4FrameStructs.h"
 
 #if WITH_EDITOR
 #include "T4FrameEditorSupport.h" // #60
@@ -34,7 +34,7 @@ struct FWorldContext;
 class AController;
 class AAIController;
 class UInputComponent;
-class IT4WorldObject;
+class IT4WorldActor;
 class IT4GameWorld;
 class AT4PlayerController;
 class IT4EditorViewportClient;
@@ -50,10 +50,10 @@ enum ET4FrameType
 };
 
 class IT4GameFrame;
-class IT4WorldObject;
+class IT4WorldActor;
 
 #if WITH_EDITOR
-DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnViewTargetChanged, IT4WorldObject*);
+DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnViewTargetChanged, IT4WorldActor*);
 #endif
 
 // #114
@@ -63,11 +63,11 @@ public:
 	virtual ~IT4GameObject() {}
 
 	virtual ET4LayerType GetLayerType() const = 0;
-	virtual const FT4ObjectID& GetObjectID() const = 0;
+	virtual const FT4ObjectID& GetObjectID() const = 0; // #114
 };
 
 class AAIController;
-class T4FRAME_API IT4GameAIController : public IT4ObjectControl
+class T4FRAME_API IT4GameAIController : public IT4ActorController
 {
 public:
 	virtual ~IT4GameAIController() {}
@@ -78,7 +78,7 @@ public:
 	virtual ET4GameEnemyType GetEnemyType() const = 0; // #104 : TODO M5
 };
 
-class T4FRAME_API IT4PlayerController : public IT4ObjectControl
+class T4FRAME_API IT4PlayerController : public IT4ActorController
 {
 public:
 	virtual ~IT4PlayerController() {}
@@ -189,13 +189,13 @@ public:
 	virtual bool OnWorldTravel(const UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
 
 	// Client
-	virtual UT4GameObject* GetPlayerGameObject() const = 0; // #114 : Only Client
+	virtual UT4GameObject* GetPlayerClientObject() const = 0; // #114 : Only Client
 	virtual IT4PlayerController* GetPlayerController() const = 0;
 
 	virtual bool GetMousePositionToWorldRay(FVector& OutLocation, FVector& OutDirection) = 0; // #113
 
-	virtual IT4WorldObject* GetMousePickingObject() = 0;
-	virtual IT4WorldObject* GetMousePickingObject(const FVector& InLocation, const FVector& InDirection, FVector& OutHitLocation) = 0; // #111
+	virtual IT4WorldActor* GetMousePickingActor() = 0;
+	virtual IT4WorldActor* GetMousePickingActor(const FVector& InLocation, const FVector& InDirection, FVector& OutHitLocation) = 0; // #111
 
 	virtual bool GetMousePickingLocation(FVector& OutLocation) = 0;
 	virtual bool GetMousePickingLocation(ET4CollisionChannel InChannel, const FVector& InLocation, const FVector& InDirection, FVector& OutLocation) = 0; // #117
@@ -203,7 +203,7 @@ public:
 	virtual FViewport* GetViewport() const = 0; // #68
 
 	virtual void ClearOutline() = 0; // #115
-	virtual void SetOutlineTarget(const FT4ObjectID& InObjectID, const FLinearColor& InColor) = 0; // #115
+	virtual void SetOutlineTarget(const FT4ActorID& InActorID, const FLinearColor& InColor) = 0; // #115
 
 	virtual bool AddClientGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
 	virtual void RemoveClientGameObject(const FT4ObjectID& InObjectID) = 0; // #114
@@ -232,13 +232,12 @@ public:
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 	// Server
-	virtual uint32 GenerateNetIDForServer() = 0; // #41
-	virtual FT4ObjectID GenerateObjectIDForServer() = 0;
+	virtual FT4ObjectID GenerateObjectIDForServer() = 0; // #41
 
-	virtual bool RegisterGameAIController(const FT4NetID& InUniqueID, IT4GameAIController* InAIController) = 0; // #31
-	virtual void UnregisterGameAIController(const FT4NetID& InUniqueID) = 0; // #31
+	virtual bool RegisterGameAIController(const FT4ObjectID& InObjectID, IT4GameAIController* InAIController) = 0; // #31
+	virtual void UnregisterGameAIController(const FT4ObjectID& InObjectID) = 0; // #31
 
-	virtual IT4GameAIController* FindGameAIController(const FT4NetID& InUniqueID) const = 0; // #31
+	virtual IT4GameAIController* FindGameAIController(const FT4ObjectID& InObjectID) const = 0; // #31
 
 	virtual bool AddServerGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
 	virtual void RemoveServerGameObject(const FT4ObjectID& InObjectID) = 0; // #114

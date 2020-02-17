@@ -60,8 +60,8 @@ enum class ET4ActionType : uint32
 
 	WorldTravel,
 
-	SpawnObject,
-	DespawnObject,
+	SpawnActor,
+	DespawnActor,
 
 	// begin Object / #68 : #T4_ADD_ACTION_TAG_CODE
 
