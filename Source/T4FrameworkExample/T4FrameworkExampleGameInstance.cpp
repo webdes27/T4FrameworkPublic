@@ -3,7 +3,7 @@
 #include "T4FrameworkExampleGameInstance.h"
 #include "T4FrameworkExampleGameMode.h"
 
-#include "T4Frame/Public/T4Frame.h"
+#include "T4Framework/Public/T4Framework.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/Framework/GameFlow/index.html

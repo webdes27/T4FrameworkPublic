@@ -27,8 +27,11 @@ struct FT4StopAction;
 struct FT4SpawnActorAction;
 struct FT4ActionParameters; // #28
 
-struct FT4GameBuiltin_PacketCS_Base;
-struct FT4GameBuiltin_PacketSC_Base;
+#if !UE_BUILD_SHIPPING
+class IT4ActionReplayPlayer; // #68
+class IT4ActionReplayRecorder; // #68
+class IT4ActionReplaySystem; // #68
+#endif
 
 class UT4EntityAsset;
 
@@ -138,44 +141,6 @@ public:
 	virtual uint32 NumChildActions(const FT4ActionKey& InActionKey) const = 0; // #54
 };
 
-// #34, #63
-class T4ENGINE_API IT4ActorController
-{
-public:
-	virtual ~IT4ActorController() {}
-
-	virtual ET4LayerType GetLayerType() const = 0;
-
-	virtual const FT4ObjectID& GetObjectID() const = 0; // #114 : GameObject and Controller ID (WARN : 서버는 모두, 클라는 Player 만 존재)
-
-	virtual FName GetClassTypeName() const = 0; // #104 : Object type 을 Enum 이 아니라 FName 으로 처리. N개가 될 수 있음을 가정하겠음
-	
-	virtual bool HasPlayer() const = 0; // #104
-
-#if (WITH_EDITOR || WITH_SERVER_CODE)
-	virtual void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) = 0; // #63
-#endif
-
-	virtual bool SetWorldActor(const FT4ActorID& InNewTargetID) = 0;
-	virtual void ResetWorldActor(bool bInSetDefaultPawn) = 0;
-
-	virtual bool HasWorldActor() const = 0;
-	virtual const FT4ActorID& GetWorldActorID() const = 0;
-	virtual IT4WorldActor* GetWorldActor() const = 0;
-
-	virtual bool HasObserverActor() const = 0; // #52
-	virtual bool SetObserverActor(const FT4ActorID& InNewObserverID) = 0; // #52
-	virtual void ClearObserverActor() = 0; // #52
-
-	virtual IT4GameWorld* GetGameWorld() const = 0; // #52
-
-	virtual bool HasAction(const FT4ActionKey& InActionKey) const = 0; // #102 : 존재만 해도 true 리턴
-	virtual bool IsPlayingAction(const FT4ActionKey& InActionKey) const = 0; // #20 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
-
-	virtual AController* GetAController() = 0;
-	virtual APlayerCameraManager* GetCameraManager() const = 0; // #100
-};
-
 class T4ENGINE_API IT4WorldActor
 {
 public:
@@ -185,12 +150,14 @@ public:
 	virtual ET4ObjectType GetObjectType() const = 0;
 
 	virtual const FT4ActorID& GetActorID() const = 0;
-	virtual const FT4ObjectID& GetOwnerID() const = 0; // #114 : GameObject ID
-
 	virtual const FName& GetName() const = 0;
 
 	virtual const FT4EntityKey& GetEntityKey() const = 0; // #35
 	virtual const UT4EntityAsset* GetEntityAsset() = 0; // #39
+
+	virtual const FT4ObjectID& GetOwnerID() const = 0; // #114 : GameObject ID
+	virtual void SetOwnerID(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual void ClearOwnerID() = 0; // #114
 
 	virtual const FName GetStanceName() const = 0; // #73 : StanceNameTable
 	virtual const FName GetSubStanceName() const = 0; // #106 : SubStanceNameTable
@@ -206,10 +173,6 @@ public:
 	virtual void OnAnimNotifyMessage(const FT4AnimNotifyMessage* InMessage) = 0; // #111
 
 	virtual bool OnExecuteAction(const FT4ActionCommand* InAction, const FT4ActionParameters* InParam = nullptr) = 0; // #76
-
-	virtual bool HasActorController() const = 0; // #34 : 서버는 모두, 클라는 Player 만 존재 (WARN)
-	virtual void SetActorController(IT4ActorController* InController) = 0; // #34, #42, #36 : 서버는 모두, 클라는 Player 만 존재 (WARN)
-	virtual IT4ActorController* GetActorController() = 0; // #34, #42, #36 : 서버는 모두, 클라는 Player 만 존재 (WARN)
 
 	virtual IT4AnimControl* GetAnimControl() const = 0; // #14
 	virtual IT4ActionControl* GetActionControl() = 0; // #20, #76 : Action Public Manager
@@ -257,7 +220,7 @@ public:
 
 	virtual void SetHeightOffset(float InOffset) = 0; // #18
 	virtual void SetOutline(bool bInUse) = 0; // #115
-	virtual void SetNameplateText(const TCHAR* InText, float InHeightOffset) = 0; // #119 : InText == nullptr Hide
+	virtual void SetNameplateText(const TCHAR* InText, float InHeightOffset, const FColor& InTextColor, float InScaleXY) = 0; // #119 : InText == nullptr Hide
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 	virtual FT4ServerWorldActorDelegates& GetServerDelegates() = 0; // #49
@@ -282,62 +245,6 @@ public:
 		float InBlendOutTimeSec = T4Const_DefaultAnimBlendTimeSec
 	) = 0; // #111
 #endif
-};
-
-class T4ENGINE_API IT4ActionReplayPlayer // #68
-{
-public:
-	virtual ~IT4ActionReplayPlayer() {}
-
-	virtual bool IsPaused() const = 0;
-	virtual void SetPause(bool bPause) = 0;
-
-	virtual const TCHAR* GetPlayAssetName() const = 0;
-	virtual const TCHAR* GetPlayFile() const = 0;
-
-	virtual float GetPlayTimeSec() const = 0;
-	virtual float GetMaxPlayTimeSec() const = 0;
-};
-
-class T4ENGINE_API IT4ActionReplayRecorder // #68
-{
-public:
-	virtual ~IT4ActionReplayRecorder() {}
-
-	virtual bool IsRecording() const = 0;
-
-	virtual const TCHAR* GetRecFile() const = 0;
-
-	virtual float GetRecTimeSec() const = 0;
-
-	virtual bool RecWorldAction(const FT4ActionCommand* InAction, const FT4ActionParameters* InActionParam) = 0;
-	virtual bool RecActorAction(const FT4ActorID& InActorID, const FT4ActionCommand* InAction, const FT4ActionParameters* InActionParam) = 0;
-};
-
-class T4ENGINE_API IT4ActionReplaySystem // #68
-{
-public:
-	virtual ~IT4ActionReplaySystem() {}
-
-	virtual bool IsPlaying() const = 0;
-	virtual bool IsRecording() const = 0;
-
-	virtual IT4ActionReplayPlayer* GetPlayer() const = 0;
-	virtual IT4ActionReplayRecorder* GetRecorder() const = 0;
-
-	virtual bool DoPlay(const FSoftObjectPath& InPlayPath) = 0;
-	virtual bool DoPlay(const FString& InPlayAssetName, const FString& InFolderName) = 0; // /T4Framework/Editor/ActionReplay/<InFolderName>/<InPlayAssetName>.uasset
-	virtual void DoStopPlaying() = 0;
-
-	virtual bool IsPlayRepeat() const = 0;
-	virtual void SetPlayRepeat(bool bEnable) = 0;
-
-	virtual bool IsPlayerPossessed() const = 0;
-	virtual void SetPlayerPossessed(bool bPossess) = 0;
-
-	virtual bool DoRec(const FSoftObjectPath& InRecPath) = 0;
-	virtual bool DoRec(const FString& InRecAssetName, const FString& InFolderName) = 0; // /T4Framework/Editor/ActionReplay/<InFolderName>/<InRecAssetName>.uasset
-	virtual void DoStopRecording() = 0;
 };
 
 class T4ENGINE_API IT4WorldContainer // #87
@@ -468,20 +375,17 @@ public:
 	virtual IT4WorldNavigationSystem* GetNavigationSystem() = 0; // #87
 
 	// Client Only
-	virtual bool IsClientRenderable() const = 0; // #115 : PC가 스폰되어야 렌더링이 가능하다.
-	virtual bool SetClientActorController(IT4ActorController* InActorController) = 0; // AT4PlayerController
+	virtual bool SetPlayerInfo(const FT4ObjectID& InPlayerObjectID, APlayerController* InPlayerController) = 0; // AT4PlayerController
+	virtual bool HasPlayerController() const = 0; // #115 : PC가 스폰되어야 렌더링이 가능하다.
+	virtual const FT4ObjectID GetPlayerObjectID() const = 0;
 
 	virtual APlayerController* GetPlayerController() const = 0; // #114
 	virtual APlayerCameraManager* GetPlayerCameraManager() const = 0; // #114
 
 	virtual bool HasPlayerActor() const = 0;
+	virtual IT4WorldActor* GetPlayerActor() const = 0;
 	virtual bool ComparePlayerActor(const FT4ActorID& InActorID) const = 0;
 	virtual bool ComparePlayerActor(IT4WorldActor* InWorldActor) const = 0;
-
-	virtual void ClearPlayerActor(bool bInDefaultPawn) = 0; // #114
-
-	virtual IT4WorldActor* GetPlayerActor() const = 0;
-	virtual void SetPlayerActor(const FT4ActorID& InActorID) = 0; // #114
 
 	virtual bool SetMPCGlobalParameterScalar(FName InParameterName, const float InScalar) = 0; // #115
 	virtual bool SetMPCGlobalParameterColor(FName InParameterName, const FLinearColor& InValue) = 0; // #115

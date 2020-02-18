@@ -356,7 +356,6 @@ public:
 };
 
 static const uint32 T4Const_EmptyObjectID = (uint32)-1;
-static const uint32 T4Const_EditorReservedObjectID = 1000000; // #114
 
 // #34, #114 : C/S GameObject
 USTRUCT()

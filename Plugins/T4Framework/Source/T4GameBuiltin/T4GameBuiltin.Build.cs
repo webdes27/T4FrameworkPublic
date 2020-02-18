@@ -30,7 +30,7 @@ namespace UnrealBuildTool.Rules
                     "GameplayTasks",
                     "T4Asset",
                     "T4Engine",
-                    "T4Frame"
+                    "T4Framework"
                 }
             );
 
