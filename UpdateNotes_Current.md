@@ -5,7 +5,7 @@ Powerful toolset and Flexible layer solution
 
 - Release Notes (2020.01 ~ 2020.ING)
   - **[2020.02.19] [M5] Copying //Private to //Deploy (private commit 9b4b59a)**
-    - #114 [기능개선] NPC AI 개선을 위해 NPC DataTable 에 AgentRadius 추가 및 공격 거리에 반영
+    - #114 [기능개선] NPC AI 개선을 위해 NPC DataTable 에 AgentRadius 추가 및 공격 거리 반영
     - #114 [내부수정] NPC AI 개선을 위한 Races Constant 테이블 추가
   - **[2020.02.18] [M5] Copying //Private to //Deploy (private commit 99c8590)**
     - #114 [내부수정] T4Frame 모듈을 T4Framework 로 리네임
