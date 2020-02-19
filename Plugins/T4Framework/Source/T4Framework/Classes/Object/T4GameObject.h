@@ -11,6 +11,7 @@
  */
 class UWorld;
 class IT4Framework;
+class IT4WorldActor;
 class IT4WorldSystem;
 UCLASS()
 class T4FRAMEWORK_API UT4GameObject : public UObject, public IT4GameObject

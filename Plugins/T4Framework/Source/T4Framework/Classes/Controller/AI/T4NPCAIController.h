@@ -92,7 +92,6 @@ public:
 	void SetObjectID(const FT4ObjectID& InObjectID) { ObjectID = InObjectID;}
 
 	IT4WorldActor* FindWorldActor(const FT4ActorID& InActorID) const; // #104
-	bool FindNearestWorldActors(float InMaxDistance, TArray<IT4WorldActor*>& OutActors); // #104
 
 protected:
 	virtual void NotifyAdvance(float InDeltaTime) {} // #114

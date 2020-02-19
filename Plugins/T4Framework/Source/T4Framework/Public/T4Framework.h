@@ -242,10 +242,10 @@ public:
 	virtual void ClearOutline() = 0; // #115
 	virtual void SetOutlineTarget(const FT4ActorID& InActorID, const FLinearColor& InColor) = 0; // #115
 
-	virtual bool AddClientGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
-	virtual void RemoveClientGameObject(const FT4ObjectID& InObjectID) = 0; // #114
-	virtual void RemoveAllClientGameObjects() = 0; // #114
-	virtual UT4GameObject* GetClientGameObject(const FT4ObjectID& InObjectID) const = 0; // #114
+	virtual bool AddClientObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
+	virtual void RemoveClientObject(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual void RemoveAllClientObjects() = 0; // #114
+	virtual UT4GameObject* GetClientObject(const FT4ObjectID& InObjectID) const = 0; // #114
 
 #if WITH_EDITOR
 	virtual bool IsPreviewMode() const = 0; // #68
@@ -278,10 +278,10 @@ public:
 	virtual void RemoveObjectController(const FT4ObjectID& InObjectID) = 0; // #31
 	virtual IT4NPCAIController* GetObjectController(const FT4ObjectID& InObjectID) const = 0; // #31
 
-	virtual bool AddServerGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
-	virtual void RemoveServerGameObject(const FT4ObjectID& InObjectID) = 0; // #114
-	virtual void RemoveAllServerGameObjects() = 0; // #114
-	virtual UT4GameObject* GetServerGameObject(const FT4ObjectID& InObjectID) const = 0; // #114
+	virtual bool AddServerObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
+	virtual void RemoveServerObject(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual void RemoveAllServerObjects() = 0; // #114
+	virtual UT4GameObject* GetServerObject(const FT4ObjectID& InObjectID) const = 0; // #114
 #endif
 };
 

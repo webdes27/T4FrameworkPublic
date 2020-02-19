@@ -6,7 +6,6 @@
 
 #include "Public/T4GameBuiltin_Types.h"
 #include "Public/T4GameBuiltin_GameDataTypes.h" // #48
-#include "Public/T4GameBuiltin_Structs.h" // #114
 
 #include "T4Engine/Public/Asset/T4AssetLoader.h" // #50, #42
 #include "T4Framework/Classes/Controller/AI/T4NPCAIController.h"
@@ -25,7 +24,10 @@ struct FT4CreatureAIMemory // #50
 
 	void Reset()
 	{
-		AIState = ET4GameBuiltin_AIState::Invisible;
+		AIState = ET4GameBuiltin_AIState::Ready;
+		HealthPoint = 0.0f;
+
+		// TODO : #114 : 임시!! 아래 프로퍼티는 모두 정리!!
 
 		InitSpawnLocation = FVector::ZeroVector;
 		MoveTargetLocation = FVector::ZeroVector;
@@ -45,7 +47,9 @@ struct FT4CreatureAIMemory // #50
 
 	ET4GameBuiltin_AIState AIState;
 
-	// TODO : #114 : 임시!! 정리!!
+	float HealthPoint; // #114
+
+	// TODO : #114 : 임시!! 아래 프로퍼티는 모두 정리!!
 
 	FVector InitSpawnLocation;
 	FVector MoveTargetLocation;
@@ -64,10 +68,9 @@ struct FT4CreatureAIMemory // #50
 	float MoveSpeedSelected; // #106
 };
 
-struct FT4GameBuiltin_GameNPCData;
-struct FT4GameBuiltin_GameWeaponData; // #50
 class UBehaviorTree;
 class IT4WorldActor;
+class UT4GameBuiltin_ServerObject;
 UCLASS()
 class T4GAMEBUILTIN_API AT4GameBuiltin_CreatureAIController : public AT4NPCAIController
 {
@@ -79,10 +82,6 @@ public:
 	void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) override; // #63
 #endif
 
-	// IT4NPCAIController
-	FName GetRaceName() const; // #104, #114
-	ET4GameBuiltin_EnemyType GetEnemyType() const; // #104
-
 public:
 	bool Bind(const FT4GameBuiltin_GameDataID& InNPCGameDataID); // #31, #50
 
@@ -92,19 +91,6 @@ public:
 	bool IsAttacking() const; // #50
 	bool IsCurrentAggressive() const; // #50
 	bool IsOriginAggressive() const; // #104 : 테이블 설정
-
-	bool CheckValidAttackTarget(IT4WorldActor* InTargetActor); // #104 : tribe 와 enemy 설정을 보고 hit 전달 여부를 결정해야 한다.
-	bool CheckValidAttackByTarget(); // #104 : AttackTarget 이 Normal Attack 이 가능한 거리인지 체크!
-
-	IT4WorldActor* FindNearestEnemyByAttackRange(); // #50
-	IT4WorldActor* FindNearestEnemyBySensoryRange(); // #34, #50
-
-	bool GetMoveTargetLocationByAttackRange(
-		const FVector& InStartLocation,
-		const FVector& InEndLocation,
-		float InTargetCapsuleRadius,
-		FVector& OutTargetLocation
-	); // #50
 
 	bool DoRoaming(FVector& OutTargetLocation); // #50
 	bool DoAttack(const FT4ObjectID& InTargetObjectID); // #50
@@ -116,7 +102,6 @@ public:
 	bool DoUpdateMoveSpeed(bool bMoving); // #52
 	bool DoUpdateSubStance(FName InSubStanceName); // #108
 
-	const FT4GameplayAIStat& GetAIStat() const { return AIStat; } // #114
 	const FT4CreatureAIMemory& GetAIMemoryConst() const { return AIMemory; } // #50
 
 	void SetMoveTargetLocation(const FVector& InMoveTargetLocation) // #52
@@ -128,7 +113,9 @@ public:
 		AIMemory.AttackTargetObjectID = InTargetObjectID;
 	}
 
-	IT4WorldActor* FindWorldActor(const FT4ObjectID& InObjectID) const; // #114
+	void UpdateAggressive();
+
+	UT4GameBuiltin_ServerObject* GetServerObject() const; // #114
 	IT4ObjectController* GetObjectController(const FT4ObjectID& InObjectID) const; // #114
 
 protected:
@@ -137,35 +124,16 @@ protected:
 	void NotifyAIStart() override; // #50
 	void NotifyAIEnd() override; // #50
 
-	void HandleOnHitOverlap(
-		const FName& InEventName,
-		IT4WorldActor* InHitWorldActor,
-		const FHitResult& InSweepResult
-	); // #49
-
+	void HandleOnHitOverlap(const FName& InEventName, IT4WorldActor* InHitWorldActor, const FHitResult& InSweepResult); // #49
 	void ClearHitOverlapEvent(); // #49
 
-	void HandleOnCallbackMoveTo(
-		const FVector& InMoveVelocity,
-		bool bForceMaxSpeed // #52 : MovementComponet::MaxSpeed 를 사용할지에 대한 Flag, 기본값이 false 로 Velocity 에서 Speed 를 얻는다. 동기화 이슈!!
-	); // #42, #34
+	void HandleOnCallbackMoveTo(const FVector& InMoveVelocity, bool bForceMaxSpeed); // #42, #34, #52 : MovementComponet::MaxSpeed 를 사용할지에 대한 Flag, 기본값이 false 로 Velocity 에서 Speed 를 얻는다. 동기화 이슈!!
 	void HandleOnCallbackMoveStop(); // #52
 
 private:
 	bool CheckAsyncLoading();
 
-	IT4WorldActor* FindNearestObject(float InMaxDistance); // #50
-
-	float GetMoveSpeedBySubStance() const; // #50
-
-	void UpdateAggressive();
-
 private:
-	FT4GameBuiltin_GameDataID NPCGameDataID;
-
-	const FT4GameBuiltin_GameNPCData* NPCGameData; // #50
-	const FT4GameBuiltin_GameWeaponData* MainWeaponGameData; // #50
-
 	ET4AIDataLoadState AIDataLoadState; // #50
 	FT4BehaviorTreeAssetLoader BehaviorTreeAssetLoader;
 
@@ -173,7 +141,6 @@ private:
 	UPROPERTY(transient)
 	UBehaviorTree* BehaviorTreeAsset;
 
-	FT4GameplayAIStat AIStat; // #114
 	FT4CreatureAIMemory AIMemory; // #50 : 필요하다면 Blackboard 로 변경하겠지만, 현재는 장점이 없어보인다.
 
 	bool bHitOverlapEventStarted;

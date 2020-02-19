@@ -57,6 +57,9 @@ public:
 	float PassiveApproachTimeSec; // #50
 
 	UPROPERTY(EditAnywhere)
+	float AgentRadius; // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
+
+	UPROPERTY(EditAnywhere)
 	float SensoryRange; // #50
 
 	UPROPERTY(EditAnywhere)
@@ -70,6 +73,7 @@ public:
 		: EnemyType(ET4GameBuiltin_EnemyType::NoEnemy) // #104
 		, bAggressive(false)
 		, PassiveApproachTimeSec(5.0f/*60.0f * 5.0f*/)
+		, AgentRadius(50.0f) // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
 		, SensoryRange(1000.0f)
 		, RomaingRange(1000.0f)
 		, RoamingRateRatio(30.0f)
