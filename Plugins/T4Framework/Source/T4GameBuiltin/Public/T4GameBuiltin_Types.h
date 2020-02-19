@@ -27,16 +27,6 @@ enum ET4GameBuiltin_HotKeyType // #116
 };
 
 UENUM()
-enum class ET4GameBuiltin_SkillSetUseType : uint8 // #116
-{
-	Primary,
-	Sequential,
-	HotKey,
-
-	None UMETA(Hidden),
-};
-
-UENUM()
 enum class ET4GameBuiltin_SkillSequence : uint8
 {
 	Ready, // #48
@@ -46,4 +36,22 @@ enum class ET4GameBuiltin_SkillSequence : uint8
 	Finish, // #48
 
 	Nums,
+};
+
+UENUM()
+enum class ET4GameBuiltin_AIState : uint8 // #114
+{
+	Invisible,
+	Active,
+	Dead,
+};
+
+UENUM()
+enum class ET4GameBuiltin_AttackTarget : uint8 // #112
+{
+	ObjectID,
+	Location,
+	Direction,
+
+	None,
 };

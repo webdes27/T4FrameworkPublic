@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Public/T4GameBuiltin_Types.h"
 #include "Public/T4GameBuiltin_GameDataTypes.h" // #48
 #include "T4Framework/Classes/Object/T4GameObject.h"
 #include "T4Framework/Public/T4FrameworkTypes.h"
@@ -15,7 +16,7 @@
 class IT4WorldActor;
 class IT4PlayerController;
 class IT4GameBuiltin_ClientPacketHandler;
-class IT4GameAIController;
+class IT4NPCAIController;
 struct FT4GameBuiltin_GamePlayerData;
 struct FT4GameBuiltin_GameNPCData;
 struct FT4GameBuiltin_GameWeaponData;
@@ -38,8 +39,6 @@ public:
 	bool IsServerObject() const override { return true; }
 
 public:
-	void Reset();
-
 	const FT4ActorID& GetWorldActorID() const { return WorldActorID; } // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 
 	bool OnLeave(IT4PlayerController* InSenderPC);
@@ -73,7 +72,7 @@ public:
 
 	bool OnSkillTarget(
 		const FT4GameBuiltin_GameDataID& InSkillDataID,
-		ET4GameplayAttackTarget InTargetType, // #112
+		ET4GameBuiltin_AttackTarget InTargetType, // #112
 		const FT4ObjectID& InTargetObjectID, // #63 : 타겟이 있으면 먼저 체크! 없으면 Direct 을 사용한다.
 		FName InTargetHitBone, // #112 : TargetActorID Valid 일 경우만, 현재는 순수 비쥬얼 용도
 		const FVector& InTargetLocationOrDirection // #49, #68 : Area, #112
@@ -103,7 +102,7 @@ protected:
 	void LeaveCommon();
 
 	IT4WorldActor* GetWorldActor() const;
-	IT4GameAIController* GetGameAIController() const;
+	IT4NPCAIController* GetGameAIController() const;
 
 	IT4GameBuiltin_ClientPacketHandler* GetClientPacketHandler() const;
 

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "T4GameBuiltin_PacketTypes.h"
 
+#include "Public/T4GameBuiltin_Types.h" // #114
 #include "Public/T4GameBuiltin_GameDataTypes.h" // #48
 
 #include "T4Engine/Public/T4EngineTypes.h"

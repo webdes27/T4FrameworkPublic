@@ -52,11 +52,11 @@ enum ET4EngineConstantTable
 
     Editor_End,
 
-	Nums = Editor_End
+	EConst_Nums = Editor_End
 
 #else
 
-	Nums = Engine_End
+	EConst_Nums = Engine_End
 
 #endif
 };

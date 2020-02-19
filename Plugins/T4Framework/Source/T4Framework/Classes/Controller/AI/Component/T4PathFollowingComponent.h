@@ -34,8 +34,8 @@ public:
 	FT4OnCallbackMoveTo& GetOnCallbackMoveTo() { return OnCallbackMoveTo; } // #42, #50
 	FT4OnCallbackMoveStop& GetOnCallbackMoveStop() { return OnCallbackMoveStop; } // #52
 
-	void SetWorldActorID(const FT4ActorID& InActorID) { TargetActorID = InActorID; }
-	void ClearWorldActorID() { TargetActorID.Empty(); }
+	void SetControlActorID(const FT4ActorID& InActorID) { TargetActorID = InActorID; }
+	void ClearControlActorID() { TargetActorID.Empty(); }
 
 protected:
 	void BeginPlay() override;

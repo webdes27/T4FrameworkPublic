@@ -9,7 +9,7 @@
 /**
   * http://api.unrealengine.com/KOR/Gameplay/Framework/GameFlow/index.html
  */
-class IT4GameFramework;
+class IT4Framework;
 
 UCLASS()
 class T4FRAMEWORK_API UT4GameInstance : public UGameInstance
@@ -28,5 +28,5 @@ public:
 #endif
 
 protected:
-	IT4GameFramework* GameFrame;
+	IT4Framework* Framework;
 };

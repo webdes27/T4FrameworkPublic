@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Public/T4GameBuiltin_Types.h" // #114
 #include "Public/T4GameBuiltin_GameDataTypes.h" // #48
 #include "T4Framework/Classes/Object/T4GameObject.h"
 #include "T4GameBuiltin_ClientObject.generated.h"
@@ -10,8 +11,8 @@
 /**
   * #114 : BP 로 노출해서 게임 로직에서 사용한다.
  */
-class IT4GameFramework;
-class IT4GameWorld;
+class IT4Framework;
+class IT4WorldSystem;
 class IT4WorldActor;
 class IT4PlayerController;
 class IT4GameBuiltin_ServerPacketHandler; // #114
@@ -84,7 +85,7 @@ public:
 
 	bool OnSkillTarget(
 		const FT4GameBuiltin_GameDataID& InSkillDataID,
-		ET4GameplayAttackTarget InTargetType,
+		ET4GameBuiltin_AttackTarget InTargetType,
 		const FT4ObjectID& InTargetObjectID, // #63 : 타겟이 있으면 먼저 체크! 없으면 Direct 을 사용한다.
 		FName InTargetHitBone, // #112 : TargetActorID Valid 일 경우만, 현재는 순수 비쥬얼 용도
 		const FVector& InTargetLocationOrDirection, // #49, #68, #112

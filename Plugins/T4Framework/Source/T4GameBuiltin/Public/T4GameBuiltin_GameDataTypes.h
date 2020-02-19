@@ -34,6 +34,57 @@ enum class ET4GameBuiltin_GameDataType : uint8
 };
 
 UENUM()
+enum class ET4GameBuiltin_StatCategory : uint8 // #114
+{
+	Player,
+	NPC,
+	Item,
+
+	Skill,
+	Effect,
+
+	None UMETA(Hidden),
+};
+
+UENUM()
+enum class ET4GameBuiltin_StatLevel : uint8 // #114
+{
+	Level_1,
+	Level_2,
+	Level_3,
+	Level_4,
+	Level_5,
+	Level_6,
+	Level_7,
+	Level_8,
+	Level_9,
+	Level_10,
+
+	Max UMETA(Hidden),
+};
+
+UENUM()
+enum class ET4GameBuiltin_SkillSetUseType : uint8 // #116
+{
+	Primary,
+	Sequential,
+	HotKey,
+
+	None UMETA(Hidden),
+};
+
+UENUM()
+enum class ET4GameBuiltin_EnemyType : uint8 // #104
+{
+	Player,
+	Hostile_Tribe,
+
+	All,
+
+	NoEnemy,
+};
+
+UENUM()
 enum class ET4GameBuiltin_GameDataValidation : uint8
 {
 	Checkit,
@@ -375,18 +426,18 @@ struct FT4GameBuiltin_GamePlayerStatDataID : public FT4GameBuiltin_GameDataID
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(Transient)
-	ET4GameplayStatCategory StatCategory; // #114
+	ET4GameBuiltin_StatCategory StatCategory; // #114
 
 public:
 	FT4GameBuiltin_GamePlayerStatDataID()
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat)
-		, StatCategory(ET4GameplayStatCategory::Player)
+		, StatCategory(ET4GameBuiltin_StatCategory::Player)
 	{
 	}
 
 	FT4GameBuiltin_GamePlayerStatDataID(const FName& InRowName)
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat, InRowName)
-		, StatCategory(ET4GameplayStatCategory::Player)
+		, StatCategory(ET4GameBuiltin_StatCategory::Player)
 	{
 	}
 
@@ -411,18 +462,18 @@ struct FT4GameBuiltin_GameNPCStatDataID : public FT4GameBuiltin_GameDataID
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(Transient)
-	ET4GameplayStatCategory StatCategory; // #114
+	ET4GameBuiltin_StatCategory StatCategory; // #114
 
 public:
 	FT4GameBuiltin_GameNPCStatDataID()
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat)
-		, StatCategory(ET4GameplayStatCategory::NPC)
+		, StatCategory(ET4GameBuiltin_StatCategory::NPC)
 	{
 	}
 
 	FT4GameBuiltin_GameNPCStatDataID(const FName& InRowName)
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat, InRowName)
-		, StatCategory(ET4GameplayStatCategory::NPC)
+		, StatCategory(ET4GameBuiltin_StatCategory::NPC)
 	{
 	}
 
@@ -447,18 +498,18 @@ struct FT4GameBuiltin_GameItemStatDataID : public FT4GameBuiltin_GameDataID
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(Transient)
-	ET4GameplayStatCategory StatCategory; // #114
+	ET4GameBuiltin_StatCategory StatCategory; // #114
 
 public:
 	FT4GameBuiltin_GameItemStatDataID()
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat)
-		, StatCategory(ET4GameplayStatCategory::Item)
+		, StatCategory(ET4GameBuiltin_StatCategory::Item)
 	{
 	}
 
 	FT4GameBuiltin_GameItemStatDataID(const FName& InRowName)
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat, InRowName)
-		, StatCategory(ET4GameplayStatCategory::Item)
+		, StatCategory(ET4GameBuiltin_StatCategory::Item)
 	{
 	}
 
@@ -483,18 +534,18 @@ struct FT4GameBuiltin_GameSkillStatDataID : public FT4GameBuiltin_GameDataID
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(Transient)
-	ET4GameplayStatCategory StatCategory; // #114
+	ET4GameBuiltin_StatCategory StatCategory; // #114
 
 public:
 	FT4GameBuiltin_GameSkillStatDataID()
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat)
-		, StatCategory(ET4GameplayStatCategory::Skill)
+		, StatCategory(ET4GameBuiltin_StatCategory::Skill)
 	{
 	}
 
 	FT4GameBuiltin_GameSkillStatDataID(const FName& InRowName)
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat, InRowName)
-		, StatCategory(ET4GameplayStatCategory::Skill)
+		, StatCategory(ET4GameBuiltin_StatCategory::Skill)
 	{
 	}
 
@@ -519,18 +570,18 @@ struct FT4GameBuiltin_GameEffectStatDataID : public FT4GameBuiltin_GameDataID
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(Transient)
-	ET4GameplayStatCategory StatCategory; // #114
+	ET4GameBuiltin_StatCategory StatCategory; // #114
 
 public:
 	FT4GameBuiltin_GameEffectStatDataID()
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat)
-		, StatCategory(ET4GameplayStatCategory::Effect)
+		, StatCategory(ET4GameBuiltin_StatCategory::Effect)
 	{
 	}
 
 	FT4GameBuiltin_GameEffectStatDataID(const FName& InRowName)
 		: FT4GameBuiltin_GameDataID(ET4GameBuiltin_GameDataType::Stat, InRowName)
-		, StatCategory(ET4GameplayStatCategory::Effect)
+		, StatCategory(ET4GameBuiltin_StatCategory::Effect)
 	{
 	}
 

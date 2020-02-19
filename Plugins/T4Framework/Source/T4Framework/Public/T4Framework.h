@@ -35,7 +35,7 @@ class AController;
 class AAIController;
 class UInputComponent;
 class IT4WorldActor;
-class IT4GameWorld;
+class IT4WorldSystem;
 class AT4PlayerController;
 class IT4EditorViewportClient;
 class UT4MapEntityAsset; // #87
@@ -49,13 +49,14 @@ enum ET4FrameworkType
 	Frame_None
 };
 
-class IT4GameFramework;
+class IT4Framework;
 class IT4WorldActor;
 
 #if WITH_EDITOR
 DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnViewTargetChanged, IT4WorldActor*);
 #endif
 
+class IT4GameObject;
 class AAIController;
 
 // #34, #63, #114
@@ -65,46 +66,41 @@ public:
 	virtual ~IT4ObjectController() {}
 
 	virtual ET4LayerType GetLayerType() const = 0;
+	virtual ET4ControllerType GetControllerType() const = 0; // #114
 
 	virtual const FT4ObjectID& GetObjectID() const = 0; // #114 : GameObject and Controller ID (WARN : 서버는 모두, 클라는 Player 만 존재)
-
-	virtual FName GetClassTypeName() const = 0; // #104 : Object type 을 Enum 이 아니라 FName 으로 처리. N개가 될 수 있음을 가정하겠음
-
-	virtual bool HasPlayer() const = 0; // #104
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 	virtual void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) = 0; // #63
 #endif
 
-	virtual bool SetWorldActor(const FT4ActorID& InNewTargetID) = 0;
-	virtual void ResetWorldActor(bool bInSetDefaultPawn) = 0;
+	virtual bool SetControlActor(const FT4ActorID& InNewTargetID) = 0;
+	virtual void ResetControlActor(bool bInSetDefaultPawn) = 0;
 
-	virtual bool HasWorldActor() const = 0;
-	virtual const FT4ActorID& GetWorldActorID() const = 0;
-	virtual IT4WorldActor* GetWorldActor() const = 0;
+	virtual bool HasControlActor() const = 0;
+	virtual const FT4ActorID& GetControlActorID() const = 0;
+	virtual IT4WorldActor* GetControlActor() const = 0;
 
 	virtual bool HasObserverActor() const = 0; // #52
 	virtual bool SetObserverActor(const FT4ActorID& InNewObserverID) = 0; // #52
 	virtual void ClearObserverActor() = 0; // #52
-
-	virtual IT4GameWorld* GetGameWorld() const = 0; // #52
 
 	virtual bool HasAction(const FT4ActionKey& InActionKey) const = 0; // #102 : 존재만 해도 true 리턴
 	virtual bool IsPlayingAction(const FT4ActionKey& InActionKey) const = 0; // #20 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
 	virtual AController* GetAController() = 0;
 	virtual APlayerCameraManager* GetCameraManager() const = 0; // #100
+
+	virtual IT4WorldSystem* GetWorldSystem() const = 0; // #52
+	virtual IT4GameObject* GetGameObject() const = 0; // #114
 };
 
-class T4FRAMEWORK_API IT4GameAIController : public IT4ObjectController
+class T4FRAMEWORK_API IT4NPCAIController : public IT4ObjectController
 {
 public:
-	virtual ~IT4GameAIController() {}
+	virtual ~IT4NPCAIController() {}
 
 	virtual AAIController* GetAIController() = 0; // #104
-
-	virtual ET4GameplayTribeType GetTribeType() const = 0; // #104 : TODO M5
-	virtual ET4GameplayEnemyType GetEnemyType() const = 0; // #104 : TODO M5
 };
 
 class T4FRAMEWORK_API IT4PlayerController : public IT4ObjectController
@@ -203,10 +199,10 @@ public:
 };
 
 class UT4GameObject;
-class T4FRAMEWORK_API IT4GameFramework
+class T4FRAMEWORK_API IT4Framework
 {
 public:
-	virtual ~IT4GameFramework() {}
+	virtual ~IT4Framework() {}
 
 	virtual ET4LayerType GetLayerType() const = 0;
 	virtual ET4FrameworkType GetType() const = 0;
@@ -222,7 +218,7 @@ public:
 	virtual bool HasBegunPlay() const = 0;
 
 	virtual UWorld* GetWorld() const = 0;
-	virtual IT4GameWorld* GetGameWorld() const = 0;
+	virtual IT4WorldSystem* GetWorldSystem() const = 0;
 
 	virtual void RegisterGameplayInstance(IT4GameplayInstance* InLayerInstance) = 0; // #42
 	virtual IT4GameplayInstance* GetGameplayInstance() const = 0; // #42
@@ -274,12 +270,13 @@ public:
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 	// Server
 	virtual FT4ObjectID GenerateObjectIDForServer() = 0; // #41
+#if WITH_EDITOR
 	virtual FT4ObjectID ReservedObjectIDForEditor() = 0; // #114 : 미리 잡아놓는다. (툴용)
+#endif
 
-	virtual bool RegisterGameAIController(const FT4ObjectID& InObjectID, IT4GameAIController* InAIController) = 0; // #31
-	virtual void UnregisterGameAIController(const FT4ObjectID& InObjectID) = 0; // #31
-
-	virtual IT4GameAIController* FindGameAIController(const FT4ObjectID& InObjectID) const = 0; // #31
+	virtual bool AddObjectController(const FT4ObjectID& InObjectID, IT4NPCAIController* InAIController) = 0; // #31
+	virtual void RemoveObjectController(const FT4ObjectID& InObjectID) = 0; // #31
+	virtual IT4NPCAIController* GetObjectController(const FT4ObjectID& InObjectID) const = 0; // #31
 
 	virtual bool AddServerGameObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
 	virtual void RemoveServerGameObject(const FT4ObjectID& InObjectID) = 0; // #114
@@ -288,10 +285,13 @@ public:
 #endif
 };
 
-T4FRAMEWORK_API IT4GameFramework* T4FrameworkCreate(
-	ET4FrameworkType InFrameType,
-	const FT4WorldConstructionValues& InWorldConstructionValues // #87
-);
-T4FRAMEWORK_API void T4FrameworkDestroy(IT4GameFramework* InFramework);
+namespace T4Framework
+{
+	T4FRAMEWORK_API IT4Framework* CreateFramework(
+		ET4FrameworkType InFrameType,
+		const FT4WorldConstructionValues& InWorldConstructionValues // #87
+	);
+	T4FRAMEWORK_API void DestroyFramework(IT4Framework* InFramework);
 
-T4FRAMEWORK_API IT4GameFramework* T4FrameworkGet(ET4LayerType InLayerType);
+	T4FRAMEWORK_API IT4Framework* GetFramework(ET4LayerType InLayerType);
+}

@@ -8,3 +8,10 @@
 /**
   * #114
  */
+enum ET4ControllerType
+{
+	Controller_Player,
+	Controller_NPCAI,
+
+	Controller_Max
+};

@@ -115,7 +115,7 @@ public:
 	FT4GameBuiltin_GameDataID SkillDataID;
 
 	UPROPERTY(VisibleAnywhere)
-	ET4GameplayAttackTarget TargetType; // #112
+	ET4GameBuiltin_AttackTarget TargetType; // #112
 
 	UPROPERTY(VisibleAnywhere)
 	FT4ObjectID TargetObjectID; // #63 : 타겟이 있으면 먼저 체크! 없으면 Direct 을 사용한다.
@@ -132,7 +132,7 @@ public:
 public:
 	FT4GameBuiltin_PacketSC_SkillTarget()
 		: FT4GameBuiltin_PacketSC_Base(ET4GameBuiltin_PacketSC::SkillTarget)
-		, TargetType(ET4GameplayAttackTarget::None) // #112
+		, TargetType(ET4GameBuiltin_AttackTarget::None) // #112
 		, TargetHitBone(NAME_None) // #112
 		, TargetLocationOrDirection(FVector::ZeroVector)
 		, ProjectileDurationSec(0.0f)
@@ -151,7 +151,7 @@ public:
 			OutMsg = TEXT("Invalid SkillDataID!");
 			return false;
 		}
-		if (ET4GameplayAttackTarget::ObjectID == TargetType)
+		if (ET4GameBuiltin_AttackTarget::ObjectID == TargetType)
 		{
 			if (!TargetObjectID.IsValid())
 			{
@@ -159,7 +159,7 @@ public:
 				return false;
 			}
 		}
-		else if (ET4GameplayAttackTarget::Location == TargetType)
+		else if (ET4GameBuiltin_AttackTarget::Location == TargetType)
 		{
 			if (TargetLocationOrDirection.IsNearlyZero())
 			{
@@ -167,7 +167,7 @@ public:
 				return false;
 			}
 		}
-		else if (ET4GameplayAttackTarget::Direction == TargetType)
+		else if (ET4GameBuiltin_AttackTarget::Direction == TargetType)
 		{
 			if (TargetLocationOrDirection.IsNearlyZero())
 			{

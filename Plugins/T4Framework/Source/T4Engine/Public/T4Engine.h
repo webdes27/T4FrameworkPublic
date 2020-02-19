@@ -18,7 +18,7 @@
 /**
   * http://api.unrealengine.com/KOR/Gameplay/Networking/Travelling/
  */
-class IT4GameWorld;
+class IT4WorldSystem;
 class IT4WorldActor;
 
 struct FT4AnimNotifyMessage; // #111
@@ -147,7 +147,7 @@ public:
 	virtual ~IT4WorldActor() {}
 
 	virtual ET4LayerType GetLayerType() const = 0;
-	virtual ET4ObjectType GetObjectType() const = 0;
+	virtual ET4ActorType GetActorType() const = 0;
 
 	virtual const FT4ActorID& GetActorID() const = 0;
 	virtual const FName& GetName() const = 0;
@@ -168,7 +168,7 @@ public:
 	virtual bool HasPlayer() const = 0;
 
 	virtual APawn* GetPawn() = 0;
-	virtual IT4GameWorld* GetGameWorld() const = 0; // #100
+	virtual IT4WorldSystem* GetWorldSystem() const = 0; // #100
 
 	virtual void OnAnimNotifyMessage(const FT4AnimNotifyMessage* InMessage) = 0; // #111
 
@@ -223,7 +223,7 @@ public:
 	virtual void SetNameplateText(const TCHAR* InText, float InHeightOffset, const FColor& InTextColor, float InScaleXY) = 0; // #119 : InText == nullptr Hide
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
-	virtual FT4ServerWorldActorDelegates& GetServerDelegates() = 0; // #49
+	virtual FT4ServerWorldSystemActorDelegates& GetServerDelegates() = 0; // #49
 
 	virtual void BeginWeaponHitOverlapEvent(const FName& InHitOverlapEventName) = 0; // $49
 	virtual void EndWeaponHitOverlapEvent() = 0; // #49
@@ -266,7 +266,7 @@ public:
 
 	// #54 : 현재는 ClientOnly
 	virtual IT4WorldActor* PlayWorldExtraActor(
-		ET4ObjectType InWorldActorType,
+		ET4ActorType InWorldActorType,
 		const FName& InName,
 		const FVector& InLocation,
 		const FRotator& InRotation,
@@ -274,7 +274,7 @@ public:
 	) = 0; // #68 : 소멸 조건이 되면 스스로 소멸한다.
 
 	virtual IT4WorldActor* CreateWorldExtraActor(
-		ET4ObjectType InWorldActorType, // #63 : Only World Object
+		ET4ActorType InWorldActorType, // #63 : Only World Object
 		const FName& InName,
 		const FVector& InLocation,
 		const FRotator& InRotation,
@@ -284,10 +284,10 @@ public:
 	// ~#54 : 현재는 ClientOnly
 };
 
-class T4ENGINE_API IT4WorldCollisionSystem // #87
+class T4ENGINE_API IT4WorldCollision // #87
 {
 public:
-	virtual ~IT4WorldCollisionSystem() {}
+	virtual ~IT4WorldCollision() {}
 
 	virtual bool QueryLineTraceSingle(
 		ET4CollisionChannel InCollisionChannel,
@@ -307,10 +307,10 @@ public:
 	) = 0;
 };
 
-class T4ENGINE_API IT4WorldNavigationSystem // #87
+class T4ENGINE_API IT4WorldNavigation // #87
 {
 public:
-	virtual ~IT4WorldNavigationSystem() {}
+	virtual ~IT4WorldNavigation() {}
 
 	virtual bool ProjectPoint(const FVector& InGoal, const FVector& InExtent, FVector& OutLocation) = 0; // #31 // INVALID_NAVEXTENT, FVector::ZeroVector
 
@@ -325,7 +325,7 @@ class T4ENGINE_API IT4WorldController // #87
 public:
 	virtual ~IT4WorldController() {}
 
-	virtual ET4GameWorldType GetGameWorldType() const = 0; // #87
+	virtual ET4WorldSource GetWorldSource() const = 0; // #87
 
 	virtual bool CheckLevelLoadComplated() = 0; // #87
 
@@ -348,10 +348,10 @@ public:
 };
 
 class AT4EditorCameraActor; // #58
-class T4ENGINE_API IT4GameWorld
+class T4ENGINE_API IT4WorldSystem
 {
 public:
-	virtual ~IT4GameWorld() {}
+	virtual ~IT4WorldSystem() {}
 
 	virtual ET4LayerType GetLayerType() const = 0;
 	virtual ET4WorldType GetType() const = 0;
@@ -363,7 +363,7 @@ public:
 
 	virtual bool OnExecuteAction(const FT4ActionCommand* InAction, const FT4ActionParameters* InActionParam = nullptr) = 0;
 
-	virtual ET4GameWorldType GetGameWorldType() const = 0; // #87
+	virtual ET4WorldSource GetWorldSource() const = 0; // #87
 	virtual const FName GetEntityKeyName() const = 0; // #100 : 현재 로딩된 Entity KeyName 만약, 없다면 NAME_None (preview or Level 을 직접) 로 리턴됨
 
 	virtual UWorld* GetWorld() const = 0;
@@ -371,8 +371,8 @@ public:
 
 	virtual IT4WorldController* GetController() = 0; // #87
 	virtual IT4WorldContainer* GetContainer() = 0; // #87
-	virtual IT4WorldCollisionSystem* GetCollisionSystem() = 0; // #87
-	virtual IT4WorldNavigationSystem* GetNavigationSystem() = 0; // #87
+	virtual IT4WorldCollision* GetCollision() = 0; // #87
+	virtual IT4WorldNavigation* GetNavigation() = 0; // #87
 
 	// Client Only
 	virtual bool SetPlayerInfo(const FT4ObjectID& InPlayerObjectID, APlayerController* InPlayerController) = 0; // AT4PlayerController
@@ -402,11 +402,7 @@ public:
 #endif
 
 #if WITH_EDITOR
-	virtual AT4EditorCameraActor* FindOrCreateEditorCameraActor(
-		uint32 InKey, 
-		bool bInCreate,
-		bool bInEmulMode
-	) = 0; // #58 : Only Client
+	virtual AT4EditorCameraActor* FindOrCreateEditorCameraActor(uint32 InKey, bool bInCreate, bool bInEmulMode) = 0; // #58 : Only Client
 	virtual void DestroyEditorCameraActor(uint32 InKey) = 0; // #58 : Only Client
 
 	virtual bool IsDisabledLevelStreaming() const = 0; // #86, #104
@@ -418,24 +414,27 @@ public:
 };
 
 // #87
-DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnGameWorldTravel, IT4GameWorld*);
-DECLARE_MULTICAST_DELEGATE_TwoParams(FT4OnGameWorldTimeTransition, IT4GameWorld*, const FName); // #93
+DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnWorldSystemTravel, IT4WorldSystem*);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FT4OnWorldSystemTimeTransition, IT4WorldSystem*, const FName); // #93
 class T4ENGINE_API FT4EngineDelegates
 {
 public:
-	static FT4OnGameWorldTravel OnGameWorldTravelPre; // #87 : 월드 이동 ActionReplay 지원
-	static FT4OnGameWorldTravel OnGameWorldTravelPost; // #87 : 월드 이동 ActionReplay 지원
+	static FT4OnWorldSystemTravel OnWorldSystemTravelPre; // #87 : 월드 이동 ActionReplay 지원
+	static FT4OnWorldSystemTravel OnWorldSystemTravelPost; // #87 : 월드 이동 ActionReplay 지원
 
-	static FT4OnGameWorldTimeTransition OnGameWorldTimeTransition; // #93 : 월드 TimeName 변경 알림
+	static FT4OnWorldSystemTimeTransition OnWorldSystemTimeTransition; // #93 : 월드 TimeName 변경 알림
 
 private:
 	FT4EngineDelegates() {}
 };
 
-T4ENGINE_API IT4GameWorld* T4EngineWorldCreate(
-	ET4WorldType InWorldType,
-	const FT4WorldConstructionValues& InWorldConstructionValues // #87
-);
-T4ENGINE_API void T4EngineWorldDestroy(IT4GameWorld* InGameWorld);
+namespace T4Engine
+{
+	T4ENGINE_API IT4WorldSystem* CreateWorldSystem(
+		ET4WorldType InWorldType,
+		const FT4WorldConstructionValues& InWorldConstructionValues // #87
+	);
+	T4ENGINE_API void DestroyWorldSystem(IT4WorldSystem* InWorldSystem);
 
-T4ENGINE_API IT4GameWorld* T4EngineWorldGet(ET4LayerType InLayerType);
+	T4ENGINE_API IT4WorldSystem* GetWorldSystem(ET4LayerType InLayerType);
+}

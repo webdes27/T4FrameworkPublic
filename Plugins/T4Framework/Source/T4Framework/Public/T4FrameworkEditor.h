@@ -31,6 +31,7 @@ enum class ET4EditorPlayRole : uint8
 };
 
 class UT4ContiAsset;
+
 USTRUCT()
 struct FT4EditorSkillDataInfo
 {

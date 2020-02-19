@@ -279,7 +279,7 @@ public:
 	virtual const FT4GameBuiltin_GameDataBase* GetGameDataBase(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
 	virtual const FT4GameBuiltin_GameDataBase* GetGameDataBase(const FGuid& InDataGuid) const = 0;
 
-	virtual const FT4GameBuiltin_GameWorldData* GetGameWorldData(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
+	virtual const FT4GameBuiltin_GameWorldData* GetWorldSystemData(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
 	virtual const FT4GameBuiltin_GamePlayerData* GetGamePlayerData(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
 	virtual const FT4GameBuiltin_GameNPCData* GetGameNPCData(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
 	virtual const FT4GameBuiltin_GameWeaponData* GetGameWeaponData(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;

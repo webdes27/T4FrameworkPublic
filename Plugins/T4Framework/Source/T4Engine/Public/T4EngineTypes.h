@@ -39,7 +39,7 @@ enum class ET4WorldType : uint8
 };
 
 UENUM()
-enum class ET4ObjectType : uint8
+enum class ET4ActorType : uint8
 {
 	// entity base
 	Character,
@@ -78,7 +78,7 @@ enum ET4InputMode
 };
 
 UENUM()
-enum class ET4GameWorldType : uint8 // #87
+enum class ET4WorldSource : uint8 // #87
 {
 	Game,
 

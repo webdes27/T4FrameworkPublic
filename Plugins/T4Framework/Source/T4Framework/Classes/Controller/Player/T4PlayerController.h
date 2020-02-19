@@ -52,35 +52,33 @@ protected:
 public:
 	// IT4ObjectController
 	ET4LayerType GetLayerType() const override { return LayerType; }
-
-	FName GetClassTypeName() const override { return DefaultPlayerClassName; } // #104 : Object type 을 Enum 이 아니라 FName 으로 처리. N개가 될 수 있음을 가정하겠음
-
-	bool HasPlayer() const override { return true; } // #104
+	ET4ControllerType GetControllerType() const override { return ET4ControllerType::Controller_Player; } // #114
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
-	void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) override {} // #63
+	virtual void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) override {} // #63
 #endif
 
 	APawn* GetDefaultPawn() const override; // #86
 
-	bool SetWorldActor(const FT4ActorID& InNewTargetID) override;
-	void ResetWorldActor(bool bInSetDefaultPawn) override;
+	bool SetControlActor(const FT4ActorID& InNewTargetID) override;
+	void ResetControlActor(bool bInSetDefaultPawn) override;
 
-	bool HasWorldActor() const override { return WorldActorID.IsValid(); }
-	const FT4ActorID& GetWorldActorID() const override { return WorldActorID; }
-	IT4WorldActor* GetWorldActor() const override;
+	bool HasControlActor() const override { return ControlActorID.IsValid(); }
+	const FT4ActorID& GetControlActorID() const override { return ControlActorID; }
+	IT4WorldActor* GetControlActor() const override;
 
 	bool HasObserverActor() const override { return ObserverActorID.IsValid(); } // #52
 	bool SetObserverActor(const FT4ActorID& InNewObserverID) override; // #52
 	void ClearObserverActor() override; // #52
-
-	IT4GameWorld* GetGameWorld() const override; // #52
 
 	bool HasAction(const FT4ActionKey& InActionKey) const override; // #20
 	bool IsPlayingAction(const FT4ActionKey& InActionKey) const override; // #20 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
 	AController* GetAController() override;
 	APlayerCameraManager* GetCameraManager() const override; // #100
+
+	IT4WorldSystem* GetWorldSystem() const override; // #52
+	IT4GameObject* GetGameObject() const override; // #114
 
 public:
 	void SetObjectID(const FT4ObjectID& InObjectID) { ObjectID = InObjectID; }
@@ -166,7 +164,7 @@ protected:
 	FT4ObjectID ObjectID; // #114
 
 private:
-	FT4ActorID WorldActorID;
+	FT4ActorID ControlActorID;
 	FT4ActorID ObserverActorID; // #52
 
 	TWeakObjectPtr<APawn> CachedDefaultPawn;

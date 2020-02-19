@@ -91,7 +91,7 @@ struct FT4WorldActorDebugInfo
 #endif
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
-struct FT4ServerWorldActorDelegates // #49
+struct FT4ServerWorldSystemActorDelegates // #49
 {
 	DECLARE_MULTICAST_DELEGATE_ThreeParams(FT4OnHitOverlap, const FName&, class IT4WorldActor*, const FHitResult&);
 	FT4OnHitOverlap OnHitOverlap;
@@ -156,7 +156,7 @@ struct FWorldContext;
 struct FT4WorldConstructionValues // #87
 {
 	FT4WorldConstructionValues()
-		: GameWorldType(ET4GameWorldType::None)
+		: WorldSource(ET4WorldSource::None)
 		, WorldContextGameOrEditorOnly(nullptr)
 #if WITH_EDITOR
 		, bPreviewThumbnailMode(false)
@@ -164,7 +164,7 @@ struct FT4WorldConstructionValues // #87
 	{
 	}
 
-	ET4GameWorldType GameWorldType;
+	ET4WorldSource WorldSource;
 	FSoftObjectPath MapEntityOrLevelObjectPath; // MapEntity or LevelAsset ObjectPath <LongPackageName.AssetName>
 	FWorldContext* WorldContextGameOrEditorOnly; // Game (PIE)만 설정
 

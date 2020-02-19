@@ -25,7 +25,7 @@ public:
 	FGuid Guid;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	ET4GameplayStatCategory StatCategory; // #114 : 사용처를 명시한다.
+	ET4GameBuiltin_StatCategory StatCategory; // #114 : 사용처를 명시한다.
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (ClampMin = "0.0", ClampMax = "100"))
 	float Health_Point; // #114 : 피, 체력
@@ -50,7 +50,7 @@ public:
 
 public:
 	FT4GameBuiltin_StatTableRow()
-		: StatCategory(ET4GameplayStatCategory::None) // #114 : 사용처를 명시한다.
+		: StatCategory(ET4GameBuiltin_StatCategory::None) // #114 : 사용처를 명시한다.
 		, Health_Point(0.0f)
 		, Mana_Point(0.0f)
 		, Striking_Power(0.0f)

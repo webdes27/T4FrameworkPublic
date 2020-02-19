@@ -27,10 +27,10 @@ public:
 	FGuid Guid;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	ET4GameplayStatCategory StatCategory; // #114 : 사용처를 명시한다.
+	ET4GameBuiltin_StatCategory StatCategory; // #114 : 사용처를 명시한다.
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	ET4GameplayStatLevel StatLevel;
+	ET4GameBuiltin_StatLevel StatLevel;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (ClampMin = "0.0", ClampMax = "1000"))
 	float Required_EXP; // #114 : 경험치, 상대적, Required EXP
@@ -40,8 +40,8 @@ public:
 
 public:
 	FT4GameBuiltin_ExperienceTableRow()
-		: StatCategory(ET4GameplayStatCategory::None) // #114 : 사용처를 명시한다.
-		, StatLevel(ET4GameplayStatLevel::Max)
+		: StatCategory(ET4GameBuiltin_StatCategory::None) // #114 : 사용처를 명시한다.
+		, StatLevel(ET4GameBuiltin_StatLevel::Max)
 		, Required_EXP(0.0f)
 		, Total_Required_EXP(0.0f)
 	{

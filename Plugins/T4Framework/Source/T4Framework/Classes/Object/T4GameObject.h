@@ -10,8 +10,8 @@
   * #114 : BP 로 노출해서 게임 로직에서 사용한다.
  */
 class UWorld;
-class IT4GameFramework;
-class IT4GameWorld;
+class IT4Framework;
+class IT4WorldSystem;
 UCLASS()
 class T4FRAMEWORK_API UT4GameObject : public UObject, public IT4GameObject
 {
@@ -47,8 +47,8 @@ protected:
 	virtual void Process(float InDeltaTime) {}
 
 	UWorld* GetWorld() const;
-	IT4GameFramework* GetFramework() const;
-	IT4GameWorld* GetGameWorld() const;
+	IT4Framework* GetFramework() const;
+	IT4WorldSystem* GetWorldSystem() const;
 
 	IT4WorldActor* FindWorldActor(const FT4ActorID& InActorID) const;
 
