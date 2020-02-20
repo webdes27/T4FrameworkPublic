@@ -393,7 +393,7 @@ public:
 	virtual FVector GetCameraLocation() const = 0;
 	virtual FRotator GetCameraRotation() const = 0;
 
-	virtual IT4WorldActor* GetIndicatorObject() = 0; // #117
+	virtual IT4WorldActor* GetIndicatorActor() = 0; // #117
 
 #if !UE_BUILD_SHIPPING
 	virtual IT4ActionReplayPlayer* GetActionReplayPlayer() const = 0; // #68

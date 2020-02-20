@@ -37,15 +37,23 @@ public:
 	bool IsClientObject() const override { return true; }
 
 public:
-	bool OnSendPacket(FT4GameBuiltin_PacketCS_Base* InPacketCS); // #114
+	const FT4ActorID& GetControlActorID() const { return ControlActorID; } // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 
-	const FT4ActorID& GetWorldActorID() const { return WorldActorID; } // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
+	void SetMainWeaponDataID(const FT4GameBuiltin_GameDataID& InMainWeaponDataID) { MainWeaponDataID = InMainWeaponDataID; } // #48
+	const FT4GameBuiltin_GameDataID& GetMainWeaponDataID() const { return MainWeaponDataID; } // #48
 
 public:
-	bool OnLeave();
+	// Send Packet Process
+	//
+	bool OnSendPacket(FT4GameBuiltin_PacketCS_Base* InPacketCS); // #114
+
+public:
+	// Recv Packet Process
+	//
+	bool OnRecvLeave();
 
 #if WITH_EDITOR
-	bool OnEnterWithEditor(
+	bool OnRecvEnterWithEditor(
 		const FT4EntityKey& InEntityKey,
 		const FVector& InSpawnLocation,
 		const FRotator& InSpawnRotation,
@@ -53,37 +61,37 @@ public:
 	); // #114
 #endif
 
-	bool OnEnterPlayer(
+	bool OnRecvEnterPlayer(
 		const FT4GameBuiltin_GameDataID& InPlayerDataID,
 		const FVector& InSpawnLocation,
 		const FRotator& InSpawnRotation,
 		bool bInPossess
 	);
-	bool OnEnterNPC(const FT4GameBuiltin_GameDataID& InNPCDataID, const FVector& InSpawnLocation, const FRotator& InSpawnRotation);
-	bool OnEnterItem(const FT4GameBuiltin_GameDataID& InNPCDataID, const FVector& InSpawnLocation, const FRotator& InSpawnRotation);
+	bool OnRecvEnterNPC(const FT4GameBuiltin_GameDataID& InNPCDataID, const FVector& InSpawnLocation, const FRotator& InSpawnRotation);
+	bool OnRecvEnterItem(const FT4GameBuiltin_GameDataID& InNPCDataID, const FVector& InSpawnLocation, const FRotator& InSpawnRotation);
 
-	bool OnMove(
+	bool OnRecvMove(
 		const FVector& InMoveToLocation,
 		float InHeadYawAngle,
 		bool bInForceMaxSpeed,
 		const FVector& InServerNavPoint,
 		const FVector& InServerDirection
 	);
-	bool OnMoveStop(const FVector& InStopLocation, float InHeadYawAngle, bool bInSyncLocation);
-	bool OnMoveSpeedSync(float InMoveSpeed);
+	bool OnRecvMoveStop(const FVector& InStopLocation, float InHeadYawAngle, bool bInSyncLocation);
+	bool OnRecvMoveSpeedSync(float InMoveSpeed);
 
-	bool OnJump(const FVector& InJumpVelocity);
-	bool OnRoll(const FVector& InRollVelocity);
-	bool OnTurn(float InTargetYawAngle);
-	bool OnTeleport(const FVector& InTargetLocation);
+	bool OnRecvJump(const FVector& InJumpVelocity);
+	bool OnRecvRoll(const FVector& InRollVelocity);
+	bool OnRecvTurn(float InTargetYawAngle);
+	bool OnRecvTeleport(const FVector& InTargetLocation);
 
-	bool OnLockOn(float InHeadYawAngle);
-	bool OnLockOff(float InHeadYawAngle);
+	bool OnRecvLockOn(float InHeadYawAngle);
+	bool OnRecvLockOff(float InHeadYawAngle);
 
-	bool OnAimSet(const FT4GameBuiltin_GameDataID& InSkillDataID, bool bInAimingStart, const FVector& InTargetLocation);
-	bool OnAimClear();
+	bool OnRecvAimSet(const FT4GameBuiltin_GameDataID& InSkillDataID, bool bInAimingStart, const FVector& InTargetLocation);
+	bool OnRecvAimClear();
 
-	bool OnSkillTarget(
+	bool OnRecvSkillTarget(
 		const FT4GameBuiltin_GameDataID& InSkillDataID,
 		ET4GameBuiltin_AttackTarget InTargetType,
 		const FT4ObjectID& InTargetObjectID, // #63 : 타겟이 있으면 먼저 체크! 없으면 Direct 을 사용한다.
@@ -91,33 +99,28 @@ public:
 		const FVector& InTargetLocationOrDirection, // #49, #68, #112
 		float InProjectileDurationSec // #63 : Range Attack 이라면 ProjectileSpeed 로 계산된 Duration 시간이 넘어온다.
 	);
-	bool OnEffectDirect(const FT4GameBuiltin_GameDataID& InEffectDataID, const FT4ObjectID& InAttackerObjectID);
+	bool OnRecvEffectDirect(const FT4GameBuiltin_GameDataID& InEffectDataID, const FT4ObjectID& InAttackerObjectID);
 
-	bool OnChangeStance(FName InStanceName);
-	bool OnChangeSubStance(FName InSubStanceName);
+	bool OnRecvChangeStance(FName InStanceName);
+	bool OnRecvChangeSubStance(FName InSubStanceName);
 
-	bool OnEquipItem(
+	bool OnRecvEquipItem(
 		const FT4GameBuiltin_GameDataID& InWeaponDataID, 
 		bool bInMainWeapon,
 		const FT4GameBuiltin_GameDataID& InUnequipItemWeaponDataID // #114, #116 : 이전에 장착한 무기가 있다면 해제 후 장착
 	);
-	bool OnUnequipItem(const FT4GameBuiltin_GameDataID& InWeaponDataID, bool bInMainWeapon);
-	bool OnExchangeItem(const FT4GameBuiltin_GameDataID& InCostumeDataID);
+	bool OnRecvUnequipItem(const FT4GameBuiltin_GameDataID& InWeaponDataID, bool bInMainWeapon);
+	bool OnRecvExchangeItem(const FT4GameBuiltin_GameDataID& InCostumeDataID);
 
-	bool OnDie(FName InReactionName, const FT4ObjectID& InAttackerObjectID);
-	bool OnResurrect();
-
-public:
-	void SetMainWeaponDataID(const FT4GameBuiltin_GameDataID& InMainWeaponDataID) { MainWeaponDataID = InMainWeaponDataID; } // #48
-	const FT4GameBuiltin_GameDataID& GetMainWeaponDataID() const { return MainWeaponDataID; } // #48
+	bool OnRecvDie(FName InReactionName, const FT4ObjectID& InAttackerObjectID);
+	bool OnRecvResurrect();
 
 protected:
 	void Initialize() override;
 	void Finalize() override;
 
-	IT4WorldActor* GetWorldActor() const;
+	IT4WorldActor* GetControlActor() const;
 	IT4PlayerController* GetPlayerController() const;
-
 	IT4GameBuiltin_ServerPacketHandler* GetServerPacketHandler() const;
 
 	IT4WorldActor* FindWorldActor(const FT4ObjectID& InObjectID) const;
@@ -134,7 +137,7 @@ protected:
 
 private:
 	bool bEntered;
-	FT4ActorID WorldActorID; // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
+	FT4ActorID ControlActorID; // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 	FT4GameBuiltin_GameDataID GameDataID;
 	FT4GameBuiltin_GameDataID MainWeaponDataID;
 };

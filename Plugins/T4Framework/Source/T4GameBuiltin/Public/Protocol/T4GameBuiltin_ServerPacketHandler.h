@@ -15,7 +15,7 @@ class IT4GameBuiltin_ServerPacketHandler
 public:
 	virtual ~IT4GameBuiltin_ServerPacketHandler() {}
 
-	virtual bool DoSendPacket(FT4GameBuiltin_PacketCS_Base* InPacket) = 0; // Client, Reliable
+	virtual bool RPC_CS_SendPacket(FT4GameBuiltin_PacketCS_Base* InPacket) = 0; // Client, Reliable
 
 	virtual bool OnRecvPacket_Validation(const FT4GameBuiltin_PacketCS_Base* InPacket) = 0;
 	virtual bool OnRecvPacket(const FT4GameBuiltin_PacketCS_Base* InPacket, IT4PlayerController* InSenderPC) = 0;

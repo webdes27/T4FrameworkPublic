@@ -96,6 +96,7 @@ public:
 protected:
 	virtual void NotifyAdvance(float InDeltaTime) {} // #114
 	virtual void NotifyBeginPlay() {} // #50
+	virtual void NotifyEndPlay() {} // #50
 	virtual void NotifyAIStart() {} // #50
 	virtual void NotifyAIEnd() {} // #50
 

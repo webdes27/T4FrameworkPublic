@@ -121,6 +121,7 @@ public:
 protected:
 	void NotifyAdvance(float InDeltaTime) override; // #114
 	void NotifyBeginPlay() override; // #50
+	void NotifyEndPlay() override; // #50
 	void NotifyAIStart() override; // #50
 	void NotifyAIEnd() override; // #50
 

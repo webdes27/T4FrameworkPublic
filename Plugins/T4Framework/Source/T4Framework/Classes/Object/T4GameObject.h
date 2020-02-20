@@ -36,8 +36,6 @@ public:
 
 	void OnProcess(float InDeltaTime);
 
-	virtual bool IsPlayer() const { return false; }
-
 	virtual bool IsServerObject() const { return false; }
 	virtual bool IsClientObject() const { return false; }
 

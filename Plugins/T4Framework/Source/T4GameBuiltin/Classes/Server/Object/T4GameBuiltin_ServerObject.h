@@ -33,16 +33,13 @@ public:
 	// IT4GameObject
 	IT4ObjectController* GetController() const override; // #114 : Server All, Client Player Only
 
-	// UT4GameObject
-	virtual bool IsPlayer() const override;
-
 	bool IsServerObject() const override { return true; }
 
 public:
 	// AIContoller
 	//
-	const FT4ActorID& GetWorldActorID() const { return WorldActorID; } // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 	ET4ControllerType GetControllerType() const; // #114
+	const FT4ActorID& GetControlActorID() const { return ControlActorID; } // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 
 	const FT4GameplayAIStat& GetAIStat() const { return AIStat; } // #114
 
@@ -64,9 +61,6 @@ public:
 
 	bool GetUseSkillDataIDSelected(const FName InSubStanceName, FT4GameBuiltin_GameSkillDataID& OutSkillData); // TODO : #114 : 연속기 처리! 현재는 랜덤
 
-	void HandleOnHitOverlap(const FName& InEventName, IT4WorldActor* InHitWorldActor, const FHitResult& InSweepResult); // #49 : Only Server
-	void ClearHitOverlapEvent(); // #49 : Only Server
-
 	IT4WorldActor* FindWorldActor(const FT4ObjectID& InObjectID) const;
 	IT4WorldActor* FindNearestActor(float InMaxDistance); // #50
 	
@@ -78,10 +72,21 @@ public:
 	bool CheckValidAttackTarget(IT4WorldActor* InTargetActor); // #104 : tribe 와 enemy 설정을 보고 hit 전달 여부를 결정해야 한다.
 	bool CheckValidAttackByTarget(const FT4ObjectID& InTargetObjectID); // #104 : AttackTarget 이 Normal Attack 이 가능한 거리인지 체크!
 
-	bool GetApproachLocation(const FVector& InStart, const FVector& InEnd, float InTargetRadius, FVector& OutLocation); // #50
+	bool CanGoStraightLocation(const FVector& InStart, const FVector& InEnd, float InTargetRadius, FVector& OutLocation); // #50
+
+	void HandleOnHitOverlap(const FName& InEventName, IT4WorldActor* InHitWorldActor, const FHitResult& InSweepResult); // #49
+	void ClearHitOverlapEvent(); // #49
 
 public:
-	// Packet Process
+	// Send Packet Process
+	//
+	bool OnBroadcastPacket(FT4GameBuiltin_PacketSC_Base* InPacketCS, bool bInProcessServerPacket); // #114 : 브로드캐스팅
+	bool OnSendPacket(IT4PlayerController* TargetPC, FT4GameBuiltin_PacketSC_Base* InPacketCS); // #114 : 자기 자신에게만 Packet 전송
+	
+	bool OnPacketProcess(FT4GameBuiltin_PacketSC_Base* InPacketCS); // #114 : 패킷 전송을 하지 않고, 로컬 실행
+
+public:
+	// Recv Packet Process
 	//
 	bool OnLeave(IT4PlayerController* InSenderPC);
 	
@@ -137,10 +142,13 @@ protected:
 
 	void Process(float InDeltaTime) override;
 
-	void EnterCommon();
+	bool EnterBeginCommon();
+	void EnterEndCommon();
 	void LeaveCommon();
 
-	IT4WorldActor* GetWorldActor() const;
+	bool UpdateStat(); // #114
+
+	IT4WorldActor* GetControlActor() const;
 	UT4GameBuiltin_ServerObject* GetServerObject(const FT4ObjectID& InObjectID) const;
 	IT4GameBuiltin_ClientPacketHandler* GetClientPacketHandler() const;
 
@@ -158,7 +166,7 @@ protected:
 
 private:
 	bool bEntered;
-	FT4ActorID WorldActorID; // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
+	FT4ActorID ControlActorID; // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 	FT4GameBuiltin_GameDataID GameDataID;
 	FT4GameBuiltin_GameDataID MainWeaponDataID;
 
