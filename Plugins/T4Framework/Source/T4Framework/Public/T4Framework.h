@@ -190,7 +190,7 @@ public:
 	virtual void OnDrawHUD(FViewport* InViewport, FCanvas* InCanvas, FT4HUDDrawInfo& InOutDrawInfo) = 0; // #68 : Only Client
 
 #if WITH_EDITOR
-	virtual IT4EditorGameDatabase* GetEditorGameDatabase() = 0; // #60
+	virtual IT4EditorGameData* GetEditorGameData() = 0; // #60
 	virtual IT4EditorGameplayCommand* GetEditorGameplayCommand() = 0; // #114
 
 	virtual void SetInputControlLock(bool bLock) = 0; // #30

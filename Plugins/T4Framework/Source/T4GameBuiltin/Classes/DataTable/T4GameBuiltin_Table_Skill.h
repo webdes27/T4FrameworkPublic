@@ -70,7 +70,7 @@ struct FT4GameBuiltin_SkillTableRow : public FT4GameBuiltin_TableBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4ContentDatabaseSkillDetails::CustomizeDetails
+	// FT4DataTableSkillRowDetails::CustomizeDetails
 
 	// #T4_ADD_SKILL_CONTENT_TAG 
 	UPROPERTY(VisibleAnywhere, Category = Common)

@@ -87,7 +87,7 @@ struct FT4GameBuiltin_NPCTableRow : public FT4GameBuiltin_TableBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4ContentDatabaseNPCDetails::CustomizeDetails
+	// FT4DataTableNPCRowDetails::CustomizeDetails
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
 	FGuid Guid;

@@ -20,7 +20,7 @@ struct FT4GameBuiltin_EffectTableRow : public FT4GameBuiltin_TableBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4ContentDatabaseEffectDetails::CustomizeDetails
+	// FT4DataTableEffectRowDetails::CustomizeDetails
 
 	// #T4_ADD_EFFECT_CONTENT_TAG
 	UPROPERTY(VisibleAnywhere, Category = Common)
@@ -39,7 +39,7 @@ public:
 	float AreaRange;
 
 	UPROPERTY(EditAnywhere, Category=ServerOnly)
-	FT4GameBuiltin_GameEffectDataID DamageEffectDataID; // #68
+	FT4GameBuiltin_GameEffectDataID ChainEffectDataID; // #68
 
 	UPROPERTY(EditAnywhere, Category= ClientOnly)
 	TSoftObjectPtr<UT4ContiAsset> ContiAsset;

@@ -36,7 +36,7 @@ struct FT4GameBuiltin_WeaponTableRow : public FT4GameBuiltin_ItemTableRowBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4ContentDatabaseWeaponDetails::CustomizeDetails
+	// FT4DataTableWeaponRowDetails::CustomizeDetails
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
 	FGuid Guid;

@@ -4,7 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.02.20] [M5] Copying //Private to //Deploy (private commit 21c8ab8)**
+  - **[2020.02.20] [M5] Copying //Private to //Deploy (private commit ce7232b)**
+    - #120 [기능추가] DataTable Editor 추가 및 Content Editor 의 DataTable Details 와 연동
+    - #114 [버그수정] Rehearsal Preview 에서 Conti Asset 플레이시 설정된 무기가 보이지 않던 문제 수정
     - #114 [버그수정] NPC AI 에서 기본 무기 장착이 되지 않던 문제 수정
   - **[2020.02.19] [M5] Copying //Private to //Deploy (private commit 9b4b59a)**
     - #114 [기능개선] NPC AI 개선을 위해 NPC DataTable 에 AgentRadius 추가 및 공격 거리 반영

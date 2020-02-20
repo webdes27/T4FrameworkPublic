@@ -20,7 +20,7 @@ struct FT4GameBuiltin_SkillSetTableRow : public FT4GameBuiltin_TableBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4ContentDatabaseSkillSetDetails::CustomizeDetails
+	// FT4DataTableSkillSetRowDetails::CustomizeDetails
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
 	FGuid Guid;

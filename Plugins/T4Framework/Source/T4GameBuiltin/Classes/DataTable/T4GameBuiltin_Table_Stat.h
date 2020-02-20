@@ -18,7 +18,7 @@ struct FT4GameBuiltin_StatTableRow : public FT4GameBuiltin_TableBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4ContentDatabaseStatDetails::CustomizeDetails
+	// FT4DataTableStatRowDetails::CustomizeDetails
 
 	// #T4_ADD_STAT_CONTENT_TAG
 	UPROPERTY(VisibleAnywhere, Category = Common)

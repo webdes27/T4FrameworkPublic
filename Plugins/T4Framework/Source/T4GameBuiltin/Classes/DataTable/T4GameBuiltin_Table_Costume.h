@@ -17,7 +17,7 @@ struct FT4GameBuiltin_CostumeTableRow : public FT4GameBuiltin_ItemTableRowBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4ContentDatabaseCostumeDetails::CustomizeDetails
+	// FT4DataTableCostumeRowDetails::CustomizeDetails
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
 	FGuid Guid;

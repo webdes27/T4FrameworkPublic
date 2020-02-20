@@ -16,7 +16,7 @@ struct FT4GameBuiltin_MasterTableRow : public FT4GameBuiltin_TableBase
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4ContentDatabaseMasterDetails::CustomizeDetails
+	// FT4DataTableMasterRowDetails::CustomizeDetails
 
 	UPROPERTY(EditAnywhere, Category = Common)
 	ET4GameBuiltin_GameDataType Type;
