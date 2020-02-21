@@ -17,6 +17,7 @@ enum ET4EditorGameDataType
 	EdData_NPC,
 	EdData_Weapon,
 	EdData_Costume,
+	EdData_SkillSet, // #120
 	EdData_Skill,
 	EdData_Effect,
 };

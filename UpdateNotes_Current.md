@@ -4,8 +4,10 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.02.21] [M5] Copying //Private to //Deploy (private commit 211d829)**
-    - #120 [기능추가] Content Editor, DataTable Details ListView 에 "Open" 버튼 추가 (새창으로 보기)
+  - **[2020.02.21] [M5] Copying //Private to //Deploy (private commit 1ca5eca)**
+	- #114 [버그수정] Content Editor, 편집용 Anchor 모델의 스폰 위치 오류 수정
+    - #120 [기능추가] Content Editor, Spawn Entity Details 의 NPC 설정에 DataTable 하이퍼링크 버튼 추가
+    - #120 [기능추가] Content Editor, DataTable Details 의 DataID 정보에 하이퍼링크 버튼 추가
 	- #118 [기능개선] Content Editor, 편집용 Anchor 모델을 RehearsalSettings 에서 설정할 수 있도록 개선
 	- #114 [버그수정] Content Editor, Simulation 모드 종료시 스폰 캐릭터가 사라지지 않던 문제 수정
     - #120 [버그수정] Rehearsal Preview 의 Conti Play 시 애니메이션 Speed 가 느려지던 문제 수정
