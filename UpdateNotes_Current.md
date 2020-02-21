@@ -4,6 +4,11 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.02.21] [M5] Copying //Private to //Deploy (private commit 211d829)**
+    - #120 [기능추가] Content Editor, DataTable Details ListView 에 "Open" 버튼 추가 (새창으로 보기)
+	- #118 [기능개선] Content Editor, 편집용 Anchor 모델을 RehearsalSettings 에서 설정할 수 있도록 개선
+	- #114 [버그수정] Content Editor, Simulation 모드 종료시 스폰 캐릭터가 사라지지 않던 문제 수정
+    - #120 [버그수정] Rehearsal Preview 의 Conti Play 시 애니메이션 Speed 가 느려지던 문제 수정
   - **[2020.02.20] [M5] Copying //Private to //Deploy (private commit ce7232b)**
     - #120 [기능추가] DataTable Editor 추가 및 Content Editor 의 DataTable Details 와 연동
     - #114 [버그수정] Rehearsal Preview 에서 Conti Asset 플레이시 설정된 무기가 보이지 않던 문제 수정
