@@ -15,7 +15,7 @@ struct T4ASSET_API FT4ActionCommand
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ContiDetailCustomization::CustomizeCommonActionDetails
+	// #39 : FT4ActionDetails::CustomizeCommonActionDetails
 
 	UPROPERTY(VisibleAnywhere)
 	ET4ActionType ActionType;
@@ -58,9 +58,9 @@ public:
 
 	virtual ~FT4ActionCommand() {}
 
-	virtual ET4ActionCommandType GetActionStructType() const // #62
+	virtual ET4ActionStructType GetActionStructType() const // #62
 	{
-		return ET4ActionCommandType::None;
+		return ET4ActionStructType::None;
 	}
 
 	virtual bool Validate(FString& OutMsg)

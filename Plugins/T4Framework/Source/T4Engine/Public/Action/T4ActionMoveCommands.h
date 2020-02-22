@@ -325,10 +325,10 @@ public:
 	float MoveSpeed;
 
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<class UT4ContiAsset> HeadContiAsset;
+	TSoftObjectPtr<class UT4ActionAsset> HeadActionAsset;
 
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<UT4ContiAsset> EndContiAsset;
+	TSoftObjectPtr<UT4ActionAsset> EndActionAsset;
 
 	UPROPERTY(EditAnywhere)
 	ET4LoadingPolicy LoadingPolicy;

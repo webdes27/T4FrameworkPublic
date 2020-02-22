@@ -21,7 +21,7 @@ struct T4ENGINE_API FT4ContiAction : public FT4ActionCodeCommand
 
 public:
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<class UT4ContiAsset> ContiAsset;
+	TSoftObjectPtr<class UT4ActionAsset> ActionAsset;
 
 	UPROPERTY(EditAnywhere)
 	ET4LoadingPolicy LoadingPolicy;

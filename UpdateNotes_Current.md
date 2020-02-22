@@ -4,6 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.02.22] [M5] Copying //Private to //Deploy (private commit 6657416)**
+    - #118 [기능추가] Content Editor, Spawn Entity Details 의 NPCData 변경, 그룹 Transform 편집 기능 추가
+	- #105 [내부수정] Conti Editor 를 Action Editor 로 리네임 및 관련 데이터 일괄 변경
   - **[2020.02.21] [M5] Copying //Private to //Deploy (private commit 1ca5eca)**
 	- #114 [버그수정] Content Editor, 편집용 Anchor 모델의 스폰 위치 오류 수정
     - #120 [기능추가] Content Editor, Spawn Entity Details 의 NPC 설정에 DataTable 하이퍼링크 버튼 추가

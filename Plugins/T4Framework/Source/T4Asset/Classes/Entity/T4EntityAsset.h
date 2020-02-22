@@ -130,14 +130,14 @@ public:
 };
 
 // #74
-class UT4ContiAsset;
+class UT4ActionAsset;
 USTRUCT()
-struct T4ASSET_API FT4EntityPlayTagContiData
+struct T4ASSET_API FT4EntityPlayTagActionData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityPlayTagContiData()
+	FT4EntityPlayTagActionData()
 		: PlayTag(T4Const_DefaultPlayTagName)
 	{
 	}
@@ -146,7 +146,7 @@ public:
 	FName PlayTag;
 
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<UT4ContiAsset> ContiAsset;
+	TSoftObjectPtr<UT4ActionAsset> ActionAsset;
 };
 
 // #80
@@ -185,7 +185,7 @@ public:
 	TArray<FT4EntityPlayTagAttachmentData> AttachmentTags;
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4EntityPlayTagContiData> ContiTags;
+	TArray<FT4EntityPlayTagActionData> ActionTags;
 };
 
 // #81
@@ -225,7 +225,7 @@ public:
 	FName TransientPlayTagNameOfConti; // #74
 
 	UPROPERTY(EditAnywhere, Transient)
-	TSoftObjectPtr<UT4ContiAsset> TransientPlayTagContiAsset; // #74
+	TSoftObjectPtr<UT4ActionAsset> TransientPlayTagActionAsset; // #74
 
 	// #81
 	UPROPERTY(EditAnywhere, Transient)

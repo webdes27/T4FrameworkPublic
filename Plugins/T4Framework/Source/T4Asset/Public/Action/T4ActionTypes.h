@@ -16,11 +16,11 @@ static const float T4Const_EmptyYawAngle = TNumericLimits<float>::Max(); // #113
 // #T4_ADD_ACTION_TAG
 
 UENUM()
-enum class ET4ActionCommandType : uint32
+enum class ET4ActionStructType : uint32
 {
 	// #62
 	Code,
-	Conti,
+	Data,
 
 	None,
 };
@@ -28,7 +28,7 @@ enum class ET4ActionCommandType : uint32
 UENUM()
 enum class ET4ActionType : uint32
 {
-	// #62 : Begin Conti Format // #T4_ADD_ACTION_TAG_CONTI
+	// #62 : Begin Data Format // #T4_ADD_ACTION_TAG_DATA
 	Branch, // #54
 
 	SpecialMove, // #54
@@ -52,7 +52,7 @@ enum class ET4ActionType : uint32
 	PostProcess, // #100
 	Environment, // #99
 
-	// #62 : End Conti Format
+	// #62 : End Data Format
 
 	// #62 : Start Code Format
 
@@ -97,7 +97,7 @@ enum class ET4ActionType : uint32
 
 	Stop,
 	
-	Dummy, // #56 : Conti Editor 에서 Invisible or Isolate 로 출력을 제어할 때 더미용으로 사용 (delay, duration 동작 보장)
+	Dummy, // #56 : Action Editor 에서 Invisible or Isolate 로 출력을 제어할 때 더미용으로 사용 (delay, duration 동작 보장)
 
 	// begin Editor
 	Editor, // #37
@@ -185,7 +185,7 @@ enum class ET4PlayTagType : uint8 // #81
 {
 	Material, // #81
 	Attachment, // #74
-	Conti, // #74
+	Action, // #74
 
 	All, // #81
 };

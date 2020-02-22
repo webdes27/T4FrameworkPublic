@@ -33,7 +33,7 @@ public:
 
 	virtual ~FT4ActionCodeCommand() {}
 
-	ET4ActionCommandType GetActionStructType() const override { return ET4ActionCommandType::Code; } // #52
+	ET4ActionStructType GetActionStructType() const override { return ET4ActionStructType::Code; } // #52
 
 	virtual bool Validate(FString& OutMsg)
 	{

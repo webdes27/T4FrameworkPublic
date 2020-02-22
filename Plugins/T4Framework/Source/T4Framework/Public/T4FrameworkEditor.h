@@ -31,7 +31,7 @@ enum class ET4EditorPlayRole : uint8
 	None UMETA(Hidden),
 };
 
-class UT4ContiAsset;
+class UT4ActionAsset;
 
 USTRUCT()
 struct FT4EditorSkillDataInfo
@@ -75,13 +75,13 @@ public:
 	FName ResultEffectDataID;
 
 	UPROPERTY(VisibleAnywhere)
-	TSoftObjectPtr<UT4ContiAsset> ContiAsset;
+	TSoftObjectPtr<UT4ActionAsset> DefaultActionAsset;
 
 	UPROPERTY(VisibleAnywhere)
-	TSoftObjectPtr<UT4ContiAsset> AimingContiAsset;
+	TSoftObjectPtr<UT4ActionAsset> AimingActionAsset;
 
 	UPROPERTY(VisibleAnywhere)
-	TSoftObjectPtr<UT4ContiAsset> IndicateContiAsset; // #116
+	TSoftObjectPtr<UT4ActionAsset> IndicateActionAsset; // #116
 
 public:
 	FT4EditorSkillDataInfo()
@@ -129,7 +129,7 @@ public:
 	FName DamageEffectDataID;
 
 	UPROPERTY(VisibleAnywhere)
-	TSoftObjectPtr<UT4ContiAsset> ContiAsset;
+	TSoftObjectPtr<UT4ActionAsset> ActionAsset;
 
 public:
 	FT4EditorEffectDataInfo()
@@ -190,7 +190,7 @@ public:
 // #114 : 에디터에서 N종의 게임 컨텐츠 데이터에서 정보를 얻기 위한 인터페이스
 //        컨텐츠 쪽에서 구현해주어야 에디터에서 사용할 수 있음 (T4GameBuiltin 을 사용하지 않을 경우를 위함)
 class UT4EntityAsset;
-class UT4ContiAsset;
+class UT4ActionAsset;
 class T4FRAMEWORK_API IT4EditorGameData // #60
 {
 public:
@@ -201,7 +201,7 @@ public:
 
 	virtual UT4EntityAsset* GetEntityAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0;
 	virtual UT4EntityAsset* GetWeaponEntityAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0; // #120
-	virtual UT4ContiAsset* GetContiAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0; // #120
+	virtual UT4ActionAsset* GetActionAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0; // #120
 
 	virtual bool GetSkillDataInfo(const FName& InSkillDataNameID, FT4EditorSkillDataInfo& OutSkillData) = 0;
 	virtual bool GetEffectDataInfo(const FName& InEffectDataNameID, FT4EditorEffectDataInfo& OutEffectData) = 0;
@@ -262,7 +262,7 @@ public:
 		const FT4ObjectID& InReservedObjectID,
 		bool bInPlayer,
 		bool bInClientOnly
-	) = 0; // #114: Conti Editor
+	) = 0; // #114: Action Editor
 
 	virtual bool DoDespawn(const FT4ObjectID& InObjectID) = 0; // #114
 	virtual bool DoDespawnAll(bool bClearPlayerActor) = 0; // #68

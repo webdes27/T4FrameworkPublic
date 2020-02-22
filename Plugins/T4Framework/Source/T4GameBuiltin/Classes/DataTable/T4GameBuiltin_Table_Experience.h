@@ -12,7 +12,7 @@
 /**
   * #114
  */
-class UT4ContiAsset;
+class UT4ActionAsset;
 
 USTRUCT()
 struct FT4GameBuiltin_ExperienceTableRow : public FT4GameBuiltin_TableBase

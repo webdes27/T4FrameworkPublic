@@ -14,7 +14,7 @@
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
  */
 
-class UT4ContiAsset;
+class UT4ActionAsset;
 
 USTRUCT()
 struct FT4GameBuiltin_SkillShapeData // #108, #114
@@ -86,13 +86,13 @@ public:
 	FT4GameBuiltin_GameEffectDataID ResultEffectDataID;
 
 	UPROPERTY(EditAnywhere, Category= ClientOnly)
-	TSoftObjectPtr<UT4ContiAsset> ContiAsset;
+	TSoftObjectPtr<UT4ActionAsset> DefaultActionAsset;
 
 	UPROPERTY(EditAnywhere, Category= ClientOnly, meta = (EditCondition = "bAiming"))
-	TSoftObjectPtr<UT4ContiAsset> AimingContiAsset; // #117 : bAiming
+	TSoftObjectPtr<UT4ActionAsset> AimingActionAsset; // #117 : bAiming
 
 	UPROPERTY(EditAnywhere, Category= ClientOnly, meta = (EditCondition = "bAiming"))
-	TSoftObjectPtr<UT4ContiAsset> IndicateContiAsset; // #117 : bAiming
+	TSoftObjectPtr<UT4ActionAsset> IndicateActionAsset; // #117 : bAiming
 
 public:
 	FT4GameBuiltin_SkillTableRow()

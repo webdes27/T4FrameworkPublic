@@ -48,7 +48,7 @@ class USkeletalMeshComponent;
 class USkinnedMeshComponent;
 class USkeletalMeshComponent;
 class UParticleSystemComponent;
-class UT4ContiAsset;
+class UT4ActionAsset;
 class UT4AnimSetAsset;
 class UBlackboardData;
 class UBehaviorTree;
@@ -133,13 +133,13 @@ public:
 };
 
 // #24
-class T4ENGINE_API FT4ContiAssetLoader : public FT4AssetLoader
+class T4ENGINE_API FT4ActionAssetLoader : public FT4AssetLoader
 {
 public:
-	explicit FT4ContiAssetLoader() {}
-	virtual ~FT4ContiAssetLoader() { Reset(); }
+	explicit FT4ActionAssetLoader() {}
+	virtual ~FT4ActionAssetLoader() { Reset(); }
 
-	UT4ContiAsset* GetContiAsset() const;
+	UT4ActionAsset* GetActionAsset() const;
 };
 
 // #39

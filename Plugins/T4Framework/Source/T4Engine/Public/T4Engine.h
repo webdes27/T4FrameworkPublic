@@ -220,7 +220,13 @@ public:
 
 	virtual void SetHeightOffset(float InOffset) = 0; // #18
 	virtual void SetOutline(bool bInUse) = 0; // #115
-	virtual void SetNameplateText(const TCHAR* InText, float InHeightOffset, const FColor& InTextColor, float InScaleXY) = 0; // #119 : InText == nullptr Hide
+	virtual void SetNameplateText(
+		FName InKey,
+		const TCHAR* InText, 
+		float InHeightOffset, 
+		const FColor& InTextColor, 
+		float InScaleXY
+	) = 0; // #119 : InText == nullptr Hide
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 	virtual FT4ServerWorldSystemActorDelegates& GetServerDelegates() = 0; // #49

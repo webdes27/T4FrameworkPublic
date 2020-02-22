@@ -41,7 +41,7 @@ enum ET4EngineConstantTable
 
 		PlayTagMaterial, // #74
 		PlayTagAttachment, // #74
-		PlayTagConti, // #74
+		PlayTagAction, // #74
 
         Stance, // #73
 		SubStance, // #106

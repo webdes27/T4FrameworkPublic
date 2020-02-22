@@ -35,7 +35,7 @@ class UAnimBlueprint;
 class UAnimMontage;
 class UBlendSpace;
 class UT4AnimSetAsset; // #39
-class UT4ContiAsset; // #74
+class UT4ActionAsset; // #74
 class UT4WeaponEntityAsset; // #74
 class UT4CostumeEntityAsset;
 

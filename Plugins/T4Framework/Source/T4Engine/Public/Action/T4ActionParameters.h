@@ -180,8 +180,8 @@ public:
 #if WITH_EDITOR
 	bool bDebugPlay; // #58 : 테스트 옵션 활성!
 
-	TSet<uint32> InvisibleActionSet; // #56 : Conti Editor 에서 Invisible or Isolate 로 출력을 제어한다.
-	TSet<uint32> IsolationActionSet; // #56 : Conti Editor 에서 Invisible or Isolate 로 출력을 제어한다.
+	TSet<uint32> InvisibleActionSet; // #56 : Action Editor 에서 Invisible or Isolate 로 출력을 제어한다.
+	TSet<uint32> IsolationActionSet; // #56 : Action Editor 에서 Invisible or Isolate 로 출력을 제어한다.
 #endif
 
 public:
@@ -204,7 +204,7 @@ public:
 	bool bDirty; // #68
 
 	UPROPERTY(Transient)
-	FT4EditorParameters EditorParams; // #56 : Only Editor, Conti Editor 에서 Invisible or Isolate 로 출력을 제어할 때 더미용으로 사용(delay, duration 동작 보장)
+	FT4EditorParameters EditorParams; // #56 : Only Editor, Action Editor 에서 Invisible or Isolate 로 출력을 제어할 때 더미용으로 사용(delay, duration 동작 보장)
 
 private:
 	UPROPERTY(EditAnywhere)

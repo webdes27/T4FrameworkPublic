@@ -12,7 +12,7 @@
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
  */
-class UT4ContiAsset;
+class UT4ActionAsset;
 
 USTRUCT()
 struct FT4GameBuiltin_EffectTableRow : public FT4GameBuiltin_TableBase
@@ -42,7 +42,7 @@ public:
 	FT4GameBuiltin_GameEffectDataID ChainEffectDataID; // #68
 
 	UPROPERTY(EditAnywhere, Category= ClientOnly)
-	TSoftObjectPtr<UT4ContiAsset> ContiAsset;
+	TSoftObjectPtr<UT4ActionAsset> DefaultActionAsset;
 
 public:
 	FT4GameBuiltin_EffectTableRow()
