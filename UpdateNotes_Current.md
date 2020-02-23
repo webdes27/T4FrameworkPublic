@@ -4,6 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.02.23] [M5] Copying //Private to //Deploy (private commit c5b86c3)**
+    - #114 [버그수정] Content Editor, 테스트용 NPC AI 가 동작하지 않던 문제 수정 (깨진 BTTree 복구)
+    - #118 [버그수정] Content Editor, Spawn Entity/Actor ListView 에서 Item 삭제시 발생하는 크래시 수정
   - **[2020.02.22] [M5] Copying //Private to //Deploy (private commit 6657416)**
     - #118 [기능추가] Content Editor, Spawn Entity Details 의 NPCData 변경, 그룹 Transform 편집 기능 추가
 	- #105 [내부수정] Conti Editor 를 Action Editor 로 리네임 및 관련 데이터 일괄 변경

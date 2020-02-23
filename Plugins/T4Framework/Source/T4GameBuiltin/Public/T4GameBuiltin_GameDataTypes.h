@@ -76,6 +76,8 @@ enum class ET4GameBuiltin_SkillSetUseType : uint8 // #116
 UENUM()
 enum class ET4GameBuiltin_EnemyType : uint8 // #104
 {
+	None,
+
 	Player,
 	Hostile_Tribe,
 

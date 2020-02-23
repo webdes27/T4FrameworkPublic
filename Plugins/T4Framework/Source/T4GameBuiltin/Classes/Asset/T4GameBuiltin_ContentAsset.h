@@ -27,7 +27,7 @@ private:
 	ET4GameBuiltin_ContentVersion() {}
 };
 
-class UT4GameBuiltin_ContentSpawnAsset;
+class UT4GameBuiltin_SpawnAsset;
 
 USTRUCT()
 struct T4GAMEBUILTIN_API FT4GameBuiltin_SpawnLayerInfo
@@ -56,7 +56,7 @@ public:
 	FGuid Guid;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TSoftObjectPtr<UT4GameBuiltin_ContentSpawnAsset> ContentSpawnAsset;
+	TSoftObjectPtr<UT4GameBuiltin_SpawnAsset> SpawnAsset;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)

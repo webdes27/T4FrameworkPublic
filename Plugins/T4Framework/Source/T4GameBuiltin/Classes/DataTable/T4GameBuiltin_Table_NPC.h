@@ -47,7 +47,12 @@ struct FT4GameBuiltin_NPCBehaviorData // #108
 	GENERATED_USTRUCT_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, Category = ServerOnly)
+	// #114
+	// FT4GameBuiltin_AIBehaviorData : AIController (Runtime)
+	// FT4GameBuiltin_NPCBehaviorData : NPC DataTable (Original Set)
+	// FT4GameBuiltin_OverrideNPCBehaviorData : Spawn Asset (Instance Set)
+
+	UPROPERTY(EditAnywhere)
 	ET4GameBuiltin_EnemyType EnemyType; // #104
 
 	UPROPERTY(EditAnywhere)

@@ -13,11 +13,11 @@
 /**
   * #114 : BP 로 노출해서 게임 로직에서 사용한다.
  */
-
 class IT4WorldActor;
 class IT4PlayerController;
 class IT4GameBuiltin_ClientPacketHandler;
 class IT4NPCAIController;
+struct FT4GameBuiltin_OverrideNPCBehaviorData;
 struct FT4GameBuiltin_GamePlayerData;
 struct FT4GameBuiltin_GameNPCData;
 struct FT4GameBuiltin_GameWeaponData;
@@ -41,23 +41,19 @@ public:
 	ET4ControllerType GetControllerType() const; // #114
 	const FT4ActorID& GetControlActorID() const { return ControlActorID; } // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 
-	const FT4GameplayAIStat& GetAIStat() const { return AIStat; } // #114
+	const FT4GameBuiltin_AIStat& GetAIStat() const { return AIStat; } // #114
+	const FT4GameBuiltin_AIBehaviorData& GetAIBehaviorData() const { return AIBehaviorData; } // #114
 
-	// #114 : 현재는 PC/NPC 공통 사용을 위해 GameData 프로퍼티를 아래와 같이 제공...SubClass 로 나눈다면 분리할 수도 있을 것!
 	FName GetRaceName() const;
-	ET4GameBuiltin_EnemyType GetEnemyType() const;
-	bool HasAggressive() const;
-	float GetPassiveApproachTimeSec() const;
-	float GetSensoryRange() const;
-	float GetRomaingRange() const;
-	float GetRoamingRateRatio() const;
-	float GetAttackRange() const; // #114 : 기본 캐릭터 공격 거리에 무기를 더한 최대 공격 거리
 	float GetMoveSpeed(const FName& InSubStanceName);
+	float GetMaxAttackRange() const; // #114 : 기본 캐릭터 공격 거리에 무기를 더한 최대 공격 거리
 
 	const FT4GameBuiltin_GameDataID& GetGameDataID() const { return GameDataID; }
 
 	void SetMainWeaponDataID(const FT4GameBuiltin_GameDataID& InMainWeaponDataID) { MainWeaponDataID = InMainWeaponDataID; } // #48
 	const FT4GameBuiltin_GameDataID& GetMainWeaponDataID() const { return MainWeaponDataID; } // #4
+
+	void SetOverrideNPCBehaviorData(const FT4GameBuiltin_OverrideNPCBehaviorData* InBehaviorData); // #114
 
 	bool GetUseSkillDataIDSelected(const FName InSubStanceName, FT4GameBuiltin_GameSkillDataID& OutSkillData); // TODO : #114 : 연속기 처리! 현재는 랜덤
 
@@ -146,7 +142,8 @@ protected:
 	void EnterEndCommon();
 	void LeaveCommon();
 
-	bool UpdateStat(); // #114
+	bool UpdateAIBehaviorData(); // #114
+	bool UpdateAIStat(); // #114
 
 	IT4WorldActor* GetControlActor() const;
 	UT4GameBuiltin_ServerObject* GetServerObject(const FT4ObjectID& InObjectID) const;
@@ -170,7 +167,8 @@ private:
 	FT4GameBuiltin_GameDataID GameDataID;
 	FT4GameBuiltin_GameDataID MainWeaponDataID;
 
-	FT4GameplayAIStat AIStat; // #114
+	FT4GameBuiltin_AIStat AIStat; // #114
+	FT4GameBuiltin_AIBehaviorData AIBehaviorData; // #114
 
 protected:
 	bool bHitOverlapEventStarted;
