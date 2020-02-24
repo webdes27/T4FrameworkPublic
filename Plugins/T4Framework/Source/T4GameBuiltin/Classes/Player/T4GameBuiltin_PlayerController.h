@@ -26,11 +26,6 @@ class T4GAMEBUILTIN_API AT4GameBuiltin_PlayerController : public AT4PlayerContro
 {
 	GENERATED_UCLASS_BODY()
 
-	// class IT4ObjectController
-#if (WITH_EDITOR || WITH_SERVER_CODE)
-	void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) override {} // #63
-#endif
-
 protected:
 	void NotifyAdvance(float InDeltaTime) override; // #49
 	void NotifyBeginPlay() override; // #114

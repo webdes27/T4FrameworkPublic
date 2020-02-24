@@ -10,9 +10,6 @@
 static const FName T4Const_DefaultPlayerRaceName = TEXT("Human"); // #114
 static const FName T4Const_DefaultNPCRaceName = TEXT("Orc"); // #114
 
-static const FName T4Const_AIEventEffectDamage = TEXT("EffectDamage"); // #63
-static const FName T4Const_AIEventDie = TEXT("Die"); // #114
-
 static const FT4ActionKey T4Const_ActionJumpPKey(TEXT("T4Jump"), true); // #20
 static const FT4ActionKey T4Const_ActionRollPKey(TEXT("T4Roll"), true); // #46
 static const FT4ActionKey T4Const_ActionTurnPKey(TEXT("T4Turn"), true); // #40

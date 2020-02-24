@@ -48,6 +48,7 @@ struct FT4GameBuiltin_GameNPCData;
 struct FT4GameBuiltin_GameWeaponData;
 struct FT4GameBuiltin_GameCostumeData;
 struct FT4GameBuiltin_GameSkillData;
+struct FT4GameBuiltin_GameEffectData;
 struct FT4GameBuiltin_GameStatData;
 struct FT4GameBuiltin_PacketSC_Base;
 UCLASS()
@@ -63,8 +64,6 @@ public:
 	bool IsServerObject() const override { return true; }
 
 public:
-	// AIContoller
-	//
 	const FT4ActorID& GetControlActorID() const { return ControlActorID; } // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 
 	const FT4GameBuiltin_AIMemory& GetAIMemoryConst() const { return AIMemory; } // #50
@@ -72,7 +71,6 @@ public:
 	const FT4GameBuiltin_AIBehaviorData& GetAIBehaviorDataConst() const { return AIBehaviorData; } // #114
 
 	FName GetAIStateName() const; // #114
-
 	FName GetRaceName() const;
 	float GetMaxMoveSpeed();
 	float GetMaxAttackRange() const; // #114 : 기본 캐릭터 공격 거리에 무기를 더한 최대 공격 거리
@@ -80,7 +78,7 @@ public:
 	const FT4GameBuiltin_GameDataID& GetGameDataID() const { return GameDataID; }
 
 	void SetOverrideNPCBehaviorData(const FT4GameBuiltin_OverrideNPCBehaviorData* InBehaviorData); // #114
-	
+
 	bool ValidTargetObjectID() const; // #114
 	void SetTargetObjectID(const FT4ObjectID& InTargetObjectID); // #52
 	void ClearTargetObjectID(); // #114
@@ -121,6 +119,7 @@ public:
 	bool GetRoamingLocation(FVector& OutLocation); // #114
 
 	bool OnAttack(const FT4ObjectID& InTargetObjectID);
+
 	void OnUpdateMoveSpeed(bool bMoving);
 
 	void HandleOnHitOverlap(const FName& InEventName, IT4WorldActor* InHitWorldActor, const FHitResult& InSweepResult); // #49
@@ -190,6 +189,8 @@ public:
 		const FVector& InTargetLocationOrDirection // #49, #68 : Area, #112
 	);
 	
+	bool OnRecvEffectDirect(const FT4GameBuiltin_GameDataID& InEffectDataID, const FT4ObjectID& InAttackerID);
+
 	bool OnRecvChangeStance(FName InStanceName);
 	bool OnRecvChangeSubStance(FName InSubStanceName);
 
@@ -197,7 +198,7 @@ public:
 	bool OnRecvUnequipItem(const FT4GameBuiltin_GameDataID& InWeaponDataID, bool bInMainWeapon);
 	bool OnRecvExchangeItem(const FT4GameBuiltin_GameDataID& InCostumeDataID);
 
-	bool OnRecvDie(const FName InReactionName); // #114
+	bool OnRecvDie(const FName InReactionName, const FT4ObjectID& InAttackerID); // #114
 
 protected:
 	friend class AT4GameBuiltin_NPCAIController;
@@ -229,6 +230,7 @@ protected:
 	const FT4GameBuiltin_GameCostumeData* GetGameCostumeData() const;
 
 	const FT4GameBuiltin_GameSkillData* GetGameSkillData(const FT4GameBuiltin_GameDataID& InSkillDataID) const;
+	const FT4GameBuiltin_GameEffectData* GetGameEffectData(const FT4GameBuiltin_GameDataID& InEffectDataID) const;
 	const FT4GameBuiltin_GameWeaponData* GetGameWeaponData(const FT4GameBuiltin_GameDataID& InWeaponDataID) const;
 	const FT4GameBuiltin_GameCostumeData* GetGameCostumeData(const FT4GameBuiltin_GameDataID& InCostumeDataID) const;
 	const FT4GameBuiltin_GameStatData* GetGameStatData(const FT4GameBuiltin_GameDataID& InStatDataID) const;

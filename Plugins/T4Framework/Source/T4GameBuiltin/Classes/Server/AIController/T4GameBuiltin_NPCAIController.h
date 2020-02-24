@@ -25,12 +25,6 @@ class T4GAMEBUILTIN_API AT4GameBuiltin_NPCAIController : public AT4NPCAIControll
 	GENERATED_UCLASS_BODY()
 
 public:
-	// class IT4ObjectController
-#if (WITH_EDITOR || WITH_SERVER_CODE)
-	void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) override; // #63
-#endif
-
-public:
 	void AIUpdate(float InDeltaTime); // #114 : from BTTree
 
 	void NotifyAITaskState(ET4GameBuiltin_AITaskState InAITaskState);

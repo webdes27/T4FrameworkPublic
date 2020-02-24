@@ -27,7 +27,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	ET4GameBuiltin_StatCategory StatCategory; // #114 : 사용처를 명시한다.
 
-	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (ClampMin = "0.0", ClampMax = "100"))
+	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (ClampMin = "0.0", ClampMax = "10000"))
 	float Health_Point; // #114 : 피, 체력
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (ClampMin = "0.0", ClampMax = "100"))

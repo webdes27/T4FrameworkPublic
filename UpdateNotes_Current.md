@@ -4,12 +4,13 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.02.24] [M5] Copying //Private to //Deploy (private commit cbe6d12)**
-	- #114 [기능개선] Player / NPC Skill 공격에 의한 Stat 적용 및 HP 연동 Dead 처리 추가
+  - **[2020.02.24] [M5] Copying //Private to //Deploy (private commit 88cbece)**
     - #118 [버그수정] Content Editor, Spawn Actor 추가시 간헐적으로 스폰이 되지 않던 문제 수정
+	- #117 [버그수정] Ranged (Wizard) 타입 공격의 Indicator 표시가 출력되지 않던 문제 수정
     - #116 [기능개선] TimeScale Aciton 이 사용중일 경우는 Hit Reaction 이 동작하지 않도록 수정
     - #116 [기능개선] Melee (Knight) 타입 공격 실패시 MissHit 이팩트 표현 추가
-	- #117 [버그수정] Ranged (Wizard) 타입 공격의 Indicator 표시가 출력되지 않던 문제 수정
+    - #114 [기능추가] Content Editor, Viewport 에 Toggle NPC AI 버튼을 통해 AI On/Off 기능 추가
+	- #114 [기능개선] Player / NPC Skill 공격에 의한 Stat 적용 및 HP 연동 Dead 처리 추가
 	- #114 [기능개선] Content Editor, NPC Nameplate 로 현재 BTTree 의 Task 를 출력하도록 기능 추가
     - #114 [버그수정] Melee (Knight) 타입의 공격이 렌덤하게 방향이 어긋나는 문제 수정
     - #114 [버그수정] NPC AI 이동이 렌덤하게 감속 이동을 하던 문제 수정

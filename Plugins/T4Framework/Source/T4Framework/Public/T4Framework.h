@@ -70,10 +70,6 @@ public:
 
 	virtual const FT4ObjectID& GetObjectID() const = 0; // #114 : GameObject and Controller ID (WARN : 서버는 모두, 클라는 Player 만 존재)
 
-#if (WITH_EDITOR || WITH_SERVER_CODE)
-	virtual void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) = 0; // #63
-#endif
-
 	virtual bool SetControlActor(const FT4ActorID& InNewTargetID) = 0;
 	virtual void ResetControlActor(bool bInSetDefaultPawn) = 0;
 

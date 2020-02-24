@@ -58,10 +58,6 @@ public:
 	ET4LayerType GetLayerType() const override { return LayerType; }
 	ET4ControllerType GetControllerType() const override { return ET4ControllerType::Controller_NPCAI; } // #114
 
-#if (WITH_EDITOR || WITH_SERVER_CODE)
-	virtual void OnNotifyAIEvent(const FName& InEventName, const FT4ObjectID& InSenderObjectID) override {} // #63
-#endif
-
 	bool SetControlActor(const FT4ActorID& InNewTargetID) override;
 	void ResetControlActor(bool bInSetDefaultPawn) override;
 
