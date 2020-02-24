@@ -13,6 +13,31 @@
 /**
   * #114 : BP 로 노출해서 게임 로직에서 사용한다.
  */
+struct FT4GameBuiltin_UseSkillInfo // #60
+{
+	FT4GameBuiltin_GameSkillDataID SkillDataID; // #50
+	FT4GameBuiltin_GameEffectDataID ResultEffectDataID; // #63
+
+	ET4GameplayAttackType AttackType; // #63
+
+	bool bMoveable;
+	bool bLockOn;
+	bool bAiming; // #113
+	float SkillDataHitDelayTimeSec;
+	float SkillDataDurationSec;
+	float ProjectileSpeed; // #63
+};
+
+struct FT4GameBuiltin_SkillTargetInfo
+{
+	ET4GameBuiltin_AttackTarget TargetType; // #112
+	FT4ObjectID TargetObjectID; // #63 : 타겟이 있으면 먼저 체크! 없으면 Direct 을 사용한다.
+	FName TargetHitBone; // #112 : TargetActorID Valid 일 경우만, 현재는 순수 비쥬얼 용도
+	FVector TargetLocationOrDirection; // #49, #68 : Area, #112
+
+	float TargetDistance; // #63
+};
+
 class IT4WorldActor;
 class IT4PlayerController;
 class IT4GameBuiltin_ClientPacketHandler;
@@ -23,6 +48,7 @@ struct FT4GameBuiltin_GameNPCData;
 struct FT4GameBuiltin_GameWeaponData;
 struct FT4GameBuiltin_GameCostumeData;
 struct FT4GameBuiltin_GameSkillData;
+struct FT4GameBuiltin_GameStatData;
 struct FT4GameBuiltin_PacketSC_Base;
 UCLASS()
 class T4GAMEBUILTIN_API UT4GameBuiltin_ServerObject : public UT4GameObject
@@ -74,7 +100,8 @@ public:
 	
 	bool FindNearestWorldActors(float InMaxDistance, TArray<IT4WorldActor*>& OutActors); // #114
 
-	bool HasAttacking() const; // #114 : 공격 중인가...
+	bool IsDead() const { return (ET4GameBuiltin_AIState::Dead == AIMemory.AIState) ? true : false; }
+	bool IsAttacking() const; // #114 : 공격 중인가...
 	bool IsAttackable() const; // #114 : 공격이 가능한 상황, bAggressive || bAggravated
 	
 	bool CheckAttackDistance(const FT4ObjectID& InTargetObjectID, float InOffsetDistance); // #104 : AttackTarget 이 Normal Attack 이 가능한 거리인지 체크!
@@ -98,8 +125,6 @@ public:
 
 	void HandleOnHitOverlap(const FName& InEventName, IT4WorldActor* InHitWorldActor, const FHitResult& InSweepResult); // #49
 	void ClearHitOverlapEvent(); // #49
-
-	bool GetUseSkillDataIDSelected(const FName InSubStanceName, FT4GameBuiltin_GameSkillDataID& OutSkillData); // TODO : #114 : 연속기 처리! 현재는 랜덤
 
 	bool IsServerRunning() const;
 	bool HasServerGameplayCustomSettings() const;
@@ -138,7 +163,7 @@ public:
 
 	bool OnRecvMove(const FVector& InLocation, float InHeadYawAngle); // #114 : Player : 어뷰징 대비
 	bool OnRecvMove(const FVector& InVelocity, bool bForceMaxSpeed); // #42, #34, #114 : NPC Only
-	bool OnRecvMoveStop(bool bSyncLocation); // #114 : NPC Only
+	bool OnRecvMoveStop(bool bSyncLocation);
 	bool OnRecvMoveSpeedSync(float InMoveSpeed); // #114 : NPC Only
 
 	bool OnRecvJump(const FVector& InJumpDirection);
@@ -153,6 +178,10 @@ public:
 	bool OnRecvAimSet(const FT4GameBuiltin_GameDataID& InSkillDataID, bool bInAimingStart, const FVector& InTargetLocation);
 	bool OnRecvAimClear();
 
+	bool OnProcessSkillTarget(
+		const FT4GameBuiltin_UseSkillInfo& InUseSkillInfo,
+		FT4GameBuiltin_SkillTargetInfo& InSkillTargetInfo
+	); // #114
 	bool OnRecvSkillTarget(
 		const FT4GameBuiltin_GameDataID& InSkillDataID,
 		ET4GameBuiltin_AttackTarget InTargetType, // #112
@@ -160,13 +189,15 @@ public:
 		FName InTargetHitBone, // #112 : TargetActorID Valid 일 경우만, 현재는 순수 비쥬얼 용도
 		const FVector& InTargetLocationOrDirection // #49, #68 : Area, #112
 	);
-
+	
 	bool OnRecvChangeStance(FName InStanceName);
 	bool OnRecvChangeSubStance(FName InSubStanceName);
 
 	bool OnRecvEquipItem(const FT4GameBuiltin_GameDataID& InWeaponDataID, bool bInMainWeapon);
 	bool OnRecvUnequipItem(const FT4GameBuiltin_GameDataID& InWeaponDataID, bool bInMainWeapon);
 	bool OnRecvExchangeItem(const FT4GameBuiltin_GameDataID& InCostumeDataID);
+
+	bool OnRecvDie(const FName InReactionName); // #114
 
 protected:
 	friend class AT4GameBuiltin_NPCAIController;
@@ -200,9 +231,14 @@ protected:
 	const FT4GameBuiltin_GameSkillData* GetGameSkillData(const FT4GameBuiltin_GameDataID& InSkillDataID) const;
 	const FT4GameBuiltin_GameWeaponData* GetGameWeaponData(const FT4GameBuiltin_GameDataID& InWeaponDataID) const;
 	const FT4GameBuiltin_GameCostumeData* GetGameCostumeData(const FT4GameBuiltin_GameDataID& InCostumeDataID) const;
+	const FT4GameBuiltin_GameStatData* GetGameStatData(const FT4GameBuiltin_GameDataID& InStatDataID) const;
 
 	void SetDefaultStat(const FT4GameBuiltin_GameDataID& InStatDataID); // #114
 	void AddWeaponStat(const FT4GameBuiltin_GameDataID& InWeaponDataID); // #114
+
+	bool GetSkillInfoFromEditor(const FT4GameBuiltin_GameDataID& InSkillDataID, FT4GameBuiltin_UseSkillInfo& OutSkillInfo);
+	bool GetSkillInfoFromGameData(const FT4GameBuiltin_GameDataID& InSkillDataID, FT4GameBuiltin_UseSkillInfo& OutSkillInfo);
+	bool GetSkillDataIDSelected(const FName InSubStanceName, FT4GameBuiltin_GameSkillDataID& OutSkillData); // TODO
 
 private:
 	bool bEntered;

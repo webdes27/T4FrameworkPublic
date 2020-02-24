@@ -22,6 +22,7 @@ UENUM()
 enum class ET4GameBuiltin_AITaskState : uint8 // #114
 {
 	None,
+	Dead,
 	FindNearestEnemy,
 	Approach,
 	Attack,

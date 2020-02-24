@@ -126,6 +126,8 @@ struct FT4GameBuiltin_AIMemory // #50 : 필요하다면 Blackboard 로 변경하
 
 		bActiveAggro = false;
 		ActiveOrKeepAggroTimeLeft = 0.0f;
+
+		Health_Point = 0.0f;
 	}
 
 	ET4GameBuiltin_AIState AIState;
@@ -145,4 +147,6 @@ struct FT4GameBuiltin_AIMemory // #50 : 필요하다면 Blackboard 로 변경하
 
 	bool bActiveAggro; // #114 : Hit 를 당할 경우
 	float ActiveOrKeepAggroTimeLeft; // #114 : Aggro 유지 시간
+
+	float Health_Point; // 피, 체력
 };

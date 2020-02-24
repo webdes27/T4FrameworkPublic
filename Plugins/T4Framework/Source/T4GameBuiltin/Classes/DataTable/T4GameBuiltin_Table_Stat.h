@@ -51,13 +51,13 @@ public:
 public:
 	FT4GameBuiltin_StatTableRow()
 		: StatCategory(ET4GameBuiltin_StatCategory::None) // #114 : 사용처를 명시한다.
-		, Health_Point(0.0f)
-		, Mana_Point(0.0f)
-		, Striking_Power(0.0f)
-		, Defensive_Power(0.0f)
-		, Hit_Rate(0.0f)
-		, Dodge_Rate(0.0f)
-		, Result_EXP(0.0f)
+		, Health_Point(100.0f)
+		, Mana_Point(100.0f)
+		, Striking_Power(10.0f)
+		, Defensive_Power(10.0f)
+		, Hit_Rate(0.1f)
+		, Dodge_Rate(0.1f)
+		, Result_EXP(1.0f)
 	{
 	}
 };
