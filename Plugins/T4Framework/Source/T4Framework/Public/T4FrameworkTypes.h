@@ -10,8 +10,8 @@
  */
 enum ET4ControllerType
 {
-	Controller_Player,
-	Controller_NPCAI,
+	Controller_Player, // #114 : Server All, Client Player Only
+	Controller_NPCAI, // #114 : Server Only
 
 	Controller_Max
 };

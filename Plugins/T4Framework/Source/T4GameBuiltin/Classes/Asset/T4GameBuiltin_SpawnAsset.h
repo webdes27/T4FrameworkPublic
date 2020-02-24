@@ -47,7 +47,7 @@ public:
 	bool bOverride_Aggressive;
 
 	UPROPERTY(EditAnywhere, meta = (PinHiddenByDefault, InlineEditConditionToggle))
-	bool bOverride_PassiveApproachTimeSec;
+	bool bOverride_ActiveOrKeepAggroTimeSec;
 
 	UPROPERTY(EditAnywhere, meta = (PinHiddenByDefault, InlineEditConditionToggle))
 	bool bOverride_AgentRadius;
@@ -59,7 +59,7 @@ public:
 	bool bOverride_RomaingRange;
 
 	UPROPERTY(EditAnywhere, meta = (PinHiddenByDefault, InlineEditConditionToggle))
-	bool bOverride_RoamingRateRatio;
+	bool bOverride_RoamingRate;
 	
 	// Properties
 	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_EnemyType"))
@@ -68,8 +68,8 @@ public:
 	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_Aggressive"))
 	bool bAggressive;
 
-	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_PassiveApproachTimeSec"))
-	float PassiveApproachTimeSec;
+	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_ActiveOrKeepAggroTimeSec"))
+	float ActiveOrKeepAggroTimeSec;
 
 	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_AgentRadius"))
 	float AgentRadius; // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
@@ -80,25 +80,25 @@ public:
 	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_RomaingRange"))
 	float RomaingRange;
 
-	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_RoamingRateRatio", ClampMin = "0.0", ClampMax = "100.0"))
-	float RoamingRateRatio;
+	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_RoamingRate", ClampMin = "0.0", ClampMax = "1.0"))
+	float RoamingRate;
 
 public:
 	FT4GameBuiltin_OverrideNPCBehaviorData()
 		: bOverride_EnemyType(false)
 		, bOverride_Aggressive(false)
-		, bOverride_PassiveApproachTimeSec(false)
+		, bOverride_ActiveOrKeepAggroTimeSec(false)
 		, bOverride_AgentRadius(false)
 		, bOverride_SensoryRange(false)
 		, bOverride_RomaingRange(false)
-		, bOverride_RoamingRateRatio(false)
+		, bOverride_RoamingRate(false)
 		, EnemyType(ET4GameBuiltin_EnemyType::None) // #104
 		, bAggressive(false)
-		, PassiveApproachTimeSec(0.0f)
+		, ActiveOrKeepAggroTimeSec(0.0f)
 		, AgentRadius(0.0f) // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
 		, SensoryRange(0.0f)
 		, RomaingRange(0.0f)
-		, RoamingRateRatio(0.0f)
+		, RoamingRate(0.0f)
 	{
 	}
 };

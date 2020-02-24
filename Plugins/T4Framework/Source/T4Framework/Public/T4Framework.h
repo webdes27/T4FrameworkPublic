@@ -170,7 +170,8 @@ public:
 	virtual ET4LayerType GetLayerType() const = 0;
 	virtual const FT4ObjectID& GetObjectID() const = 0; // #114
 
-	virtual IT4ObjectController* GetController() const = 0; // #114 : Server All, Client Player Only
+	virtual ET4ControllerType GetControllerType() const = 0; // #114
+	virtual IT4ObjectController* GetObjectController() const = 0; // #114 : Server All, Client Player Only
 };
 
 // #42
@@ -226,6 +227,7 @@ public:
 	virtual bool OnWorldTravel(const UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
 
 	// Client
+	//
 	virtual UT4GameObject* GetPlayerClientObject() const = 0; // #114 : Only Client
 	virtual IT4PlayerController* GetPlayerController() const = 0;
 
@@ -246,8 +248,32 @@ public:
 	virtual void RemoveClientObject(const FT4ObjectID& InObjectID) = 0; // #114
 	virtual void RemoveAllClientObjects() = 0; // #114
 	virtual UT4GameObject* GetClientObject(const FT4ObjectID& InObjectID) const = 0; // #114
+	virtual uint32 GetNumClientObjects() const = 0; // #114
+
+#if (WITH_EDITOR || WITH_SERVER_CODE)
+	// Server
+	//
+	virtual FT4ObjectID GenerateObjectIDForServer() = 0; // #41
 
 #if WITH_EDITOR
+	virtual FT4ObjectID ReservedObjectIDForEditor() = 0; // #114 : 미리 잡아놓는다. (툴용)
+#endif
+
+	virtual bool AddObjectController(const FT4ObjectID& InObjectID, IT4NPCAIController* InAIController) = 0; // #31
+	virtual void RemoveObjectController(const FT4ObjectID& InObjectID) = 0; // #31
+	virtual IT4NPCAIController* GetObjectController(const FT4ObjectID& InObjectID) const = 0; // #31
+	virtual uint32 GetNumObjectControllers() const = 0; // #114
+
+	virtual bool AddServerObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
+	virtual void RemoveServerObject(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual void RemoveAllServerObjects() = 0; // #114
+	virtual UT4GameObject* GetServerObject(const FT4ObjectID& InObjectID) const = 0; // #114
+	virtual uint32 GetNumServerObjects() const = 0; // #114
+#endif
+
+#if WITH_EDITOR
+	// Tool
+	//
 	virtual bool IsPreviewMode() const = 0; // #68
 
 	virtual void SetGlboalTimeScale(float InTimeScale) = 0; // #117
@@ -265,23 +291,6 @@ public:
 
 	virtual IT4EditorViewportClient* GetEditorViewportClient() const = 0; // #79
 	virtual void SetEditorViewportClient(IT4EditorViewportClient* InViewportClient) = 0; // #30
-#endif
-
-#if (WITH_EDITOR || WITH_SERVER_CODE)
-	// Server
-	virtual FT4ObjectID GenerateObjectIDForServer() = 0; // #41
-#if WITH_EDITOR
-	virtual FT4ObjectID ReservedObjectIDForEditor() = 0; // #114 : 미리 잡아놓는다. (툴용)
-#endif
-
-	virtual bool AddObjectController(const FT4ObjectID& InObjectID, IT4NPCAIController* InAIController) = 0; // #31
-	virtual void RemoveObjectController(const FT4ObjectID& InObjectID) = 0; // #31
-	virtual IT4NPCAIController* GetObjectController(const FT4ObjectID& InObjectID) const = 0; // #31
-
-	virtual bool AddServerObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
-	virtual void RemoveServerObject(const FT4ObjectID& InObjectID) = 0; // #114
-	virtual void RemoveAllServerObjects() = 0; // #114
-	virtual UT4GameObject* GetServerObject(const FT4ObjectID& InObjectID) const = 0; // #114
 #endif
 };
 

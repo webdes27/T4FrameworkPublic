@@ -6,6 +6,7 @@
 #include "Public/T4GameBuiltin_Types.h" // #114
 #include "Public/T4GameBuiltin_GameDataTypes.h" // #48
 #include "T4Framework/Classes/Object/T4GameObject.h"
+#include "T4Framework/Public/T4FrameworkTypes.h"
 #include "T4GameBuiltin_ClientObject.generated.h"
 
 /**
@@ -30,7 +31,8 @@ class T4GAMEBUILTIN_API UT4GameBuiltin_ClientObject : public UT4GameObject
 		
 public:
 	// IT4GameObject
-	IT4ObjectController* GetController() const override; // #114 : Server All, Client Player Only
+	ET4ControllerType GetControllerType() const override { return ET4ControllerType::Controller_Player; } // #114
+	IT4ObjectController* GetObjectController() const override; // #114 : Server All, Client Player Only
 
 public:
 	// UT4GameObject
@@ -50,7 +52,7 @@ public:
 public:
 	// Recv Packet Process
 	//
-	bool OnRecvLeave();
+	bool OnRecvLeave(float InFadeOutSec);
 
 #if WITH_EDITOR
 	bool OnRecvEnterWithEditor(

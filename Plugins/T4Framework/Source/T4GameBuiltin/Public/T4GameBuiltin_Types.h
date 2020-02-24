@@ -39,15 +39,6 @@ enum class ET4GameBuiltin_SkillSequence : uint8
 };
 
 UENUM()
-enum class ET4GameBuiltin_AIState : uint8 // #114
-{
-	Ready,
-	Invisible,
-	Active,
-	Dead,
-};
-
-UENUM()
 enum class ET4GameBuiltin_AttackTarget : uint8 // #112
 {
 	ObjectID,

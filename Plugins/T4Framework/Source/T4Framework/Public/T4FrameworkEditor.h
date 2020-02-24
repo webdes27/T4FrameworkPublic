@@ -264,7 +264,7 @@ public:
 		bool bInClientOnly
 	) = 0; // #114: Action Editor
 
-	virtual bool DoDespawn(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual bool DoDespawn(const FT4ObjectID& InObjectID, bool bInClientOnly) = 0; // #114
 	virtual bool DoDespawnAll(bool bClearPlayerActor) = 0; // #68
 
 	virtual bool DoChangeStance(FName InStanceName) = 0;// #73, #114

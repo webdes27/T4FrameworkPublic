@@ -28,7 +28,8 @@ public:
 	ET4LayerType GetLayerType() const override { return LayerType; }
 	const FT4ObjectID& GetObjectID() const override { return ObjectID; } // #114
 
-	virtual IT4ObjectController* GetController() const override { return nullptr; } // #114 : Server All, Client Player Only
+	virtual ET4ControllerType GetControllerType() const override { return ET4ControllerType::Controller_Max; } // #114
+	virtual IT4ObjectController* GetObjectController() const override { return nullptr; } // #114 : Server All, Client Player Only
 
 public:
 	void OnInitialize(ET4LayerType InLayerType, const FT4ObjectID& InObjectID);

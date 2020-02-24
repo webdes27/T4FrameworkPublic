@@ -4,6 +4,13 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.02.24] [M5] Copying //Private to //Deploy (private commit b40878f)**
+    - #116 [기능개선] TimeScale Aciton 이 사용중일 경우는 Hit Reaction 이 동작하지 않도록 수정
+    - #116 [기능개선] Melee (Knight) 타입 공격 실패시 MissHit 이팩트 표현 추가
+	- #117 [버그수정] Ranged (Wizard) 타입 공격의 Indicator 표시가 출력되지 않던 문제 수정
+	- #114 [기능개선] Content Editor, NPC Nameplate 로 현재 BTTree 의 Task 를 출력하도록 기능 추가
+    - #114 [버그수정] Melee (Knight) 타입의 공격이 렌덤하게 방향이 어긋나는 문제 수정
+    - #114 [버그수정] NPC AI 이동이 렌덤하게 감속 이동을 하던 문제 수정
   - **[2020.02.23] [M5] Copying //Private to //Deploy (private commit c5b86c3)**
     - #114 [버그수정] Content Editor, 테스트용 NPC AI 가 동작하지 않던 문제 수정 (깨진 BTTree 복구)
     - #118 [버그수정] Content Editor, Spawn Entity/Actor ListView 에서 Item 삭제시 발생하는 크래시 수정

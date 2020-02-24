@@ -7,7 +7,7 @@
 #include "BTTask_T4Wait.generated.h"
 
 /**
- * #50 refer BTTask_WaitBlackboardTime
+ * #50, #114 : refer BTTask_WaitBlackboardTime
  */
 class UBehaviorTree;
 UCLASS(hidecategories=Wait)

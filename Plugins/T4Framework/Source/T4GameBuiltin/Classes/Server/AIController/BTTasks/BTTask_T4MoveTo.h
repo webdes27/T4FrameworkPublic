@@ -14,7 +14,7 @@
 #include "BTTask_T4MoveTo.generated.h"
 
 /**
- * #50 refer BTTask_MoveTo
+ * #50, #114 : refer BTTask_MoveTo
  */
 
 class UAITask_MoveTo;

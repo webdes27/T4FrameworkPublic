@@ -338,14 +338,14 @@ public:
 	virtual UWorld* GetWorld() const = 0;
 
 	// #93
-	virtual FName GetGameTimeTagName() const = 0;
-	virtual FString GetGameTimeString() = 0;
+	virtual FName GetWorldTimeTagName() const = 0;
+	virtual FString GetWorldTimeString() = 0;
 
-	virtual void SetGameTimeHour(float InHour) = 0;
-	virtual float GetGameTimeHour() const = 0;
+	virtual void SetWorldTimeHour(float InHour) = 0;
+	virtual float GetWorldTimeHour() const = 0;
 
-	virtual void SetGameTimeScale(float InScale) = 0;
-	virtual float GetGameTimeScale() const = 0;
+	virtual void SetWorldTimeScale(float InScale) = 0;
+	virtual float GetWorldTimeScale() const = 0;
 	// ~#93
 
 #if WITH_EDITOR

@@ -112,7 +112,7 @@ namespace T4EngineConstant
 	// Normal Material Parameter
 	T4ENGINE_API FName GetMaterialParameterOpacityName(); // #78, #108
 
-	T4ENGINE_API float GetGameTimeHoursPerDay();
+	T4ENGINE_API float GetWorldTimeHoursPerDay();
 
 	T4ENGINE_API IT4ConstantTableManager* GetTableManager();
 }

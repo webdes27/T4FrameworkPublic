@@ -17,7 +17,7 @@ public:
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 	virtual bool RPC_SC_SendPacket(IT4PlayerController* InRecvPC, FT4GameBuiltin_PacketSC_Base* InPacket) = 0;
-	virtual bool RPC_SC_BroadcastPacket(FT4GameBuiltin_PacketSC_Base* InPacket, bool bProcessServerPacket) = 0; // #50
+	virtual bool RPC_SC_BroadcastPacket(FT4GameBuiltin_PacketSC_Base* InPacket) = 0; // #50
 #endif
 
 	virtual bool OnRecvPacket(const FT4GameBuiltin_PacketSC_Base* InPacket) = 0;

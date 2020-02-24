@@ -100,13 +100,6 @@ protected:
 	virtual void NotifyAIStart() {} // #50
 	virtual void NotifyAIEnd() {} // #50
 
-	bool IsServerRunning() const; // #104 : check 편의를 위하 editor define 을 사용하지 않음
-	bool HasServerGameplayCustomSettings() const; // #104 : check 편의를 위하 editor define 을 사용하지 않음
-
-#if WITH_EDITOR
-	IT4EditorGameplayContoller* GetEditorGameplayController() const; // #60
-#endif
-
 protected:
 	ET4LayerType LayerType;
 

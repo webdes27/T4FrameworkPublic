@@ -40,10 +40,10 @@ public:
 	float Defensive_Power; // #114 : 방어력
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (ClampMin = "0.0", ClampMax = "1.0"))
-	float Hit_Ratio; // #114 : 명중률
+	float Hit_Rate; // #114 : 명중률
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (ClampMin = "0.0", ClampMax = "1.0"))
-	float Dodge_Ratio; // #114 : 회피률
+	float Dodge_Rate; // #114 : 회피률
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (ClampMin = "0.0", ClampMax = "100"))
 	float Result_EXP; // #114 : 경험치
@@ -55,8 +55,8 @@ public:
 		, Mana_Point(0.0f)
 		, Striking_Power(0.0f)
 		, Defensive_Power(0.0f)
-		, Hit_Ratio(0.0f)
-		, Dodge_Ratio(0.0f)
+		, Hit_Rate(0.0f)
+		, Dodge_Rate(0.0f)
 		, Result_EXP(0.0f)
 	{
 	}
