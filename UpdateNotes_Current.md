@@ -5,8 +5,7 @@ Powerful toolset and Flexible layer solution
 
 - Release Notes (2020.01 ~ 2020.ING)
   - **[2020.02.24] [M5] Copying //Private to //Deploy (private commit cbe6d12)**
-    - #114 [기능개선] NPC AI 내 BT Dead Task 추가
-	- #114 [기능개선] Player / NPC Skill 사용시 Stat 적용 추가
+	- #114 [기능개선] Player / NPC Skill 공격에 의한 Stat 적용 및 HP 연동 Dead 처리 추가
     - #118 [버그수정] Content Editor, Spawn Actor 추가시 간헐적으로 스폰이 되지 않던 문제 수정
     - #116 [기능개선] TimeScale Aciton 이 사용중일 경우는 Hit Reaction 이 동작하지 않도록 수정
     - #116 [기능개선] Melee (Knight) 타입 공격 실패시 MissHit 이팩트 표현 추가
