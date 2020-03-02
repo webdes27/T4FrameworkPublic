@@ -4,7 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.03.02] [M5] Copying //Private to //Deploy (private commit a856557)**
+  - **[2020.03.02] [M5] Copying //Private to //Deploy (private commit db0bd23)**
+    - #118 [버그수정] Content Editor, 레벨 에디터의 맵을 변경할 경우 크래시 수정
+	  - 해결을 위해서는 엔진 코드를 수정해야 해서 해당 조건일 경우 수정을 저장할지 물어보고 창을 닫도록 처리
     - #118 [내부수정] Rehearsal World Editor 를 Rehearsal World Explorer 로 리네임
 	  - World Explorer 의 역할은 Level Editor 의 기능을 지원하는 헬퍼 툴 용도로 정리 (Env Zone 설정 등...)
     - #118 [버그수정] Entity Editor, Default Spawn Actor 의 이동시 Warning 수정 (HandleCS_Move)
