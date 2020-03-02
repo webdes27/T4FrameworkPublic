@@ -44,6 +44,10 @@ public:
 	void SetMainWeaponDataID(const FT4GameBuiltin_GameDataID& InMainWeaponDataID) { MainWeaponDataID = InMainWeaponDataID; } // #48
 	const FT4GameBuiltin_GameDataID& GetMainWeaponDataID() const { return MainWeaponDataID; } // #48
 
+#if WITH_EDITOR
+	void SetClientMode(bool bInClientMode) { bClientModeOnly = bInClientMode; } // #118 : 서버로의 패킷 전송을 막는다.
+#endif
+
 public:
 	// Send Packet Process
 	//
@@ -139,6 +143,9 @@ protected:
 
 private:
 	bool bEntered;
+#if WITH_EDITOR
+	bool bClientModeOnly; // #118 : 툴용 flag 로 서버로의 패킷 전송을 막는다.
+#endif
 	FT4ActorID ControlActorID; // #114 : ActorID 기억! 현재는 ObjectID.Value 와 같다. 이후 교체가 되어야 할 수 있음
 	FT4GameBuiltin_GameDataID GameDataID;
 	FT4GameBuiltin_GameDataID MainWeaponDataID;

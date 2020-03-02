@@ -391,7 +391,7 @@ public:
 	FORCEINLINE FT4ObjectID& operator++()
 	{
 		Value++;
-		if (T4Const_EmptyObjectID == Value)
+		if (0 == Value || T4Const_EmptyObjectID == Value)
 		{
 			Value = 1; // reserved 0
 		}
@@ -401,7 +401,7 @@ public:
 	FORCEINLINE FT4ObjectID& operator++(int)
 	{
 		Value++;
-		if (T4Const_EmptyObjectID == Value)
+		if (0 == Value || T4Const_EmptyObjectID == Value)
 		{
 			Value = 1;
 		}

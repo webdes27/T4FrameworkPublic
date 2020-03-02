@@ -108,7 +108,7 @@ public:
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
 
-	// #71 : WARN : FT4WorldDetailCustomization 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
+	// #71 : WARN : FT4WorldExplorerDetails 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
 	UPROPERTY(EditAnywhere, Transient)
 	FT4WorldEditorTransientData EditorTransientData;
 #endif

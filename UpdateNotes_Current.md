@@ -4,6 +4,11 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.02] [M5] Copying //Private to //Deploy (private commit a856557)**
+    - #118 [내부수정] Rehearsal World Editor 를 Rehearsal World Explorer 로 리네임
+	  - World Explorer 의 역할은 Level Editor 의 기능을 지원하는 헬퍼 툴 용도로 정리 (Env Zone 설정 등...)
+    - #118 [버그수정] Entity Editor, Default Spawn Actor 의 이동시 Warning 수정 (HandleCS_Move)
+    - #118 [버그수정] Entity Editor, Default Spawn Actor 가 맵이동 후에는 자동 스폰이 되지 않던 문제 수정
   - **[2020.02.24] [M5] Copying //Private to //Deploy (private commit 88cbece)**
     - #118 [버그수정] Content Editor, Spawn Actor 추가시 간헐적으로 스폰이 되지 않던 문제 수정
 	- #117 [버그수정] Ranged (Wizard) 타입 공격의 Indicator 표시가 출력되지 않던 문제 수정

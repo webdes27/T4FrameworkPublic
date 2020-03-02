@@ -104,12 +104,12 @@ public:
 };
 
 USTRUCT()
-struct T4GAMEBUILTIN_API FT4GameBuiltin_SpawnEntityInfo
+struct T4GAMEBUILTIN_API FT4GameBuiltin_SpawnObjectInfo
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4GameBuiltin_SpawnEntityInfo()
+	FT4GameBuiltin_SpawnObjectInfo()
 	{
 	}
 
@@ -118,12 +118,12 @@ public:
 		return (ID == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4GameBuiltin_SpawnEntityInfo& InRhs) const
+	FORCEINLINE bool operator==(const FT4GameBuiltin_SpawnObjectInfo& InRhs) const
 	{
 		return (ID == InRhs.ID) ? true : false;
 	}
 
-	// FT4ContentSpawnEntityDetails::CustomizeDetails
+	// FT4ContentSpawnObjectDetails::CustomizeDetails
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
 	FName ID;
@@ -147,7 +147,7 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_SpawnActorInfo
 
 public:
 	FT4GameBuiltin_SpawnActorInfo()
-		: SpawnEntityID(NAME_None)
+		: SpawnObjectID(NAME_None)
 	{
 	}
 
@@ -170,7 +170,7 @@ public:
 	FGuid Guid;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	FName SpawnEntityID;
+	FName SpawnObjectID;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	FTransform Transform;
@@ -195,7 +195,7 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TArray<FT4GameBuiltin_SpawnEntityInfo> SpawnEntityArray;
+	TArray<FT4GameBuiltin_SpawnObjectInfo> SpawnObjectArray;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	TArray<FT4GameBuiltin_SpawnActorInfo> SpawnActorArray;
