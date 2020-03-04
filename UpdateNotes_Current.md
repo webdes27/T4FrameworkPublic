@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.04] [M5] Copying //Private to //Deploy (private commit 69c14f2)**
+    - #118 [버그수정] Entity Editor, 실행 후 종료 시 발생하는 크래시 수정
   - **[2020.03.02] [M5] Copying //Private to //Deploy (private commit db0bd23)**
     - #118 [버그수정] Content Editor, 레벨 에디터의 맵을 변경할 경우 크래시 수정
 	  - 해결을 위해서는 엔진 코드를 수정해야 해서 해당 조건일 경우 수정을 저장할지 물어보고 창을 닫도록 처리
@@ -32,7 +34,7 @@ Powerful toolset and Flexible layer solution
     - #120 [기능추가] Content Editor, Spawn Entity Details 의 NPC 설정에 DataTable 하이퍼링크 버튼 추가
     - #120 [기능추가] Content Editor, DataTable Details 의 DataID 정보에 하이퍼링크 버튼 추가
 	- #118 [기능개선] Content Editor, 편집용 Anchor 모델을 RehearsalSettings 에서 설정할 수 있도록 개선
-	- #114 [버그수정] Content Editor, Simulation 모드 종료시 스폰 캐릭터가 사라지지 않던 문제 수정
+	- #114 [버그수정] Content Editor, Simulation 모드 종료 시 스폰 캐릭터가 사라지지 않던 문제 수정
     - #120 [버그수정] Rehearsal Preview 의 Conti Play 시 애니메이션 Speed 가 느려지던 문제 수정
   - **[2020.02.20] [M5] Copying //Private to //Deploy (private commit ce7232b)**
     - #120 [기능추가] DataTable Editor 추가 및 Content Editor 의 DataTable Details 와 연동
