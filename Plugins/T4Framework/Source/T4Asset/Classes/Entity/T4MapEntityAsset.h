@@ -27,6 +27,7 @@ private:
 };
 
 // #84, #104 : WorldAsset 의 Tile 을 MapEntity 로 이전!
+static const FName T4Const_DefaultPersistentThumbnailName = TEXT("PersistentLevel"); // #118
 USTRUCT()
 struct T4ASSET_API FT4LevelThumbnailData
 {

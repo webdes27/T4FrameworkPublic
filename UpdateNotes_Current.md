@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.05] [M5] Copying //Private to //Deploy (private commit a236ce1)**
+    - #91 [버그수정] World Explorer, World Thumbnail 업데이트가 동작하지 않던 문제 수정
   - **[2020.03.04] [M5] Copying //Private to //Deploy (private commit 69c14f2)**
     - #118 [버그수정] Entity Editor, 실행 후 종료 시 발생하는 크래시 수정
   - **[2020.03.02] [M5] Copying //Private to //Deploy (private commit db0bd23)**
