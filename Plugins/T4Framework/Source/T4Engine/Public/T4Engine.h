@@ -413,7 +413,7 @@ public:
 
 	virtual bool IsDisabledLevelStreaming() const = 0; // #86, #104
 	virtual void SetDisableLevelStreaming(bool bInDisable) = 0; // #86 : World 의 UpdateStreamingState 를 제어하기 위한 옵션 처리
-	virtual void SetDisableEnvironmentUpdating(bool bInDisable) = 0; // #92 : Map Environemnt Update 제어 옵션 처리
+	virtual void SetDisableEnvironment(bool bInDisable) = 0; // #92 : Map Environemnt Update 제어 옵션 처리
 	virtual void SetDisableTimelapse(bool bInDisable) = 0; // #93 : 시간 경과 옵션 처리
 	virtual bool GetTimelapseDisabled() const = 0; // #94
 #endif
