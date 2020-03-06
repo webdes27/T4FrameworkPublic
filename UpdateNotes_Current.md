@@ -4,6 +4,10 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.05] [M5] Copying //Private to //Deploy (private commit fc1f5fc)**
+    - #118 [기능개선] Content Editor, Spawn DetailView 의 레이아웃 정리
+    - #118 [기능추가] Content Editor, Preview Viewport 에 마우스 픽킹 좌표와 캡처 위치 표시 추가
+    - #118 [기능추가] Content Editor, SpawnActor 의 SpawnObjectID 미지정시 네임플레이트로 오류 표시 추가
   - **[2020.03.05] [M5] Copying //Private to //Deploy (private commit a236ce1)**
     - #91 [버그수정] World Explorer, World Thumbnail 업데이트가 동작하지 않던 문제 수정
   - **[2020.03.04] [M5] Copying //Private to //Deploy (private commit 69c14f2)**
