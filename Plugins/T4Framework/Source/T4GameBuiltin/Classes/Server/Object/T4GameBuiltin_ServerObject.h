@@ -42,7 +42,7 @@ class IT4WorldActor;
 class IT4PlayerController;
 class IT4GameBuiltin_ClientPacketHandler;
 class IT4NPCAIController;
-struct FT4GameBuiltin_OverrideNPCBehaviorData;
+struct FT4GameBuiltin_OverrideBehaviorData;
 struct FT4GameBuiltin_GamePlayerData;
 struct FT4GameBuiltin_GameNPCData;
 struct FT4GameBuiltin_GameWeaponData;
@@ -77,7 +77,7 @@ public:
 
 	const FT4GameBuiltin_GameDataID& GetGameDataID() const { return GameDataID; }
 
-	void SetOverrideNPCBehaviorData(const FT4GameBuiltin_OverrideNPCBehaviorData* InBehaviorData); // #114
+	void SetOverrideNPCBehaviorData(const FT4GameBuiltin_OverrideBehaviorData* InBehaviorData); // #114
 
 	bool ValidTargetObjectID() const; // #114
 	void SetTargetObjectID(const FT4ObjectID& InTargetObjectID); // #52

@@ -242,6 +242,9 @@ public:
 #endif
 
 #if WITH_EDITOR
+	virtual void EditorSetDebugColor(const FColor& InDebugColor) = 0; // #118
+	virtual const FColor& EditorGetDebugColor() const = 0; // #118
+
 	virtual void EditorSetAimTarget(bool bEnable, const FVector& InAimTarget) = 0; // #111
 	virtual bool EditorPlayAnimation(
 		UAnimSequence* InPlayAnimSequence,
@@ -338,14 +341,16 @@ public:
 	virtual UWorld* GetWorld() const = 0;
 
 	// #93
-	virtual FName GetWorldTimeTagName() const = 0;
-	virtual FString GetWorldTimeString() = 0;
+	virtual FName GetActiveTimeTag() const = 0;
+	virtual bool SetActiveTimeTag(FName InTimeTag) = 0; // #118
 
-	virtual void SetWorldTimeHour(float InHour) = 0;
-	virtual float GetWorldTimeHour() const = 0;
+	virtual void SetTimeHour(float InHour) = 0;
+	virtual float GetTimeHour() const = 0;
 
-	virtual void SetWorldTimeScale(float InScale) = 0;
-	virtual float GetWorldTimeScale() const = 0;
+	virtual void SetTimeScale(float InScale) = 0;
+	virtual float GetTimeScale() const = 0;
+
+	virtual FString GetTimeString() = 0;
 	// ~#93
 
 #if WITH_EDITOR

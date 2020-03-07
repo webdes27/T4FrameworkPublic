@@ -4,7 +4,11 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.03.05] [M5] Copying //Private to //Deploy (private commit 0371054)**
+  - **[2020.03.07] [M5] Copying //Private to //Deploy (private commit 3bfda46)**
+    - #118 [기능개선] Content Editor, Spawn Actor Nameplate 의 Material 을 Unlit 으로 처리
+    - #118 [기능개선] Content Editor, TimeTag 설정에 의한 시간 표시 처리 추가
+    - #118 [기능개선] Content Editor, Spawn Actor DebugColor 지정 기능 추가
+  - **[2020.03.06] [M5] Copying //Private to //Deploy (private commit 0371054)**
     - #118 [버그수정] Content Editor, Viewport 의 Time SetHour 설정이 동작하지 않던 문제 수정
     - #118 [기능개선] Content Editor, Spawn DetailView 의 레이아웃 정리
     - #118 [기능추가] Content Editor, Preview Viewport 에 마우스 픽킹 좌표와 캡처 위치 표시 추가

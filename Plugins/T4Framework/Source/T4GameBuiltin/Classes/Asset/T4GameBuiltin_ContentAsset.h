@@ -30,12 +30,13 @@ private:
 class UT4GameBuiltin_SpawnAsset;
 
 USTRUCT()
-struct T4GAMEBUILTIN_API FT4GameBuiltin_SpawnLayerInfo
+struct T4GAMEBUILTIN_API FT4GameBuiltin_SpawnLayerData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4GameBuiltin_SpawnLayerInfo()
+	FT4GameBuiltin_SpawnLayerData()
+		: TimeTag(NAME_None)
 	{
 	}
 
@@ -44,7 +45,7 @@ public:
 		return (ID == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4GameBuiltin_SpawnLayerInfo& InRhs) const
+	FORCEINLINE bool operator==(const FT4GameBuiltin_SpawnLayerData& InRhs) const
 	{
 		return (ID == InRhs.ID) ? true : false;
 	}
@@ -55,6 +56,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = ServerOnly)
 	FGuid Guid;
 
+	UPROPERTY(VisibleAnywhere, Category = ServerOnly)
+	FName TimeTag;
+	
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	TSoftObjectPtr<UT4GameBuiltin_SpawnAsset> SpawnAsset;
 
@@ -85,7 +89,7 @@ public:
 	FT4GameBuiltin_GameWorldDataID WorldDataID;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TArray<FT4GameBuiltin_SpawnLayerInfo> SpawnLayerArray;
+	TArray<FT4GameBuiltin_SpawnLayerData> SpawnLayerArray;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)

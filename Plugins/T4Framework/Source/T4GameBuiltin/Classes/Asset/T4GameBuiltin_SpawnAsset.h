@@ -29,7 +29,7 @@ private:
 
 // #114
 USTRUCT()
-struct T4GAMEBUILTIN_API FT4GameBuiltin_OverrideNPCBehaviorData // #114
+struct T4GAMEBUILTIN_API FT4GameBuiltin_OverrideBehaviorData // #114
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -37,7 +37,7 @@ public:
 	// #114
 	// FT4GameBuiltin_AIBehaviorData : AIController (Runtime)
 	// FT4GameBuiltin_NPCBehaviorData : NPC DataTable (Original Set)
-	// FT4GameBuiltin_OverrideNPCBehaviorData : Spawn Asset (Instance Set)
+	// FT4GameBuiltin_OverrideBehaviorData : Spawn Asset (Instance Set)
 
 	// Override
 	UPROPERTY(EditAnywhere, meta = (PinHiddenByDefault, InlineEditConditionToggle))
@@ -84,7 +84,7 @@ public:
 	float RoamingRate;
 
 public:
-	FT4GameBuiltin_OverrideNPCBehaviorData()
+	FT4GameBuiltin_OverrideBehaviorData()
 		: bOverride_EnemyType(false)
 		, bOverride_Aggressive(false)
 		, bOverride_ActiveOrKeepAggroTimeSec(false)
@@ -132,7 +132,7 @@ public:
 	FT4GameBuiltin_GameNPCDataID NPCDataID;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	FT4GameBuiltin_OverrideNPCBehaviorData OverrideNPCBehaviorData;
+	FT4GameBuiltin_OverrideBehaviorData OverrideBehaviorData;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
@@ -148,6 +148,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_SpawnActorInfo
 public:
 	FT4GameBuiltin_SpawnActorInfo()
 		: SpawnObjectID(NAME_None)
+#if WITH_EDITORONLY_DATA
+		, DebugColor(FColorList::White)
+#endif
 	{
 	}
 
@@ -178,6 +181,9 @@ public:
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FString Description;
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FColor DebugColor;
 #endif
 };
 
