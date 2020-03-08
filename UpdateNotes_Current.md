@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.08] [M5] Copying //Private to //Deploy (private commit 7b21c85)**
+    - #122 [기능개선] Rehearsal Editor, 모든 ListView 에 노출된 버튼을 마우스 우클릭 메뉴로 정리
   - **[2020.03.07] [M5] Copying //Private to //Deploy (private commit 3bfda46)**
     - #118 [기능개선] Content Editor, Spawn Actor Nameplate 의 Material 을 Unlit 으로 처리
     - #118 [기능개선] Content Editor, TimeTag 설정에 의한 시간 표시 처리 추가
