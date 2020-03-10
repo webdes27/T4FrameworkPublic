@@ -37,6 +37,10 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_SpawnLayerData
 public:
 	FT4GameBuiltin_SpawnLayerData()
 		: TimeTag(NAME_None)
+#if WITH_EDITORONLY_DATA
+		, ParentID(NAME_None) // #122
+		, FolderName(NAME_None) // #122
+#endif
 	{
 	}
 
@@ -65,6 +69,12 @@ public:
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FString Description;
+
+	UPROPERTY(VisibleAnywhere, Category = Hide)
+	FName ParentID; // #122
+
+	UPROPERTY(VisibleAnywhere, Category = Hide)
+	FName FolderName; // #122
 #endif
 };
 
@@ -97,6 +107,9 @@ public:
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	TMap<FName, bool> SpawnLayerTreeExpanded;
 #endif
 
 private:

@@ -4,8 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.03.10] [M5] Copying //Private to //Deploy (private commit 122bbee)**
-    - #122 [기능추가] Content Editor, SpawnActor ListView 를 TreeView 로 변경해 편의성 개선
+  - **[2020.03.10] [M5] Copying //Private to //Deploy (private commit 36db0b4)**
+    - #122 [기능추가] Content Editor, Spawn Layer/Object/Actor ListView 를 TreeView 로 변경
   - **[2020.03.08] [M5] Copying //Private to //Deploy (private commit 7b21c85)**
     - #122 [기능개선] Rehearsal Editor, 모든 ListView 에 노출된 버튼을 마우스 우클릭 메뉴로 정리
   - **[2020.03.07] [M5] Copying //Private to //Deploy (private commit 3bfda46)**
