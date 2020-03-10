@@ -150,6 +150,8 @@ public:
 		: SpawnObjectID(NAME_None)
 #if WITH_EDITORONLY_DATA
 		, DebugColor(FColorList::White)
+		, ParentID(NAME_None) // #122
+		, FolderName(NAME_None) // #122
 #endif
 	{
 	}
@@ -184,6 +186,12 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FColor DebugColor;
+
+	UPROPERTY(VisibleAnywhere, Category = Hide)
+	FName ParentID; // #122
+
+	UPROPERTY(VisibleAnywhere, Category = Hide)
+	FName FolderName; // #122
 #endif
 };
 
@@ -212,5 +220,8 @@ public:
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
+
+	UPROPERTY(EditAnywhere, Category = ServerOnly)
+	TMap<FName, bool> SpawnActorTreeExpanded;
 #endif
 };
