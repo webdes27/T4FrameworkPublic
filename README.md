@@ -4,7 +4,7 @@ Powerful toolset and Flexible layer solution
 ``` 
 ![T4Framework](./T4Framework_Title.png)
 - **Supported Engine Versions**
-  - 4.24 (Binary Build : 4.24.3)
+  - 4.24 (Release Version : 4.24.3)
 - **Information**
   - **Website**
     - <https://tech4labs.com/>
