@@ -24,12 +24,14 @@
 /**
   * #118
  */
+class FStructOnScope;
 struct T4GAMEBUILTIN_API FT4GameBuiltin_GameDataBase
 {
 	FT4GameBuiltin_GameDataBase(const FName& InRowName)
 		: RowName(InRowName)
 #if WITH_EDITOR
 		, bDirtyed(false)
+		, SortOrder(-1)
 #endif
 	{
 	}
@@ -42,8 +44,14 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameDataBase
 	virtual TSharedPtr<FStructOnScope> GetRawDataStruct() = 0;
 	virtual bool CheckValidationAll() = 0;
 	virtual bool CheckValidationBy(FName InPropertyName) = 0;
-	virtual const FString& GetDescription() const = 0;
 	virtual bool HasError() const = 0;
+	virtual bool HasParent() const = 0; // #122
+	virtual bool IsFolder() const = 0; // #122
+	virtual FName GetParentRowName() const = 0; // #122
+	virtual void SetParentRowName(FName InParentRowName) = 0; // #122
+	virtual FName GetFolderName() const = 0; // #122
+	virtual void SetFolderName(FName InFolderName) = 0; // #122
+	virtual const FString& GetDescription() const = 0;
 	// ~#118
 #endif
 	
@@ -52,8 +60,20 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameDataBase
 
 #if WITH_EDITOR
 	bool bDirtyed; // #118 : Content Editor 에서 편집이 있을 경우 true
+	int32 SortOrder;
 #endif
 };
+
+#if WITH_EDITOR
+#define DEFINE_GAME_DATA_COMMON_METHOD()															\
+	bool HasParent() const override { return (RawData.ParentRowName != NAME_None) ? true : false; } \
+	bool IsFolder() const override { return (RawData.FolderName != NAME_None) ? true : false; }		\
+	FName GetParentRowName() const { return RawData.ParentRowName; }								\
+	void SetParentRowName(FName InParentRowName) { RawData.ParentRowName = InParentRowName; }		\
+	FName GetFolderName() const { return RawData.FolderName; }										\
+	void SetFolderName(FName InFolderName) { RawData.FolderName = InFolderName; }					\
+	const FString& GetDescription() const override { return RawData.Description; }
+#endif
 
 struct T4GAMEBUILTIN_API FT4GameBuiltin_GameMasterData : public FT4GameBuiltin_GameDataBase
 {
@@ -68,8 +88,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameMasterData : public FT4GameBuiltin_G
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override { return true; }
 	bool CheckValidationBy(FName InPropertyName) override { return true; }
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override { return false; }
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_MasterTableRow RawData; // #27
@@ -87,8 +108,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameWorldData : public FT4GameBuiltin_Ga
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override { return true; }
 	bool CheckValidationBy(FName InPropertyName) override { return true; }
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override { return false; }
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_WorldTableRow RawData; // #27
@@ -106,8 +128,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GamePlayerData : public FT4GameBuiltin_G
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override;
 	bool CheckValidationBy(FName InPropertyName) override;
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override;
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_PlayerTableRow RawData; // #27
@@ -125,8 +148,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameNPCData : public FT4GameBuiltin_Game
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override;
 	bool CheckValidationBy(FName InPropertyName) override;
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override;
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_NPCTableRow RawData; // #31
@@ -144,8 +168,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameWeaponData : public FT4GameBuiltin_G
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override;
 	bool CheckValidationBy(FName InPropertyName) override;
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override;
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_WeaponTableRow RawData; // #27, #48
@@ -163,8 +188,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameCostumeData : public FT4GameBuiltin_
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override { return true; }
 	bool CheckValidationBy(FName InPropertyName) override { return true; }
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override { return false; }
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_CostumeTableRow RawData; // #27, #48
@@ -182,8 +208,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameSkillSetData : public FT4GameBuiltin
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override;
 	bool CheckValidationBy(FName InPropertyName) override;
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override;
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_SkillSetTableRow RawData; // #27
@@ -201,8 +228,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameSkillData : public FT4GameBuiltin_Ga
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override;
 	bool CheckValidationBy(FName InPropertyName) override;
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override;
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_SkillTableRow RawData; // #27
@@ -220,8 +248,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameEffectData : public FT4GameBuiltin_G
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override;
 	bool CheckValidationBy(FName InPropertyName) override;
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override;
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_EffectTableRow RawData; // #27
@@ -240,8 +269,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameStatData : public FT4GameBuiltin_Gam
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override { return true; }
 	bool CheckValidationBy(FName InPropertyName) override { return true; }
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override { return false; }
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_StatTableRow RawData; // #27
@@ -259,8 +289,9 @@ struct T4GAMEBUILTIN_API FT4GameBuiltin_GameExperienceData : public FT4GameBuilt
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override { return true; }
 	bool CheckValidationBy(FName InPropertyName) override { return true; }
-	const FString& GetDescription() const override { return RawData.Description; }
 	bool HasError() const override { return false; }
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
 	FT4GameBuiltin_ExperienceTableRow RawData; // #27
@@ -276,8 +307,8 @@ public:
 	virtual bool HasGameData(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
 	virtual bool HasGameData(const FGuid& InGuid) const = 0;
 
-	virtual const FT4GameBuiltin_GameDataBase* GetGameDataBase(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
-	virtual const FT4GameBuiltin_GameDataBase* GetGameDataBase(const FGuid& InDataGuid) const = 0;
+	virtual const FT4GameBuiltin_GameDataBase* GetGameDataConst(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
+	virtual const FT4GameBuiltin_GameDataBase* GetGameDataConst(const FGuid& InDataGuid) const = 0;
 
 	virtual const FT4GameBuiltin_GameWorldData* GetGameWorldData(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
 	virtual const FT4GameBuiltin_GamePlayerData* GetGamePlayerData(const FT4GameBuiltin_GameDataID& InGameDataID) const = 0;
@@ -297,19 +328,21 @@ public:
 	virtual bool SaveDataTable(ET4GameBuiltin_GameDataType InGameDataType, FString& OutErrorMessage) = 0;
 	virtual UDataTable* GetDataTable(ET4GameBuiltin_GameDataType InGameDataType) const = 0; 
 
-	virtual const TArray<FT4GameBuiltin_GameDataBase*>& GetGameRawDatas(
+	virtual const TArray<FT4GameBuiltin_GameDataBase*>& GetGameDataBases(
 		ET4GameBuiltin_GameDataType InGameDataType,
 		bool bInCheckValidation
 	) = 0;
-	virtual FT4GameBuiltin_GameDataBase* GetGameRawData(const FT4GameBuiltin_GameDataID& InGameDataID) = 0;
+	virtual FT4GameBuiltin_GameDataBase* GetGameDataBase(const FT4GameBuiltin_GameDataID& InGameDataID) = 0;
 
-	virtual void AddRawData(ET4GameBuiltin_GameDataType InGameDataType, FName InRowName) = 0;
-	virtual void RemoveRawData(ET4GameBuiltin_GameDataType InGameDataType, FName InRowName) = 0;
-	virtual void RenameRawData(ET4GameBuiltin_GameDataType InGameDataType, FName InOldRowName, FName InNewRowName) = 0;
-	virtual void DuplicateRawData(ET4GameBuiltin_GameDataType InGameDataType, FName InSourceRowName, FName InNewRowName) = 0;
-	virtual void MoveUpRawData(ET4GameBuiltin_GameDataType InGameDataType, FName InRowName) = 0;
-	virtual void MoveDownRawData(ET4GameBuiltin_GameDataType InGameDataType, FName InRowName) = 0;
-	virtual void UpdateRawData(const FT4GameBuiltin_GameDataID& InGameDataID) = 0; // GameData to RawData
+	virtual void DataTableAddRow(ET4GameBuiltin_GameDataType InGameDataType, const FName& InNewRowName, const FName& InRowName, bool bInFolder) = 0;
+	virtual void DataTableRemoveRow(ET4GameBuiltin_GameDataType InGameDataType, const FName& InRowName) = 0;
+	virtual void DataTableRenameRow(ET4GameBuiltin_GameDataType InGameDataType, const FName& InOldRowName, const FName& InNewRowName) = 0;
+	virtual void DataTableDuplicateRow(ET4GameBuiltin_GameDataType InGameDataType, const FName& InSourceRowName, const FName& InNewRowName) = 0;
+	virtual void DataTableMoveRow(ET4GameBuiltin_GameDataType InGameDataType, const FName& InTargetRowName, const FName& InSourceRowName) = 0;
+	virtual void DataTableWriteRowFromGameData(const FT4GameBuiltin_GameDataID& InGameDataID) = 0; // GameData to RawData
+
+	virtual void DataTableSetTreeExpansion(ET4GameBuiltin_GameDataType InGameDataType, const FName& InRowName, bool bInExpand) = 0; // #122
+	virtual bool DataTableIsTreeExpanded(ET4GameBuiltin_GameDataType InGameDataType, const FName& InRowName) const = 0; // #122
 	// ~#118
 #endif
 };

@@ -55,7 +55,6 @@
 *.sln
 *.bat
 .vs
-*.target
 docs/
 BuildRules/
 Saved/

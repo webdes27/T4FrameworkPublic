@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.11] [M5] Copying //Private to //Deploy (private commit 7fc9235)**
+    - #122 [기능개선] Content Editor, DataTable Editor 의 ListView 를 TreeView 로 변경
   - **[2020.03.10] [M5] Copying //Private to //Deploy (private commit 36db0b4)**
     - #122 [기능추가] Content Editor, Spawn Layer/Object/Actor ListView 를 TreeView 로 변경
   - **[2020.03.08] [M5] Copying //Private to //Deploy (private commit 7b21c85)**
