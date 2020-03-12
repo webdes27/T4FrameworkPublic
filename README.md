@@ -1,5 +1,4 @@
 # T4Framework : MMO Action RPG Framework for UE4
-<img src="./T4Framework_MegaGrants.png" aligh=center></img>
 ``` 
 Powerful toolset and Flexible layer solution
 ``` 
