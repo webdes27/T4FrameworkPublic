@@ -27,15 +27,12 @@ static const FName T4Const_GlobalWorldZoneName = TEXT("Global"); // #93 : WorldZ
 
 // #97 : TimeTag 를 추가할 경우 반드시 FT4WorldTimeControl::Initialize(float InStartHour) 에도 추가해줄 것!
 // #97 : 만약, 20 ~ 7 시 같은 시간대를 추가한다면 void FT4WorldTimeControl::AddConstantGameTimeData 처리를 체크해볼 것!
-static const FName T4Const_WorldTimeTagDayName = TEXT("Day");				// Hour : 9 ~ 12
-static const FName T4Const_WorldTimeTagNoonName = TEXT("AtNoon");		// Hour : 12 ~ 18 // #97 : 정오, 한밤 추가!
+static const FName T4Const_WorldTimeTagDayName = TEXT("Day");			// Hour : 9 ~ 18 or 7 ~ 18 or 24
 static const FName T4Const_WorldTimeTagSunsetName = TEXT("Sunset");		// Hour : 18 ~ 20
-static const FName T4Const_WorldTimeTagNightName = TEXT("Night");			// Hour : 20 ~ 24 // #97 : 정오, 한밤 추가!
-static const FName T4Const_WorldTimeTagMidnightName = TEXT("Midnight");	// Hour : 0 ~ 7
-static const FName T4Const_WorldTimeTagSunriseName = TEXT("Sunrise");		// Hour : 7 ~ 9
+static const FName T4Const_WorldTimeTagNightName = TEXT("Night");		// Hour : 20 ~ 7 or 18 ~ 7
+static const FName T4Const_WorldTimeTagSunriseName = TEXT("Sunrise");	// Hour : 7 ~ 9
 
-static const FName T4Const_WorldTimeTagFallbackName = TEXT("Fallback");
-
+static const FName T4Const_WorldTimeTagFallbackName = T4Const_WorldTimeTagDayName; // #123 : Day 를 Fallback 으로 사용한다. 별도로 세팅하지 않음
 
 // #39 : AnimSet
 

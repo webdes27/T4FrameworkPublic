@@ -4,7 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.03.12] [M5] Copying //Private to //Deploy (private commit 8c5dbc2)**
+  - **[2020.03.12] [M5] Copying //Private to //Deploy (private commit 9cb0660)**
+    - #123 [기능개선] World Explorer, TOD 설정을 Day, Night, Sunset, Sunrise 4단계만 설정하도록 간소화
+    - #123 [버그수정] World Explorer, Env TimgTag 적용이 툴 종료 후에도 EditorWorld 에 저장되던 문제 수정
     - #123 [기능개선] World Explorer, WorldMap Status 의 마우스 위치 표시 처리 개선
     - #123 [기능개선] World Explorer, WorldMap 의 Thumbnail 자동 업데이트를 수동으로 업데이트 하도록 변경
     - #123 [버그수정] World Explorer, Environment Zone 의 TimeTag 선택시 Preview 에 적용이 안되던 문제 수정
