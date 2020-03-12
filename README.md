@@ -23,14 +23,10 @@ Powerful toolset and Flexible layer solution
 	    - 중급 RPG 개발 가능 수준 개발 완료
 		- 구독(Subscription), 소스(Source), 라이선스 및 유지보수(Maintenance) 서비스 시작
   - 2021 ~ 2020
-     - '21 2/4 : v2.0 for UE4
-	    - 고급 RPG 개발 가능 수준 완료
-	 - '21 3/4 : v2.2 for UE4
-	    - 기능 추가 및 안정화
-     - '22 1/4 : v3.0 for UE4
-	    - AI, AR/VR 등 신기술 반영
-	 - '22 2/4 : v1.0 for Unity
-	    - 중급 RPG 개발 가능 수준 개발 완료
+     - '21 2/4 : v2.0 for UE4 (고급 RPG 개발 가능 수준 완료)
+	 - '21 3/4 : v2.2 for UE4 (기능 추가 및 안정화)
+     - '22 1/4 : v3.0 for UE4 (AI, AR/VR 등 신기술 반영)
+	 - '22 2/4 : v1.0 for Unity (중급 RPG 개발 가능 수준 개발 완료)
 - **Milestones**
   - **M5 (Alpha version)**
     - 2020.01.06 ~ 2020.03.13
