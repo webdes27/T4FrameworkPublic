@@ -107,9 +107,6 @@ public:
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
-
-	UPROPERTY(EditAnywhere, Category = Editor)
-	TMap<FName, bool> SpawnLayerTreeExpanded;
 #endif
 
 private:

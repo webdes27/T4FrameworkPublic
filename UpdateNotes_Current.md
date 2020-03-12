@@ -4,6 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.12] [M5] Copying //Private to //Deploy (private commit 6cfef0c)**
+    - #122 [기능개선] Content Editor, TreeView Folder 간 위치 이동 처리 지원
+    - #122 [기능개선] Content Editor, TreeView Folder Expanded 값을 Saved/Config 에 저장하도록 개선
   - **[2020.03.11] [M5] Copying //Private to //Deploy (private commit 7fc9235)**
     - #122 [기능개선] Content Editor, DataTable Editor 의 ListView 를 TreeView 로 변경
   - **[2020.03.10] [M5] Copying //Private to //Deploy (private commit 36db0b4)**

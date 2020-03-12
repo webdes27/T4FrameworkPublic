@@ -208,7 +208,7 @@ public:
 		return RowName.ToString();
 	}
 
-	FORCEINLINE const TCHAR* ToTypeString() const
+	static const TCHAR* ToTypeString(ET4GameBuiltin_GameDataType InType)
 	{
 		static const TCHAR* GameDataTypeStrings[] =
 		{
@@ -226,8 +226,13 @@ public:
 			TEXT("None"),
 		};
 		static_assert(UE_ARRAY_COUNT(GameDataTypeStrings) == (uint8)(ET4GameBuiltin_GameDataType::Nums) + 1, "GameDataType doesn't match!");
-		check(uint8(Type) < UE_ARRAY_COUNT(GameDataTypeStrings));
-		return GameDataTypeStrings[uint8(Type)];
+		check(uint8(InType) < UE_ARRAY_COUNT(GameDataTypeStrings));
+		return GameDataTypeStrings[uint8(InType)];
+	}
+
+	FORCEINLINE const TCHAR* ToTypeString() const
+	{
+		return ToTypeString(Type);
 	}
 
 	FORCEINLINE FString ToString() const
