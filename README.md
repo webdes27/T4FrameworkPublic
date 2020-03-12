@@ -21,15 +21,14 @@ Powerful toolset and Flexible layer solution
 	    - 기본 동작 수준 완료
      - 4/4 : v1.0 for Ue4 (Release)
 	    - 중급 RPG 개발 가능 수준 개발 완료
-  - 2021
-     - 2/4 : v2.0 for UE4
+  - 2021 ~ 2020
+     - '21 2/4 : v2.0 for UE4
 	    - 고급 RPG 개발 가능 수준 완료
-	 - 3/4 : v2.2 for UE4
+	 - '21 3/4 : v2.2 for UE4
 	    - 기능 추가 및 안정화
-  - 2020
-     - 1/4 : v3.0 for UE4
+     - '22 1/4 : v3.0 for UE4
 	    - AI, AR/VR 등 신기술 반영
-	 - 2/4 : v1.0 for Unity
+	 - '22 2/4 : v1.0 for Unity
 	    - 중급 RPG 개발 가능 수준 개발 완료
 - **Milestones**
   - **M5 (Alpha version)**
