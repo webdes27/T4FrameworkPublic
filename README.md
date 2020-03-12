@@ -14,8 +14,26 @@ Powerful toolset and Flexible layer solution
     - <https://twitter.com/Tech4Labs> (@Tech4Labs)
   - Sources Repositories (Private)
     - <https://github.com/Tech4Labs/T4Framework>
+- **Plan**
+  - 2020
+     - Current : Alpha version
+     - 2/4 : v0.9 for UE4 (Beta)
+	    - 기본 동작 수준 완료
+     - 4/4 : v1.0 for Ue4 (Release)
+	    - 중급 RPG 개발 가능 수준 개발 완료
+		- 라이선스 시작
+  - 2021
+     - 2/4 : v2.0 for UE4
+	    - 고급 RPG 개발 가능 수준 완료
+	 - 3/4 : v2.2 for UE4
+	    - 기능 추가 및 안정화
+  - 2020
+     - 1/4 : v3.0 for UE4
+	    - AI, AR/VR 등 신기술 반영
+	 - 2/4 : v1.0 for Unity
+	    - 중급 RPG 개발 가능 수준 개발 완료
 - **Milestones**
-  - **M5 (Current)**
+  - **M5 (Alpha version)**
     - 2020.01.06 ~ 2020.03.13
     - Goal
       - 게임 콘텐츠 제작을 위한 기반 기능 및 툴 개발
