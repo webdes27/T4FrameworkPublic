@@ -4,7 +4,10 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.03.12] [M5] Copying //Private to //Deploy (private commit 6cfef0c)**
+  - **[2020.03.12] [M5] Copying //Private to //Deploy (private commit 8c5dbc2)**
+    - #123 [기능개선] World Explorer, WorldMap Status 의 마우스 위치 표시 처리 개선
+    - #123 [기능개선] World Explorer, WorldMap 의 Thumbnail 자동 업데이트를 수동으로 업데이트 하도록 변경
+    - #123 [버그수정] World Explorer, Environment Zone 의 TimeTag 선택시 Preview 에 적용이 안되던 문제 수정
     - #122 [기능개선] Content Editor, TreeView Folder 간 위치 이동 처리 지원
     - #122 [기능개선] Content Editor, TreeView Folder Expanded 값을 Saved/Config 에 저장하도록 개선
   - **[2020.03.11] [M5] Copying //Private to //Deploy (private commit 7fc9235)**
