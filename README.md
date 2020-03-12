@@ -21,7 +21,6 @@ Powerful toolset and Flexible layer solution
 	    - 기본 동작 수준 완료
      - 4/4 : v1.0 for Ue4 (Release)
 	    - 중급 RPG 개발 가능 수준 개발 완료
-		- 라이선스 시작
   - 2021
      - 2/4 : v2.0 for UE4
 	    - 고급 RPG 개발 가능 수준 완료
