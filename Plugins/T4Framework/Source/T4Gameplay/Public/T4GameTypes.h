@@ -14,6 +14,7 @@ enum class ET4GameplayModeType : uint8
 {
 	TPS,
 	ShoulderView, // #40
+	FPS, // #121
 
 	None UMETA(Hidden),
 };

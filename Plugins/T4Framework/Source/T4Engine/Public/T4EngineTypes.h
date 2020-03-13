@@ -92,6 +92,7 @@ enum ET4CameraType
 {
 	TPS,
 	ShoulderView, // #40
+	FPS, // #121
 
 	Editor,
 	None,

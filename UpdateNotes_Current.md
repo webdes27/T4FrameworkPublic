@@ -4,7 +4,10 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.03.13] [M5] Copying //Private to //Deploy (private commit 6698386)**
+  - **[2020.03.13] [M5] Copying //Private to //Deploy (private commit 01141c6)**
+    - #121 [기능추가] FPS Control Mode 추가 (M-Key : TPS => ShoulderView => FPS)
+    - #122 [버그수정] Content Editor, DataTable GameData DropList 에 폴더가 출력되는 문제 수정
+    - #120 [버그수정] Content Editor, DataTable Property 수정 후 간헐적으로 저장이 되지 않던 문제 수정
     - #123 [내부수정] T4GameBuiltin 모듈을 T4Gameplay 로 리네임 및 데이터 정리
 	  - Coantent Editor 의 Content/Spawn Asset 은 자동 마이그레이션에서 제외함
   - **[2020.03.12] [M5] Copying //Private to //Deploy (private commit 9cb0660)**

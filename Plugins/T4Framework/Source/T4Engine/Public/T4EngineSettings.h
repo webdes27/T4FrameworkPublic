@@ -98,6 +98,12 @@ public:
 	UPROPERTY(config, EditAnywhere, Category= ShoulderViewCameraSettting)
 	FVector SV_SocketOffset;
 
+	UPROPERTY(config, EditAnywhere, Category= FPSCameraSettting)
+	float FPS_FieldOfViewDegree;
+
+	UPROPERTY(config, EditAnywhere, Category= FPSCameraSettting)
+	FVector FPS_SocketOffset;
+
 	UPROPERTY(config, EditAnywhere, Category=DataTable)
 	FSoftObjectPath WorldZoneConstantTablePath; // #92
 
