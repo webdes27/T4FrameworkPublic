@@ -10,7 +10,7 @@
   * #40
  */
 UENUM()
-enum class ET4GameplayModeType : uint8
+enum class ET4GameControlMode : uint8
 {
 	TPS,
 	ShoulderView, // #40

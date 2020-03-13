@@ -4,7 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.03.13] [M5] Copying //Private to //Deploy (private commit 01141c6)**
+  - **[2020.03.13] [M5] Copying //Private to //Deploy (private commit 5153e7f)**
+    - #121 [기능개선] FPS Control Mode 사용시 조준점(Crosshair) 표시 및 마우스 커서 Hide 처리 추가
     - #121 [기능추가] FPS Control Mode 추가 (M-Key : TPS => ShoulderView => FPS)
     - #122 [버그수정] Content Editor, DataTable GameData DropList 에 폴더가 출력되는 문제 수정
     - #120 [버그수정] Content Editor, DataTable Property 수정 후 간헐적으로 저장이 되지 않던 문제 수정

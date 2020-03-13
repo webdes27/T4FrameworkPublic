@@ -27,6 +27,7 @@
   *
  */
 class APawn; // #86
+class UTexture2D; // #121
 class UWorld;
 class FCanvas;
 class FViewport;
@@ -136,6 +137,7 @@ public:
 	virtual void GetCameraInfoCached(FRotator& OutRotation, float& OutDistance) = 0; // #87
 	virtual void SetCameraInfoCached(const FRotator& InRotation, const float& InDistance) = 0; // #87
 
+	virtual bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FVector& OutStartPosition, FVector& OutStartDirection) = 0; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
 	virtual bool GetMousePositionToWorldRay(FVector& OutStartPosition, FVector& OutStartDirection) = 0;
 
 	virtual void SetMouseCursorLock(bool bInLock) = 0;
@@ -146,6 +148,8 @@ public:
 
 	virtual void SetMouseCursorPosition(const FVector2D& InPosition) = 0; // #30, #113
 	virtual bool GetMouseCursorPosition(FVector2D& OutPosition) const = 0; // #30, #113
+
+	virtual void SetCrosshairTexture(UTexture2D* InTexture) = 0; // #121
 
 #if WITH_EDITOR
 	virtual bool EditorInputKey(FKey InKey, EInputEvent InEvent, float InAmountDepressed, bool bInGamepad) = 0; // #30
@@ -227,6 +231,7 @@ public:
 	virtual UT4GameObjectBase* GetPlayerClientObject() const = 0; // #114 : Only Client
 	virtual IT4PlayerController* GetPlayerController() const = 0;
 
+	virtual bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FVector& OutLocation, FVector& OutDirection) = 0; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
 	virtual bool GetMousePositionToWorldRay(FVector& OutLocation, FVector& OutDirection) = 0; // #113
 
 	virtual IT4WorldActor* GetMousePickingActor() = 0;

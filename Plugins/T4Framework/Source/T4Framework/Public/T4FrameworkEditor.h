@@ -172,6 +172,8 @@ public:
 
 	virtual void SetMouseLocation(const int InX, const int InY) = 0;
 	virtual bool GetMousePosition(float& InLocationX, float& InLocationY) = 0;
+
+	virtual bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FVector& OutStartPosition, FVector& OutStartDirection) = 0; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
 	virtual bool GetMousePositionToWorldRay(FVector& OutStartPosition, FVector& OutStartDirection) = 0;
 
 	virtual void ShowMouseCursor(bool InShow) = 0;

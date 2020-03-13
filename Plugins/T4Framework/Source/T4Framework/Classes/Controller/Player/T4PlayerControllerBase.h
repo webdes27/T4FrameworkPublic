@@ -111,6 +111,7 @@ public:
 	void GetCameraInfoCached(FRotator& OutRotation, float& OutDistance) override; // #87
 	void SetCameraInfoCached(const FRotator& InRotation, const float& InDistance) override; // #87
 
+	bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FVector& OutStartPosition, FVector& OutStartDirection) override; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
 	bool GetMousePositionToWorldRay(FVector& OutStartPosition, FVector& OutStartDirection) override;
 
 	void SetMouseCursorLock(bool bInLock) override;
@@ -121,6 +122,8 @@ public:
 
 	void SetMouseCursorPosition(const FVector2D& InPosition) override; // #30, #113 : ScreenSpace
 	bool GetMouseCursorPosition(FVector2D& OutLocation) const override; // #30, #113
+
+	void SetCrosshairTexture(UTexture2D* InTexture) override; // #121
 
 #if WITH_EDITOR
 	// see UGameViewportClient::InputKey

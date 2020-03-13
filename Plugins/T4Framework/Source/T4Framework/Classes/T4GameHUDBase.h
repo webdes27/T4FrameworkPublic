@@ -10,7 +10,7 @@
 /**
   * https://docs.unrealengine.com/ko/Gameplay/Framework/UIAndHUD/index.html
  */
-
+class UTexture2D;
 UCLASS()
 class T4FRAMEWORK_API AT4GameHUDBase : public AHUD
 {
@@ -19,9 +19,16 @@ class T4FRAMEWORK_API AT4GameHUDBase : public AHUD
 public:
 	ET4LayerType GetLayerType() const { return LayerType; }
 
+	virtual void DrawHUD() override; // #121 : Crosshair
+
+	void SetCrosshairTexture(UTexture2D* InTexture) { CrosshairTexture = InTexture; } // #121
+
 protected:
 	void BeginPlay() override;
 
 protected:
 	ET4LayerType LayerType;
+	
+	UPROPERTY(EditDefaultsOnly)
+	UTexture2D* CrosshairTexture; // #121
 };
