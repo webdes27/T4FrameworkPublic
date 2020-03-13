@@ -386,7 +386,7 @@ public:
 	virtual IT4WorldNavigation* GetNavigation() = 0; // #87
 
 	// Client Only
-	virtual bool SetPlayerInfo(const FT4ObjectID& InPlayerObjectID, APlayerController* InPlayerController) = 0; // AT4PlayerController
+	virtual bool SetPlayerInfo(const FT4ObjectID& InPlayerObjectID, APlayerController* InPlayerController) = 0; // AT4PlayerControllerBase
 	virtual bool HasPlayerController() const = 0; // #115 : PC가 스폰되어야 렌더링이 가능하다.
 	virtual const FT4ObjectID GetPlayerObjectID() const = 0;
 

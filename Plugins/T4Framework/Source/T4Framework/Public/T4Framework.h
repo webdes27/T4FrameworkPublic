@@ -36,7 +36,7 @@ class AAIController;
 class UInputComponent;
 class IT4WorldActor;
 class IT4WorldSystem;
-class AT4PlayerController;
+class AT4PlayerControllerBase;
 class IT4EditorViewportClient;
 class UT4MapEntityAsset; // #87
 
@@ -91,10 +91,10 @@ public:
 	virtual IT4GameObject* GetGameObject() const = 0; // #114
 };
 
-class T4FRAMEWORK_API IT4NPCAIController : public IT4ObjectController
+class T4FRAMEWORK_API IT4NPCAIControllerBase : public IT4ObjectController
 {
 public:
-	virtual ~IT4NPCAIController() {}
+	virtual ~IT4NPCAIControllerBase() {}
 
 	virtual AAIController* GetAIController() = 0; // #104
 };
@@ -195,7 +195,7 @@ public:
 #endif
 };
 
-class UT4GameObject;
+class UT4GameObjectBase;
 class T4FRAMEWORK_API IT4Framework
 {
 public:
@@ -224,7 +224,7 @@ public:
 
 	// Client
 	//
-	virtual UT4GameObject* GetPlayerClientObject() const = 0; // #114 : Only Client
+	virtual UT4GameObjectBase* GetPlayerClientObject() const = 0; // #114 : Only Client
 	virtual IT4PlayerController* GetPlayerController() const = 0;
 
 	virtual bool GetMousePositionToWorldRay(FVector& OutLocation, FVector& OutDirection) = 0; // #113
@@ -240,10 +240,10 @@ public:
 	virtual void ClearOutline() = 0; // #115
 	virtual void SetOutlineTarget(const FT4ActorID& InActorID, const FLinearColor& InColor) = 0; // #115
 
-	virtual bool AddClientObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
+	virtual bool AddClientObject(const FT4ObjectID& InObjectID, UT4GameObjectBase* InGameObject) = 0; // #114
 	virtual void RemoveClientObject(const FT4ObjectID& InObjectID) = 0; // #114
 	virtual void RemoveAllClientObjects() = 0; // #114
-	virtual UT4GameObject* GetClientObject(const FT4ObjectID& InObjectID) const = 0; // #114
+	virtual UT4GameObjectBase* GetClientObject(const FT4ObjectID& InObjectID) const = 0; // #114
 	virtual uint32 GetNumClientObjects() const = 0; // #114
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
@@ -255,15 +255,15 @@ public:
 	virtual FT4ObjectID ReservedObjectIDForEditor() = 0; // #114 : 미리 잡아놓는다. (툴용)
 #endif
 
-	virtual bool AddObjectController(const FT4ObjectID& InObjectID, IT4NPCAIController* InAIController) = 0; // #31
+	virtual bool AddObjectController(const FT4ObjectID& InObjectID, IT4NPCAIControllerBase* InAIController) = 0; // #31
 	virtual void RemoveObjectController(const FT4ObjectID& InObjectID) = 0; // #31
-	virtual IT4NPCAIController* GetObjectController(const FT4ObjectID& InObjectID) const = 0; // #31
+	virtual IT4NPCAIControllerBase* GetObjectController(const FT4ObjectID& InObjectID) const = 0; // #31
 	virtual uint32 GetNumObjectControllers() const = 0; // #114
 
-	virtual bool AddServerObject(const FT4ObjectID& InObjectID, UT4GameObject* InGameObject) = 0; // #114
+	virtual bool AddServerObject(const FT4ObjectID& InObjectID, UT4GameObjectBase* InGameObject) = 0; // #114
 	virtual void RemoveServerObject(const FT4ObjectID& InObjectID) = 0; // #114
 	virtual void RemoveAllServerObjects() = 0; // #114
-	virtual UT4GameObject* GetServerObject(const FT4ObjectID& InObjectID) const = 0; // #114
+	virtual UT4GameObjectBase* GetServerObject(const FT4ObjectID& InObjectID) const = 0; // #114
 	virtual uint32 GetNumServerObjects() const = 0; // #114
 #endif
 
@@ -282,8 +282,8 @@ public:
 	virtual IT4EditorGameplayContoller* GetEditorGameplayController() const = 0; // #60
 	virtual void SetEditorGameplayContoller(IT4EditorGameplayContoller* bInGameplayHandler) = 0; // #60
 
-	virtual AT4PlayerController* GetEditorPlayerController() const = 0; // #79
-	virtual void SetEditorPlayerController(AT4PlayerController* InPlayerController) = 0; // #42
+	virtual AT4PlayerControllerBase* GetEditorPlayerController() const = 0; // #79
+	virtual void SetEditorPlayerController(AT4PlayerControllerBase* InPlayerController) = 0; // #42
 
 	virtual IT4EditorViewportClient* GetEditorViewportClient() const = 0; // #79
 	virtual void SetEditorViewportClient(IT4EditorViewportClient* InViewportClient) = 0; // #30

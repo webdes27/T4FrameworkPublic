@@ -4,6 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.13] [M5] Copying //Private to //Deploy (private commit 6698386)**
+    - #123 [내부수정] T4GameBuiltin 모듈을 T4Gameplay 로 리네임 및 데이터 정리
+	  - Coantent Editor 의 Content/Spawn Asset 은 자동 마이그레이션에서 제외함
   - **[2020.03.12] [M5] Copying //Private to //Deploy (private commit 9cb0660)**
     - #123 [기능개선] World Explorer, TOD 설정을 Day, Night, Sunset, Sunrise 4단계만 설정하도록 간소화
     - #123 [버그수정] World Explorer, Env TimgTag 적용이 툴 종료 후에도 EditorWorld 에 저장되던 문제 수정

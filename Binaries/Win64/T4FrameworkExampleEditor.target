@@ -65,11 +65,11 @@
 			"Type": "SymbolFile"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/T4Framework/Binaries/Win64/UE4Editor-T4GameBuiltin.dll",
+			"Path": "$(ProjectDir)/Plugins/T4Framework/Binaries/Win64/UE4Editor-T4Gameplay.dll",
 			"Type": "DynamicLibrary"
 		},
 		{
-			"Path": "$(ProjectDir)/Plugins/T4Framework/Binaries/Win64/UE4Editor-T4GameBuiltin.pdb",
+			"Path": "$(ProjectDir)/Plugins/T4Framework/Binaries/Win64/UE4Editor-T4Gameplay.pdb",
 			"Type": "SymbolFile"
 		},
 		{

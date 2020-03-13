@@ -188,7 +188,7 @@ public:
 };
 
 // #114 : 에디터에서 N종의 게임 컨텐츠 데이터에서 정보를 얻기 위한 인터페이스
-//        컨텐츠 쪽에서 구현해주어야 에디터에서 사용할 수 있음 (T4GameBuiltin 을 사용하지 않을 경우를 위함)
+//        컨텐츠 쪽에서 구현해주어야 에디터에서 사용할 수 있음 (T4Gameplay 을 사용하지 않을 경우를 위함)
 class UT4EntityAsset;
 class UT4ActionAsset;
 class T4FRAMEWORK_API IT4EditorGameData // #60
@@ -211,7 +211,7 @@ static const FName T4Editor_SkillDataNameID = TEXT("T4Editor_SkillDataNameID");
 static const FName T4Editor_EffectDataNameID = TEXT("T4Editor_EffectDataNameID");
 
 // #114 : 에디터에서 N종의 게임 로직을 컨트롤 하기 위해 에디터상에서 구현해야 할 인터페이스
-//        (T4GameBuiltin 을 사용하지 않을 경우를 위함)
+//        (T4Gameplay 을 사용하지 않을 경우를 위함)
 class T4FRAMEWORK_API IT4EditorGameplayContoller
 {
 public:
@@ -242,7 +242,7 @@ public:
 };
 
 // #114 : 에디터에서 N종의 게임 로직을 사용하기 위한 인터페이스
-//        (T4GameBuiltin 을 사용하지 않을 경우를 위함)
+//        (T4Gameplay 을 사용하지 않을 경우를 위함)
 class T4FRAMEWORK_API IT4EditorGameplayCommand
 {
 public:
