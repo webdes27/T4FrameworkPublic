@@ -28,15 +28,11 @@ Powerful toolset and Flexible layer solution
      - '22 1/4 : v3.0 for UE4 (AI, AR/VR 등 신기술 반영)
 	 - '22 2/4 : v1.0 for Unity (중급 RPG 개발 가능 수준 개발 완료)
 - **Milestones**
-  - **M5 (Alpha version)**
-    - 2020.01.06 ~ 2020.03.13
+  - **M6 (Alpha version)**
+    - 2020.03.23 ~ 2020.06.26
     - Goal
-      - 게임 콘텐츠 제작을 위한 기반 기능 및 툴 개발
-        - 캐릭터(Entity) 제작 및 스킬(Conti) 툴 개선 (상시)
-        - 게임 오브젝트 Spawn, Combat/Interaction AI 등의 게임 디자인 관련 컨텐츠 툴 개발
-          - NPC, Monster, FieldObject, DropItem
-      - 테크 데모 제작 준비
-  - M1 ~ M4
+      - Android 기반, 데모 프로젝트 만들기 (레퍼런스 프로젝트)
+  - M1 ~ M5
     - <https://tech4labs.com/T4Framework_Milestones>
 - **Update Notes (WIP)**
   - **2020.01 ~ ING : [`UpdateNotes_Current.md`](./UpdateNotes_Current.md)**
