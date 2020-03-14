@@ -83,6 +83,7 @@ public:
 	const FT4ObjectID& GetObjectID() const override { return ObjectID; }
 
 	bool CheckAuthority() const override { return HasAuthority(); }
+	void SetObjectIDFromServer(const FT4ObjectID& InObjectID) override; // #114 : 서버에서 보내준 ObjectID 를 Controller 에 설정해준다. (Only Client)
 
 	UInputComponent* NewInputComponent() override;
 	void SetInputComponent(UInputComponent* InInputComponent) override;

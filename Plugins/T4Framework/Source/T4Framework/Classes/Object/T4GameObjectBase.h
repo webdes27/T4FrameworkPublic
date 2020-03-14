@@ -40,6 +40,10 @@ public:
 	virtual bool IsServerObject() const { return false; }
 	virtual bool IsClientObject() const { return false; }
 
+#if WITH_EDITOR
+	virtual FString GetAIDebugString() const { return FString(); } // #114 : Only ServerObject
+#endif
+
 protected:
 	virtual void Initialize() {}
 	virtual void Finalize() {}

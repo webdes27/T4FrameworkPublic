@@ -15,24 +15,3 @@ struct FT4HUDDrawInfo // #68
 	}
 	float NoticeLineOffset;
 };
-
-class IT4Framework;
-
-#if WITH_EDITOR
-DECLARE_DELEGATE_OneParam(FT4OnCreateEditorPlayerController, IT4Framework*); // #42
-#endif
-
-// #42
-DECLARE_DELEGATE_OneParam(FT4OnRegisterGameplayLayerInstancce, IT4Framework*); // #42
-class T4FRAMEWORK_API FT4FrameworkDelegates
-{
-public:
-	static FT4OnRegisterGameplayLayerInstancce OnRegisterGameplayLayerInstancce;
-
-#if WITH_EDITOR
-	static FT4OnCreateEditorPlayerController OnCreateEditorPlayerController;
-#endif
-
-private:
-	FT4FrameworkDelegates() {}
-};

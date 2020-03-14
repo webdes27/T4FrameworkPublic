@@ -4,6 +4,13 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.14] [M5] Copying //Private to //Deploy (private commit adf418f)**
+    - #121 [기능개선] Control Mode 전환을 Prev/Next 로 동작하도록 기능 개선
+	  - Prev:LeftBracket, Next:RightBracket
+	- #114 [버그수정] 뷰포트의 CTRL + 1~7 키로 NPC 스폰이 되지 않던 문제 수정
+	- #114 [버그수정] Dedicated Server 에서 OtherPC 의 이동이 되지 않던 문제 수정
+	- #114 [버그수정] PIE 에서 플레이어 캐릭터 스폰시 발생하는 크래시 수정
+    - #114 [버그수정] Action Editor, 에디터 세팅으로 설정한 Stance/SubStance 가 적용되지 않던 문제 수정
   - **[2020.03.13] [M5] Copying //Private to //Deploy (private commit 5153e7f)**
     - #121 [기능개선] FPS Control Mode 사용시 조준점(Crosshair) 표시 및 마우스 커서 Hide 처리 추가
     - #121 [기능추가] FPS Control Mode 추가 (M-Key : TPS => ShoulderView => FPS)

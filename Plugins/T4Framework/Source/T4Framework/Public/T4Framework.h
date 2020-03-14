@@ -40,16 +40,6 @@ class IT4WorldSystem;
 class AT4PlayerControllerBase;
 class IT4EditorViewportClient;
 class UT4MapEntityAsset; // #87
-
-// #30
-enum ET4FrameworkType
-{
-	Frame_Client,
-	Frame_Server,
-
-	Frame_None
-};
-
 class IT4Framework;
 class IT4WorldActor;
 
@@ -108,6 +98,7 @@ public:
 	// #15 : Editor 환경에서 HasAuthority 를 명시적으로 구분하기 위해 도입
 	//       동일 프로세스에서 Player 의 Role 이 바뀌며 C/S Player 로 바뀌기 때문에 혼란스러운 점이 있기 때문
 	virtual bool CheckAuthority() const = 0; // return HasAuthority()
+	virtual void SetObjectIDFromServer(const FT4ObjectID& InObjectID) = 0; // #114 : 서버에서 보내준 ObjectID 를 Controller 에 설정해준다. (Only Client)
 
 	virtual UInputComponent* NewInputComponent() = 0;
 	virtual void SetInputComponent(UInputComponent* InInputComponent) = 0;
@@ -293,6 +284,24 @@ public:
 	virtual IT4EditorViewportClient* GetEditorViewportClient() const = 0; // #79
 	virtual void SetEditorViewportClient(IT4EditorViewportClient* InViewportClient) = 0; // #30
 #endif
+};
+
+// #42
+DECLARE_DELEGATE_TwoParams(FT4OnRegisterGameplayLayerInstancce, ET4FrameworkType, IT4Framework*); // #42
+#if WITH_EDITOR
+DECLARE_DELEGATE_OneParam(FT4OnCreateEditorPlayerController, IT4Framework*); // #42
+#endif
+class T4FRAMEWORK_API FT4FrameworkDelegates
+{
+public:
+	static FT4OnRegisterGameplayLayerInstancce OnCreateGameplayInstancce;
+
+#if WITH_EDITOR
+	static FT4OnCreateEditorPlayerController OnCreateEditorPlayerController;
+#endif
+
+private:
+	FT4FrameworkDelegates() {}
 };
 
 namespace T4Framework

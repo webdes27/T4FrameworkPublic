@@ -8,6 +8,15 @@
 /**
   * #114
  */
+ // #30
+enum ET4FrameworkType
+{
+	Frame_Client,
+	Frame_Server,
+
+	Frame_None
+};
+
 enum ET4ControllerType
 {
 	Controller_Player, // #114 : Server All, Client Player Only

@@ -210,7 +210,7 @@ public:
 
 	static const TCHAR* ToTypeString(ET4GameDataType InType)
 	{
-		static const TCHAR* GameDataTypeStrings[] =
+		static const TCHAR* T4GameDataTypeStrings[] =
 		{
 			TEXT("Master"),
 			TEXT("World"),
@@ -225,9 +225,9 @@ public:
 			TEXT("Experience"), // #114
 			TEXT("None"),
 		};
-		static_assert(UE_ARRAY_COUNT(GameDataTypeStrings) == (uint8)(ET4GameDataType::Nums) + 1, "GameDataType doesn't match!");
-		check(uint8(InType) < UE_ARRAY_COUNT(GameDataTypeStrings));
-		return GameDataTypeStrings[uint8(InType)];
+		static_assert(UE_ARRAY_COUNT(T4GameDataTypeStrings) == (uint8)(ET4GameDataType::Nums) + 1, "GameDataType doesn't match!");
+		check(uint8(InType) < UE_ARRAY_COUNT(T4GameDataTypeStrings));
+		return T4GameDataTypeStrings[uint8(InType)];
 	}
 
 	FORCEINLINE const TCHAR* ToTypeString() const

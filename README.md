@@ -39,7 +39,8 @@ Powerful toolset and Flexible layer solution
   - 2019.10 ~ 2019.12 : [`UpdateNotes_2019_10-2019_12.md`](./UpdateNotes_2019_10-2019_12.md)
   - 2019.07 ~ 2019.09 : [`UpdateNotes_2019_07-2019_09.md`](./UpdateNotes_2019_07-2019_09.md)
 - **Default Key Settings**
-  - M : Next Play Mode (TPS => ShoulderView => FPS)
+  - [ : Prev Control Mode (TPS <= ShoulderView <= FPS)
+  - ] : Next Control Mode (TPS => ShoulderView => FPS)
   - TAB : Toggle Default or Combat Mode
   - 1~4 : HotKey (SkillTable, SkillSet UseType : HotKey Selected)
   - Shift + 1~3 : Toggle Equipment (T4GameBuiltin_Settings : WeaponDataRowName_Key*)
