@@ -4,7 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
-  - **[2020.03.15] [M5] Copying //Private to //Deploy (private commit 1a63926)**
+  - **[2020.03.15] [M5] Copying //Private to //Deploy (private commit e5e13d8)**
+    - #122 [버그수정] Content Editor, New Spawn Layer/Object/Actor 를 생성할 수 없던 문제 수정
+    - #114 [버그수정] PIE 에서 공격 스킬의 데미지가 타겟 오브젝트에 전달되지 않던 문제 수정
     - #121 [기능추가] FPS Control Mode 의 카메라 회전은 마우스 이동이 바로 적용되도록 처리
     - #121 [기능추가] FPS Control Mode 에서 마우스 우클릭으로 조준점(Crosshair) 확대 기능 추가
     - #114 [버그수정] Action Editor, 스폰 캐릭터가 이동이 되지 않던 문제 수정
