@@ -221,6 +221,8 @@ public:
 
 	virtual bool IsSimulating() const = 0; // #102
 
+	virtual float GetDefaultMoveSpeed() const = 0; // #114
+
 	virtual bool IsUsedGameplaySettings() const = 0; // #104 : conti 에서만 true, world 에서는 false, 아래 옵션 사용 여부
 
 	//{ IsUsedGameplaySettings = true

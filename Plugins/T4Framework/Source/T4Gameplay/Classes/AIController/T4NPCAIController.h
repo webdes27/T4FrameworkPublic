@@ -10,7 +10,7 @@
 
 #include "T4Engine/Public/Asset/T4AssetLoader.h" // #50, #42
 #include "T4Framework/Classes/Controller/AI/T4NPCAIControllerBase.h"
-#include "T4GameNPCAIController.generated.h"
+#include "T4NPCAIController.generated.h"
 
 /**
   * WARN : AI Controller 는 서버에서만 사용하고, 클라리언트에서는 사용하지 않음에 유의할 것!
@@ -20,7 +20,7 @@ class UBehaviorTree;
 class IT4WorldActor;
 class UT4GameServerObject;
 UCLASS()
-class T4GAMEPLAY_API AT4GameNPCAIController : public AT4NPCAIControllerBase
+class T4GAMEPLAY_API AT4NPCAIController : public AT4NPCAIControllerBase
 {
 	GENERATED_UCLASS_BODY()
 

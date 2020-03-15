@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.01 ~ 2020.ING)
+  - **[2020.03.15] [M5] Copying //Private to //Deploy (private commit 1db9e14)**
+    - #114 [버그수정] Action Editor, 스폰 캐릭터가 이동이 되지 않던 문제 수정
   - **[2020.03.14] [M5] Copying //Private to //Deploy (private commit adf418f)**
     - #121 [기능개선] Control Mode 전환을 Prev/Next 로 동작하도록 기능 개선
 	  - Prev:LeftBracket, Next:RightBracket

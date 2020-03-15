@@ -171,6 +171,8 @@ class T4FRAMEWORK_API IT4GameplayInstance
 public:
 	virtual ~IT4GameplayInstance() {}
 
+	virtual ET4FrameworkType GetFrameworkType() const = 0;
+
 	virtual bool OnInitialize(ET4LayerType InLayerType) = 0;
 	virtual void OnFinalize() = 0;
 
