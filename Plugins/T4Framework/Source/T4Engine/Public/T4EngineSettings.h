@@ -102,7 +102,13 @@ public:
 	float FPS_FieldOfViewDegree;
 
 	UPROPERTY(config, EditAnywhere, Category= FPSCameraSettting)
-	FVector FPS_SocketOffset;
+	FVector FPS_SocketOffset; // #121
+
+	UPROPERTY(config, EditAnywhere, Category= FPSCameraSettting)
+	float FPS_ZoomInDistance; // #121
+
+	UPROPERTY(config, EditAnywhere, Category= FPSCameraSettting)
+	float FPS_RotationSpeed; // #121
 
 	UPROPERTY(config, EditAnywhere, Category=DataTable)
 	FSoftObjectPath WorldZoneConstantTablePath; // #92

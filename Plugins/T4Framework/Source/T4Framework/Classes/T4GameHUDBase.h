@@ -22,6 +22,7 @@ public:
 	virtual void DrawHUD() override; // #121 : Crosshair
 
 	void SetCrosshairTexture(UTexture2D* InTexture) { CrosshairTexture = InTexture; } // #121
+	void SetCrosshairTextureScale(float InScale) { Scale = InScale; }
 
 protected:
 	void BeginPlay() override;
@@ -31,4 +32,6 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* CrosshairTexture; // #121
+
+	float Scale;
 };

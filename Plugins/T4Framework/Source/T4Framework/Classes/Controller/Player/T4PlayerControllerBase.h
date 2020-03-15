@@ -125,6 +125,7 @@ public:
 	bool GetMouseCursorPosition(FVector2D& OutLocation) const override; // #30, #113
 
 	void SetCrosshairTexture(UTexture2D* InTexture) override; // #121
+	void SetCrosshairZoomRatio(float InRatio) override; // #121
 
 #if WITH_EDITOR
 	// see UGameViewportClient::InputKey

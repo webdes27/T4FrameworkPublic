@@ -73,8 +73,8 @@ enum class ET4SpawnMode : uint8 // #54
 
 enum ET4InputMode
 {
-	GameAndUI,
-	GameOnly,
+	ThirdPersonMode,
+	FirstPersonMode,
 };
 
 UENUM()

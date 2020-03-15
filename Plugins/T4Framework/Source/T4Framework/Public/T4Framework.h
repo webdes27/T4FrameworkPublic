@@ -141,6 +141,7 @@ public:
 	virtual bool GetMouseCursorPosition(FVector2D& OutPosition) const = 0; // #30, #113
 
 	virtual void SetCrosshairTexture(UTexture2D* InTexture) = 0; // #121
+	virtual void SetCrosshairZoomRatio(float InScale) = 0; // #121
 
 #if WITH_EDITOR
 	virtual bool EditorInputKey(FKey InKey, EInputEvent InEvent, float InAmountDepressed, bool bInGamepad) = 0; // #30
@@ -219,6 +220,8 @@ public:
 
 	virtual bool OnWorldTravel(const UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
 
+	virtual bool GetLineTraceLocation(ET4CollisionChannel InChannel, const FVector& InLocation, const FVector& InDirection, FVector& OutLocation) = 0; // #121
+
 	// Client
 	//
 	virtual UT4GameObjectBase* GetPlayerClientObject() const = 0; // #114 : Only Client
@@ -231,7 +234,6 @@ public:
 	virtual IT4WorldActor* GetMousePickingActor(const FVector& InLocation, const FVector& InDirection, FVector& OutHitLocation) = 0; // #111
 
 	virtual bool GetMousePickingLocation(FVector& OutLocation) = 0;
-	virtual bool GetMousePickingLocation(ET4CollisionChannel InChannel, const FVector& InLocation, const FVector& InDirection, FVector& OutLocation) = 0; // #117
 
 	virtual FViewport* GetViewport() const = 0; // #68
 
