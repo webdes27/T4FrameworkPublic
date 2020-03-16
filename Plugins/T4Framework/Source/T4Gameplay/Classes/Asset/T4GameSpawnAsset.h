@@ -104,12 +104,12 @@ public:
 };
 
 USTRUCT()
-struct T4GAMEPLAY_API FT4GameSpawnObjectInfo
+struct T4GAMEPLAY_API FT4GameSpawnObjectData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4GameSpawnObjectInfo()
+	FT4GameSpawnObjectData()
 #if WITH_EDITORONLY_DATA
 		: ParentID(NAME_None) // #122
 		, FolderName(NAME_None) // #122
@@ -122,7 +122,7 @@ public:
 		return (ID == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4GameSpawnObjectInfo& InRhs) const
+	FORCEINLINE bool operator==(const FT4GameSpawnObjectData& InRhs) const
 	{
 		return (ID == InRhs.ID) ? true : false;
 	}
@@ -151,12 +151,12 @@ public:
 };
 
 USTRUCT()
-struct T4GAMEPLAY_API FT4GameSpawnActorInfo
+struct T4GAMEPLAY_API FT4GameSpawnActorData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4GameSpawnActorInfo()
+	FT4GameSpawnActorData()
 		: SpawnObjectID(NAME_None)
 #if WITH_EDITORONLY_DATA
 		, DebugColor(FColorList::White)
@@ -171,7 +171,7 @@ public:
 		return (ID == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4GameSpawnActorInfo& InRhs) const
+	FORCEINLINE bool operator==(const FT4GameSpawnActorData& InRhs) const
 	{
 		return (ID == InRhs.ID) ? true : false;
 	}
@@ -219,10 +219,10 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TArray<FT4GameSpawnObjectInfo> SpawnObjectArray;
+	TArray<FT4GameSpawnObjectData> SpawnObjectArray;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TArray<FT4GameSpawnActorInfo> SpawnActorArray;
+	TArray<FT4GameSpawnActorData> SpawnActorArray;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor, AssetRegistrySearchable)

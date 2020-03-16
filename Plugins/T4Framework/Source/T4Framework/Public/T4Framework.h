@@ -185,8 +185,8 @@ public:
 	virtual void OnDrawHUD(FViewport* InViewport, FCanvas* InCanvas, FT4HUDDrawInfo& InOutDrawInfo) = 0; // #68 : Only Client
 
 #if WITH_EDITOR
-	virtual bool PlaySpawnAsset(const FGuid& InGuid, const FSoftObjectPath& InSpawnAssetPath) = 0; // #118
-	virtual void StopSpawnAsset(const FGuid& InGuid) = 0; // #118
+	virtual bool AddServerSpawnGroup(const FGuid& InGuid, const FSoftObjectPath& InSpawnAssetPath) = 0; // #118
+	virtual void RemoveServerSpawnGroup(const FGuid& InGuid) = 0; // #118
 
 	virtual IT4EditorGameData* GetEditorGameData() = 0; // #60
 	virtual IT4EditorGameplayCommand* GetEditorGameplayCommand() = 0; // #114
