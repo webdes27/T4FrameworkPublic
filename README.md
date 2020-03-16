@@ -35,7 +35,7 @@ Powerful toolset and Flexible layer solution
   - M1 ~ M5
     - <https://tech4labs.com/T4Framework_Milestones>
 - **Update Notes (WIP)**
-  - **2020.01 ~ ING : [`UpdateNotes_Current.md`](./UpdateNotes_Current.md)**
+  - **2020.03 ~ ING : [`UpdateNotes_Current.md`](./UpdateNotes_Current.md)**
   - 2019.12 ~ 2020.03 : [`UpdateNotes_2019_12-2020_03.md`](./UpdateNotes_2019_12-2020_03.md)
   - 2019.10 ~ 2019.12 : [`UpdateNotes_2019_10-2019_12.md`](./UpdateNotes_2019_10-2019_12.md)
   - 2019.07 ~ 2019.09 : [`UpdateNotes_2019_07-2019_09.md`](./UpdateNotes_2019_07-2019_09.md)
