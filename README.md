@@ -17,7 +17,7 @@ Powerful toolset and Flexible layer solution
   - T4Framework is awarded an Epic MegaGrant 
 
 
-      ![T4Framework_MegaGrants](./T4Framework_MegaGrants.png) <a href="https://www.unrealengine.com/megagrants" target="_blank">https://www.unrealengine.com/megagrants</a>
+      ![T4Framework_MegaGrants](./T4Framework_MegaGrants.png) <https://www.unrealengine.com/megagrants>
 
 
 - **Plan**
