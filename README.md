@@ -6,19 +6,13 @@ Powerful toolset and Flexible layer solution
 - **Supported Engine Versions**
   - 4.24 (Release Version : 4.24.3)
 - **Information**
-  - **Website**
-    - <https://tech4labs.com/>
-  - YouTube
-    - <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
-  - Twitter
-    - <https://twitter.com/Tech4Labs> (@Tech4Labs)
-  - Sources Repositories (Private)
-    - <https://github.com/Tech4Labs/T4Framework>
+  - **Website** : <https://tech4labs.com/>
+  - YouTube : <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
+  - Twitter : <https://twitter.com/Tech4Labs> (@Tech4Labs)
+  - Sources Repositories (Private) : <https://github.com/Tech4Labs/T4Framework>
   - T4Framework is awarded an Epic MegaGrant 
 
-
       ![T4Framework_MegaGrants](./T4Framework_MegaGrants.png) <https://www.unrealengine.com/megagrants>
-
 
 - **Plan**
   - 2020
