@@ -2,7 +2,6 @@
 ``` 
 Powerful toolset and Flexible layer solution
 ``` 
-![T4Framework_MegaGrants](./T4Framework_MegaGrants.png) T4Framework is awarded an Epic MegaGrant (<https://www.unrealengine.com/megagrants>)
 ![T4Framework_Title](./T4Framework_Title.png)
 - **Supported Engine Versions**
   - 4.24 (Release Version : 4.24.3)
@@ -52,3 +51,6 @@ Powerful toolset and Flexible layer solution
   - Ctrl + Right MouseButton Pressed : Change Player Object
 - **Contact**
   - <niceofer@hotmail.com>
+
+T4Framework is awarded an Epic MegaGrant (<https://www.unrealengine.com/megagrants>)
+ ![T4Framework_MegaGrants](./T4Framework_MegaGrants.png)
