@@ -32,7 +32,7 @@ Powerful toolset and Flexible layer solution
     - 2020.03.23 ~ 2020.06.26
     - Goal
       - Android 기반, 데모 프로젝트 만들기 (레퍼런스 프로젝트)
-  - M1 ~ M5
+  - Previous milestones (M1 ~ M5, 2019.01.19 ~ 2020.03.13)
     - <https://tech4labs.com/T4Framework_Milestones>
 - **Update Notes (WIP)**
   - **2020.03 ~ ING : [`UpdateNotes_Current.md`](./UpdateNotes_Current.md)**
