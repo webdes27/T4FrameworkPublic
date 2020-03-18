@@ -2,6 +2,7 @@
 ``` 
 Powerful toolset and Flexible layer solution
 ``` 
+![T4Framework_MegaGrants](./T4Framework_MegaGrants.png) T4Framework is awarded an Epic MegaGrant (<https://www.unrealengine.com/megagrants>)
 ![T4Framework_Title](./T4Framework_Title.png)
 - **Supported Engine Versions**
   - 4.24 (Release Version : 4.24.3)
@@ -10,10 +11,6 @@ Powerful toolset and Flexible layer solution
   - YouTube : <https://www.youtube.com/channel/UCoVNwMxu9CUzc92zGYN4l6A>
   - Twitter : <https://twitter.com/Tech4Labs> (@Tech4Labs)
   - Sources Repositories (Private) : <https://github.com/Tech4Labs/T4Framework>
-  - T4Framework is awarded an Epic MegaGrant 
-
-      ![T4Framework_MegaGrants](./T4Framework_MegaGrants.png) <https://www.unrealengine.com/megagrants>
-
 - **Plan**
   - 2020
      - Current : Alpha version
