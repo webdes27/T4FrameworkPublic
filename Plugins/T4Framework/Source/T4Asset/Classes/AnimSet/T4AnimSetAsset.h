@@ -15,6 +15,8 @@ struct FT4AnimSetCustomVersion
 	{
 		InitializeVer = 0,
 
+		CommonPropertyNameChanged, // #124
+
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
 		LatestVersion = VersionPlusOne - 1,
@@ -34,12 +36,12 @@ class UBlendSpaceBase;
 class UT4EntityAsset;
 
 USTRUCT()
-struct T4ASSET_API FT4AnimSetSequenceInfo
+struct T4ASSET_API FT4AnimSetAnimSequenceData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4AnimSetSequenceInfo()
+	FT4AnimSetAnimSequenceData()
 		: Name(NAME_None)
 		, DurationSec(0.0f)
 	{
@@ -50,30 +52,33 @@ public:
 		return (Name == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4AnimSetSequenceInfo& InRhs) const
+	FORCEINLINE bool operator==(const FT4AnimSetAnimSequenceData& InRhs) const
 	{
 		return (Name == InRhs.Name) ? true : false;
 	}
 
-	UPROPERTY(VisibleAnywhere, Category = AnimSequenceInfo)
+	UPROPERTY(VisibleAnywhere, Category = Common)
 	FName Name;
 
-	UPROPERTY(VisibleAnywhere, Category = AnimSequenceInfo)
+	UPROPERTY(VisibleAnywhere, Category = Common)
 	float DurationSec;
 
 #if WITH_EDITORONLY_DATA
-	UPROPERTY(EditAnywhere, Category = AnimSequenceInfo)
-	TSoftObjectPtr<UAnimSequence> AnimSequnceAsset;
+	UPROPERTY()
+	TSoftObjectPtr<UAnimSequence> AnimSequnceAsset_DEPRECATED; // #124
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	TSoftObjectPtr<UAnimSequence> AnimSequenceAsset;
 #endif
 };
 
 USTRUCT()
-struct T4ASSET_API FT4AnimSetBlendSpaceInfo
+struct T4ASSET_API FT4AnimSetBlendSpaceData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4AnimSetBlendSpaceInfo()
+	FT4AnimSetBlendSpaceData()
 		: Name(NAME_None)
 	{
 	}
@@ -83,15 +88,15 @@ public:
 		return (Name == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4AnimSetBlendSpaceInfo& InRhs) const
+	FORCEINLINE bool operator==(const FT4AnimSetBlendSpaceData& InRhs) const
 	{
 		return (Name == InRhs.Name) ? true : false;
 	}
 
-	UPROPERTY(VisibleAnywhere, Category = BlendSpaceInfo)
+	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
 	FName Name;
 
-	UPROPERTY(EditAnywhere, Category = BlendSpaceInfo)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UBlendSpaceBase> BlendSpaceAsset;
 };
 
@@ -125,41 +130,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = Testing)
 	bool bAutoMounting; // #111
 #endif
-};
-
-// #39
-USTRUCT()
-struct T4ASSET_API FT4AnimSetEditorTransientData
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4AnimSetEditorTransientData()
-	{
-		Reset();
-	}
-
-	void Reset()
-	{
-#if WITH_EDITOR
-		TransientSelectAnimSectionName = NAME_None;
-		TransientSelectBlendSpaceName = NAME_None;
-#endif
-	}
-
-	// #39 : WARN : CustomDetails 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientSelectAnimSectionName;
-
-	UPROPERTY(EditAnywhere, Transient)
-	TSoftObjectPtr<UAnimSequence> TransientAnimSequenceAsset;
-
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientSelectBlendSpaceName;
-
-	UPROPERTY(EditAnywhere, Transient)
-	TSoftObjectPtr<UBlendSpaceBase> TransientBlendSpaceAsset;
-	// ~#39 : WARN : CustomDetails 에서 사용하는 임시 프로퍼티!
 };
 
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
@@ -196,7 +166,7 @@ public:
 	TSoftObjectPtr<UAnimMontage> SkillAnimMontageAsset; // #69
 
 	UPROPERTY(EditAnywhere, Category = SkillLayer)
-	TArray<FT4AnimSetSequenceInfo> SkillAnimSequenceArray;
+	TArray<FT4AnimSetAnimSequenceData> SkillAnimSequenceArray;
 
 
 	// CustomizeOverlayAnimationDetails
@@ -208,7 +178,7 @@ public:
 	TSoftObjectPtr<UAnimMontage> OverlayAnimMontageAsset; // #69
 
 	UPROPERTY(EditAnywhere, Category = OverlayLayer)
-	TArray<FT4AnimSetSequenceInfo> OverlayAnimSequenceArray;
+	TArray<FT4AnimSetAnimSequenceData> OverlayAnimSequenceArray;
 
 
 	// CustomizeDefaultAnimationDetails
@@ -220,13 +190,13 @@ public:
 	TSoftObjectPtr<UAnimMontage> DefaultAnimMontageAsset; // #38, #69
 
 	UPROPERTY(EditAnywhere, Category = DefaultLayer)
-	TArray<FT4AnimSetSequenceInfo> DefaultAnimSequenceArray;
+	TArray<FT4AnimSetAnimSequenceData> DefaultAnimSequenceArray;
 
 
 	// CustomizeBlendSpaceDetails
 
 	UPROPERTY(EditAnywhere, Category = BlendSpace)
-	TArray<FT4AnimSetBlendSpaceInfo> BlendSpaceArray;
+	TArray<FT4AnimSetBlendSpaceData> BlendSpaceArray;
 
 public:
 #if WITH_EDITORONLY_DATA
@@ -235,11 +205,6 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FT4AnimSetEditorSettings EditorSettings; // #111 : 에디터 세팅 옵션
-
-	// #39 : WARN : AnimSetCustomDetails 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
-	// TODO : Transient 설정으로 Editor Dirty 가 발생함으로 다른 방법 고려 필요
-	UPROPERTY(EditAnywhere, Transient)
-	FT4AnimSetEditorTransientData EditorTransientData;
 #endif
 
 private:

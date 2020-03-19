@@ -4,4 +4,5 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
-
+  - **[2020.03.19] [M6] Copying //Private to //Deploy (private commit ca442f2)**
+    - #124 [기능개선] Entity Editor, AnimSet Details 메뉴 정리 및 사용성 개선

@@ -130,7 +130,7 @@ enum class ET4AnimInstance
 	None
 };
 
-enum ET4AnimLayer // #71
+enum ET4AnimationLayer // #71
 {
 	AnimLayer_Skill,
 	AnimLayer_Overlay,

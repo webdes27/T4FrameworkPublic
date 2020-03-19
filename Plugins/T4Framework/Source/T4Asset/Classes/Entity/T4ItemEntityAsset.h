@@ -78,7 +78,7 @@ public:
 	TSoftObjectPtr<UAnimMontage> AnimMontageAsset; // #69
 
 	UPROPERTY(EditAnywhere, Category = Animation)
-	TArray<FT4AnimSetSequenceInfo> AnimSequenceArray;
+	TArray<FT4AnimSetAnimSequenceData> AnimSequenceArray;
 };
 
 USTRUCT()
