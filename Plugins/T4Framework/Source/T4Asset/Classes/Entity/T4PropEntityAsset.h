@@ -95,15 +95,15 @@ public:
 	ET4EntityType GetEntityType() const override { return ET4EntityType::Prop; }
 
 public:
-	UPROPERTY(EditAnywhere, Category=Attributes)
-	FT4EntityPropPhysicalAttribute Physical;
-
-	UPROPERTY(EditAnywhere, Category=Attributes)
-	FT4EntityPropRenderingAttribute Rendering;
-
 	UPROPERTY(EditAnywhere, Category= Data)
 	ET4EntityPropMeshType MeshType;
 
 	UPROPERTY(EditAnywhere, Category=Data)
 	FT4EntityPropNormalMeshData NormalMeshData;
+
+	UPROPERTY(EditAnywhere, Category= Physical)
+	FT4EntityPropPhysicalAttribute Physical;
+
+	UPROPERTY(EditAnywhere, Category= Rendering)
+	FT4EntityPropRenderingAttribute Rendering;
 };

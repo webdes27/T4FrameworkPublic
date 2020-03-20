@@ -80,31 +80,6 @@ public:
 	bool bOverlapEvent; // #106
 };
 
-// #111
-USTRUCT()
-struct T4ASSET_API FT4EntityWeaponEditorSettings
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4EntityWeaponEditorSettings()
-	{
-		Reset();
-	}
-
-	void Reset()
-	{
-#if WITH_EDITOR
-		WeaponAnimationLayerListLineCount = 77;
-#endif
-	}
-
-#if WITH_EDITORONLY_DATA
-	UPROPERTY(EditAnywhere, Category = Editor, meta = (DisplayName = "ListLineCount (Editor)"))
-	int32 WeaponAnimationLayerListLineCount;
-#endif
-};
-
 // #80
 class UAnimSequence;
 USTRUCT()
@@ -197,9 +172,6 @@ public:
 	FT4EntityItemAnimationData AnimationData; // #107
 
 #if WITH_EDITORONLY_DATA
-	UPROPERTY(EditAnywhere, Category = Editor)
-	FT4EntityWeaponEditorSettings EditorSettings; // #111 : 에디터 세팅 옵션
-
 	// #80 : OverrideMaterial Data/ Physics Asset
 	// TODO : Transient 설정으로 Editor Dirty 가 발생함으로 다른 방법 고려 필요
 	UPROPERTY(EditAnywhere, Transient)
