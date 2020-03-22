@@ -1,5 +1,5 @@
 # T4Framework : MMO Action RPG Framework for UE4
-T4Framework is awarded an Epic MegaGrant
+T4Framework was awarded an Epic MegaGrant
 
 ![T4Framework_MegaGrants](./T4Framework_MegaGrants.png) <https://www.unrealengine.com/megagrants>
 
