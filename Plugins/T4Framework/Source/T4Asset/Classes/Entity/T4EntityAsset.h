@@ -90,20 +90,49 @@ public:
 // #80
 class UMaterialInterface;
 USTRUCT()
-struct T4ASSET_API FT4EntityOverrideMaterialData
+struct T4ASSET_API FT4EntityMaterialSlotData // #124
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityOverrideMaterialData()
+	FT4EntityMaterialSlotData()
 	{
 	}
 
-	UPROPERTY(EditAnywhere)
-	TMap<FName, TSoftObjectPtr<UMaterialInterface>> MaterialMap;
+	FORCEINLINE bool operator==(const FName& InKey) const
+	{
+		return (SlotName == InKey) ? true : false;
+	}
 
-	UPROPERTY(EditAnywhere)
-	TArray<FName> MaterialSortedSlotNames;
+	FORCEINLINE bool operator==(const FT4EntityMaterialSlotData& InRhs) const
+	{
+		return (SlotName == InRhs.SlotName) ? true : false;
+	}
+
+	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
+	FName SlotName;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TSoftObjectPtr<UMaterialInterface> MaterialAsset;
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(VisibleAnywhere, Category = Editor)
+	TSoftObjectPtr<UMaterialInterface> OriginalMaterialAsset;
+#endif
+};
+
+USTRUCT()
+struct T4ASSET_API FT4EntityMaterialData // #124
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EntityMaterialData()
+	{
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TArray<FT4EntityMaterialSlotData> MaterialSlotDatas;
 };
 
 // #74
@@ -119,13 +148,13 @@ public:
 	{
 	}
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName PlayTag;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName EquipPoint;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4WeaponEntityAsset> WeaponEntityAsset;
 };
 
@@ -142,10 +171,10 @@ public:
 	{
 	}
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName PlayTag;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionAsset> ActionAsset;
 };
 
@@ -160,11 +189,11 @@ public:
 	{
 	}
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName PlayTag;
 
-	UPROPERTY(EditAnywhere)
-	FT4EntityOverrideMaterialData OverrideMaterialData;
+	UPROPERTY(EditAnywhere, Category = Hide)
+	FT4EntityMaterialData OverrideMaterialData;
 };
 
 // #74
@@ -186,60 +215,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TArray<FT4EntityPlayTagActionData> ActionTags;
-};
-
-// #81
-USTRUCT()
-struct T4ASSET_API FT4EntityEditorTransientData
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4EntityEditorTransientData()
-	{
-		Reset();
-	}
-
-	void Reset()
-	{
-#if WITH_EDITOR
-		TransientPlayTagNameOfWeapon = NAME_None;
-		TransientPlayTagAttachmentEquipPoint = NAME_None;
-		TransientPlayTagNameOfConti = NAME_None;
-
-		TransientPlayTagNameOfMaterial = NAME_None; // #80
-		TransientPlayTagMaterialSlotName = NAME_None; // #80
-#endif
-	}
-
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientPlayTagNameOfWeapon; // #74
-
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientPlayTagAttachmentEquipPoint; // #74
-
-	UPROPERTY(EditAnywhere, Transient)
-	TSoftObjectPtr<UT4WeaponEntityAsset> TransientPlayTagAttachmentAsset; // #74
-
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientPlayTagNameOfConti; // #74
-
-	UPROPERTY(EditAnywhere, Transient)
-	TSoftObjectPtr<UT4ActionAsset> TransientPlayTagActionAsset; // #74
-
-	// #81
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientPlayTagNameOfMaterial; 
-
-	UPROPERTY(EditAnywhere, Transient)
-	FT4EntityOverrideMaterialData TransientPlayTagMaterialData;
-
-	UPROPERTY(VisibleAnywhere, Transient, meta = (DisplayName = "Slot Name"))
-	FName TransientPlayTagMaterialSlotName;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Material Asset"))
-	TSoftObjectPtr<UMaterialInterface> TransientPlayTagMaterialAsset;
-	// ~#81
 };
 
 class UTexture2D;
@@ -271,11 +246,6 @@ public:
 	virtual UStaticMesh* GetPrimaryStaticMeshAsset() const { return nullptr; } // #81
 	virtual USkeletalMesh* GetPrimarySkeletalMeshAsset() const { return nullptr; } // #81
 
-	virtual void ResetEditorTransientData() 
-	{
-		EditorTransientData.Reset();
-	} // #73
-
 	DECLARE_MULTICAST_DELEGATE(FT4OnPropertiesChanged);
 	FT4OnPropertiesChanged& OnPropertiesChanged() { return OnPropertiesChangedDelegate; }
 #endif
@@ -293,10 +263,6 @@ public:
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
-
-	// #71 : WARN : CustomizeCharacterEntityDetails 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
-	UPROPERTY(EditAnywhere, Transient)
-	FT4EntityEditorTransientData EditorTransientData;
 #endif
 
 private:

@@ -15,6 +15,8 @@ struct FT4WeaponEntityCustomVersion
 	{
 		InitializeVer = 0,
 
+		CommonPropertyNameChanged, // #124
+
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
 		LatestVersion = VersionPlusOne - 1,
@@ -53,13 +55,13 @@ public:
 	TSoftObjectPtr<UStaticMesh> StaticMeshAsset;
 
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Override Material Data"))
-	FT4EntityOverrideMaterialData StaticMeshOverrideMaterialData; // #80
+	FT4EntityMaterialData StaticMeshOverrideMaterialData; // #80
 
 	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<USkeletalMesh> SkeletalMeshAsset;
 
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Override Material Data"))
-	FT4EntityOverrideMaterialData SkeletalMeshOverrideMaterialData; // #80
+	FT4EntityMaterialData SkeletalMeshOverrideMaterialData; // #80
 
 	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<UParticleSystem> ParticleSystemAsset;
@@ -78,40 +80,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	bool bOverlapEvent; // #106
-};
-
-// #80
-class UAnimSequence;
-USTRUCT()
-struct T4ASSET_API FT4EntityWeaponEditorTransientData
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4EntityWeaponEditorTransientData()
-	{
-		Reset();
-	}
-
-	void Reset()
-	{
-#if WITH_EDITOR
-		TransientItemOverrideMaterialSlotName = NAME_None; // #80
-		TransientSelectWeaponAnimSectionName = NAME_None; // #107
-#endif
-	}
-
-	UPROPERTY(VisibleAnywhere, Transient, meta = (DisplayName = "Slot Name"))
-	FName TransientItemOverrideMaterialSlotName;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Material Asset"))
-	TSoftObjectPtr<UMaterialInterface> TransientItemOverrideMaterialAsset;
-
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientSelectWeaponAnimSectionName; // #107
-
-	UPROPERTY(EditAnywhere, Transient)
-	TSoftObjectPtr<UAnimSequence> TransientWeaponAnimSequenceAsset; // #107
 };
 
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
@@ -156,12 +124,6 @@ public:
 		}
 		return MeshData.SkeletalMeshAsset.LoadSynchronous();
 	}
-
-	virtual void ResetEditorTransientData() override
-	{
-		UT4ItemEntityAsset::ResetEditorTransientData();
-		EditorTransientWeaponData.Reset();
-	} // #73
 #endif
 
 public:
@@ -170,11 +132,4 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	FT4EntityItemAnimationData AnimationData; // #107
-
-#if WITH_EDITORONLY_DATA
-	// #80 : OverrideMaterial Data/ Physics Asset
-	// TODO : Transient 설정으로 Editor Dirty 가 발생함으로 다른 방법 고려 필요
-	UPROPERTY(EditAnywhere, Transient)
-	FT4EntityWeaponEditorTransientData EditorTransientWeaponData;
-#endif
 };

@@ -101,13 +101,13 @@ public:
 	TSoftObjectPtr<UStaticMesh> StaticMeshAsset;
 
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Override Material Data"))
-	FT4EntityOverrideMaterialData StaticMeshOverrideMaterialData; // #80
+	FT4EntityMaterialData StaticMeshOverrideMaterialData; // #80
 
 	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<USkeletalMesh> SkeletalMeshAsset;
 
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Override Material Data"))
-	FT4EntityOverrideMaterialData SkeletalMeshOverrideMaterialData; // #80
+	FT4EntityMaterialData SkeletalMeshOverrideMaterialData; // #80
 
 	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<UParticleSystem> ParticleSystemAsset;
@@ -150,32 +150,6 @@ public:
 #endif
 };
 
-// #80
-USTRUCT()
-struct T4ASSET_API FT4EntityItemEditorTransientData
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4EntityItemEditorTransientData()
-	{
-		Reset();
-	}
-
-	void Reset()
-	{
-#if WITH_EDITOR
-		TransientDropMeshOverrideMaterialSlotName = NAME_None; // #80
-#endif
-	}
-
-	UPROPERTY(VisibleAnywhere, Transient, meta = (DisplayName = "Slot Name"))
-	FName TransientDropMeshOverrideMaterialSlotName;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Material Asset"))
-	TSoftObjectPtr<UMaterialInterface> TransientDropMeshOverrideMaterialAsset;
-};
-
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
 class T4ASSET_API UT4ItemEntityAsset : public UT4EntityAsset
 {
@@ -187,15 +161,6 @@ public:
 	virtual void PostLoad() override;
 	virtual void GetAssetRegistryTags(TArray<FAssetRegistryTag>& OutTags) const override;
 	//~ End UObject interface
-
-public:
-#if WITH_EDITOR
-	virtual void ResetEditorTransientData() override
-	{
-		UT4EntityAsset::ResetEditorTransientData();
-		EditorTransientItemData.Reset();
-	} // #73
-#endif
 
 public:
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Mesh Data"))
@@ -210,9 +175,5 @@ public:
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Test"))
 	FT4EditorTestItemData EditorTestItemData; // #107
-
-	// #80 : OverrideMaterial Data/ Physics Asset
-	UPROPERTY(EditAnywhere, Transient)
-	FT4EntityItemEditorTransientData EditorTransientItemData;
 #endif
 };

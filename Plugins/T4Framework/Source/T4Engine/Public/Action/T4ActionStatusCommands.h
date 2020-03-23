@@ -346,15 +346,11 @@ public:
 	UPROPERTY(EditAnywhere)
 	FVector ShotDirection;
 
-	UPROPERTY(Transient)
-	bool bTransientPlay;
-
 public:
 	FT4DieAction()
 		: FT4ActionCodeCommand(StaticActionType())
 		, ReactionName(NAME_None)
 		, ShotDirection(FVector::ZeroVector)
-		, bTransientPlay(false)
 	{
 	}
 

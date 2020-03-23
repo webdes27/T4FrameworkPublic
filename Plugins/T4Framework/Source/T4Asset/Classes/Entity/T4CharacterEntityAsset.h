@@ -16,6 +16,8 @@ struct FT4CharacterEntityCustomVersion
 	{
 		InitializeVer = 0,
 
+		CommonPropertyNameChanged, // #124
+
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
 		LatestVersion = VersionPlusOne - 1,
@@ -103,7 +105,7 @@ public:
 	TSoftObjectPtr<USkeletalMesh> SkeletalMeshAsset;
 
 	UPROPERTY(EditAnywhere, Category = Asset)
-	FT4EntityOverrideMaterialData OverrideMaterialData; // #80
+	FT4EntityMaterialData OverrideMaterialData; // #80
 
 	UPROPERTY(EditAnywhere, Category = Asset)
 	TSoftObjectPtr<UPhysicsAsset> OverridePhysicsAsset; // #76 : Fullbody SK 라면 기본 세팅된 PhsycisAsset 을 그대로 사용하고, Override 할 경우만 재설정한다.
@@ -117,12 +119,24 @@ struct T4ASSET_API FT4EntityCharacterCompositePartMeshData
 
 public:
 	FT4EntityCharacterCompositePartMeshData()
+		: PartName(NAME_None)
 	{
 	}
 
-	// EntityCharacterSelectCompositePartByPartName
+	FORCEINLINE bool operator==(const FName& InKey) const
+	{
+		return (PartName == InKey) ? true : false;
+	}
 
-	UPROPERTY(EditAnywhere, Category = Asset)
+	FORCEINLINE bool operator==(const FT4EntityCharacterCompositePartMeshData& InRhs) const
+	{
+		return (PartName == InRhs.PartName) ? true : false;
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName PartName;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4CostumeEntityAsset> CostumeEntityAsset;
 };
 
@@ -138,13 +152,14 @@ public:
 	{
 	}
 
-	// CustomizeFullbodyMeshDetails
-
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4EntityCharacterModularType ModularType; // #72
 
-	UPROPERTY(EditAnywhere, Category = Datas)
-	TMap<FName, FT4EntityCharacterCompositePartMeshData> DefaultPartsData; // #37
+	UPROPERTY()
+	TMap<FName, FT4EntityCharacterCompositePartMeshData> DefaultPartsData_DEPRECATED; // #37, #124
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TArray<FT4EntityCharacterCompositePartMeshData> DefaultPartsDatas; // #37, #124
 };
 
 // #73
@@ -155,16 +170,28 @@ struct T4ASSET_API FT4EntityCharacterStanceData
 
 public:
 	FT4EntityCharacterStanceData()
-		: ActivePlayTag(NAME_None)
+		: StanceName(NAME_None)
+		, ActivePlayTag(NAME_None)
 	{
 	}
 
-	// EntityCharacterSelectStanceDataByName
+	FORCEINLINE bool operator==(const FName& InKey) const
+	{
+		return (StanceName == InKey) ? true : false;
+	}
 
-	UPROPERTY(EditAnywhere, Category = Asset)
+	FORCEINLINE bool operator==(const FT4EntityCharacterStanceData& InRhs) const
+	{
+		return (StanceName == InRhs.StanceName) ? true : false;
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName StanceName;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4AnimSetAsset> AnimSetAsset; // #39
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ActivePlayTag; // #74, #73
 };
 
@@ -179,8 +206,11 @@ public:
 	{
 	}
 
+	UPROPERTY()
+	TMap<FName, FT4EntityCharacterStanceData> StanceMap_DEPRECATED; // #124; // #39, #73
+
 	UPROPERTY(EditAnywhere, Category = Asset)
-	TMap<FName, FT4EntityCharacterStanceData> StanceMap; // #39, #73
+	TArray<FT4EntityCharacterStanceData> StanceDatas; // #39, #73, #124
 };
 
 // #76
@@ -225,7 +255,6 @@ public:
 	{
 	}
 
-	// EntityCharacterSelectReactionDataByName
 	UPROPERTY(EditAnywhere, Category = Property)
 	float DelayTimeSec;
 
@@ -263,7 +292,6 @@ public:
 	{
 	}
 
-	// EntityCharacterSelectReactionDataByName
 	UPROPERTY(EditAnywhere, Category = Property)
 	float DelayTimeSec;
 };
@@ -284,7 +312,6 @@ public:
 	{
 	}
 
-	// EntityCharacterSelectReactionDataByName
 	UPROPERTY(EditAnywhere, Category = Property)
 	float DelayTimeSec;
 
@@ -309,38 +336,59 @@ struct T4ASSET_API FT4EntityCharacterReactionData
 
 public:
 	FT4EntityCharacterReactionData()
-		: ReactionType(ET4EntityReactionType::None)
+		: ReactionName(NAME_None)
+		, ReactionType(ET4EntityReactionType::None)
 		, MaxPlayTimeSec(0.0f)
 		, bUsePhysicsStart(false)
 		, bUsePhysicsStop(false)
 		, bUseAnimation(false)
+#if WITH_EDITOR
+		, TestShotDirection(FVector::UpVector) // #76
+#endif
 	{
 	}
 
-	// EntityCharacterSelectReactionDataByName
-	UPROPERTY(EditAnywhere, Category = Property)
+	FORCEINLINE bool operator==(const FName& InKey) const
+	{
+		return (ReactionName == InKey) ? true : false;
+	}
+
+	FORCEINLINE bool operator==(const FT4EntityCharacterReactionData& InRhs) const
+	{
+		return (ReactionName == InRhs.ReactionName) ? true : false;
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName ReactionName;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4EntityReactionType ReactionType;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float MaxPlayTimeSec;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bUsePhysicsStart;
 
-	UPROPERTY(EditAnywhere, Category = Property, meta = (EditCondition = "bUsePhysicsStart"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	FT4EntityCharacterReactionPhysicsStartData PhysicsStartData;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bUsePhysicsStop;
 
-	UPROPERTY(EditAnywhere, Category = Property, meta = (EditCondition = "bUsePhysicsStop"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStop"))
 	FT4EntityCharacterReactionPhysicsStopData PhysicsStopData;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bUseAnimation;
 
-	UPROPERTY(EditAnywhere, Category = Property, meta = (EditCondition = "bUseAnimation"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
 	FT4EntityCharacterReactionAnimationData AnimationData;
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FVector TestShotDirection; // #76
+#endif
 };
 
 USTRUCT()
@@ -353,107 +401,11 @@ public:
 	{
 	}
 
+	UPROPERTY()
+	TMap<FName, FT4EntityCharacterReactionData> ReactionMap_DEPRECATED; // #124;
+
 	UPROPERTY(EditAnywhere)
-	TMap<FName, FT4EntityCharacterReactionData> ReactionMap;
-};
-
-// #74
-USTRUCT()
-struct T4ASSET_API FT4EntityCharacterEditorTransientData
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4EntityCharacterEditorTransientData()
-	{
-		Reset();
-	}
-
-	void Reset()
-	{
-#if WITH_EDITOR
-		// #80
-		TransientFullbodyOverrideMaterialSlotName = NAME_None;
-		// ~#80
-
-		TransientCompositePartName = NAME_None;
-
-		// #76
-		TransientReactionName = NAME_None; 
-		TransientReactionType = ET4EntityReactionType::None;
-		TransientReactionMaxPlayTimeSec = 0.0f;
-		bTransientReactionPhysicsStartUsed = false;
-		TransientReactionPhysicsStartData = FT4EntityCharacterReactionPhysicsStartData();
-		bTransientReactionPhysicsStopUsed = false;
-		TransientReactionPhysicsStopData = FT4EntityCharacterReactionPhysicsStopData();
-		bTransientReactionAnimationUsed = false;
-		TransientReactionAnimationData = FT4EntityCharacterReactionAnimationData();
-		TransientReactionTestShotDirection = FVector::UpVector;
-		// ~#76
-
-		TransientStanceName = NAME_None; // #73
-		TransientStanceActivePlayTag = NAME_None; // #73, #74
-#endif
-	}
-
-	// #80
-	UPROPERTY(VisibleAnywhere, Transient, meta = (DisplayName = "Slot Name"))
-	FName TransientFullbodyOverrideMaterialSlotName;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Material Asset"))
-	TSoftObjectPtr<UMaterialInterface> TransientFullbodyOverrideMaterialAsset;
-	// ~#80
-
-
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientCompositePartName;
-
-
-	UPROPERTY(EditAnywhere, Transient)
-	TSoftObjectPtr<UT4CostumeEntityAsset> TransientCompositePartAsset;
-
-	// HandleOnCharacterAddSelectedReaction
-	// #76
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientReactionName; // #76
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Reaction Type"))
-	ET4EntityReactionType TransientReactionType; // #76
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Max PlayTime (0 == Looping)"))
-	float TransientReactionMaxPlayTimeSec; // #76
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Use Physics Start"))
-	bool bTransientReactionPhysicsStartUsed;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Physics Start Data", EditCondition = "bTransientReactionPhysicsStartUsed"))
-	FT4EntityCharacterReactionPhysicsStartData TransientReactionPhysicsStartData;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Use Physics Stop"))
-	bool bTransientReactionPhysicsStopUsed;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Physics Stop Data", EditCondition = "bTransientReactionPhysicsStopUsed"))
-	FT4EntityCharacterReactionPhysicsStopData TransientReactionPhysicsStopData;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Use Animation"))
-	bool bTransientReactionAnimationUsed;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Animation Data", EditCondition = "bTransientReactionAnimationUsed"))
-	FT4EntityCharacterReactionAnimationData TransientReactionAnimationData;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Shot Direction"))
-	FVector TransientReactionTestShotDirection;
-	// ~#76
-
-
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientStanceName; // #73
-
-	UPROPERTY(EditAnywhere, Transient)
-	TSoftObjectPtr<UT4AnimSetAsset> TransientStanceAsset; // #73
-
-	UPROPERTY(EditAnywhere, Transient)
-	FName TransientStanceActivePlayTag; // #73, #74
+	TArray<FT4EntityCharacterReactionData> ReactionDatas; // #124;
 };
 
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
@@ -485,12 +437,6 @@ public:
 		}
 		return FullBodyMeshData.SkeletalMeshAsset.LoadSynchronous();
 	}
-
-	virtual void ResetEditorTransientData() override
-	{ 
-		UT4EntityAsset::ResetEditorTransientData();
-		EditorTransientCharacterData.Reset();
-	} // #73
 #endif
 
 public:
@@ -520,11 +466,4 @@ public:
 
 	UPROPERTY(EditAnywhere, Category= Rendering)
 	FT4EntityCharacterRenderingAttribute Rendering;
-
-#if WITH_EDITORONLY_DATA
-	// #71 : WARN : CustomizeCharacterEntityDetails 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
-	// TODO : Transient 설정으로 Editor Dirty 가 발생함으로 다른 방법 고려 필요
-	UPROPERTY(EditAnywhere, Transient)
-	FT4EntityCharacterEditorTransientData EditorTransientCharacterData;
-#endif
 };

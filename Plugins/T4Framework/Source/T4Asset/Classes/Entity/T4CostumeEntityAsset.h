@@ -53,36 +53,10 @@ public:
 	FName CompositePartName; // #72
 
 	UPROPERTY(EditAnywhere, Category = Default)
-	FT4EntityOverrideMaterialData OverrideMaterialData; // #80
+	FT4EntityMaterialData OverrideMaterialData; // #80
 
 	//UPROPERTY(EditAnywhere)
 	//bool bUseDropMesh; // #80
-};
-
-// #80
-USTRUCT()
-struct T4ASSET_API FT4EntityCostumeEditorTransientData
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4EntityCostumeEditorTransientData()
-	{
-		Reset();
-	}
-
-	void Reset()
-	{
-#if WITH_EDITOR
-		TransientItemOverrideMaterialSlotName = NAME_None; // #80
-#endif
-	}
-
-	UPROPERTY(VisibleAnywhere, Transient, meta = (DisplayName = "Slot Name"))
-	FName TransientItemOverrideMaterialSlotName;
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Material Asset"))
-	TSoftObjectPtr<UMaterialInterface> TransientItemOverrideMaterialAsset;
 };
 
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
@@ -110,22 +84,9 @@ public:
 		}
 		return MeshData.SkeletalMeshAsset.LoadSynchronous();
 	}
-
-	virtual void ResetEditorTransientData() override
-	{
-		UT4ItemEntityAsset::ResetEditorTransientData();
-		EditorTransientCostumeData.Reset();
-	} // #73
 #endif
 
 public:
 	UPROPERTY(EditAnywhere)
 	FT4EntityItemCostumeMeshData MeshData;
-
-#if WITH_EDITORONLY_DATA
-	// #80 : OverrideMaterial Data/ Physics Asset
-	// TODO : Transient 설정으로 Editor Dirty 가 발생함으로 다른 방법 고려 필요
-	UPROPERTY(EditAnywhere, Transient)
-	FT4EntityCostumeEditorTransientData EditorTransientCostumeData;
-#endif
 };
