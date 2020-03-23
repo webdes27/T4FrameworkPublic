@@ -100,16 +100,16 @@ struct T4ASSET_API FT4BranchAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizeBranchActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BranchCondition Contition;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ConditionName;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionAsset> ActionAsset;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4LoadingPolicy LoadingPolicy;
 
 public:
@@ -165,19 +165,19 @@ struct T4ASSET_API FT4AnimationAction : public FT4ActionDataCommand
 public:
 	// #39 : FT4ActionDetails::CustomizeAnimationActionDetails
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName SectionName;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float PlayRate;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	int32 LoopCount;
 
 public:
@@ -212,28 +212,28 @@ struct T4ASSET_API FT4MeshAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizeMeshActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AttachParent AttachParent;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ActionPoint; // #57
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UStaticMesh> StaticMeshAsset;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4LoadingPolicy LoadingPolicy;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FVector LocalOffset; // #112
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FRotator LocalRotation; // #108
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FVector LocalScale; // #54
 
 public:
@@ -275,31 +275,31 @@ struct T4ASSET_API FT4ParticleAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizeParticleActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AttachParent AttachParent;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ActionPoint; // #57
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UParticleSystem> ParticleAsset;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4LoadingPolicy LoadingPolicy;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FVector LocalOffset; // #112
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FRotator LocalRotation; // #112
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FVector LocalScale; // #54
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float PlayRate;
 
 public:
@@ -339,34 +339,34 @@ struct T4ASSET_API FT4DecalAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizeDecalActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AttachParent AttachParent;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ActionPoint;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UMaterialInterface> DecalMaterial;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4LoadingPolicy LoadingPolicy;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FVector Scale; // #54
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	int32 DecalSortOrder;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FVector DecalSize;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float FadeInTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float FadeOutTimeSec;
 
 public:
@@ -405,34 +405,34 @@ struct T4ASSET_API FT4ProjectileAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizeProjectileActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ActionPoint; // 어딘가에 붙어야 할 경우. 예) 오른손...
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionAsset> CastingActionAsset;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionAsset> HeadActionAsset;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionAsset> EndActionAsset;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4LoadingPolicy LoadingPolicy;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bEnableHitAttached; // #112 : 충돌 지점에 잔상을 남길지 여부 (Arrow : true, Fireball : false)
 
-	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnableHitAttached"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bEnableHitAttached"))
 	float HitAttachedTimeSec; // #112 : 충돌 지점에 잔상 시간
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float ProjectileLength; // #112 : Projectile 의 길이, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float ThrowDelayTimeSec; // Play 이후 ActionPoint 에서 떨어지는 시간!
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float CastingStopDelayTimeSec; // ThrowDelayTimeSec 이후 Casting Conti 가 삭제될 시간
 
 public:
@@ -469,7 +469,7 @@ struct T4ASSET_API FT4ReactionAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizeReactionActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ReactionName;
 
 public:
@@ -500,10 +500,10 @@ struct T4ASSET_API FT4PlayTagAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizePlayTagActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName PlayTagName;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4PlayTagType PlayTagType;
 
 public:
@@ -536,22 +536,22 @@ struct T4ASSET_API FT4TimeScaleAction : public FT4ActionDataCommand
 public:
 	// #39 : FT4ActionDetails::CustomizeTimeScaleActionDetails
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4PlayTarget PlayTarget;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BuiltInEasing BlendInCurve;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float BlendInTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BuiltInEasing BlendOutCurve;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float BlendOutTimeSec;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.1", UIMin = "0.1", UIMax = "5"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.1", UIMin = "0.1", UIMax = "5"))
 	float TimeScale;
 
 public:
@@ -596,31 +596,31 @@ struct T4ASSET_API FT4CameraWorkSectionKeyData
 public:
 	// #58 : Property 수정시 UT4CameraWorkSectionKeyObject 에도 추가해줄 것!
 	//       SaveCameraSectionKeyObject, UpdateCameraSectionKeyObject
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	int32 ChannelKey; // Track Section 의 FFrameNumber 즉, FrameNumber 가 Unique Key 가 됨으로 저장해준다.
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float StartTimeSec; // FrameNumber 를 Sec 으로 변환
 
 	UPROPERTY()
 	float DelayTimeSec_DEPRECATED; // FrameNumber 를 Sec 으로 변환
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BuiltInEasing EasingCurve; // #102 : Droplist 선택시 PropertyChanged event 가 와서 변경을 못하는 문제가 있어 하드코딩한 처리가 있음. 이름으로 검색!!
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName LookAtPoint; // ActionPoint
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bInverse; // LookAtPoint Inverse
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FVector ViewDirection; // Local
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float Distance;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float FOVDegree;
 
 public:
@@ -643,7 +643,7 @@ struct T4ASSET_API FT4CameraWorkSectionData
 	GENERATED_USTRUCT_BODY()
 
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TArray<FT4CameraWorkSectionKeyData> KeyDatas;
 
 public:
@@ -660,22 +660,22 @@ struct T4ASSET_API FT4CameraWorkAction : public FT4ActionDataCommand
 public:
 	// #39 : FT4ActionDetails::CustomizeCameraWorkActionDetails
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4PlayTarget PlayTarget;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BuiltInEasing BlendInCurve;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BuiltInEasing BlendOutCurve;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FT4CameraWorkSectionData SectionData;
 
 public:
@@ -716,19 +716,19 @@ struct T4ASSET_API FT4CameraShakeOscillationData
 	GENERATED_USTRUCT_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FROscillator RotOscillation;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FVOscillator LocOscillation;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FFOscillator FOVOscillation;
 
 public:
@@ -745,25 +745,25 @@ struct T4ASSET_API FT4CameraShakeAnimData
 	GENERATED_USTRUCT_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, meta=(ClampMin = "0.001"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta=(ClampMin = "0.001"))
 	float AnimPlayRate;
 
-	UPROPERTY(EditAnywhere, meta=(ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta=(ClampMin = "0.0"))
 	float AnimScale;
 
-	UPROPERTY(EditAnywhere, meta=(ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta=(ClampMin = "0.0"))
 	float AnimBlendInTime;
 
-	UPROPERTY(EditAnywhere, meta=(ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta=(ClampMin = "0.0"))
 	float AnimBlendOutTime;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	uint32 bRandomAnimSegment : 1;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", editcondition = "bRandomAnimSegment"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0", editcondition = "bRandomAnimSegment"))
 	float RandomAnimSegmentDuration;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	class UCameraAnim* CameraAnim;
 
 public:
@@ -789,22 +789,22 @@ public:
 
 	// #101 : UCameraShake : Property
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4PlayTarget PlayTarget; // #100
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float PlayScale;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TEnumAsByte<ECameraAnimPlaySpace::Type> PlaySpace;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FRotator UserDefinedPlaySpace;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FT4CameraShakeOscillationData OscillationData;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FT4CameraShakeAnimData AnimData;
 
 public:
@@ -854,22 +854,22 @@ struct T4ASSET_API FT4PostProcessAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizePostProcessActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4PlayTarget PlayTarget; // #100
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BuiltInEasing BlendInCurve;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BuiltInEasing BlendOutCurve;
 
-	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendOutTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FPostProcessSettings PostProcessSettings; // #98 에서는 Zone 처리,
 
 public:
@@ -918,28 +918,28 @@ struct T4ASSET_API FT4EnvironmentAction : public FT4ActionDataCommand
 
 public:
 	// #39 : FT4ActionDetails::CustomizeEnvironmentActionDetails
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AttachParent AttachParent;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bParentInheritPoint; // #76 : Parent ActionPoint 가 없다면 본래 세팅을 따르도록...
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ActionPoint;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4PlayTarget PlayTarget; // #100
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ZoneEntityAsset> ZoneEntityAsset;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bOverrideBlendTime;
 
-	UPROPERTY(EditAnywhere, meta = (EditCondition = "bOverrideBlendTime", ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bOverrideBlendTime", ClampMin = "0.0"))
 	float OverrideBlendInTimeSec;
 
-	UPROPERTY(EditAnywhere, meta = (EditCondition = "bOverrideBlendTime", ClampMin = "0.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bOverrideBlendTime", ClampMin = "0.0"))
 	float OverrideBlendOutTimeSec;
 
 public:
