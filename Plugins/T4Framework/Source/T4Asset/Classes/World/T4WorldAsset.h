@@ -27,55 +27,6 @@ private:
 	FT4WorldCustomVersion() {}
 };
 
-// #90
-class UT4EnvironmentAsset;
-USTRUCT()
-struct T4ASSET_API FT4WorldEditorTransientData
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4WorldEditorTransientData()
-//		: TransientDebugColor(FColor(255, 255, 255, 32))
-	{
-		Reset();
-	}
-
-	void Reset()
-	{
-#if WITH_EDITOR
-		TransientWorldZoneName = NAME_None;
-		TransientTransform.SetIdentity();
-		TransientBlendPriority = 0;
-		TransientBlendInTimeSec = 1.0f;
-		TransientBlendOutTimeSec = 1.0f;
-		TransientDebugColor = FColor(255, 255, 255, 32);
-		TransientEnvironmentAsset.Reset();
-#endif
-	}
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Name"))
-	FName TransientWorldZoneName; // #92
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Transform"))
-	FTransform TransientTransform; // #92
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend Priority", ClampMin = "0", UIMin = "0", UIMax = "5"))
-	int32 TransientBlendPriority; // #92
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend In TimeSec", ClampMin = "0.0", UIMin = "0.0", UIMax = "10.0"))
-	float TransientBlendInTimeSec; // #92
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Blend Out TimeSec", ClampMin = "0.0", UIMin = "0.0", UIMax = "10.0"))
-	float TransientBlendOutTimeSec; // #92
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "DebugColor"))
-	FColor TransientDebugColor; // #92
-
-	UPROPERTY(EditAnywhere, Transient, meta = (DisplayName = "Zone Environment Asset"))
-	TSoftObjectPtr<UT4EnvironmentAsset> TransientEnvironmentAsset; // #90
-};
-
 class UTexture2D;
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
 class T4ASSET_API UT4WorldAsset : public UObject
@@ -107,10 +58,6 @@ public:
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
-
-	// #71 : WARN : FT4WorldExplorerDetails 에서 사용하는 임시 프로퍼티! (저장되지 않는다!!)
-	UPROPERTY(EditAnywhere, Transient)
-	FT4WorldEditorTransientData EditorTransientData;
 #endif
 
 private:
