@@ -42,12 +42,12 @@ class UT4WeaponEntityAsset; // #74
 class UT4CostumeEntityAsset;
 
 USTRUCT()
-struct T4ASSET_API FT4EntityCharacterPhysicalAttribute : public FT4EntityBasePhysicalAttribute
+struct T4ASSET_API FT4EntityCharacterPhysicalData : public FT4EntityPhysicalData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityCharacterPhysicalAttribute()
+	FT4EntityCharacterPhysicalData()
 		: DefaultSpeed(500.0f) // #108
 		, CombatSpeed(300.0f) // #109
 		, CrouchSpeed(200.0f) // #109
@@ -79,12 +79,12 @@ public:
 };
 
 USTRUCT()
-struct T4ASSET_API FT4EntityCharacterRenderingAttribute : public FT4EntityBaseRenderingAttribute
+struct T4ASSET_API FT4EntityCharacterRenderingData : public FT4EntityRenderingData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityCharacterRenderingAttribute()
+	FT4EntityCharacterRenderingData()
 	{
 	}
 
@@ -462,8 +462,8 @@ public:
 	FT4EntityCharacterReactionSetData ReactionSetData; // #76
 
 	UPROPERTY(EditAnywhere, Category= Physical)
-	FT4EntityCharacterPhysicalAttribute Physical;
+	FT4EntityCharacterPhysicalData Physical;
 
 	UPROPERTY(EditAnywhere, Category= Rendering)
-	FT4EntityCharacterRenderingAttribute Rendering;
+	FT4EntityCharacterRenderingData Rendering;
 };

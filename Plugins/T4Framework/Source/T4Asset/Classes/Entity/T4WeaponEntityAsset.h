@@ -82,6 +82,18 @@ public:
 	bool bOverlapEvent; // #106
 };
 
+// #107
+USTRUCT()
+struct T4ASSET_API FT4EntityWeaponAnimationData : public FT4EntityAnimationData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EntityWeaponAnimationData()
+	{
+	}
+};
+
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
 class T4ASSET_API UT4WeaponEntityAsset : public UT4ItemEntityAsset
 {
@@ -131,5 +143,5 @@ public:
 	FT4EntityItemWeaponMeshData MeshData;
 
 	UPROPERTY(EditAnywhere)
-	FT4EntityItemAnimationData AnimationData; // #107
+	FT4EntityWeaponAnimationData AnimationData; // #107
 };

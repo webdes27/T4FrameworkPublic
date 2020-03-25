@@ -3,21 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Classes/Common/T4CommonAssetStructs.h" // #103
+#include "Classes/AnimSet/T4AnimSetAsset.h" // #107
 #include "Public/T4AssetDefinitions.h"
 #include "Public/Entity/T4EntityTypes.h"
-#include "Classes/Common/T4CommonAssetStructs.h" // #103
 #include "T4EntityAsset.generated.h"
 
 /**
   * #35
  */
 USTRUCT()
-struct T4ASSET_API FT4EntityEditorThumbnailAttribute
+struct T4ASSET_API FT4EntityEditorThumbnailData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityEditorThumbnailAttribute()
+	FT4EntityEditorThumbnailData()
 #if WITH_EDITORONLY_DATA
 		: Rotation(FRotator(0.0f, 180.0f, 0.0f))
 		, Location(FVector(500.0f, 0.0f, 100.0f))
@@ -35,12 +36,12 @@ public:
 };
 
 USTRUCT()
-struct T4ASSET_API FT4EntityBasePhysicalAttribute
+struct T4ASSET_API FT4EntityPhysicalData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityBasePhysicalAttribute()
+	FT4EntityPhysicalData()
 		: bCollisionDisabled(false) // #118
 		, CapsuleHeight(200.0f)
 		, CapsuleRadius(25.0f)
@@ -49,6 +50,7 @@ public:
 	}
 
 	// CustomizeCharacterEntityDetails
+	// CustomizePropEntityDetails
 	// CustomizeItemCommonEntityDetails
 
 	UPROPERTY(EditAnywhere)
@@ -62,12 +64,12 @@ public:
 };
 
 USTRUCT()
-struct T4ASSET_API FT4EntityBaseRenderingAttribute
+struct T4ASSET_API FT4EntityRenderingData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityBaseRenderingAttribute()
+	FT4EntityRenderingData()
 		: Scale(1.0f)
 		, ImportRotationYaw(-90.0f)
 		, bReceivesDecals(false) // #54
@@ -75,6 +77,7 @@ public:
 	}
 
 	// CustomizeCharacterEntityDetails
+	// CustomizePropEntityDetails
 	// CustomizeItemCommonEntityDetails
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.1", ClampMax = "10"))
@@ -133,6 +136,45 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TArray<FT4EntityMaterialSlotData> MaterialSlotDatas;
+};
+
+// #126
+class USkeleton;
+class UAnimMontage;
+class UAnimBlueprint;
+class UBlendSpaceBase;
+USTRUCT()
+struct T4ASSET_API FT4EntityAnimationData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EntityAnimationData()
+		: bUseAnimation(false)
+		, bAnimMontageAutoGen(true)
+	{
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (DisplayName = "bUseAnimation"))
+	bool bUseAnimation;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
+	TSoftObjectPtr<USkeleton> SkeletonAsset;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
+	TSoftObjectPtr<UAnimBlueprint> AnimBlueprintAsset;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
+	TSoftObjectPtr<UBlendSpaceBase> BlendSpaceAsset;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation", DisplayName = "bAutoGen"))
+	bool bAnimMontageAutoGen; // #69
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation", DisplayName = "Anim Montage Asset"))
+	TSoftObjectPtr<UAnimMontage> AnimMontageAsset; // #69
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
+	TArray<FT4AnimSetAnimSequenceData> AnimSequenceArray;
 };
 
 // #74
@@ -259,7 +301,7 @@ public:
 	FT4EditorTestAutomation TestAutomation; // #100, #103
 
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FT4EntityEditorThumbnailAttribute ThumbnailCameraInfo;
+	FT4EntityEditorThumbnailData ThumbnailCameraInfo;
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image

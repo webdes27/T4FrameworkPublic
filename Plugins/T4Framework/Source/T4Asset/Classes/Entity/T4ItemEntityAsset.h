@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "T4EntityAsset.h"
-#include "Classes/AnimSet/T4AnimSetAsset.h" // #107
 #include "T4ItemEntityAsset.generated.h"
 
 /**
@@ -16,14 +15,14 @@ class UParticleSystem;
 class UMaterialInterface;
 
 USTRUCT()
-struct T4ASSET_API FT4EntityItemPhysicalAttribute : public FT4EntityBasePhysicalAttribute
+struct T4ASSET_API FT4EntityItemPhysicalData : public FT4EntityPhysicalData
 {
 	GENERATED_USTRUCT_BODY()
 
 	// CustomizeItemCommonEntityDetails
 
 public:
-	FT4EntityItemPhysicalAttribute()
+	FT4EntityItemPhysicalData()
 	{
 		CapsuleHeight = 50.0f;
 		CapsuleRadius = 10.0f;
@@ -31,54 +30,16 @@ public:
 };
 
 USTRUCT()
-struct T4ASSET_API FT4EntityItemRenderingAttribute : public FT4EntityBaseRenderingAttribute
+struct T4ASSET_API FT4EntityItemRenderingData : public FT4EntityRenderingData
 {
 	GENERATED_USTRUCT_BODY()
 
 	// CustomizeItemCommonEntityDetails
 
 public:
-	FT4EntityItemRenderingAttribute()
+	FT4EntityItemRenderingData()
 	{
 	}
-};
-
-// #107
-class USkeleton;
-class UAnimMontage;
-class UAnimBlueprint;
-USTRUCT()
-struct T4ASSET_API FT4EntityItemAnimationData
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4EntityItemAnimationData()
-		: bUseAnimation(false)
-		, bAnimMontageAutoGen(true)
-	{
-	}
-
-	UPROPERTY(EditAnywhere, Category = Animation, meta = (DisplayName = "bUseAnimation"))
-	bool bUseAnimation;
-
-	UPROPERTY(EditAnywhere, Category = Animation)
-	TSoftObjectPtr<USkeleton> SkeletonAsset;
-
-	UPROPERTY(EditAnywhere, Category = Animation)
-	TSoftObjectPtr<UAnimBlueprint> AnimBlueprintAsset;
-
-	UPROPERTY(EditAnywhere, Category = Animation)
-	TSoftObjectPtr<UBlendSpaceBase> BlendSpaceAsset;
-
-	UPROPERTY(EditAnywhere, Category = Animation, meta = (DisplayName = "bAutoGen"))
-	bool bAnimMontageAutoGen; // #69
-
-	UPROPERTY(EditAnywhere, Category = Animation, meta = (DisplayName = "Anim Montage Asset"))
-	TSoftObjectPtr<UAnimMontage> AnimMontageAsset; // #69
-
-	UPROPERTY(EditAnywhere, Category = Animation)
-	TArray<FT4AnimSetAnimSequenceData> AnimSequenceArray;
 };
 
 USTRUCT()
@@ -167,10 +128,10 @@ public:
 	FT4EntityItemDropMeshData DropMeshData;
 
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Physical"))
-	FT4EntityItemPhysicalAttribute DropMeshPhysical;
+	FT4EntityItemPhysicalData DropMeshPhysical;
 
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Rendering"))
-	FT4EntityItemRenderingAttribute DropMeshRendering;
+	FT4EntityItemRenderingData DropMeshRendering;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Test"))

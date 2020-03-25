@@ -29,10 +29,11 @@ enum ET4EngineConstantTable
     // {
 
         BlendSpace = Editor_Start,
-        DefaultSection, // #38
-        OverlaySection,
-        SkillSection,
-		WeaponSection, // #107
+        DefaultAnimSequence, // #38
+        OverlayAnimSequence,
+        SkillAnimSequence,
+		PropAnimSequence, // #126
+		WeaponAnimSequence, // #107
 
         ActionPoint, // #47
 

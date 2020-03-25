@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.03.25] [M6] Copying //Private to //Deploy (private commit d6ee84d)**
+    - #126 [기능추가] Entity Editor, Prop Entity 설정 처리 추가 (Static/Skeletal Mesh or Particle)
   - **[2020.03.24] [M6] Copying //Private to //Deploy (private commit a2c2289)**
     - #125 [버그수정] Rehearsal Editor, 일부 기능에서 Undo/Redo 가 동작하지 않던 문제 수정
     - #124 [기능개선] World Explorer, Details 메뉴 정리 및 사용성 개선

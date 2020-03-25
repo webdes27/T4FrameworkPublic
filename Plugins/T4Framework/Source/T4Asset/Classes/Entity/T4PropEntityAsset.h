@@ -31,37 +31,44 @@ class USkeletalMesh;
 class UParticleSystem;
 
 USTRUCT()
-struct T4ASSET_API FT4EntityPropPhysicalAttribute : public FT4EntityBasePhysicalAttribute
+struct T4ASSET_API FT4EntityPropPhysicalData : public FT4EntityPhysicalData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityPropPhysicalAttribute()
+	FT4EntityPropPhysicalData()
 	{
 		CapsuleHeight = 200.0f;
 		CapsuleRadius = 50.0f;
 	}
+
+	// CustomizePropEntityDetails // #126
 };
 
 USTRUCT()
-struct T4ASSET_API FT4EntityPropRenderingAttribute : public FT4EntityBaseRenderingAttribute
+struct T4ASSET_API FT4EntityPropRenderingData : public FT4EntityRenderingData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityPropRenderingAttribute()
+	FT4EntityPropRenderingData()
 	{
 	}
+
+	// CustomizePropEntityDetails // #126
 };
 
 USTRUCT()
-struct T4ASSET_API FT4EntityPropNormalMeshData
+struct T4ASSET_API FT4EntityPropMeshData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4EntityPropNormalMeshData()
+	FT4EntityPropMeshData()
 		: MeshType(ET4EntityMeshType::StaticMesh)
+		, RelativeRotation(FRotator::ZeroRotator) // #108
+		, RelativeScale(1.0f)
+		, bOverlapEvent(false) // #106
 	{
 	}
 
@@ -71,11 +78,38 @@ public:
 	UPROPERTY(EditAnywhere, Category = Asset)
 	TSoftObjectPtr<UStaticMesh> StaticMeshAsset;
 
+	UPROPERTY(EditAnywhere, meta = (DisplayName = "Override Material Data"))
+	FT4EntityMaterialData StaticMeshOverrideMaterialData; // #80
+
 	UPROPERTY(EditAnywhere, Category = Asset)
 	TSoftObjectPtr<USkeletalMesh> SkeletalMeshAsset;
 
+	UPROPERTY(EditAnywhere, meta = (DisplayName = "Override Material Data"))
+	FT4EntityMaterialData SkeletalMeshOverrideMaterialData; // #80
+
 	UPROPERTY(EditAnywhere, Category = Asset)
 	TSoftObjectPtr<UParticleSystem> ParticleSystemAsset;
+
+	UPROPERTY(EditAnywhere)
+	FRotator RelativeRotation; // #108
+
+	UPROPERTY(EditAnywhere)
+	float RelativeScale; // #108
+
+	UPROPERTY(EditAnywhere)
+	bool bOverlapEvent; // #106
+};
+
+// #126
+USTRUCT()
+struct T4ASSET_API FT4EntityPropAnimationData : public FT4EntityAnimationData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EntityPropAnimationData()
+	{
+	}
 };
 
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
@@ -95,15 +129,15 @@ public:
 	ET4EntityType GetEntityType() const override { return ET4EntityType::Prop; }
 
 public:
-	UPROPERTY(EditAnywhere, Category= Data)
-	ET4EntityPropMeshType MeshType;
-
 	UPROPERTY(EditAnywhere, Category=Data)
-	FT4EntityPropNormalMeshData NormalMeshData;
+	FT4EntityPropMeshData MeshData;
+
+	UPROPERTY(EditAnywhere)
+	FT4EntityPropAnimationData AnimationData; // #126
 
 	UPROPERTY(EditAnywhere, Category= Physical)
-	FT4EntityPropPhysicalAttribute Physical;
+	FT4EntityPropPhysicalData Physical;
 
 	UPROPERTY(EditAnywhere, Category= Rendering)
-	FT4EntityPropRenderingAttribute Rendering;
+	FT4EntityPropRenderingData Rendering;
 };

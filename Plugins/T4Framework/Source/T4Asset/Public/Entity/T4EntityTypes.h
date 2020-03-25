@@ -52,16 +52,6 @@ enum class ET4EntityCharacterModularType : uint8 // #72
 };
 
 UENUM()
-enum class ET4EntityPropMeshType : uint8
-{
-	Normal,
-	RigidBody, // TODO : M3
-	Prefab, // TODO : M3
-
-	None
-};
-
-UENUM()
 enum class ET4EntityReactionType : uint8 // #76
 {
 	Die,
