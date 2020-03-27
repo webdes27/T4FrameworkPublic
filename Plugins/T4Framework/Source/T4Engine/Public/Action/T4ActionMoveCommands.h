@@ -334,6 +334,9 @@ public:
 	ET4LoadingPolicy LoadingPolicy;
 
 	UPROPERTY(EditAnywhere)
+	bool bFlyToTarget; // #126 : TargetID 또는 Location 에 지정시간 도착 보장
+
+	UPROPERTY(EditAnywhere)
 	bool bEnableHitAttached; // #112 : 충돌 지점에 잔상을 남길지 여부 (Arrow : true, Fireball : false)
 
 	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnableHitAttached"))

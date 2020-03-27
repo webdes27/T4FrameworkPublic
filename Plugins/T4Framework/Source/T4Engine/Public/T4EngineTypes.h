@@ -88,14 +88,15 @@ enum class ET4WorldSource : uint8 // #87
 	None,
 };
 
-enum ET4CameraType
+UENUM()
+enum class ET4CameraType : uint8
 {
 	TPS,
 	ShoulderView, // #40
 	FPS, // #121
 
-	Editor,
-	None,
+	Editor 	UMETA(Hidden),
+	None 	UMETA(Hidden),
 };
 
 UENUM()

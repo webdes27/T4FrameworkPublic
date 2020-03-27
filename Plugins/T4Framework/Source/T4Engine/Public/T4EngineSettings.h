@@ -81,7 +81,7 @@ public:
 	float TPS_MaxZoomDistance;
 
 	UPROPERTY(config, EditAnywhere, Category = TPSCameraSettting)
-	FRotator TPS_DefaultRotation;
+	float TPS_DefaultPitchDegree;
 
 	UPROPERTY(config, EditAnywhere, Category=ShoulderViewCameraSettting)
 	float SV_FieldOfViewDegree;
@@ -121,6 +121,9 @@ public:
 
 	UPROPERTY(config, EditAnywhere, Category=DataTable)
 	FSoftObjectPath ThumbnailSceneEnvironmentAssetPath; // #97
+
+	UPROPERTY(config, EditAnywhere, Category=DataTable)
+	FSoftObjectPath FallbackErrorEntityAssetPath; // #126
 
 protected:
 #if WITH_EDITOR

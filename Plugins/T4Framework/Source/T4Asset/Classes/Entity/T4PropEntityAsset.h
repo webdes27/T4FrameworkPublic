@@ -37,12 +37,15 @@ struct T4ASSET_API FT4EntityPropPhysicalData : public FT4EntityPhysicalData
 
 public:
 	FT4EntityPropPhysicalData()
+		: bCanEverAffectNavigation(true)
 	{
 		CapsuleHeight = 200.0f;
 		CapsuleRadius = 50.0f;
 	}
 
 	// CustomizePropEntityDetails // #126
+	UPROPERTY(EditAnywhere, Category = Asset)
+	bool bCanEverAffectNavigation; // #126 : Nav Burn 사용 여부
 };
 
 USTRUCT()
@@ -66,8 +69,8 @@ struct T4ASSET_API FT4EntityPropMeshData
 public:
 	FT4EntityPropMeshData()
 		: MeshType(ET4EntityMeshType::StaticMesh)
+		, RelativeLocation(FVector::ZeroVector) // #126
 		, RelativeRotation(FRotator::ZeroRotator) // #108
-		, RelativeScale(1.0f)
 		, bOverlapEvent(false) // #106
 	{
 	}
@@ -91,10 +94,10 @@ public:
 	TSoftObjectPtr<UParticleSystem> ParticleSystemAsset;
 
 	UPROPERTY(EditAnywhere)
-	FRotator RelativeRotation; // #108
+	FVector RelativeLocation; // #126
 
 	UPROPERTY(EditAnywhere)
-	float RelativeScale; // #108
+	FRotator RelativeRotation; // #108
 
 	UPROPERTY(EditAnywhere)
 	bool bOverlapEvent; // #106

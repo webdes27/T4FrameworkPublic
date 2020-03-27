@@ -44,7 +44,9 @@ struct FT4WorldActorProperty // #34
 
 		CapsuleRadius = 0.0f;
 		HalfHeight = 0.0f;
-		MeshImportRotation = FRotator::ZeroRotator;
+
+		RelativeLocation = FVector::ZeroVector; // #126
+		RelativeRotation = FRotator::ZeroRotator;
 		RelativeScale3D = FVector::OneVector; // #37
 	}
 
@@ -69,7 +71,9 @@ struct FT4WorldActorProperty // #34
 
 	float CapsuleRadius;
 	float HalfHeight; // #18
-	FRotator MeshImportRotation; // #30
+
+	FVector RelativeLocation; // #126
+	FRotator RelativeRotation; // #30, #126
 	FVector RelativeScale3D; // #37
 };
 

@@ -145,7 +145,8 @@ public:
 			OutMsg = TEXT("Invalid SkillDataID!");
 			return false;
 		}
-		if (ET4GameAttackTarget::ObjectID == TargetType)
+		if (ET4GameAttackTarget::ObjectID == TargetType ||
+			ET4GameAttackTarget::ObjectIDAndLocation == TargetType)
 		{
 			if (!TargetObjectID.IsValid())
 			{

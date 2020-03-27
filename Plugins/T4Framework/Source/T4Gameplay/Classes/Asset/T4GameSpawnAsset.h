@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Public/T4GameDataTypes.h"
 #include "Classes/Common/T4CommonAssetStructs.h" // #103
+#include "T4Engine/Public/T4EngineTypes.h" // #126
 #include "T4GameSpawnAsset.generated.h"
 
 /**
@@ -205,6 +206,46 @@ public:
 #endif
 };
 
+// #126
+USTRUCT()
+struct T4GAMEPLAY_API FT4GameSpawnTestSettings
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4GameSpawnTestSettings()
+#if WITH_EDITOR
+		: DefaultCamera(ET4CameraType::TPS)
+		, PlayeDataID(NAME_None)
+		, WeaponNameID(NAME_None)
+		, SubStanceName(NAME_None)
+		, SpawnLocation(FVector::ZeroVector)
+		, SpawnRotation(FRotator::ZeroRotator)
+#endif
+	{
+	}
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = Editor)
+	ET4CameraType DefaultCamera;
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FName PlayeDataID;
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FName WeaponNameID;
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FName SubStanceName;
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FVector SpawnLocation;
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FRotator SpawnRotation;
+#endif
+};
+
 class UTexture2D;
 class UT4GameContentAsset;
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
@@ -227,6 +268,9 @@ public:
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor, AssetRegistrySearchable)
 	TSoftObjectPtr<UT4GameContentAsset> ParentContentAsset;
+
+	UPROPERTY(EditAnywhere, Category = Editor)
+	FT4GameSpawnTestSettings TestSettings; // #126
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image

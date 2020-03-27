@@ -16,6 +16,7 @@ struct FT4AnimSetCustomVersion
 		InitializeVer = 0,
 
 		CommonPropertyNameChanged, // #124
+		CommonPropertyNameV2Changed, // #126
 
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
@@ -103,12 +104,12 @@ public:
 // #111
 class UT4WeaponEntityAsset;
 USTRUCT()
-struct T4ASSET_API FT4AnimSetEditorSettings
+struct T4ASSET_API FT4AnimSetTestSettings
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4AnimSetEditorSettings()
+	FT4AnimSetTestSettings()
 	{
 		Reset();
 	}
@@ -203,8 +204,11 @@ public:
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
 
+	UPROPERTY()
+	FT4AnimSetTestSettings EditorSettings_DEPRECATED; // #111 : 에디터 세팅 옵션
+
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FT4AnimSetEditorSettings EditorSettings; // #111 : 에디터 세팅 옵션
+	FT4AnimSetTestSettings TestSettings; // #111 : 에디터 세팅 옵션
 #endif
 
 private:

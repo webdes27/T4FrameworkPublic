@@ -74,7 +74,7 @@ public:
 	APlayerCameraManager* GetCameraManager() const override; // #100
 
 	IT4WorldSystem* GetWorldSystem() const override; // #52
-	IT4GameObject* GetGameObject() const override; // #114
+	UT4GameObjectBase* GetGameObjectBase() const override; // #114
 
 public:
 	void SetObjectID(const FT4ObjectID& InObjectID) { ObjectID = InObjectID; }
@@ -105,6 +105,7 @@ public:
 	void SetCameraZoomMaxScale(float InScale) override { CameraZoomMaxScale = InScale; } // #86
 	void SetCameraPitch(float InAmount) override;
 	void SetCameraYaw(float InAmount) override;
+	void ApplyCameraYaw(float InYawValue) override; // #126
 
 	void SetFreeCameraMoveDirection(const FVector& InLocation) override;
 	void SetFreeCameraLocationAndRotation(const FVector& InLocation, const FRotator& InRotation) override; // #94, #86

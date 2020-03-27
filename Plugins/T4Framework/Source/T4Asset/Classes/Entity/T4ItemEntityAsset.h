@@ -50,8 +50,8 @@ struct T4ASSET_API FT4EntityItemDropMeshData
 public:
 	FT4EntityItemDropMeshData()
 		: MeshType(ET4EntityMeshType::StaticMesh)
-		, DropAngle(FRotator::ZeroRotator) // #106
-		, DropOffset(FVector::ZeroVector) // #106
+		, RelativeLocation(FVector::ZeroVector) // #106
+		, RelativeRotation(FRotator::ZeroRotator) // #106
 	{
 	}
 
@@ -74,10 +74,10 @@ public:
 	TSoftObjectPtr<UParticleSystem> ParticleSystemAsset;
 
 	UPROPERTY(EditAnywhere)
-	FRotator DropAngle; // #106
+	FVector RelativeLocation; // #106
 
 	UPROPERTY(EditAnywhere)
-	FVector DropOffset; // #106
+	FRotator RelativeRotation; // #106
 };
 
 // #107

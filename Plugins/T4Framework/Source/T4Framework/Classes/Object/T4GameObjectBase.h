@@ -14,7 +14,7 @@ class IT4Framework;
 class IT4WorldActor;
 class IT4WorldSystem;
 UCLASS()
-class T4FRAMEWORK_API UT4GameObjectBase : public UObject, public IT4GameObject
+class T4FRAMEWORK_API UT4GameObjectBase : public UObject
 {
 	GENERATED_UCLASS_BODY()
 		
@@ -24,21 +24,19 @@ class T4FRAMEWORK_API UT4GameObjectBase : public UObject, public IT4GameObject
 	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 public:
-	// IT4GameObject
-	ET4LayerType GetLayerType() const override { return LayerType; }
-	const FT4ObjectID& GetObjectID() const override { return ObjectID; } // #114
-
-	virtual ET4ControllerType GetControllerType() const override { return ET4ControllerType::Controller_Max; } // #114
-	virtual IT4ObjectController* GetObjectController() const override { return nullptr; } // #114 : Server All, Client Player Only
-
-public:
 	void OnInitialize(ET4LayerType InLayerType, const FT4ObjectID& InObjectID);
 	void OnFinalize();
 
 	void OnProcess(float InDeltaTime);
 
+	ET4LayerType GetLayerType() const { return LayerType; }
+	const FT4ObjectID& GetObjectID() const { return ObjectID; } // #114
+
 	virtual bool IsServerObject() const { return false; }
 	virtual bool IsClientObject() const { return false; }
+
+	virtual ET4ControllerType GetControllerType() const { return ET4ControllerType::Controller_Max; } // #114
+	virtual IT4ObjectController* GetObjectController() const { return nullptr; } // #114 : Server All, Client Player Only
 
 #if WITH_EDITOR
 	virtual FString GetAIDebugString() const { return FString(); } // #114 : Only ServerObject

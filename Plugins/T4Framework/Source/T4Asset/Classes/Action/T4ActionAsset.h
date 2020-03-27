@@ -234,7 +234,7 @@ public:
 
 public:
 	FT4ActionTestSettings()
-#if WITH_EDITORONLY_DATA
+#if WITH_EDITOR
 		: MapEntitySelected(NAME_None) // #87
 		, StanceSelected(NAME_None) // #73
 		, SubStanceSelected(NAME_None) // #106

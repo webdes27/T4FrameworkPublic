@@ -40,6 +40,7 @@ class IT4WorldSystem;
 class AT4PlayerControllerBase;
 class IT4EditorViewportClient;
 class UT4MapEntityAsset; // #87
+class UT4GameObjectBase;
 class IT4Framework;
 class IT4WorldActor;
 
@@ -47,7 +48,6 @@ class IT4WorldActor;
 DECLARE_MULTICAST_DELEGATE_OneParam(FT4OnViewTargetChanged, IT4WorldActor*);
 #endif
 
-class IT4GameObject;
 class AAIController;
 
 // #34, #63, #114
@@ -79,7 +79,7 @@ public:
 	virtual APlayerCameraManager* GetCameraManager() const = 0; // #100
 
 	virtual IT4WorldSystem* GetWorldSystem() const = 0; // #52
-	virtual IT4GameObject* GetGameObject() const = 0; // #114
+	virtual UT4GameObjectBase* GetGameObjectBase() const = 0; // #114
 };
 
 class T4FRAMEWORK_API IT4NPCAIControllerBase : public IT4ObjectController
@@ -121,6 +121,7 @@ public:
 	virtual void SetCameraZoomMaxScale(float InScale) = 0; // #86
 	virtual void SetCameraPitch(float InAmount) = 0;
 	virtual void SetCameraYaw(float InAmount) = 0;
+	virtual void ApplyCameraYaw(float InYawValue) = 0; // #126
 
 	virtual void SetFreeCameraMoveDirection(const FVector& InDirection) = 0;
 	virtual void SetFreeCameraLocationAndRotation(const FVector& InLocation, const FRotator& InRotation) = 0; // #94, #86
@@ -151,19 +152,6 @@ public:
 
 	virtual FT4OnViewTargetChanged& GetOnViewTargetChanged() = 0;
 #endif
-};
-
-// #114
-class T4FRAMEWORK_API IT4GameObject
-{
-public:
-	virtual ~IT4GameObject() {}
-
-	virtual ET4LayerType GetLayerType() const = 0;
-	virtual const FT4ObjectID& GetObjectID() const = 0; // #114
-
-	virtual ET4ControllerType GetControllerType() const = 0; // #114
-	virtual IT4ObjectController* GetObjectController() const = 0; // #114 : Server All, Client Player Only
 };
 
 // #42

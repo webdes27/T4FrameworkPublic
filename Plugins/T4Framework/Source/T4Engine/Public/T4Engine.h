@@ -194,8 +194,8 @@ public:
 	virtual bool HasAction(const FT4ActionKey& InActionKey) const = 0; // #102 : 존재만 해도 true 리턴
 	virtual bool IsPlayingAction(const FT4ActionKey& InActionKey) const = 0; // #20, #76 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
-	virtual const FVector GetCOMLocation() const = 0; // #18 : WARN : Center of mass 캐릭터의 경우 Coll Capsule 의 중점이다.
-	virtual const FVector GetRootLocation() const = 0;
+	virtual const FVector GetCOMLocation() const = 0; // #126 : Center of Mass (ActorLocation + Z=HalfHeight)
+	virtual const FVector GetRootLocation() const = 0; // #126 : Floor 
 	virtual const FVector GetNavPoint() const = 0; // #52
 
 	virtual const FRotator GetRotation() const = 0;
@@ -327,6 +327,9 @@ public:
 
 	virtual bool GetRandomLocation(FVector& OutLocation) = 0; // #87
 	virtual bool GetRandomLocation(const FVector& InOrigin, float InMaxRadius, FVector& OutLocation) = 0; // #31
+
+	virtual bool CanEverAffectNavigation() const = 0; // #126
+	virtual void SetCanEverAffectNavigation(bool bInRelevant) = 0; // #126
 };
 
 class T4ENGINE_API IT4WorldController // #87

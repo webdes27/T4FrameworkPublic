@@ -43,6 +43,7 @@ UENUM()
 enum class ET4GameAttackTarget : uint8 // #112
 {
 	ObjectID,
+	ObjectIDAndLocation, // #126
 	Location,
 	Direction,
 

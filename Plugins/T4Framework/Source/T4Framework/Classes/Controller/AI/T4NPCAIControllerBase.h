@@ -76,7 +76,7 @@ public:
 	APlayerCameraManager* GetCameraManager() const override { return nullptr; } // #100
 
 	IT4WorldSystem* GetWorldSystem() const override; // #52
-	IT4GameObject* GetGameObject() const override; // #114
+	UT4GameObjectBase* GetGameObjectBase() const override; // #114
 
 public:
 	// IT4NPCAIControllerBase
