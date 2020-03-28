@@ -15,6 +15,8 @@ struct FT4PropEntityCustomVersion
 	{
 		InitializeVer = 0,
 
+		CommonPropertyNameChanged, // #126
+
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
 		LatestVersion = VersionPlusOne - 1,
@@ -39,8 +41,8 @@ public:
 	FT4EntityPropPhysicalData()
 		: bCanEverAffectNavigation(true)
 	{
-		CapsuleHeight = 200.0f;
-		CapsuleRadius = 50.0f;
+		BoundHeight = 200.0f;
+		BoundRadius = 50.0f;
 	}
 
 	// CustomizePropEntityDetails // #126

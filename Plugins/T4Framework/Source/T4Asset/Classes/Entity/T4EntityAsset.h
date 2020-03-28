@@ -43,8 +43,9 @@ struct T4ASSET_API FT4EntityPhysicalData
 public:
 	FT4EntityPhysicalData()
 		: bCollisionDisabled(false) // #118
-		, CapsuleHeight(200.0f)
-		, CapsuleRadius(25.0f)
+		, BoundType(ET4EntityBoundType::Box) // #126
+		, BoundHeight(200.0f)
+		, BoundRadius(25.0f)
 
 	{
 	}
@@ -56,11 +57,20 @@ public:
 	UPROPERTY(EditAnywhere)
 	bool bCollisionDisabled; // #118
 
+	UPROPERTY(EditAnywhere)
+	ET4EntityBoundType BoundType; // #126
+
+	UPROPERTY()
+	float CapsuleHeight_DEPRECATED; // #126
+
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", ClampMax = "1000"))
-	float CapsuleHeight;
+	float BoundHeight; // #126
+
+	UPROPERTY()
+	float CapsuleRadius_DEPRECATED; // #126
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "10.0", ClampMax = "500"))
-	float CapsuleRadius;
+	float BoundRadius; // #126
 };
 
 USTRUCT()

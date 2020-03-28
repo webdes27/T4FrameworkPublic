@@ -172,6 +172,8 @@ public:
 	virtual void OnProcess(float InDeltaTime) = 0;
 	virtual void OnDrawHUD(FViewport* InViewport, FCanvas* InCanvas, FT4HUDDrawInfo& InOutDrawInfo) = 0; // #68 : Only Client
 
+	virtual void ChangeControlMode(ET4ControlModeType InControlModeType) = 0; // #40, #126
+
 #if WITH_EDITOR
 	virtual bool AddServerSpawnGroup(const FGuid& InGuid, const FSoftObjectPath& InSpawnAssetPath) = 0; // #118
 	virtual void RemoveServerSpawnGroup(const FGuid& InGuid) = 0; // #118

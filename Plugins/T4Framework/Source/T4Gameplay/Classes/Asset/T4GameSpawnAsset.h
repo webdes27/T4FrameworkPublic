@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Public/T4GameDataTypes.h"
 #include "Classes/Common/T4CommonAssetStructs.h" // #103
-#include "T4Engine/Public/T4EngineTypes.h" // #126
+#include "T4Framework/Public/T4FrameworkTypes.h" // #126
 #include "T4GameSpawnAsset.generated.h"
 
 /**
@@ -215,7 +215,7 @@ struct T4GAMEPLAY_API FT4GameSpawnTestSettings
 public:
 	FT4GameSpawnTestSettings()
 #if WITH_EDITOR
-		: DefaultCamera(ET4CameraType::TPS)
+		: DefaultControlMode(ET4ControlModeType::TPS)
 		, PlayeDataID(NAME_None)
 		, WeaponNameID(NAME_None)
 		, SubStanceName(NAME_None)
@@ -227,7 +227,7 @@ public:
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
-	ET4CameraType DefaultCamera;
+	ET4ControlModeType DefaultControlMode;
 
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FName PlayeDataID;

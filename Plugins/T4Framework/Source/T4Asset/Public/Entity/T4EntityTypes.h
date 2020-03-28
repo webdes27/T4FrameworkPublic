@@ -24,6 +24,19 @@ enum class ET4EntityType : uint8
 	None
 };
 
+// #126
+UENUM()
+enum class ET4EntityBoundType : uint8
+{
+	Box,
+	Sphere,
+	Cylinder,
+	Capsule,
+	//Cone,
+
+	None UMETA(Hidden)
+};
+
 UENUM()
 enum class ET4EntityMeshType : uint8
 {
@@ -33,6 +46,7 @@ enum class ET4EntityMeshType : uint8
 
 	None
 };
+
 UENUM()
 enum class ET4EntityCharacterMeshType : uint8
 {

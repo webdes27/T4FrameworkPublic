@@ -16,6 +16,7 @@ struct FT4WeaponEntityCustomVersion
 		InitializeVer = 0,
 
 		CommonPropertyNameChanged, // #124
+		CommonPropertyNameV2Changed, // #126
 
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,

@@ -24,8 +24,8 @@ struct T4ASSET_API FT4EntityItemPhysicalData : public FT4EntityPhysicalData
 public:
 	FT4EntityItemPhysicalData()
 	{
-		CapsuleHeight = 50.0f;
-		CapsuleRadius = 10.0f;
+		BoundHeight = 50.0f;
+		BoundRadius = 10.0f;
 	}
 };
 

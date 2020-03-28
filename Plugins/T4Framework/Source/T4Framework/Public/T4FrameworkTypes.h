@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "T4Engine/Public/T4EngineTypes.h"
 
+#include "T4FrameworkTypes.generated.h"
+
 /**
   * #114
  */
@@ -23,4 +25,15 @@ enum ET4ControllerType
 	Controller_NPCAI, // #114 : Server Only
 
 	Controller_Max
+};
+
+// #40, #126
+UENUM()
+enum class ET4ControlModeType : uint8
+{
+	TPS,
+	ShoulderView, // #40
+	FPS, // #121
+
+	None UMETA(Hidden),
 };

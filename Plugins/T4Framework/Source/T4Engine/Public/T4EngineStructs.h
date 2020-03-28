@@ -4,9 +4,11 @@
 
 #include "CoreMinimal.h"
 
-#include "T4Asset/Public/Action/T4ActionTypes.h"
 #include "Public/T4EngineTypes.h"
 #include "Public/T4EngineDefinitions.h"
+
+#include "T4Asset/Public/Action/T4ActionTypes.h"
+#include "T4Asset/Public/Entity/T4EntityTypes.h" // #126
 
 /**
   *
@@ -42,8 +44,10 @@ struct FT4WorldActorProperty // #34
 
 		RotationYawRate = 520.0f; // #44, #46
 
-		CapsuleRadius = 0.0f;
-		HalfHeight = 0.0f;
+		BoundType = ET4EntityBoundType::None; // #126
+		BoundRadius = 50.0f; // #126
+		BoundHeight = 100.0f; // #126
+		BoundHalfHeight = 50.0f; // #18, #126
 
 		RelativeLocation = FVector::ZeroVector; // #126
 		RelativeRotation = FRotator::ZeroRotator;
@@ -69,8 +73,10 @@ struct FT4WorldActorProperty // #34
 	float RollZVelocity; // #109
 	float RotationYawRate; // #46
 
-	float CapsuleRadius;
-	float HalfHeight; // #18
+	ET4EntityBoundType BoundType; // #126
+	float BoundRadius; // #126
+	float BoundHeight; // #126
+	float BoundHalfHeight; // #18, #126
 
 	FVector RelativeLocation; // #126
 	FRotator RelativeRotation; // #30, #126

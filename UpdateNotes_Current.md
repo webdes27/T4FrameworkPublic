@@ -4,6 +4,12 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.03.28] [M6] Copying //Private to //Deploy (private commit 35343df)**
+	- #126 [기능개선] Entity Editor, Prop/DropItem 에 대한 ReceivedDecals 옵션 적용 추가
+	- #40 [기능개선] Shoulder Control Mode 에서 마우스 우클릭 회전시 커서가 보이도록 수정
+	- #121 [버그수정] FPS Control Mode 의 조준경 사용시 줌인 거리내 충돌 지점이 무시되던 문제 수정
+	- #126 [기능개선] Content Editor, SpawnActor Nameplate 를 BoundHeight 를 사용하도록 개선
+    - #122 [버그수정] Content Editor, DataTable Stat/Experience 의 TreeView Colume 미출력 문제 수정
   - **[2020.03.27] [M6] Copying //Private to //Deploy (private commit c7f0f99)**
     - #126 [기능개선] 기본 카메라의 Yaw 앵글을 캐릭터 뒤에 위치하도록 수정 (Entity, Action Editor 제외)
     - #126 [기능추가] FieldObject (Prop Entity) 에 대한 Projectile 동작 처리 추가

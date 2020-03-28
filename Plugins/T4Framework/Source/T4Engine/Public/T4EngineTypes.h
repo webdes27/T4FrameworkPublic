@@ -242,7 +242,7 @@ enum class ET4EditorAction : uint8
 #if !UE_BUILD_SHIPPING
 enum ET4EngineDebugFlag // #76
 {
-	Debug_Object_Capsule_Bit = (1 << 0),
+	DebugActor_Bound_Bit = (1 << 0),
 };
 #endif
 

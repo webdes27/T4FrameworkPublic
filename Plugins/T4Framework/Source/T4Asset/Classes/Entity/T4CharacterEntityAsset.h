@@ -17,6 +17,7 @@ struct FT4CharacterEntityCustomVersion
 		InitializeVer = 0,
 
 		CommonPropertyNameChanged, // #124
+		CommonPropertyNameV2Changed, // #124
 
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
@@ -55,6 +56,7 @@ public:
 		, RollZVelocity(250.0f) // #46
 		, RotationYawRate(520.0f)
 	{
+		BoundType = ET4EntityBoundType::Capsule; // #126
 	}
 
 	// CustomizeCharacterEntityDetails

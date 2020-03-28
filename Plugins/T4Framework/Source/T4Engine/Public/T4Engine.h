@@ -327,9 +327,6 @@ public:
 
 	virtual bool GetRandomLocation(FVector& OutLocation) = 0; // #87
 	virtual bool GetRandomLocation(const FVector& InOrigin, float InMaxRadius, FVector& OutLocation) = 0; // #31
-
-	virtual bool CanEverAffectNavigation() const = 0; // #126
-	virtual void SetCanEverAffectNavigation(bool bInRelevant) = 0; // #126
 };
 
 class T4ENGINE_API IT4WorldController // #87

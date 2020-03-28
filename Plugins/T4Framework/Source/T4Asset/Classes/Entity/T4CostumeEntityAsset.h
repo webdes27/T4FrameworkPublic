@@ -15,6 +15,8 @@ struct FT4CostumeEntityCustomVersion
 	{
 		InitializeVer = 0,
 
+		CommonPropertyNameChanged, // #126
+
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
 		LatestVersion = VersionPlusOne - 1,

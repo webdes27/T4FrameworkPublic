@@ -9,16 +9,6 @@
 /**
   * #40
  */
-UENUM()
-enum class ET4GameControlMode : uint8
-{
-	TPS,
-	ShoulderView, // #40
-	FPS, // #121
-
-	None UMETA(Hidden),
-};
-
 enum ET4GameHotKeyType // #116
 {
 	HotKey1_Pressed,
