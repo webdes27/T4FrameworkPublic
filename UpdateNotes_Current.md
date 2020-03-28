@@ -4,7 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
-  - **[2020.03.28] [M6] Copying //Private to //Deploy (private commit 35343df)**
+  - **[2020.03.28] [M6] Copying //Private to //Deploy (private commit a8ab451)**
+    - #118 [기능개선] Content Editor, Spawn Object/Actor 의 EntityAsset Thumbnail 표시 추가
 	- #126 [기능개선] Entity Editor, Prop/DropItem 에 대한 ReceivedDecals 옵션 적용 추가
 	- #40 [기능개선] Shoulder Control Mode 에서 마우스 우클릭 회전시 커서가 보이도록 수정
 	- #121 [버그수정] FPS Control Mode 의 조준경 사용시 줌인 거리내 충돌 지점이 무시되던 문제 수정
