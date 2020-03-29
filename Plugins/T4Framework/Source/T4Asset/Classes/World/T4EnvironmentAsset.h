@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Public/T4AssetCommonTypes.h"
 #include "Engine/Scene.h" // #98
 #include "Components/ExponentialHeightFogComponent.h" // #90
 #include "Components/SkyLightComponent.h" // #97
@@ -16,6 +17,8 @@ struct FT4EnvironmentCustomVersion
 	enum Type
 	{
 		InitializeVer = 0,
+
+		CommonPropertyNameChanged, // #123
 
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
@@ -271,11 +274,25 @@ struct T4ASSET_API FT4EnvTimeTagData
 public:
 	FT4EnvTimeTagData()
 		: Name(NAME_None)
+		, TimeBlendCurve(ET4BuiltInEasing::Linear) // #123
 	{
+	}
+
+	FORCEINLINE bool operator==(const FName& InKey) const
+	{
+		return (Name == InKey) ? true : false;
+	}
+
+	FORCEINLINE bool operator==(const FT4EnvTimeTagData& InRhs) const
+	{
+		return (Name == InRhs.Name) ? true : false;
 	}
 
 	UPROPERTY(EditAnywhere)
 	FName Name;
+
+	UPROPERTY(EditAnywhere)
+	ET4BuiltInEasing TimeBlendCurve; // #123
 
 	UPROPERTY(EditAnywhere)
 	FT4EnvDirectionalData DirectionalData; // #93
@@ -310,8 +327,11 @@ public:
 	{
 	}
 
+	UPROPERTY()
+	TMap<FName, FT4EnvTimeTagData> TimeTagMap_DEPRECATED; // #123
+
 	UPROPERTY(EditAnywhere)
-	TMap<FName, FT4EnvTimeTagData> TimeTagMap;
+	TArray<FT4EnvTimeTagData> TimeTagDatas; // #123
 };
 
 class UTexture2D;
