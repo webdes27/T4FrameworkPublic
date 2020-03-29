@@ -1,9 +1,9 @@
 # T4Framework : MMO Action RPG Framework for UE4
 T4Framework was awarded an Epic MegaGrant
 
-![T4Framework_MegaGrants](./T4Framework_MegaGrants.png) <https://www.unrealengine.com/megagrants>
+![EpicMegaGrants_Logo](./EpicMegaGrants_Logo.png) <https://www.unrealengine.com/megagrants>
 
-![T4Framework_Title](./T4Framework_Title.png)
+![T4Framework_Image](./T4Framework_Image.png)
 - **Supported Engine Versions**
   - 4.24 (Release Version : 4.24.3)
 - **Information**
