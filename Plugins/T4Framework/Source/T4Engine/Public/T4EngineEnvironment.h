@@ -129,6 +129,7 @@ namespace T4EngineEnvironment
 	);
 	T4ENGINE_API void BlendPostProcess(
 		const FPostProcessSettings* InData,
+		ET4BuiltInEasing InBlendCurve,
 		float InWeight,
 		FFinalPostProcessSettings& OutData // #98
 	);

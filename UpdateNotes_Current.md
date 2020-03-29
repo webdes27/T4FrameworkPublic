@@ -4,7 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
-  - **[2020.03.29] [M6] Copying //Private to //Deploy (private commit f504f8a)**
+  - **[2020.03.29] [M6] Copying //Private to //Deploy (private commit 9a5d8c7)**
+    - #123 [버그수정] Entity Editor, Zone Entity 의 Environment TimeTag 뷰포트 미반영 문제 수정
     - #124 [기능개선] World Explorer, LevelActor ListView 를 TreeView 로 변경해 사용성 개선
     - #123 [버그수정] World Explorer, TimeTag DropList 를 통한 Name 변경이 되지 않던 문제 수정
     - #123 [버그수정] World Explorer, SkyBP TimeTag 설정이 EditorWorld 에 적용도히지 않던 문제 수정

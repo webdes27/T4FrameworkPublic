@@ -274,7 +274,7 @@ struct T4ASSET_API FT4EnvTimeTagData
 public:
 	FT4EnvTimeTagData()
 		: Name(NAME_None)
-		, TimeBlendCurve(ET4BuiltInEasing::Linear) // #123
+		, TimeBlendCurve(ET4BuiltInEasing::QuintIn) // #123
 	{
 	}
 
