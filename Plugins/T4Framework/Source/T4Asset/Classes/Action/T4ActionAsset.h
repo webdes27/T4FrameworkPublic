@@ -294,7 +294,7 @@ public:
 	FT4ActionTestSettings TestSettings; // #60
 
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FT4EditorTestAutomation TestAutomation; // #100
+	FT4EditorTestAutomationData TestAutomation; // #100
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image

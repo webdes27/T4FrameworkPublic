@@ -103,7 +103,7 @@ public:
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FT4EditorTestAutomation TestAutomation; // #100, #103
+	FT4EditorTestAutomationData TestAutomation; // #100, #103
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image

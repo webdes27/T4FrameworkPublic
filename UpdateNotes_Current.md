@@ -4,6 +4,10 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.03.30] [M6] Copying //Private to //Deploy (private commit bcbf303)**
+    - #125 [버그수정] Entity Editor, Undo/Redo 가 정상적으로 동작하지 않던 문제 수정
+	  - World Explorer, Content Editor 관련 문제도 점진적으로 해결 예정
+    - #118 [기능개선] Content Editor, WorldDataID 변경시 재오픈을 통해 선택한 월드 반영 처리 추가
   - **[2020.03.29] [M6] Copying //Private to //Deploy (private commit 9a5d8c7)**
     - #123 [버그수정] Entity Editor, Zone Entity 의 Environment TimeTag 뷰포트 미반영 문제 수정
     - #124 [기능개선] World Explorer, LevelActor ListView 를 TreeView 로 변경해 사용성 개선

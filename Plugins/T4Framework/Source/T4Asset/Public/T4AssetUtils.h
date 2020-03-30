@@ -13,8 +13,8 @@ class UObject;
 class UTexture2D;
 class UT4EntityAsset;
 
-struct FT4EditorTestAutomation; // #103
-struct FT4EditorPointOfInterest; // #103
+struct FT4EditorTestAutomationData; // #103
+struct FT4EditorPointOfInterestData; // #103
 
 namespace T4AssetUtil
 {
@@ -38,28 +38,28 @@ namespace T4AssetUtil
 		bool bInCheckDirty
 	);
 
-	T4ASSET_API bool GetPointOfInterest(
-		FT4EditorTestAutomation* InTestAutomation,
+	T4ASSET_API bool PointOfInterestGet(
+		FT4EditorTestAutomationData* InTestAutomation,
 		int32 InSelectIndex,
-		FT4EditorPointOfInterest* OutData
+		FT4EditorPointOfInterestData* OutData
 	); // #103
 
-	T4ASSET_API bool UpdatePointOfInterest(
+	T4ASSET_API bool PointOfInterestUpdate(
 		UObject* InSaveObject,
-		FT4EditorTestAutomation* InTestAutomation,
+		FT4EditorTestAutomationData* InTestAutomation,
 		int32 InSelectIndex,
-		FT4EditorPointOfInterest* InUpdateData
+		FT4EditorPointOfInterestData* InUpdateData
 	); // #103
 
-	T4ASSET_API bool AddPointOfInterest(
+	T4ASSET_API bool PointOfInterestAdd(
 		UObject* InSaveObject,
-		FT4EditorTestAutomation* InTestAutomation,
-		FT4EditorPointOfInterest* InNewData
+		FT4EditorTestAutomationData* InTestAutomation,
+		FT4EditorPointOfInterestData* InNewData
 	); // #103
 
-	T4ASSET_API bool RemovePointOfInterest(
+	T4ASSET_API bool PointOfInterestRemove(
 		UObject* InSaveObject,
-		FT4EditorTestAutomation* InTestAutomation,
+		FT4EditorTestAutomationData* InTestAutomation,
 		int32 InRemoveIndex
 	); // #103
 

@@ -9,7 +9,7 @@
   * #100
  */
 USTRUCT()
-struct T4ASSET_API FT4EditorPointOfInterest
+struct T4ASSET_API FT4EditorPointOfInterestData
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -17,21 +17,21 @@ struct T4ASSET_API FT4EditorPointOfInterest
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FString Name; // #103
 
-	UPROPERTY(EditAnywhere, Category = Editor)
+	UPROPERTY(EditAnywhere, Category = Hide)
 	FName MapEntityName;
 
-	UPROPERTY(EditAnywhere, Category = Editor)
+	UPROPERTY(EditAnywhere, Category = Hide)
 	float GameTimeHour;
 
-	UPROPERTY(EditAnywhere, Category = Editor)
+	UPROPERTY(EditAnywhere, Category = Hide)
 	FVector SpawnLocation;
 
-	UPROPERTY(EditAnywhere, Category = Editor)
+	UPROPERTY(EditAnywhere, Category = Hide)
 	FRotator SpawnRotation;
 #endif
 
 public:
-	FT4EditorPointOfInterest()
+	FT4EditorPointOfInterestData()
 #if WITH_EDITORONLY_DATA
 		: MapEntityName(NAME_None)
 		, GameTimeHour(12.0f)
@@ -43,16 +43,13 @@ public:
 };
 
 USTRUCT()
-struct T4ASSET_API FT4EditorTestAutomation
+struct T4ASSET_API FT4EditorTestAutomationData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
-	TArray<FT4EditorPointOfInterest> PointOfInterests;
-
-	UPROPERTY(EditAnywhere, meta = (DisplayName = "POI Name"))
-	FString TransientName; // #103
+	TArray<FT4EditorPointOfInterestData> PointOfInterests;
 #endif
 };
