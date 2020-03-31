@@ -304,6 +304,9 @@ class T4GAMEPLAY_API IT4GameDataLibrary
 public:
 	virtual ~IT4GameDataLibrary() {}
 
+	virtual void Reload() = 0; // #125
+	virtual bool Refresh(ET4GameDataType InGameDataType) = 0; // #125
+
 	virtual bool HasGameData(const FT4GameDataID& InGameDataID) const = 0;
 	virtual bool HasGameData(const FGuid& InGuid) const = 0;
 
@@ -325,8 +328,9 @@ public:
 
 #if WITH_EDITOR
 	// #118
-	virtual bool SaveDataTable(ET4GameDataType InGameDataType, FString& OutErrorMessage) = 0;
-	virtual UDataTable* GetDataTable(ET4GameDataType InGameDataType) const = 0; 
+	virtual bool Save(ET4GameDataType InGameDataType, FString& OutErrorMessage) = 0;
+
+	virtual UDataTable* GetDataTable(ET4GameDataType InGameDataType) const = 0;
 
 	virtual const TArray<FT4GameDataBase*>& GetDataBases(
 		ET4GameDataType InGameDataType,
@@ -334,7 +338,7 @@ public:
 	) = 0;
 	virtual FT4GameDataBase* GetDataBase(const FT4GameDataID& InGameDataID) = 0;
 
-	virtual void DataTableAddRow(ET4GameDataType InGameDataType, const FName& InNewRowName, const FName& InRowName, bool bInFolder) = 0;
+	virtual void DataTableAddRow(ET4GameDataType InGameDataType, const FName& InSourceRowName, const FName& InRowName, bool bInFolder) = 0;
 	virtual void DataTableRemoveRow(ET4GameDataType InGameDataType, const FName& InRowName) = 0;
 	virtual void DataTableRenameRow(ET4GameDataType InGameDataType, const FName& InOldRowName, const FName& InNewRowName) = 0;
 	virtual void DataTableDuplicateRow(ET4GameDataType InGameDataType, const FName& InSourceRowName, const FName& InNewRowName) = 0;

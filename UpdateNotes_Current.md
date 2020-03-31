@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.03.31] [M6] Copying //Private to //Deploy (private commit c97a23c)**
+    - #125 [버그수정] Content Editor, DataTable 수정에 대한 Transaction 이 동작하지 않던 문제 수정
   - **[2020.03.30] [M6] Copying //Private to //Deploy (private commit bcbf303)**
     - #125 [버그수정] Entity Editor, Undo/Redo 가 정상적으로 동작하지 않던 문제 수정
 	  - World Explorer, Content Editor 관련 문제도 점진적으로 해결 예정

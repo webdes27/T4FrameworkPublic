@@ -28,7 +28,7 @@ namespace T4AssetUtil
 		UObject* InCheckObject
 	); // #56
 
-	T4ASSET_API void SetDirtyAsset(
+	T4ASSET_API void SetModifyAsset(
 		UObject* InCheckObject,
 		bool bDirtyFlag
 	); // #56, #88
@@ -80,7 +80,7 @@ public:
 		{
 			if (!bAlreadyDirty)
 			{
-				T4AssetUtil::SetDirtyAsset(OwnerObjectPtr.Get(), bAlreadyDirty); // #88
+				T4AssetUtil::SetModifyAsset(OwnerObjectPtr.Get(), bAlreadyDirty); // #88
 			}
 			OwnerObjectPtr.Reset();
 		}
