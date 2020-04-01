@@ -322,9 +322,6 @@ public:
 	FT4ActorID OwnerActorID; // #112
 
 	UPROPERTY(EditAnywhere)
-	float MoveSpeed;
-
-	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<class UT4ActionAsset> HeadActionAsset;
 
 	UPROPERTY(EditAnywhere)
@@ -334,7 +331,13 @@ public:
 	ET4LoadingPolicy LoadingPolicy;
 
 	UPROPERTY(EditAnywhere)
-	bool bFlyToTarget; // #126 : TargetID 또는 Location 에 지정시간 도착 보장
+	float MaxPlayTimeSec; // #63 : Conti 의 MaxPlaytTimeSec 또는 서버에서 계산된 Hit 시간까지의 ProjectileDurationSec
+
+	UPROPERTY(EditAnywhere)
+	ET4TrajectoryType TrajectoryType; // #127
+
+	UPROPERTY(EditAnywhere)
+	float AccelerationZ; // #127 : 곡사포(Parabola) 에서 사용될 가속도 Z
 
 	UPROPERTY(EditAnywhere)
 	bool bEnableHitAttached; // #112 : 충돌 지점에 잔상을 남길지 여부 (Arrow : true, Fireball : false)
@@ -343,28 +346,29 @@ public:
 	float HitAttachedTimeSec; // #112 : 충돌 지점에 잔상 시간
 
 	UPROPERTY(EditAnywhere)
+	bool bEnableBounceOut; // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
+
+	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnableBounceOut"))
+	TSoftObjectPtr<UT4ActionAsset> BounceOutActionAsset;
+
+	UPROPERTY(EditAnywhere)
 	float ProjectileLength; // #112 : Projectile 의 길이, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
 
 	UPROPERTY(EditAnywhere)
 	float ThrowOffsetTimeSec; // #63 : Projectile 로딩시간이 길어져 이미 발사 되었을 경우의 타이밍 맞추기
-
-	UPROPERTY(EditAnywhere)
-	float MaxPlayTimeSec; // #63 : Conti 의 MaxPlaytTimeSec 또는 서버에서 계산된 Hit 시간까지의 ProjectileDurationSec
-
-	UPROPERTY(EditAnywhere)
-	FName ThrowTargetPoint; // #106
-
+	
 public:
 	FT4LaunchAction()
 		: FT4ActionCodeCommand(StaticActionType())
-		, MoveSpeed(0.0f)
 		, LoadingPolicy(ET4LoadingPolicy::Default)
+		, MaxPlayTimeSec(0.0f)
+		, TrajectoryType(ET4TrajectoryType::Straight) // #127
+		, AccelerationZ(0.0f) // #127
 		, bEnableHitAttached(false)// #112
 		, HitAttachedTimeSec(1.0f) // #112
+		, bEnableBounceOut(false) // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
 		, ProjectileLength(80.0f) // #112
 		, ThrowOffsetTimeSec(0.0f)
-		, MaxPlayTimeSec(0.0f)
-		, ThrowTargetPoint(NAME_None) // #106
 	{
 	}
 

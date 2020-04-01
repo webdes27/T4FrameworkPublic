@@ -380,6 +380,8 @@ public:
 	virtual UWorld* GetWorld() const = 0;
 	virtual const FSoftObjectPath& GetWorldActorPath() const = 0; // #104
 
+	virtual float GetGravityZ() const = 0; // #127
+
 	virtual IT4WorldController* GetController() = 0; // #87
 	virtual IT4WorldContainer* GetContainer() = 0; // #87
 	virtual IT4WorldCollision* GetCollision() = 0; // #87

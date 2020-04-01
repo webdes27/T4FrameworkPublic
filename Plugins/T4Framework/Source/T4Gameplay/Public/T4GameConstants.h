@@ -49,7 +49,7 @@ public:
 class UObject;
 namespace T4GameConstant
 {
-	T4GAMEPLAY_API bool Initailize();
+	T4GAMEPLAY_API bool Initialize();
 	T4GAMEPLAY_API void Finalize();
 
 	T4GAMEPLAY_API IT4GameConstantTableManager* GetTableManager();

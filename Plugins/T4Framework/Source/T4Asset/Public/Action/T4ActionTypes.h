@@ -168,3 +168,10 @@ enum class ET4PlayTagType : uint8 // #81
 
 	All, // #81
 };
+
+UENUM()
+enum class ET4TrajectoryType : uint8 // #127
+{
+	Straight, // #63
+	Parabola, // #127
+};

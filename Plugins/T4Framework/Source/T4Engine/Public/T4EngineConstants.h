@@ -101,7 +101,7 @@ public:
 class UObject;
 namespace T4EngineConstant
 {
-	T4ENGINE_API bool Initailize(); // #115 : TODO Preloading
+	T4ENGINE_API bool Initialize(); // #115 : TODO Preloading
 	T4ENGINE_API void Finalize(); // #115 : TODO Preloading
 
 	T4ENGINE_API UObject* GetMPCGlobalObject(); // #115

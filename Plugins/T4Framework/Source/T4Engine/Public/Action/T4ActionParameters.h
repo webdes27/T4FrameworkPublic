@@ -36,6 +36,7 @@ enum class ET4OverrideParamBits // #112
 	OffsetTimeBit, // #56
 
 	ProjectileSpeedBit, // #63
+	ProjectileHitTargetBit, // #127 : 타겟(Actor or Location)에 명중되었을 경우. DurationBit 와 함께 켜진다.
 	ProjectileDurationBit, // #63
 
 	MaxPlayTimeBit, // #58 : 코드 호출 또는 툴에서 최대 시간 제한에 사용
@@ -122,6 +123,9 @@ public:
 	float ProjectileSpeed; // #63
 
 	UPROPERTY(EditAnywhere)
+	bool bProjectileHitTarget; // #127 : 타겟(Actor or Location)에 명중되었을 경우. DurationBit 와 함께 켜진다.
+
+	UPROPERTY(EditAnywhere)
 	float ProjectileDurationSec; // #63
 
 	UPROPERTY(EditAnywhere)
@@ -145,6 +149,7 @@ public:
 		, DurectionSec(0.0f)
 		, OffsetTimeSec(0.0f) // #56
 		, ProjectileSpeed(0.0f) // #63
+		, bProjectileHitTarget(false) // #127 : 타겟(Actor or Location)에 명중되었을 경우. DurationBit 와 함께 켜진다.
 		, ProjectileDurationSec(0.0f) // #63
 		, MaxPlayTimeSec(0.0f) // #58
 		, TargetBoneName(NAME_None) // #112
@@ -323,6 +328,13 @@ public:
 	{
 		OverrideParams.ProjectileSpeed = InProjectileSpeed;
 		OverrideParams.SetBits |= BIT_LEFTSHIFT(ET4OverrideParamBits::ProjectileSpeedBit);
+		bDirty = true; // #68
+	}
+
+	FORCEINLINE void SetOverrideProjectileHitTarget(const bool bInHitTarget) // #127 : 타겟(Actor or Location)에 명중되었을 경우. DurationBit 와 함께 켜진다.
+	{
+		OverrideParams.bProjectileHitTarget = bInHitTarget;
+		OverrideParams.SetBits |= BIT_LEFTSHIFT(ET4OverrideParamBits::ProjectileHitTargetBit);
 		bDirty = true; // #68
 	}
 
