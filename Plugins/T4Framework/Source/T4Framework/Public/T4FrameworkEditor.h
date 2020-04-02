@@ -41,46 +41,49 @@ struct FT4EditorSkillDataInfo
 public:
 	// #T4_ADD_SKILL_CONTENT_TAG 
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = Common)
 	FName Name;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = Common)
 	ET4GameplayAttackType AttackType; // #63
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Common)
 	float HitDelayTimeSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Common)
 	float DurationSec;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Common)
 	float ProjectileSpeed; // #63
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Common)
 	bool bMoveable;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Common)
 	bool bLockOn; // #113
 
-	UPROPERTY(EditAnywhere)
-	bool bAiming; // #113
-
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Common)
 	float RotationRateSpeed; // #112, #113 : 캐릭터 RotationYawRate * Speed (1 일 경우 기본값 사용)
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = Common)
 	ET4GameplayFindTarget FindTargetType; // #117 : 공객 대상을 찾을 경우에 대한 옵션 (TODO : Tribe or Enemy)
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = Common)
 	FName ResultEffectDataID;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	bool bAiming; // #113
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bAiming", ClampMin = "-45.0", ClampMax = "45.0"))
+	float AimingPitchAngle; // #127
+
+	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionAsset> DefaultActionAsset;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionAsset> AimingActionAsset;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionAsset> IndicateActionAsset; // #116
 
 public:
@@ -99,6 +102,7 @@ public:
 		bMoveable = false;
 		bLockOn = false; // #113
 		bAiming = false; // #113
+		AimingPitchAngle = 0.0f; // #127
 		RotationRateSpeed = 1.0f; // #113
 		ResultEffectDataID = NAME_None;
 		FindTargetType = ET4GameplayFindTarget::All; // #117

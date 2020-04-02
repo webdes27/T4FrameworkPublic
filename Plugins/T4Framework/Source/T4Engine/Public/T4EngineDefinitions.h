@@ -14,6 +14,10 @@
 
 static const float T4Const_DefaultLineTraceMaxDistance = 100000.0f;
 
+static const float T4Const_AnimLerpTranslateYawRate = 2000.0f; // #113
+static const float T4Const_AnimLerpTranslateMoveSpeeedTimeSec = 0.25f; // #113
+static const float T4Const_AnimLerpTranslateAimingTimeSec = 0.25f; // #113, #127
+
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 // DefaultEngine.ini [/Script/Engine.CollisionProfile]
 #define T4COLLISION_WorldActor		ECC_GameTraceChannel1

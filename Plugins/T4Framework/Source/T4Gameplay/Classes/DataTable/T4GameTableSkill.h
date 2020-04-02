@@ -41,9 +41,6 @@ public:
 	bool bLockOn; // #113
 
 	UPROPERTY(EditAnywhere, Category = Common)
-	bool bAiming; // #113
-
-	UPROPERTY(EditAnywhere, Category = Common)
 	float RotationRateSpeed; // #112, #113 : 캐릭터 RotationYawRate * Speed (1 일 경우 기본값 사용)
 
 	UPROPERTY(EditAnywhere, Category = Common)
@@ -57,9 +54,28 @@ public:
 		, ProjectileSpeed(0.0f) // #63
 		, bMoveable(false)
 		, bLockOn(false)  // #113
-		, bAiming(false)  // #113
 		, RotationRateSpeed(1.0f) // #112, #113 : 캐릭터 RotationYawRate * Speed (1 일 경우 기본값 사용)
 		, FindTargetType(ET4GameplayFindTarget::All)
+	{
+	}
+};
+
+USTRUCT()
+struct FT4GameSkillVisualData // #127
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, Category = Common)
+	bool bAiming; // #113
+
+	UPROPERTY(EditAnywhere, Category = Common, meta = (EditCondition = "bAiming", ClampMin = "-45.0", ClampMax = "45.0"))
+	float AimingPitchAngle; // #127
+
+public:
+	FT4GameSkillVisualData()
+		: bAiming(false)  // #113
+		, AimingPitchAngle(0.0f) // #127
 	{
 	}
 };
@@ -78,6 +94,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = Common)
 	FT4GameSkillShapeData SkillShapeData;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FT4GameSkillVisualData SkillVisualData; // #127
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	FT4GameSkillStatDataID SkillStatDataID; // #114 : 기본 Stat

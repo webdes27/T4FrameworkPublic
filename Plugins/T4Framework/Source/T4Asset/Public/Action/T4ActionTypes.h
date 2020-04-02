@@ -170,8 +170,19 @@ enum class ET4PlayTagType : uint8 // #81
 };
 
 UENUM()
-enum class ET4TrajectoryType : uint8 // #127
+enum class ET4ProjectileMotion : uint8 // #127
 {
 	Straight, // #63
-	Parabola, // #127
+	Parabola, // #127 : 포물선
+	Howitzer, // #127 : 곡사포
+	Mortar, // #127 : 박격포
+	Arrow, // #127 : 화살 궤적!
+};
+
+UENUM()
+enum class ET4AcceleratedMotion : uint8 // #127
+{
+	Uniform,
+	Acceleration,
+	Deceleration,
 };

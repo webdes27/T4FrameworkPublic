@@ -421,10 +421,16 @@ public:
 	ET4LoadingPolicy LoadingPolicy;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	ET4TrajectoryType TrajectoryType; // #127
+	ET4ProjectileMotion ProjectileMotion; // #127
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	ET4AcceleratedMotion AcceleratedMotion; // #127
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0", UIMin = "0", UIMax = "1000"))
-	float AccelerationZ; // #127 : 곡사포(Parabola) 에서 사용될 가속도 Z
+	float AcceleratedSpeed; // #127 : 곡사포(Parabola) 에서 사용될 가속도 Z
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	float InitializeRollAngle; // #127
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bEnableHitAttached; // #112 : 충돌 지점에 잔상을 남길지 여부 (Arrow : true, Fireball : false)
@@ -452,8 +458,10 @@ public:
 		: FT4ActionDataCommand(StaticActionType())
 		, ActionPoint(NAME_None)
 		, LoadingPolicy(ET4LoadingPolicy::Default)
-		, TrajectoryType(ET4TrajectoryType::Straight) // #127
-		, AccelerationZ(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 가속도 Z
+		, ProjectileMotion(ET4ProjectileMotion::Straight) // #127
+		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
+		, AcceleratedSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 가속도 Z
+		, InitializeRollAngle(0.0f) // #127
 		, bEnableHitAttached(false)// #112
 		, HitAttachedTimeSec(1.0f) // #112
 		, bEnableBounceOut(false) // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부

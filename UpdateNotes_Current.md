@@ -4,6 +4,10 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.04.02] [M6] Copying //Private to //Deploy (private commit fdfb2cd)**
+    - #127 [기능추가] Projectile Action 내 ProjectileMotion 과 AcceleratedMotion 옵션 추가
+	  - ProjectileMotion : Straight, Parabola, Howitzer, Mortar
+	  - AcceleratedMotion : Uniform, Acceleration, Deceleration
   - **[2020.04.01] [M6] Copying //Private to //Deploy (private commit 33602a3)**
     - #127 [기능추가] Projectile Action 내 Trajectory 옵션을 통해 곡사포(Parabola) 궤적 지원
   - **[2020.03.31] [M6] Copying //Private to //Deploy (private commit c97a23c)**
