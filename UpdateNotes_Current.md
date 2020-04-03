@@ -4,6 +4,11 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.04.03] [M6] Copying //Private to //Deploy (private commit f53e8bb)**
+    - #127 [기능개선] Action Editor 의 Invisible, Isolation 설정을 시뮬레이션에서 적용되도록 수정
+    - #127 [기능개선] Projectile Action 내 Oscillate 옵션 추가
+    - #127 [버그수정] Projectile 의 HitAttached 가 간헐적으로 동작하지 않던 문제 수정
+	- #125 [버그수정] Action Editor, Undo/Redo 시 발생하던 크래시 수정
   - **[2020.04.02] [M6] Copying //Private to //Deploy (private commit fdfb2cd)**
     - #127 [기능추가] Projectile Action 내 ProjectileMotion 과 AcceleratedMotion 옵션 추가
 	  - ProjectileMotion : Straight, Parabola, Howitzer, Mortar
