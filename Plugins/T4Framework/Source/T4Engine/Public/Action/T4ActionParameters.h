@@ -176,28 +176,6 @@ public:
 	}
 };
 
-USTRUCT()
-struct FT4EditorParameters
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-#if WITH_EDITOR
-	bool bDebugPlay; // #58 : 테스트 옵션 활성!
-
-	TSet<uint32> InvisibleActionSet; // #56 : Action Editor 에서 Invisible or Isolate 로 출력을 제어한다.
-	TSet<uint32> IsolationActionSet; // #56 : Action Editor 에서 Invisible or Isolate 로 출력을 제어한다.
-#endif
-
-public:
-	FT4EditorParameters()
-#if WITH_EDITOR
-		: bDebugPlay(false) // #58 : 테스트 옵션 활성!
-#endif
-	{
-	}
-};
-
 class IT4WorldActor;
 
 USTRUCT()
@@ -208,8 +186,9 @@ struct FT4ActionParameters
 public:
 	bool bDirty; // #68
 
-	UPROPERTY(Transient)
-	FT4EditorParameters EditorParams; // #56 : Only Editor, Action Editor 에서 Invisible or Isolate 로 출력을 제어할 때 더미용으로 사용(delay, duration 동작 보장)
+#if WITH_EDITOR
+	bool bDebugPlay; // #58 : 디버깅용 모델로 대체!
+#endif
 
 private:
 	UPROPERTY(EditAnywhere)
@@ -227,6 +206,9 @@ private:
 public:
 	FT4ActionParameters()
 		: bDirty(false)
+#if WITH_EDITOR
+		, bDebugPlay(false) // #58 : 디버깅용 모델로 대체!
+#endif
 	{
 	}
 
@@ -399,3 +381,30 @@ public:
 
 	static T4ENGINE_API const FT4ActionParameters DefaultActionParameter; // #32
 };
+
+// #56 : Only Editor, Action Editor 에서 Invisible or Isolate 로 출력을 제어할 때 더미용으로 사용(delay, duration 동작 보장)
+USTRUCT()
+struct FT4EditorActionContext
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere)
+	TSet<uint32> InvisibleActionSet; // #56 : Action Editor 에서 Invisible or Isolate 로 출력을 제어한다.
+
+	UPROPERTY(EditAnywhere)
+	TSet<uint32> IsolationActionSet; // #56 : Action Editor 에서 Invisible or Isolate 로 출력을 제어한다.
+#endif
+
+public:
+	FT4EditorActionContext()
+	{
+	}
+};
+
+#if WITH_EDITOR
+T4ENGINE_API bool HasEditorActionContext(ET4LayerType InLayerType); // #127
+T4ENGINE_API TSharedPtr<FT4EditorActionContext> CreateOrGetEditorActionContext(ET4LayerType InLayerType); // #127
+T4ENGINE_API void DestroyEditorActionContext(ET4LayerType InLayerType); // #127
+#endif

@@ -31,7 +31,7 @@ enum class ET4EditorPlayRole : uint8
 	None UMETA(Hidden),
 };
 
-class UT4ActionAsset;
+class UT4ActionSetAsset;
 
 USTRUCT()
 struct FT4EditorSkillDataInfo
@@ -78,13 +78,13 @@ public:
 	float AimingPitchAngle; // #127
 
 	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionAsset> DefaultActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> DefaultActionSetAsset;
 
 	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionAsset> AimingActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> AimingActionSetAsset;
 
 	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionAsset> IndicateActionAsset; // #116
+	TSoftObjectPtr<UT4ActionSetAsset> IndicateActionSetAsset; // #116
 
 public:
 	FT4EditorSkillDataInfo()
@@ -133,7 +133,7 @@ public:
 	FName DamageEffectDataID;
 
 	UPROPERTY(VisibleAnywhere)
-	TSoftObjectPtr<UT4ActionAsset> ActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> ActionSetAsset;
 
 public:
 	FT4EditorEffectDataInfo()
@@ -196,7 +196,7 @@ public:
 // #114 : 에디터에서 N종의 게임 컨텐츠 데이터에서 정보를 얻기 위한 인터페이스
 //        컨텐츠 쪽에서 구현해주어야 에디터에서 사용할 수 있음 (T4Gameplay 을 사용하지 않을 경우를 위함)
 class UT4EntityAsset;
-class UT4ActionAsset;
+class UT4ActionSetAsset;
 class T4FRAMEWORK_API IT4EditorGameData // #60
 {
 public:
@@ -207,7 +207,7 @@ public:
 
 	virtual UT4EntityAsset* GetEntityAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0;
 	virtual UT4EntityAsset* GetWeaponEntityAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0; // #120
-	virtual UT4ActionAsset* GetActionAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0; // #120
+	virtual UT4ActionSetAsset* GetActionSetAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0; // #120
 
 	virtual bool GetSkillDataInfo(const FName& InSkillDataNameID, FT4EditorSkillDataInfo& OutSkillData) = 0;
 	virtual bool GetEffectDataInfo(const FName& InEffectDataNameID, FT4EditorEffectDataInfo& OutEffectData) = 0;

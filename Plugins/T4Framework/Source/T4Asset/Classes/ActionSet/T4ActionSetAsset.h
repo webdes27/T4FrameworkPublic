@@ -5,12 +5,12 @@
 #include "CoreMinimal.h"
 #include "Classes/Common/T4CommonAssetStructs.h" // #100
 #include "Public/Action/T4ActionDataCommands.h"
-#include "T4ActionAsset.generated.h"
+#include "T4ActionSetAsset.generated.h"
 
 /**
   * #24
  */
-struct FT4ActionCustomVersion
+struct FT4ActionSetCustomVersion
 {
 	enum Type
 	{
@@ -26,7 +26,7 @@ struct FT4ActionCustomVersion
 	T4ASSET_API const static FGuid GUID;
 
 private:
-	FT4ActionCustomVersion() {}
+	FT4ActionSetCustomVersion() {}
 };
 
 // #24
@@ -257,7 +257,7 @@ class UTexture2D;
 class UT4EntityAsset;
 
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
-class T4ASSET_API UT4ActionAsset : public UObject
+class T4ASSET_API UT4ActionSetAsset : public UObject
 {
 	GENERATED_UCLASS_BODY()
 

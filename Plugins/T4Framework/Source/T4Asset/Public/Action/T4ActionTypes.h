@@ -94,7 +94,7 @@ enum class ET4ActionType : uint32
 	Die, // #76
 	Resurrect, // #76
 
-	Conti, // #24
+	Set, // #24, #127 : ActionSetAsset
 
 	Stop,
 	
@@ -176,7 +176,6 @@ enum class ET4ProjectileMotion : uint8 // #127
 	Parabola, // #127 : 포물선
 	Howitzer, // #127 : 곡사포
 	Mortar, // #127 : 박격포
-	Arrow, // #127 : 화살 궤적!
 };
 
 UENUM()

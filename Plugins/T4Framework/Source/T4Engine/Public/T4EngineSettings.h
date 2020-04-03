@@ -110,6 +110,18 @@ public:
 	UPROPERTY(config, EditAnywhere, Category= FPSCameraSettting)
 	float FPS_RotationSpeed; // #121
 
+	UPROPERTY(config, EditAnywhere, Category= ProjectileSettting)
+	float Projectile_HowitzerSpeedScale; // #127
+
+	UPROPERTY(config, EditAnywhere, Category= ProjectileSettting)
+	float Projectile_HowitzerSpeedAttenuation; // #127
+
+	UPROPERTY(config, EditAnywhere, Category= ProjectileSettting)
+	float Projectile_MortarSpeedScale; // #127
+
+	UPROPERTY(config, EditAnywhere, Category= ProjectileSettting)
+	float Projectile_MortarSpeedAttenuation; // #127
+
 	UPROPERTY(config, EditAnywhere, Category=DataTable)
 	FSoftObjectPath WorldZoneConstantTablePath; // #92
 

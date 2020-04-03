@@ -12,7 +12,7 @@
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
  */
-class UT4ActionAsset;
+class UT4ActionSetAsset;
 
 USTRUCT()
 struct FT4GameSkillSetTableRow : public FT4GameTableBase

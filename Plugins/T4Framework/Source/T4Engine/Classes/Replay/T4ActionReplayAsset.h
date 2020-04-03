@@ -179,7 +179,7 @@ public:
 	// T4ActionCommonCommands.h
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4ContiAction> ContiActions;
+	TArray<FT4SetAction> SetActions;
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<FT4StopAction> StopActions;

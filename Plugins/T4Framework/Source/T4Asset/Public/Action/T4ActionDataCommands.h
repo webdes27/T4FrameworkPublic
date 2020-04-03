@@ -29,7 +29,7 @@
 // ET4ActionType::PostProcess // #100
 // ET4ActionType::Environment // #99
 
-class UT4ActionAsset;
+class UT4ActionSetAsset;
 
 USTRUCT()
 struct T4ASSET_API FT4ActionDataCommand : public FT4ActionCommand
@@ -107,7 +107,7 @@ public:
 	FName ConditionName;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionAsset> ActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> ActionSetAsset;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4LoadingPolicy LoadingPolicy;
@@ -130,7 +130,7 @@ public:
 
 	FString ToDisplayText() override
 	{
-		return FString::Printf(TEXT("Branch '%s'"), *(ActionAsset.GetAssetName())); // #54
+		return FString::Printf(TEXT("Branch '%s'"), *(ActionSetAsset.GetAssetName())); // #54
 	}
 };
 
@@ -409,13 +409,13 @@ public:
 	FName ActionPoint; // 어딘가에 붙어야 할 경우. 예) 오른손...
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionAsset> CastingActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> CastingActionSetAsset;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionAsset> HeadActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> HeadActionSetAsset;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionAsset> EndActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> EndActionSetAsset;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4LoadingPolicy LoadingPolicy;
@@ -426,11 +426,14 @@ public:
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AcceleratedMotion AcceleratedMotion; // #127
 
-	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0", UIMin = "0", UIMax = "1000"))
-	float AcceleratedSpeed; // #127 : 곡사포(Parabola) 에서 사용될 가속도 Z
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0", UIMin = "0.0", UIMax = "1000"))
+	float InitialVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	float InitializeRollAngle; // #127
+	bool bRandomRollAngle; // #127
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "!bRandomRollAngle"))
+	float InitialRollAngle; // #127
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bEnableHitAttached; // #112 : 충돌 지점에 잔상을 남길지 여부 (Arrow : true, Fireball : false)
@@ -442,7 +445,13 @@ public:
 	bool bEnableBounceOut; // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bEnableBounceOut"))
-	TSoftObjectPtr<UT4ActionAsset> BounceOutActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> BounceOutActionSetAsset;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	bool bUseOscillate; // #127 : 흔들림 여부
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseOscillate", UIMin = "0.0", UIMax = "45"))
+	float OscillateRange; // #127 : 흔들림 크기
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float ProjectileLength; // #112 : Projectile 의 길이, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
@@ -460,11 +469,14 @@ public:
 		, LoadingPolicy(ET4LoadingPolicy::Default)
 		, ProjectileMotion(ET4ProjectileMotion::Straight) // #127
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
-		, AcceleratedSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 가속도 Z
-		, InitializeRollAngle(0.0f) // #127
+		, InitialVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+		, bRandomRollAngle(false) // #127
+		, InitialRollAngle(0.0f) // #127
 		, bEnableHitAttached(false)// #112
 		, HitAttachedTimeSec(1.0f) // #112
 		, bEnableBounceOut(false) // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
+		, bUseOscillate(false) // #127
+		, OscillateRange(0.0f) // #127
 		, ProjectileLength(80.0f) // #112
 		, ThrowDelayTimeSec(0.0f)
 		, CastingStopDelayTimeSec(0.2f)
@@ -480,7 +492,7 @@ public:
 
 	FString ToDisplayText() override
 	{
-		return FString::Printf(TEXT("Projectile '%s'"), *(HeadActionAsset.GetAssetName()));
+		return FString::Printf(TEXT("Projectile '%s'"), *(HeadActionSetAsset.GetAssetName()));
 	}
 };
 

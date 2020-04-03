@@ -211,7 +211,7 @@ public:
 };
 
 // #74
-class UT4ActionAsset;
+class UT4ActionSetAsset;
 USTRUCT()
 struct T4ASSET_API FT4EntityPlayTagActionData
 {
@@ -227,7 +227,7 @@ public:
 	FName PlayTag;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionAsset> ActionAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> ActionSetAsset;
 };
 
 // #80

@@ -11,33 +11,33 @@
  */
 // #T4_ADD_ACTION_TAG_CODE
 
-// ET4ActionType::Conti
+// ET4ActionType::Set
 // ET4ActionType::Stop
 
 USTRUCT()
-struct T4ENGINE_API FT4ContiAction : public FT4ActionCodeCommand
+struct T4ENGINE_API FT4SetAction : public FT4ActionCodeCommand
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<class UT4ActionAsset> ActionAsset;
+	TSoftObjectPtr<class UT4ActionSetAsset> ActionSetAsset;
 
 	UPROPERTY(EditAnywhere)
 	ET4LoadingPolicy LoadingPolicy;
 
 public:
-	FT4ContiAction()
+	FT4SetAction()
 		: FT4ActionCodeCommand(StaticActionType())
 		, LoadingPolicy(ET4LoadingPolicy::Default)
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::Conti; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::Set; }
 
 	FString ToString() const override
 	{
-		return FString(TEXT("ContiAction"));
+		return FString(TEXT("SetAction"));
 	}
 };
 
