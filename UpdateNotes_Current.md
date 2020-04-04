@@ -4,8 +4,10 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
-  - **[2020.04.04] [M6] Copying //Private to //Deploy (private commit e6c7639)**
-    - #128 [기능개선] Navigation Runtime 옵션에 관계없이 PreviewWorld NavMesh 가 생성되도록 수정
+  - **[2020.04.04] [M6] Copying //Private to //Deploy (private commit 32ac1b5)**
+    - #126 [버그수정] Entity Editor, 캐릭터 초기 세팅시 Mesh 변경이 프리뷰에 반영되지 않던 문제 수정
+    - #118 [빌드오류] Development, Shipping 빌드 오류 수정
+	- #128 [기능개선] Navigation Runtime 옵션에 관계없이 PreviewWorld NavMesh 가 생성되도록 수정
     - #124 [버그수정] Content Editor, TreeView 에서 Item 추가시 Tree Expansion 이 풀리던 문제 수정
   - **[2020.04.03] [M6] Copying //Private to //Deploy (private commit f53e8bb)**
     - #127 [기능개선] Action Editor 의 Invisible, Isolation 설정을 시뮬레이션에서 적용되도록 수정
