@@ -311,7 +311,7 @@ public:
 	FT4EditorTestAutomationData TestAutomation; // #100, #103
 
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FT4EntityEditorThumbnailData ThumbnailCameraInfo;
+	FT4EntityEditorThumbnailData ThumbnailData;
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
