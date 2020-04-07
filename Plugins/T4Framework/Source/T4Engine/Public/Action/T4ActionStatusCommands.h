@@ -295,6 +295,41 @@ public:
 	}
 };
 
+// #130
+USTRUCT()
+struct T4ENGINE_API FT4SkinAction : public FT4ActionCodeCommand
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+	FName TargetSkinName;
+
+public:
+	FT4SkinAction()
+		: FT4ActionCodeCommand(StaticActionType())
+		, TargetSkinName(NAME_None)
+	{
+	}
+
+	static ET4ActionType StaticActionType() { return ET4ActionType::Skin; }
+
+	bool Validate(FString& OutMsg) override
+	{
+		if (TargetSkinName == NAME_None)
+		{
+			OutMsg = TEXT("Not set TargetSkin");
+			return false;
+		}
+		return true;
+	}
+
+	FString ToString() const override
+	{
+		return FString(TEXT("SkinAction"));
+	}
+};
+
 // #76
 USTRUCT()
 struct T4ENGINE_API FT4HitAction : public FT4ActionCodeCommand

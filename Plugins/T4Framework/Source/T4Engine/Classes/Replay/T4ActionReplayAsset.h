@@ -167,6 +167,9 @@ public:
 	TArray<FT4CostumeAction> CostumeActions;
 
 	UPROPERTY(VisibleAnywhere)
+	TArray<FT4SkinAction> SkinActions; // #130
+
+	UPROPERTY(VisibleAnywhere)
 	TArray<FT4HitAction> HitActions; // #76
 
 	UPROPERTY(VisibleAnywhere)

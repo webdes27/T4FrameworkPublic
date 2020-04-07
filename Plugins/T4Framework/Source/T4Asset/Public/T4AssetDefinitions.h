@@ -10,18 +10,21 @@
 
 // Common
 
+static const FName T4Const_DefaultName = TEXT("Default");
+
 static const FName T4Const_DefaultActionPointName = TEXT("Root"); // #63
 
 // #74 : Entity
 
-static const FName T4Const_DefaultPlayTagName = TEXT("Default");
+static const FName T4Const_DefaultFullBodySkinName = T4Const_DefaultName; // #130
+static const FName T4Const_DefaultPlayTagName = T4Const_DefaultName;
 
 
 // #73, #106 : Stance
 
-static const FName T4Const_DefaultStanceName = TEXT("Default");
+static const FName T4Const_DefaultStanceName = T4Const_DefaultName;
 
-static const FName T4Const_DefaultSubStanceName = TEXT("Default");
+static const FName T4Const_DefaultSubStanceName = T4Const_DefaultName;
 static const FName T4Const_CombatSubStanceName = TEXT("Combat"); // #108
 static const FName T4Const_CrouchSubStanceName = TEXT("Crouch"); // #109
 

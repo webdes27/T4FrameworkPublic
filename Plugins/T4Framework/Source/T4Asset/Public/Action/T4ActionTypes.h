@@ -88,6 +88,7 @@ enum class ET4ActionType : uint32
 	EquipWeapon, // #22
 	UnequipWeapon, // #48
 	Costume, // #37
+	Skin, // #130 : Fullbody Skin
 
 	Hit, // #76
 

@@ -18,6 +18,7 @@ struct FT4CharacterEntityCustomVersion
 
 		CommonPropertyNameChanged, // #124
 		CommonPropertyNameV2Changed, // #124
+		FullbodySkinSetAdded, // #130
 
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
@@ -94,23 +95,65 @@ public:
 };
 
 USTRUCT()
+struct T4ASSET_API FT4EntityCharacterFullBodySkinData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EntityCharacterFullBodySkinData()
+		: SkinName(NAME_None)
+	{
+	}
+
+	FORCEINLINE bool operator==(const FName& InKey) const
+	{
+		return (SkinName == InKey) ? true : false;
+	}
+
+	FORCEINLINE bool operator==(const FT4EntityCharacterFullBodySkinData& InRhs) const
+	{
+		return (SkinName == InRhs.SkinName) ? true : false;
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName SkinName;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TSoftObjectPtr<USkeletalMesh> SkeletalMeshAsset;
+
+	UPROPERTY(EditAnywhere, Category = Hide)
+	FT4EntityMaterialData OverrideMaterialData; // #80
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TSoftObjectPtr<UPhysicsAsset> OverridePhysicsAsset; // #76 : Fullbody SK 라면 기본 세팅된 PhsycisAsset 을 그대로 사용하고, Override 할 경우만 재설정한다.
+};
+
+// #130
+USTRUCT()
 struct T4ASSET_API FT4EntityCharacterFullBodyMeshData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
 	FT4EntityCharacterFullBodyMeshData()
+		: DefaultSkinName(NAME_None)
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category = Asset)
-	TSoftObjectPtr<USkeletalMesh> SkeletalMeshAsset;
+	UPROPERTY()
+	TSoftObjectPtr<USkeletalMesh> SkeletalMeshAsset_DEPRECATED;
 
-	UPROPERTY(EditAnywhere, Category = Asset)
-	FT4EntityMaterialData OverrideMaterialData; // #80
+	UPROPERTY()
+	FT4EntityMaterialData OverrideMaterialData_DEPRECATED; // #80
 
-	UPROPERTY(EditAnywhere, Category = Asset)
-	TSoftObjectPtr<UPhysicsAsset> OverridePhysicsAsset; // #76 : Fullbody SK 라면 기본 세팅된 PhsycisAsset 을 그대로 사용하고, Override 할 경우만 재설정한다.
+	UPROPERTY()
+	TSoftObjectPtr<UPhysicsAsset> OverridePhysicsAsset_DEPRECATED; // #76 : Fullbody SK 라면 기본 세팅된 PhsycisAsset 을 그대로 사용하고, Override 할 경우만 재설정한다.
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName DefaultSkinName; // #130
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TArray<FT4EntityCharacterFullBodySkinData> SkinDatas; // #130 : SkinMesh 로 정리
 };
 
 // #37
@@ -433,11 +476,22 @@ public:
 		{
 			return nullptr;
 		}
-		if (FullBodyMeshData.SkeletalMeshAsset.IsNull())
+		if (0 >= FullBodyMeshData.SkinDatas.Num())
 		{
 			return nullptr;
 		}
-		return FullBodyMeshData.SkeletalMeshAsset.LoadSynchronous();
+		const FName SkinSelected = (FullBodyMeshData.DefaultSkinName != NAME_None) 
+			? FullBodyMeshData.DefaultSkinName : T4Const_DefaultFullBodySkinName;
+		const FT4EntityCharacterFullBodySkinData* FullbodySkinData = FullBodyMeshData.SkinDatas.FindByKey(SkinSelected);
+		if (nullptr == FullbodySkinData)
+		{
+			return nullptr;
+		}
+		if (FullbodySkinData->SkeletalMeshAsset.IsNull())
+		{
+			return nullptr;
+		}
+		return FullbodySkinData->SkeletalMeshAsset.LoadSynchronous();
 	}
 #endif
 

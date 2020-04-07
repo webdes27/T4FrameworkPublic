@@ -39,6 +39,7 @@ enum ET4EngineConstantTable
 
         EquipPoint, // #72
         CompositePart, // #71
+		FullBodySkin, // #130
 
 		PlayTagMaterial, // #74
 		PlayTagAttachment, // #74
