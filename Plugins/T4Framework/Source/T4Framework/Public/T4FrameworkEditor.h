@@ -251,7 +251,7 @@ public:
 
 // #114 : 에디터에서 N종의 게임 로직을 사용하기 위한 인터페이스
 //        (T4Gameplay 을 사용하지 않을 경우를 위함)
-class UT4GameSpawnAsset;
+class UT4ContentSpawnAsset;
 class T4FRAMEWORK_API IT4EditorGameplayCommand
 {
 public:
@@ -274,8 +274,8 @@ public:
 		bool bInClientOnly
 	) = 0; // #114: Action Editor
 
-	virtual bool DoSpawnAsset(UT4GameSpawnAsset* InSpawnAsset, const FName& InSpawnActorID, const FT4ObjectID& InReservedObjectID) = 0; // #126
-	virtual bool DoSpawnAsset(UT4GameSpawnAsset* InSpawnAsset) = 0; // #126
+	virtual bool DoSpawnAsset(UT4ContentSpawnAsset* InSpawnAsset, const FName& InSpawnActorID, const FT4ObjectID& InReservedObjectID) = 0; // #126
+	virtual bool DoSpawnAsset(UT4ContentSpawnAsset* InSpawnAsset) = 0; // #126
 
 	virtual bool DoDespawn(const FT4ObjectID& InObjectID, bool bInClientOnly) = 0; // #114
 	virtual bool DoDespawnAll(bool bClearPlayerActor) = 0; // #68

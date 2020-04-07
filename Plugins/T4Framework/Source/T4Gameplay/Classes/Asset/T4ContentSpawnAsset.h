@@ -6,12 +6,12 @@
 #include "Public/T4GameDataTypes.h"
 #include "Classes/Common/T4CommonAssetStructs.h" // #103
 #include "T4Framework/Public/T4FrameworkTypes.h" // #126
-#include "T4GameSpawnAsset.generated.h"
+#include "T4ContentSpawnAsset.generated.h"
 
 /**
   * #118
  */
-struct FT4GameSpawnVersion
+struct FT4ContentSpawnVersion
 {
 	enum Type
 	{
@@ -25,12 +25,12 @@ struct FT4GameSpawnVersion
 	T4GAMEPLAY_API const static FGuid GUID;
 
 private:
-	FT4GameSpawnVersion() {}
+	FT4ContentSpawnVersion() {}
 };
 
 // #114
 USTRUCT()
-struct T4GAMEPLAY_API FT4GameOverrideBehaviorData // #114
+struct T4GAMEPLAY_API FT4ContentOverrideBehaviorData // #114
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -38,7 +38,7 @@ public:
 	// #114
 	// FT4GameAIBehaviorData : AIController (Runtime)
 	// FT4GameNPCBehaviorData : NPC DataTable (Original Set)
-	// FT4GameOverrideBehaviorData : Spawn Asset (Instance Set)
+	// FT4ContentOverrideBehaviorData : Spawn Asset (Instance Set)
 
 	// Override
 	UPROPERTY(EditAnywhere, meta = (PinHiddenByDefault, InlineEditConditionToggle))
@@ -85,7 +85,7 @@ public:
 	float RoamingRate;
 
 public:
-	FT4GameOverrideBehaviorData()
+	FT4ContentOverrideBehaviorData()
 		: bOverride_EnemyType(false)
 		, bOverride_Aggressive(false)
 		, bOverride_ActiveOrKeepAggroTimeSec(false)
@@ -105,12 +105,12 @@ public:
 };
 
 USTRUCT()
-struct T4GAMEPLAY_API FT4GameSpawnObjectData
+struct T4GAMEPLAY_API FT4ContentSpawnEntityData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4GameSpawnObjectData()
+	FT4ContentSpawnEntityData()
 #if WITH_EDITORONLY_DATA
 		: ParentID(NAME_None) // #122
 		, FolderName(NAME_None) // #122
@@ -123,12 +123,12 @@ public:
 		return (ID == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4GameSpawnObjectData& InRhs) const
+	FORCEINLINE bool operator==(const FT4ContentSpawnEntityData& InRhs) const
 	{
 		return (ID == InRhs.ID) ? true : false;
 	}
 
-	// FT4ContentSpawnObjectDetails::CustomizeDetails
+	// FT4ContentSpawnEntityDetails::CustomizeDetails
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
 	FName ID;
@@ -137,7 +137,7 @@ public:
 	FT4GameNPCDataID NPCDataID;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	FT4GameOverrideBehaviorData OverrideBehaviorData;
+	FT4ContentOverrideBehaviorData OverrideBehaviorData;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
@@ -152,12 +152,12 @@ public:
 };
 
 USTRUCT()
-struct T4GAMEPLAY_API FT4GameSpawnActorData
+struct T4GAMEPLAY_API FT4ContentSpawnActorData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4GameSpawnActorData()
+	FT4ContentSpawnActorData()
 		: SpawnObjectID(NAME_None)
 #if WITH_EDITORONLY_DATA
 		, DebugColor(FColorList::White)
@@ -172,7 +172,7 @@ public:
 		return (ID == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4GameSpawnActorData& InRhs) const
+	FORCEINLINE bool operator==(const FT4ContentSpawnActorData& InRhs) const
 	{
 		return (ID == InRhs.ID) ? true : false;
 	}
@@ -208,12 +208,12 @@ public:
 
 // #126
 USTRUCT()
-struct T4GAMEPLAY_API FT4GameSpawnTestSettings
+struct T4GAMEPLAY_API FT4ContentSpawnTestSettings
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4GameSpawnTestSettings()
+	FT4ContentSpawnTestSettings()
 #if WITH_EDITOR
 		: DefaultControlMode(ET4ControlModeType::TPS)
 		, PlayeDataID(NAME_None)
@@ -247,9 +247,9 @@ public:
 };
 
 class UTexture2D;
-class UT4GameContentAsset;
+class UT4ContentWorldAsset;
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
-class T4GAMEPLAY_API UT4GameSpawnAsset : public UObject
+class T4GAMEPLAY_API UT4ContentSpawnAsset : public UObject
 {
 	GENERATED_UCLASS_BODY()
 
@@ -260,17 +260,17 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TArray<FT4GameSpawnObjectData> SpawnObjectArray;
+	TArray<FT4ContentSpawnEntityData> SpawnEntityArray;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TArray<FT4GameSpawnActorData> SpawnActorArray;
+	TArray<FT4ContentSpawnActorData> SpawnActorArray;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor, AssetRegistrySearchable)
-	TSoftObjectPtr<UT4GameContentAsset> ParentContentAsset;
+	TSoftObjectPtr<UT4ContentWorldAsset> ParentContentAsset;
 
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FT4GameSpawnTestSettings TestSettings; // #126
+	FT4ContentSpawnTestSettings TestSettings; // #126
 
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image

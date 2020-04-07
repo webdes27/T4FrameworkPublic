@@ -4,7 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
-  - **[2020.04.07] [M6] Copying //Private to //Deploy (private commit 48f2bc0)**
+  - **[2020.04.07] [M6] Copying //Private to //Deploy (private commit 2b4c8f5)**
+    - #130 [기능개선] Entity Editor, Other Character Entity 스폰시 랜덤 스폰 처리 추가
+    - #124 [버그수정] All Editor, Details Property 수정이 Asset Modify 로 반영되지 않던 문제 수정
     - #130 [기능추가] Entity Editor, Character FullBody SkinSet 설정 및 변경 기능 추가
     - #130 [기능개선] Entity Editor, Mesh Asset 수정이 Preview 에 즉시 반영되도록 개선
 	- #130 [버그수정] Entity Editor, AnimSequenceData 설정이 정상적으로 동작하지 않던 문제 수정

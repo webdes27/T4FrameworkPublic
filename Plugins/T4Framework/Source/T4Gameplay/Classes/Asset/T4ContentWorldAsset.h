@@ -5,12 +5,12 @@
 #include "CoreMinimal.h"
 #include "Public/T4GameDataTypes.h"
 #include "Classes/Common/T4CommonAssetStructs.h" // #103
-#include "T4GameContentAsset.generated.h"
+#include "T4ContentWorldAsset.generated.h"
 
 /**
   * #118
  */
-struct FT4GameContentVersion
+struct FT4ContentWorldVersion
 {
 	enum Type
 	{
@@ -24,18 +24,18 @@ struct FT4GameContentVersion
 	T4GAMEPLAY_API const static FGuid GUID;
 
 private:
-	FT4GameContentVersion() {}
+	FT4ContentWorldVersion() {}
 };
 
-class UT4GameSpawnAsset;
+class UT4ContentSpawnAsset;
 
 USTRUCT()
-struct T4GAMEPLAY_API FT4GameSpawnLayerData
+struct T4GAMEPLAY_API FT4ContentSpawnLayerData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4GameSpawnLayerData()
+	FT4ContentSpawnLayerData()
 		: TimeTag(NAME_None)
 #if WITH_EDITORONLY_DATA
 		, ParentID(NAME_None) // #122
@@ -49,7 +49,7 @@ public:
 		return (ID == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4GameSpawnLayerData& InRhs) const
+	FORCEINLINE bool operator==(const FT4ContentSpawnLayerData& InRhs) const
 	{
 		return (ID == InRhs.ID) ? true : false;
 	}
@@ -64,7 +64,7 @@ public:
 	FName TimeTag;
 	
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TSoftObjectPtr<UT4GameSpawnAsset> SpawnAsset;
+	TSoftObjectPtr<UT4ContentSpawnAsset> SpawnAsset;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
@@ -80,7 +80,7 @@ public:
 
 class UTexture2D;
 UCLASS(ClassGroup = T4Framework, Category = "T4Framework")
-class T4GAMEPLAY_API UT4GameContentAsset : public UObject
+class T4GAMEPLAY_API UT4ContentWorldAsset : public UObject
 {
 	GENERATED_UCLASS_BODY()
 
@@ -99,7 +99,7 @@ public:
 	FT4GameWorldDataID WorldDataID;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
-	TArray<FT4GameSpawnLayerData> SpawnLayerArray;
+	TArray<FT4ContentSpawnLayerData> SpawnLayerArray;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
