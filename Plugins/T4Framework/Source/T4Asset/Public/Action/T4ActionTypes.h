@@ -83,7 +83,7 @@ enum class ET4ActionType : uint32
 	LockOn,
 
 	Stance, // #73
-	SubStance, // #106
+	Posture, // #106
 
 	EquipWeapon, // #22
 	UnequipWeapon, // #48

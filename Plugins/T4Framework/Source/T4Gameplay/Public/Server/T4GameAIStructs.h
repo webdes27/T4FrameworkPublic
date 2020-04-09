@@ -117,7 +117,7 @@ struct FT4GameAIMemory // #50 : 필요하다면 Blackboard 로 변경하겠지�
 
 		IdleWaitTime = 5.0f;
 
-		SubStanceName = T4Const_DefaultSubStanceName; // #106
+		PostureName = T4Const_DefaultPostureName; // #106
 		MoveSpeedSelected = 0.0f;
 
 		bActiveAttack = false;
@@ -138,7 +138,7 @@ struct FT4GameAIMemory // #50 : 필요하다면 Blackboard 로 변경하겠지�
 
 	float IdleWaitTime;
 
-	FName SubStanceName; // #106
+	FName PostureName; // #106
 	float MoveSpeedSelected; // #106
 
 	bool bActiveAttack;

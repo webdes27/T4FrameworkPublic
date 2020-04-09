@@ -218,7 +218,7 @@ public:
 		: DefaultControlMode(ET4ControlModeType::TPS)
 		, PlayeDataID(NAME_None)
 		, WeaponNameID(NAME_None)
-		, SubStanceName(NAME_None)
+		, PostureName(NAME_None)
 		, SpawnLocation(FVector::ZeroVector)
 		, SpawnRotation(FRotator::ZeroRotator)
 #endif
@@ -236,7 +236,7 @@ public:
 	FName WeaponNameID;
 
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FName SubStanceName;
+	FName PostureName;
 
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FVector SpawnLocation;

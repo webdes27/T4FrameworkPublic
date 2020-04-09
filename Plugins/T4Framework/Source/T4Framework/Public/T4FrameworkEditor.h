@@ -281,7 +281,7 @@ public:
 	virtual bool DoDespawnAll(bool bClearPlayerActor) = 0; // #68
 
 	virtual bool DoChangeStance(FName InStanceName) = 0;// #73, #114
-	virtual bool DoChangeSubStance(FName InSubStanceName) = 0; // #106, #114
+	virtual bool DoChangePosture(FName InPostureName) = 0; // #106, #114
 
 	virtual bool DoEquipWeaponItem(const FName& InWeaponDataNameID, bool bInUnequip) = 0; // #60 : to player
 	virtual bool DoExchangeCostumeItem(const FName& InCostumeDataNameID) = 0; // #60 : to player

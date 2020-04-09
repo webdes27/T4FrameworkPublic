@@ -24,9 +24,9 @@ static const FName T4Const_DefaultPlayTagName = T4Const_DefaultName;
 
 static const FName T4Const_DefaultStanceName = T4Const_DefaultName;
 
-static const FName T4Const_DefaultSubStanceName = T4Const_DefaultName;
-static const FName T4Const_CombatSubStanceName = TEXT("Combat"); // #108
-static const FName T4Const_CrouchSubStanceName = TEXT("Crouch"); // #109
+static const FName T4Const_DefaultPostureName = T4Const_DefaultName;
+static const FName T4Const_CombatPostureName = TEXT("Combat"); // #108
+static const FName T4Const_CrouchPostureName = TEXT("Crouch"); // #109
 
 
 // #78

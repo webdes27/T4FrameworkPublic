@@ -160,7 +160,7 @@ public:
 	virtual void ClearOwnerID() = 0; // #114
 
 	virtual const FName GetStanceName() const = 0; // #73 : StanceNameTable
-	virtual const FName GetSubStanceName() const = 0; // #106 : SubStanceNameTable
+	virtual const FName GetPostureName() const = 0; // #106 : PostureNameTable
 
 	virtual const FName& GetGameDataIDName() const = 0;
 

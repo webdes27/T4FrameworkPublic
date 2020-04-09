@@ -155,7 +155,7 @@ public:
 	TArray<FT4StanceAction> StanceActions; // #73
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4SubStanceAction> SubStanceActions; // #106
+	TArray<FT4PostureAction> PostureActions; // #106
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<FT4EquipWeaponAction> EquipWeaponActions;

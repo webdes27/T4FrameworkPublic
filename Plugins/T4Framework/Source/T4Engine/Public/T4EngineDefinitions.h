@@ -58,8 +58,8 @@ static const FName T4Const_DefaultSectionRollBackRightName = TEXT("Roll_BR"); //
 
 static const FName T4Const_DefaultSectionStanceTransitionName = TEXT("Transition_Idle"); // #111
 
-static const FName T4Const_OverlaySectionSubStanceDefaultToCombatName = TEXT("DefaultToCombat"); // #111
-static const FName T4Const_OverlaySectionSubStanceCombatToDefaultName = TEXT("CombatToDefault"); // #111
+static const FName T4Const_OverlaySectionPostureDefaultToCombatName = TEXT("DefaultToCombat"); // #111
+static const FName T4Const_OverlaySectionPostureCombatToDefaultName = TEXT("CombatToDefault"); // #111
 
 static const FName T4Const_OverlaySectionEquipWeaponName = TEXT("EquipWeapon"); // #111
 static const FName T4Const_OverlaySectionUnequipWeaponName = TEXT("UnequipWeapon"); // #111

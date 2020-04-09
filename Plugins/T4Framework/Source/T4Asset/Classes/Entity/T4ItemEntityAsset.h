@@ -91,7 +91,7 @@ public:
 #if WITH_EDITOR
 		: ItemSpawnType(ET4EntityEditorViewportItemSpawn::DropMesh)
 		, ParentStanceName(NAME_None)
-		, ParentSubStanceName(NAME_None)
+		, ParentPostureName(NAME_None)
 #endif
 	{
 	}
@@ -107,7 +107,7 @@ public:
 	FName ParentStanceName;
 
 	UPROPERTY(EditAnywhere)
-	FName ParentSubStanceName;
+	FName ParentPostureName;
 #endif
 };
 

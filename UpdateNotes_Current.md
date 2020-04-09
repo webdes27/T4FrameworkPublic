@@ -4,6 +4,13 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.04.09] [M6] Copying //Private to //Deploy (private commit ca70105)**
+    - #131 [기능개선] Entity Editor, AnimSet State Layer 의 BlendSpace 설정 편의 및 기능 개선
+	  - BlendSpace 를 개별로 추가하던 것을 Posture 별 Set 로 설정하도록 개선
+    - #131 [기능개선] Stance 하위의 보조 개념으로 사용하던 SubStance 를 Posture 로 리네임
+	- #130 [기능추가] Paragon Entity Asset 샘플 추가
+	  - Paragon Asset 을 다운로드하여 Content 폴더에 추가해 테스트 할 수 있도록 지원
+	- #124 [버그수정] Entity Editor, Weapon Animation 의 AnimSequence 설정 오류 수정
   - **[2020.04.07] [M6] Copying //Private to //Deploy (private commit 2b4c8f5)**
     - #130 [기능개선] Entity Editor, Other Character Entity 스폰시 랜덤 스폰 처리 추가
     - #124 [버그수정] All Editor, Details Property 수정이 Asset Modify 로 반영되지 않던 문제 수정

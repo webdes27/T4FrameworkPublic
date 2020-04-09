@@ -124,6 +124,8 @@ UENUM()
 enum class ET4AnimInstance
 {
 	Human_Basic, // #38
+	Human_Paragon, // #131
+
 	Animal_Basic,
 
 	Item_Basic, // #107
@@ -136,7 +138,7 @@ enum ET4AnimationLayer // #71
 	AnimLayer_Skill,
 	AnimLayer_Overlay,
 	AnimLayer_Default,
-	AnimLayer_BlendSpace,
+	AnimLayer_State,
 
 	AnimLayer_Nums
 };
@@ -226,7 +228,7 @@ enum class ET4EditorAction : uint8
 	ReloadAnimSetSkill, // #81
 	ReloadAnimSetOverlay, // #81
 	ReloadAnimSetDefault, // #81
-	ReloadAnimSetBlendSpace, // #81
+	ReloadAnimSetState, // #131
 
 	ReloadObject, // #37
 

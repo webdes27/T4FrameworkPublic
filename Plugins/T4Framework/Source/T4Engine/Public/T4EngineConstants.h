@@ -28,8 +28,7 @@ enum ET4EngineConstantTable
 
     // {
 
-        BlendSpace = Editor_Start,
-        DefaultAnimSequence, // #38
+        DefaultAnimSequence = Editor_Start, // #38
         OverlayAnimSequence,
         SkillAnimSequence,
 		PropAnimSequence, // #126
@@ -46,7 +45,7 @@ enum ET4EngineConstantTable
 		PlayTagAction, // #74
 
         Stance, // #73
-		SubStance, // #106
+		Posture, // #106
 
         Reaction, // #76
 

@@ -45,10 +45,10 @@ public:
 	float AttackRange; // #50
 
 	UPROPERTY(EditAnywhere, Category = Common)
-	FT4GameSkillSetDataID DefaultSkillSetDataID; // #50, #106 : Key = SubStance
+	FT4GameSkillSetDataID DefaultSkillSetDataID; // #50, #106 : Key = Posture
 
 	UPROPERTY(EditAnywhere, Category = Common)
-	FT4GameSkillSetDataID CombatSkillSetDataID; // #50, #106 : Key = SubStance
+	FT4GameSkillSetDataID CombatSkillSetDataID; // #50, #106 : Key = Posture
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	FT4GameItemStatDataID ItemStatDataID; // #114 : 기본 Stat

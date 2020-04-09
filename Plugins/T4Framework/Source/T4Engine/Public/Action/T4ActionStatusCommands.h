@@ -14,7 +14,7 @@
 // ET4ActionType::Aim // #113
 // ET4ActionType::LockOn
 // ET4ActionType::Stance // #73
-// ET4ActionType::SubStance // #106
+// ET4ActionType::Posture // #106
 // ET4ActionType::EquipWeapon
 // ET4ActionType::UnequipWeapon
 // ET4ActionType::Costume // #72
@@ -118,30 +118,30 @@ public:
 
 // #106
 USTRUCT()
-struct T4ENGINE_API FT4SubStanceAction : public FT4ActionCodeCommand
+struct T4ENGINE_API FT4PostureAction : public FT4ActionCodeCommand
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
 	UPROPERTY(EditAnywhere)
-	FName SubStanceName;
+	FName PostureName;
 
 	UPROPERTY(EditAnywhere)
 	bool bImmediate; // #111
 
 public:
-	FT4SubStanceAction()
+	FT4PostureAction()
 		: FT4ActionCodeCommand(StaticActionType())
-		, SubStanceName(NAME_None)
+		, PostureName(NAME_None)
 		, bImmediate(false)  // #111
 	{
 	}
 
-	static ET4ActionType StaticActionType() { return ET4ActionType::SubStance; }
+	static ET4ActionType StaticActionType() { return ET4ActionType::Posture; }
 
 	FString ToString() const override
 	{
-		return FString(TEXT("SubStanceAction"));
+		return FString(TEXT("PostureAction"));
 	}
 };
 

@@ -12,7 +12,7 @@
  // #T4_ADD_PACKET_TAG_SC
 
 // ET4GamePacketSC::Stance // #73
-// ET4GamePacketSC::SubStance // #106
+// ET4GamePacketSC::Posture // #106
 // ET4GamePacketSC::EquipItem
 // ET4GamePacketSC::UnequipItem
 // ET4GamePacketSC::ExchangeItem
@@ -55,7 +55,7 @@ public:
 };
 
 USTRUCT()
-struct FT4GamePacketSC_SubStance : public FT4GamePacketSC_Base // #106
+struct FT4GamePacketSC_Posture : public FT4GamePacketSC_Base // #106
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -64,12 +64,12 @@ public:
 	FT4ObjectID ObjectID;
 
 	UPROPERTY(VisibleAnywhere)
-	FName SubStanceName; // TODO : SubStance Table?
+	FName PostureName;
 
 public:
-	FT4GamePacketSC_SubStance()
-		: FT4GamePacketSC_Base(ET4GamePacketSC::SubStance)
-		, SubStanceName(NAME_None)
+	FT4GamePacketSC_Posture()
+		: FT4GamePacketSC_Base(ET4GamePacketSC::Posture)
+		, PostureName(NAME_None)
 	{
 	}
 
@@ -85,7 +85,7 @@ public:
 
 	FString ToString() const override
 	{
-		return FString(TEXT("SC_Packet:SubStance"));
+		return FString(TEXT("SC_Packet:Posture"));
 	}
 };
 

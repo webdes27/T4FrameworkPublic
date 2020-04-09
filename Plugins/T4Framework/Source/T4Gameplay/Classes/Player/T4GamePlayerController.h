@@ -65,7 +65,7 @@ private:
 	void CS_RecvPacket_Stance(const FT4GamePacketCS_Stance& InPacket); // #73
 
 	UFUNCTION(Reliable, server, WithValidation)
-	void CS_RecvPacket_SubStance(const FT4GamePacketCS_SubStance& InPacket); // #106
+	void CS_RecvPacket_Posture(const FT4GamePacketCS_Posture& InPacket); // #106
 
 	UFUNCTION(Reliable, server, WithValidation)
 	void CS_RecvPacket_EquipItem(const FT4GamePacketCS_EquipItem& InPacket);
@@ -168,7 +168,7 @@ private:
 	void SC_RecvPacket_Stance(const FT4GamePacketSC_Stance& InPacket); // #73
 
 	UFUNCTION(Reliable, client)
-	void SC_RecvPacket_SubStance(const FT4GamePacketSC_SubStance& InPacket); // #106
+	void SC_RecvPacket_Posture(const FT4GamePacketSC_Posture& InPacket); // #106
 
 	UFUNCTION(Reliable, client)
 	void SC_RecvPacket_EquipItem(const FT4GamePacketSC_EquipItem& InPacket);

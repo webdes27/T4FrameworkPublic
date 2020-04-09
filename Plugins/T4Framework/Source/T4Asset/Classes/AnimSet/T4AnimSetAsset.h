@@ -18,6 +18,9 @@ struct FT4AnimSetCustomVersion
 		CommonPropertyNameChanged, // #124
 		CommonPropertyNameV2Changed, // #126
 
+		SequenceAndStateLayerAdded, // #131
+		PostureNameAdded, // #131
+
 		// -----<new versions can be added above this line>-------------------------------------------------
 		VersionPlusOne,
 		LatestVersion = VersionPlusOne - 1,
@@ -44,6 +47,7 @@ struct T4ASSET_API FT4AnimSetAnimSequenceData
 public:
 	FT4AnimSetAnimSequenceData()
 		: Name(NAME_None)
+		, PostureName(T4Const_DefaultPostureName) // #131
 		, DurationSec(0.0f)
 	{
 	}
@@ -62,43 +66,90 @@ public:
 	FName Name;
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
+	FName PostureName; // #131
+
+	UPROPERTY(VisibleAnywhere, Category = Common)
 	float DurationSec;
 
 #if WITH_EDITORONLY_DATA
-	UPROPERTY()
-	TSoftObjectPtr<UAnimSequence> AnimSequnceAsset_DEPRECATED; // #124
-
 	UPROPERTY(EditAnywhere, Category = Editor)
 	TSoftObjectPtr<UAnimSequence> AnimSequenceAsset;
 #endif
 };
 
+// #131
 USTRUCT()
-struct T4ASSET_API FT4AnimSetBlendSpaceData
+struct T4ASSET_API FT4AnimSetSequenceLayerData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4AnimSetBlendSpaceData()
-		: Name(NAME_None)
+	FT4AnimSetSequenceLayerData()
+		: bAnimMontageAutoGen(true)
+	{
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	bool bAnimMontageAutoGen; // #69
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TSoftObjectPtr<UAnimMontage> AnimMontageAsset; // #69
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TArray<FT4AnimSetAnimSequenceData> AnimSequenceArray;
+};
+
+// #131
+USTRUCT()
+struct T4ASSET_API FT4AnimSetBlendSpaceSetData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4AnimSetBlendSpaceSetData()
+		: PostureName(NAME_None)
 	{
 	}
 
 	FORCEINLINE bool operator==(const FName& InKey) const
 	{
-		return (Name == InKey) ? true : false;
+		return (PostureName == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4AnimSetBlendSpaceData& InRhs) const
+	FORCEINLINE bool operator==(const FT4AnimSetBlendSpaceSetData& InRhs) const
 	{
-		return (Name == InRhs.Name) ? true : false;
+		return (PostureName == InRhs.PostureName) ? true : false;
 	}
+
+	UPROPERTY()
+	FName Name_DEPRECATED;
 
 	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
-	FName Name;
+	FName PostureName;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UBlendSpaceBase> BlendSpaceAsset;
+	TSoftObjectPtr<UBlendSpaceBase> MoveBlendSpaceAsset;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TSoftObjectPtr<UBlendSpaceBase> AimBlendSpaceAsset;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TSoftObjectPtr<UBlendSpaceBase> FallBlendSpaceAsset;
+};
+
+// #131
+USTRUCT()
+struct T4ASSET_API FT4AnimSetStateLayerData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4AnimSetStateLayerData()
+	{
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TArray<FT4AnimSetBlendSpaceSetData> BlendSpaceSetDataArray;
 };
 
 // #111
@@ -158,54 +209,30 @@ public:
 	UPROPERTY(EditAnywhere, Category = Default)
 	TSoftObjectPtr<USkeleton> SkeletonAsset;
 
-	// CustomizeSkillAnimationDetails
-
-	UPROPERTY(EditAnywhere, Category = SkillLayer, meta = (DisplayName = "bAutoGen"))
-	bool bSkillAnimMontageAutoGen; // #69
-
-	UPROPERTY(EditAnywhere, Category = SkillLayer, meta = (DisplayName = "Anim Montage Asset"))
-	TSoftObjectPtr<UAnimMontage> SkillAnimMontageAsset; // #69
+	// CustomizeSkillLayerDetails
 
 	UPROPERTY(EditAnywhere, Category = SkillLayer)
-	TArray<FT4AnimSetAnimSequenceData> SkillAnimSequenceArray;
+	FT4AnimSetSequenceLayerData SkillLayerData; // #131
 
-
-	// CustomizeOverlayAnimationDetails
-
-	UPROPERTY(EditAnywhere, Category = OverlayLayer, meta = (DisplayName = "bAutoGen"))
-	bool bOverlayAnimMontageAutoGen; // #69
-
-	UPROPERTY(EditAnywhere, Category = OverlayLayer, meta = (DisplayName = "Anim Montage Asset"))
-	TSoftObjectPtr<UAnimMontage> OverlayAnimMontageAsset; // #69
+	// CustomizeOverlayLayerDetails
 
 	UPROPERTY(EditAnywhere, Category = OverlayLayer)
-	TArray<FT4AnimSetAnimSequenceData> OverlayAnimSequenceArray;
+	FT4AnimSetSequenceLayerData OverlayLayerData; // #131
 
-
-	// CustomizeDefaultAnimationDetails
-
-	UPROPERTY(EditAnywhere, Category = DefaultLayer, meta = (DisplayName = "bAutoGen"))
-	bool bDefaultAnimMontageAutoGen; // #69
-
-	UPROPERTY(EditAnywhere, Category = DefaultLayer, meta = (DisplayName = "Anim Montage Asset"))
-	TSoftObjectPtr<UAnimMontage> DefaultAnimMontageAsset; // #38, #69
+	// CustomizeDefaultLayerDetails
 
 	UPROPERTY(EditAnywhere, Category = DefaultLayer)
-	TArray<FT4AnimSetAnimSequenceData> DefaultAnimSequenceArray;
+	FT4AnimSetSequenceLayerData DefaultLayerData; // #131
+	
+	// CustomizeStateLayerDetails
 
-
-	// CustomizeBlendSpaceDetails
-
-	UPROPERTY(EditAnywhere, Category = BlendSpace)
-	TArray<FT4AnimSetBlendSpaceData> BlendSpaceArray;
+	UPROPERTY(EditAnywhere, Category = StateLayer)
+	FT4AnimSetStateLayerData StateLayerData; // #131
 
 public:
 #if WITH_EDITORONLY_DATA
 	UPROPERTY()
 	UTexture2D* ThumbnailImage; // Internal: The thumbnail image
-
-	UPROPERTY()
-	FT4AnimSetTestSettings EditorSettings_DEPRECATED; // #111 : 에디터 세팅 옵션
 
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FT4AnimSetTestSettings TestSettings; // #111 : 에디터 세팅 옵션

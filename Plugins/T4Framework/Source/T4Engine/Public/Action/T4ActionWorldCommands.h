@@ -86,7 +86,7 @@ public:
 	FName StanceName; // #73 : 초기 애니메이션 로딩 타임이 있음으로 가급적 스폰시에도 설정하도록 처리한다.
 	
 	UPROPERTY(EditAnywhere)
-	FName SubStanceName; // #73, #111
+	FName PostureName; // #73, #111
 
 	UPROPERTY(EditAnywhere)
 	FVector SpawnLocation;
@@ -106,7 +106,7 @@ public:
 		, Name(NAME_None)
 		, EntityType(ET4EntityType::None)
 		, StanceName(NAME_None) // #73
-		, SubStanceName(NAME_None) // #73, #111
+		, PostureName(NAME_None) // #73, #111
 		, SpawnLocation(FVector::ZeroVector)
 		, SpawnRotation(FRotator::ZeroRotator)
 		, GameDataIDName(NAME_None)

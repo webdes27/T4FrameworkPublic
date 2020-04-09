@@ -198,7 +198,7 @@ public:
 	FName StanceSelected; // #73
 
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FName SubStanceSelected; // #106
+	FName PostureSelected; // #106
 
 	UPROPERTY(EditAnywhere, Category = Editor)
 	FName WeaponNameID; // #60
@@ -237,7 +237,7 @@ public:
 #if WITH_EDITOR
 		: MapEntitySelected(NAME_None) // #87
 		, StanceSelected(NAME_None) // #73
-		, SubStanceSelected(NAME_None) // #106
+		, PostureSelected(NAME_None) // #106
 		, WeaponNameID(NAME_None) // #60
 		, SandbagNameID(NAME_None) // #60
 		, bAISystemDisabled(true) // #60
