@@ -87,6 +87,17 @@ public:
 public:
 	ET4EntityType GetEntityType() const override { return ET4EntityType::Map; }
 
+#if WITH_EDITOR
+	virtual bool IsSpawnable() override // #131
+	{
+		if (MapData.LevelAsset.IsNull())
+		{
+			return false;
+		}
+		return true;
+	}
+#endif
+
 public:
 	UPROPERTY(EditAnywhere)
 	FT4EntityMapData MapData;

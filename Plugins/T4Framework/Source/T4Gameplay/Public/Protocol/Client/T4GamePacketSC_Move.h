@@ -14,7 +14,7 @@
 // ET4GamePacketSC::Move
 // ET4GamePacketSC::Jump
 // ET4GamePacketSC::Roll // #46
-// ET4GamePacketSC::Turn // #40
+// ET4GamePacketSC::Rotation // #40
 // ET4GamePacketSC::Teleport
 
 // ET4GamePacketSC::MoveStop // #52
@@ -170,7 +170,7 @@ public:
 };
 
 USTRUCT()
-struct FT4GamePacketSC_Turn : public FT4GamePacketSC_Base // #40
+struct FT4GamePacketSC_Rotation : public FT4GamePacketSC_Base // #40
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -182,8 +182,8 @@ public:
 	float TargetYawAngle; // #40 : 필요할 때 3D 로 확장.
 
 public:
-	FT4GamePacketSC_Turn()
-		: FT4GamePacketSC_Base(ET4GamePacketSC::Turn)
+	FT4GamePacketSC_Rotation()
+		: FT4GamePacketSC_Base(ET4GamePacketSC::Rotation)
 		, TargetYawAngle(TNumericLimits<float>::Max())
 	{
 	}

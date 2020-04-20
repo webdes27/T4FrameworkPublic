@@ -148,6 +148,30 @@ public:
 	TArray<FT4EntityMaterialSlotData> MaterialSlotDatas;
 };
 
+// #131
+USTRUCT()
+struct T4ASSET_API FT4EntityPlayAnimationData // #131
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EntityPlayAnimationData()
+		: SectionName(NAME_None)
+		, BlendInTimeSec(T4Const_DefaultAnimBlendTimeSec)
+		, BlendOutTimeSec(T4Const_DefaultAnimBlendTimeSec)
+	{
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName SectionName; // only System layer
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	float BlendInTimeSec;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	float BlendOutTimeSec;
+};
+
 // #126
 class USkeleton;
 class UAnimMontage;
@@ -295,6 +319,8 @@ public:
 	const TCHAR* GetEntityTypeString() const; // #87
 
 #if WITH_EDITOR
+	virtual bool IsSpawnable() { return false; } // #131
+
 	virtual UStaticMesh* GetPrimaryStaticMeshAsset() const { return nullptr; } // #81
 	virtual USkeletalMesh* GetPrimarySkeletalMeshAsset() const { return nullptr; } // #81
 

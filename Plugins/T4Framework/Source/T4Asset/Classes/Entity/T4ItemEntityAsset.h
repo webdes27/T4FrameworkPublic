@@ -123,6 +123,38 @@ public:
 	virtual void GetAssetRegistryTags(TArray<FAssetRegistryTag>& OutTags) const override;
 	//~ End UObject interface
 
+#if WITH_EDITOR
+	virtual bool IsSpawnable() override // #131
+	{
+		if (ET4EntityMeshType::None == DropMeshData.MeshType)
+		{
+			return false;
+		}
+		if (ET4EntityMeshType::StaticMesh == DropMeshData.MeshType)
+		{
+			if (DropMeshData.StaticMeshAsset.IsNull())
+			{
+				return false;
+			}
+		}
+		else if (ET4EntityMeshType::SkeletalMesh == DropMeshData.MeshType)
+		{
+			if (DropMeshData.SkeletalMeshAsset.IsNull())
+			{
+				return false;
+			}
+		}
+		else if (ET4EntityMeshType::ParticleSystem == DropMeshData.MeshType)
+		{
+			if (DropMeshData.ParticleSystemAsset.IsNull())
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+#endif
+
 public:
 	UPROPERTY(EditAnywhere, meta = (DisplayName = "Mesh Data"))
 	FT4EntityItemDropMeshData DropMeshData;

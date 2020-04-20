@@ -72,7 +72,8 @@ enum class ET4ActionType : uint32
 	Jump,
 	Roll, // #46
 	Teleport,
-	Turn,
+	Rotation,
+	Turn, // #131
 
 	MoveStop, // #52
 	MoveSpeedSync, // #52
@@ -92,6 +93,7 @@ enum class ET4ActionType : uint32
 
 	Hit, // #76
 
+	Debuff, // #131
 	Die, // #76
 	Resurrect, // #76
 

@@ -120,6 +120,13 @@ public:
 public:
 	ET4EntityType GetEntityType() const override { return ET4EntityType::Zone; }
 
+#if WITH_EDITOR
+	virtual bool IsSpawnable() override // #131
+	{
+		return true;
+	}
+#endif
+
 public:
 	UPROPERTY(EditAnywhere, Category = Default)
 	FT4EntityZoneData ZoneData;

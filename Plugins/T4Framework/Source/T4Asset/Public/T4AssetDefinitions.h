@@ -26,7 +26,7 @@ static const FName T4Const_DefaultStanceName = T4Const_DefaultName;
 
 static const FName T4Const_DefaultPostureName = T4Const_DefaultName;
 static const FName T4Const_CombatPostureName = TEXT("Combat"); // #108
-static const FName T4Const_CrouchPostureName = TEXT("Crouch"); // #109
+static const FName T4Const_SprintPostureName = TEXT("Sprint"); // #131
 
 
 // #78
@@ -41,10 +41,8 @@ static const float T4Const_DefaultAnimBlendTimeSec = 0.1f;
 
 static const FName T4Const_ItemBlendSpaceName = TEXT("Item_Default"); // #107
 
-static const FName T4Const_DefaultAnimMontageName = TEXT("Default");
-static const FName T4Const_OverlayAnimMontageName = TEXT("Overlay");
 static const FName T4Const_SkillAnimMontageName = TEXT("Skill");
+static const FName T4Const_SystemAnimMontageName = TEXT("System"); // #131
 
-static const FName T4Const_DefaultAnimMontageSlotName = TEXT("DefaultSlot"); // #39, #107
-static const FName T4Const_OverlayAnimMontageSlotName = TEXT("OverlaySlot"); // #39, #107
 static const FName T4Const_SkillAnimMontageSlotName = TEXT("SkillSlot"); // #39, #107
+static const FName T4Const_SystemAnimMontageSlotName = TEXT("DefaultSlot"); // #131

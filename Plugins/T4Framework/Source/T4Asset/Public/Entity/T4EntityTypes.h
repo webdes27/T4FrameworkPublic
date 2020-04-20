@@ -68,11 +68,12 @@ enum class ET4EntityCharacterModularType : uint8 // #72
 UENUM()
 enum class ET4EntityReactionType : uint8 // #76
 {
+	Hit,
+	Debuff,
+
 	Die,
 	Resurrect,
 	
-	Hit,
-
 	None,
 };
 

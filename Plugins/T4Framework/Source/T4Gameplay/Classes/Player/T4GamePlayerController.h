@@ -53,7 +53,7 @@ private:
 	void CS_RecvPacket_Roll(const FT4GamePacketCS_Roll& InPacket); // #46
 
 	UFUNCTION(Reliable, server, WithValidation)
-	void CS_RecvPacket_Turn(const FT4GamePacketCS_Turn& InPacket); // #40
+	void CS_RecvPacket_Rotation(const FT4GamePacketCS_Rotation& InPacket); // #40
 
 	UFUNCTION(Reliable, server, WithValidation)
 	void CS_RecvPacket_LockOn(const FT4GamePacketCS_LockOn& InPacket);
@@ -147,7 +147,7 @@ private:
 	void SC_RecvPacket_Roll(const FT4GamePacketSC_Roll& InPacket); // #46
 
 	UFUNCTION(Reliable, client)
-	void SC_RecvPacket_Turn(const FT4GamePacketSC_Turn& InPacket); // #40
+	void SC_RecvPacket_Rotation(const FT4GamePacketSC_Rotation& InPacket); // #40
 
 	UFUNCTION(Reliable, client)
 	void SC_RecvPacket_Teleport(const FT4GamePacketSC_Teleport& InPacket);

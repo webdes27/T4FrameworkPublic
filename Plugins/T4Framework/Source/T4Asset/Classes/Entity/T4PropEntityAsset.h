@@ -133,6 +133,38 @@ public:
 public:
 	ET4EntityType GetEntityType() const override { return ET4EntityType::Prop; }
 
+#if WITH_EDITOR
+	virtual bool IsSpawnable() override // #131
+	{
+		if (ET4EntityMeshType::None == MeshData.MeshType)
+		{
+			return false;
+		}
+		if (ET4EntityMeshType::StaticMesh == MeshData.MeshType)
+		{
+			if (MeshData.StaticMeshAsset.IsNull())
+			{
+				return false;
+			}
+		}
+		else if (ET4EntityMeshType::SkeletalMesh == MeshData.MeshType)
+		{
+			if (MeshData.SkeletalMeshAsset.IsNull())
+			{
+				return false;
+			}
+		}
+		else if (ET4EntityMeshType::ParticleSystem == MeshData.MeshType)
+		{
+			if (MeshData.ParticleSystemAsset.IsNull())
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+#endif
+
 public:
 	UPROPERTY(EditAnywhere, Category=Data)
 	FT4EntityPropMeshData MeshData;

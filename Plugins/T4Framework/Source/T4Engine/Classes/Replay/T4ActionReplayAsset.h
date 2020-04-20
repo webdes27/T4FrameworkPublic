@@ -131,7 +131,7 @@ public:
 	TArray<FT4TeleportAction> TeleportActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4TurnAction> TurnActions;
+	TArray<FT4RotationAction> RotationActions;
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<FT4MoveStopAction> MoveStopActions;
@@ -171,6 +171,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<FT4HitAction> HitActions; // #76
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<FT4DebuffAction> DebuffActions; // #131
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<FT4DieAction> DieActions; // #76

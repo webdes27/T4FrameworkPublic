@@ -94,7 +94,7 @@ public:
 public:
 	bool bEntered;
 	bool bBlendStart;
-	float BlendTimeLeft;
+	float BlendRemainingTimeSec;
 
 	FPostProcessSettings* PostProcessingSettings; // #98 : T4WorldEnvironmentControl 에서 Global 만 값을 채운다.
 

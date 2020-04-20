@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Public/T4AssetDefinitions.h"
+#include "Public/AnimSet/T4AnimSetTypes.h" // #131
 #include "T4AnimSetAsset.generated.h"
 
 /**
@@ -101,13 +102,16 @@ public:
 
 // #131
 USTRUCT()
-struct T4ASSET_API FT4AnimSetBlendSpaceSetData
+struct T4ASSET_API FT4AnimSetAnimSystemData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4AnimSetBlendSpaceSetData()
+	FT4AnimSetAnimSystemData()
 		: PostureName(NAME_None)
+#if WITH_EDITOR
+		, bEditorShowNotSetProperty(false)
+#endif
 	{
 	}
 
@@ -116,25 +120,88 @@ public:
 		return (PostureName == InKey) ? true : false;
 	}
 
-	FORCEINLINE bool operator==(const FT4AnimSetBlendSpaceSetData& InRhs) const
+	FORCEINLINE bool operator==(const FT4AnimSetAnimSystemData& InRhs) const
 	{
 		return (PostureName == InRhs.PostureName) ? true : false;
 	}
 
-	UPROPERTY()
-	FName Name_DEPRECATED;
+	// FT4CharacterAnimationDataLoader::ProcessPre() // #111
 
-	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
+	UPROPERTY(VisibleAnywhere, Category = Default)
+	FName PostureName;
+
+	UPROPERTY(EditAnywhere, Category = GroundState)
+	TMap<FName, TSoftObjectPtr<UAnimSequence>> AnimSequenceMap;
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(VisibleAnywhere, Category = Hide)
+	bool bEditorShowNotSetProperty;
+#endif
+};
+
+// #131
+USTRUCT()
+struct T4ASSET_API FT4AnimSetSystemLayerData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4AnimSetSystemLayerData()
+	{
+	}
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TSoftObjectPtr<UAnimMontage> AnimMontageAsset; // #69
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TArray<FT4AnimSetAnimSystemData> AnimSystemDataArray;
+#endif
+};
+
+// #131
+USTRUCT()
+struct T4ASSET_API FT4AnimSetAnimStateData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4AnimSetAnimStateData()
+		: PostureName(NAME_None)
+#if WITH_EDITOR
+		, bEditorShowNotSetProperty(false)
+#endif
+	{
+	}
+
+	FORCEINLINE bool operator==(const FName& InKey) const
+	{
+		return (PostureName == InKey) ? true : false;
+	}
+
+	FORCEINLINE bool operator==(const FT4AnimSetAnimStateData& InRhs) const
+	{
+		return (PostureName == InRhs.PostureName) ? true : false;
+	}
+
+	// FT4CharacterAnimationDataLoader::ProcessPre() // #111
+
+	UPROPERTY(VisibleAnywhere, Category = Default)
 	FName PostureName;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UBlendSpaceBase> MoveBlendSpaceAsset;
+	TMap<FName, TSoftObjectPtr<UAnimSequence>> AnimSequenceMap;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UBlendSpaceBase> AimBlendSpaceAsset;
+	TMap<FName, TSoftObjectPtr<UBlendSpaceBase>> BlendSpaceMap;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UBlendSpaceBase> FallBlendSpaceAsset;
+	TMap<FName, float> StateParameterMap; // #131
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(VisibleAnywhere, Category = Hide)
+	bool bEditorShowNotSetProperty;
+#endif
 };
 
 // #131
@@ -149,7 +216,7 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TArray<FT4AnimSetBlendSpaceSetData> BlendSpaceSetDataArray;
+	TArray<FT4AnimSetAnimStateData> AnimStateDataArray;
 };
 
 // #111
@@ -209,21 +276,19 @@ public:
 	UPROPERTY(EditAnywhere, Category = Default)
 	TSoftObjectPtr<USkeleton> SkeletonAsset;
 
+	UPROPERTY(EditAnywhere, Category = Default)
+	ET4AnimSetTemplate AnimSetTemplate; // #131
+
 	// CustomizeSkillLayerDetails
 
 	UPROPERTY(EditAnywhere, Category = SkillLayer)
 	FT4AnimSetSequenceLayerData SkillLayerData; // #131
 
-	// CustomizeOverlayLayerDetails
+	// CustomizeSystemLayerDetails
 
-	UPROPERTY(EditAnywhere, Category = OverlayLayer)
-	FT4AnimSetSequenceLayerData OverlayLayerData; // #131
+	UPROPERTY(EditAnywhere, Category = StateLayer)
+	FT4AnimSetSystemLayerData SystemLayerData; // #131
 
-	// CustomizeDefaultLayerDetails
-
-	UPROPERTY(EditAnywhere, Category = DefaultLayer)
-	FT4AnimSetSequenceLayerData DefaultLayerData; // #131
-	
 	// CustomizeStateLayerDetails
 
 	UPROPERTY(EditAnywhere, Category = StateLayer)

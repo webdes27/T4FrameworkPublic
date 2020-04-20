@@ -108,13 +108,12 @@ struct FT4ServerWorldSystemActorDelegates // #49
 };
 #endif
 
-struct FT4AnimParameters // #38
+struct FT4AnimParam // #38
 {
-	FT4AnimParameters()
-		: AnimMontageName(NAME_None)
+	FT4AnimParam()
+		: AnimationLayer(AnimLayer_Skill)
 		, SectionName(NAME_None)
 		, PlayRate(1.0f)
-		, DelayTimeSec(0.0f) // #111 : TODO
 		, OffsetTimeSec(0.0f)
 		, BlendInTimeSec(T4Const_DefaultAnimBlendTimeSec)
 		, BlendOutTimeSec(T4Const_DefaultAnimBlendTimeSec)
@@ -122,14 +121,13 @@ struct FT4AnimParameters // #38
 	{
 	}
 
-	FName AnimMontageName;
+	ET4AnimationLayer AnimationLayer;
 	FName SectionName;
 	float PlayRate;
-	float DelayTimeSec; // #111 : TODO
 	float OffsetTimeSec;
 	float BlendInTimeSec;
 	float BlendOutTimeSec;
-	int32 LoopCount;
+	int32 LoopCount; // #131 : -1 = Loop
 };
 
 class IT4WorldActor;

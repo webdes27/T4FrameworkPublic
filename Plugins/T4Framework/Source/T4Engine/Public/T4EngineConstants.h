@@ -28,11 +28,11 @@ enum ET4EngineConstantTable
 
     // {
 
-        DefaultAnimSequence = Editor_Start, // #38
-        OverlayAnimSequence,
-        SkillAnimSequence,
-		PropAnimSequence, // #126
-		WeaponAnimSequence, // #107
+		CharacterSystemAnimation = Editor_Start, // #38
+        CharacterBasicSkillAnimation,
+		CharacterParagonSkillAnimation, // #131
+		PropAnimation, // #126
+		WeaponAnimation, // #107
 
         ActionPoint, // #47
 

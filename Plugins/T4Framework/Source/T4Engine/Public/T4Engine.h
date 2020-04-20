@@ -73,17 +73,22 @@ public:
 	virtual void UnregisterAnimState(const FName& InAnimStateName) = 0;
 	// ~#47
 
-	virtual bool HasSection(const FName& InAnimMontageName, const FName& InSectionName) = 0;
-	virtual float GetDurationSec(const FName& InAnimMontageName, const FName& InSectionName) = 0;
+	virtual bool HasSection(ET4AnimationLayer InAnimationLayer, const FName& InSectionName) = 0;
+	virtual float GetDurationSec(ET4AnimationLayer InAnimationLayer, const FName& InSectionName) = 0;
 
 	virtual bool IsPlayingAnimation(const FName& InAnimMontageName) = 0; // #116
 	virtual bool IsPlayingAnimation(FT4AnimInstanceID InPlayInstanceID) = 0;
-	virtual bool IsPlayingAndBlendOutStarted(FT4AnimInstanceID InPlayInstanceID) = 0; // #44
 
-	virtual FT4AnimInstanceID PlayAnimation(const FT4AnimParameters& InAnimParameters) = 0; // #38
+	virtual float GetRemainingTimeSec(FT4AnimInstanceID InPlayInstanceID) = 0; // #131
+	virtual bool HasBlendOutStarted(FT4AnimInstanceID InPlayInstanceID) = 0; // #44
 
+	virtual FT4AnimInstanceID PlayAnimation(const FT4AnimParam& InAnimParam) = 0; // #38
 	virtual bool StopAnimation(const FName& InAnimMontageName, float InBlendOutTimeSec) = 0; // #38
 	virtual bool StopAnimation(FT4AnimInstanceID InPlayInstanceID, float InBlendOutTimeSec) = 0; // #47
+
+	virtual FT4AnimationStackID AllocAnimParamFromStack(uint32 InNumAlloc, TArray<FT4AnimParam*>& OutParams) = 0; // #131
+	virtual bool PlayAnimationStack(FT4AnimationStackID InAnimInstanceStackID) = 0; // #131
+	virtual void StopAnimationStack(FT4AnimationStackID InAnimInstanceStackID) = 0; // #131
 
 #if !UE_BUILD_SHIPPING
 	virtual void DebugPauseAnimation(FT4AnimInstanceID InPlayInstanceID, bool bInPause) = 0; // #54
@@ -196,7 +201,7 @@ public:
 
 	virtual const FVector GetCOMLocation() const = 0; // #126 : Center of Mass (ActorLocation + Z=HalfHeight)
 	virtual const FVector GetRootLocation() const = 0; // #126 : Floor 
-	virtual const FVector GetNavPoint() const = 0; // #52
+	virtual const FVector GetNavPoint() const = 0;  // #52, #131 : On Nav Location
 
 	virtual const FRotator GetRotation() const = 0;
 	virtual const FVector GetFrontVector() const = 0; // #38
@@ -308,8 +313,7 @@ public:
 
 	virtual bool QueryLineTraceSingle(
 		ET4CollisionChannel InCollisionChannel,
-		const FVector& InStartLocation,
-		const FVector& InStartDirection,
+		const FRay& InWorldRay,
 		const float InMaxDistance,
 		const FCollisionQueryParams& InCollisionQueryParams,
 		FT4HitSingleResult& OutHitResult
@@ -321,7 +325,7 @@ class T4ENGINE_API IT4WorldNavigation // #87
 public:
 	virtual ~IT4WorldNavigation() {}
 
-	virtual bool ProjectPoint(const FVector& InGoal, const FVector& InExtent, FVector& OutLocation) = 0; // #31 // INVALID_NAVEXTENT, FVector::ZeroVector
+	virtual bool ProjectPoint(const FVector& InGoal, const FVector& InExtent, FVector& OutLocation) = 0; // #31 // INVALID_NAVEXTENT = Nav Default Extent used
 
 	virtual bool HasReached(const FVector& InStartLocation, const FVector& InEndLocation) = 0; // #52
 

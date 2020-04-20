@@ -129,8 +129,9 @@ public:
 	virtual void GetCameraInfoCached(FRotator& OutRotation, float& OutDistance) = 0; // #87
 	virtual void SetCameraInfoCached(const FRotator& InRotation, const float& InDistance) = 0; // #87
 
-	virtual bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FVector& OutStartPosition, FVector& OutStartDirection) = 0; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
-	virtual bool GetMousePositionToWorldRay(FVector& OutStartPosition, FVector& OutStartDirection) = 0;
+	virtual bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FRay& OutWorldRay) = 0; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
+	virtual bool GetScreenPositionToWorldRay(const FVector2D& InScreenPosition, FRay& OutWorldRay) = 0; // #131
+	virtual bool GetMousePositionToWorldRay(FRay& OutWorldRay) = 0;
 
 	virtual void SetMouseCursorLock(bool bInLock) = 0;
 	virtual bool IsMouseCursorLocked() const = 0;
@@ -213,18 +214,21 @@ public:
 
 	virtual bool OnWorldTravel(const UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
 
-	virtual bool GetLineTraceLocation(ET4CollisionChannel InChannel, const FVector& InLocation, const FVector& InDirection, FVector& OutLocation) = 0; // #121
+	virtual bool QueryLineTraceLocation(ET4CollisionChannel InChannel, const FRay& InWorldRay, FVector& OutLocation) = 0; // #121
 
 	// Client
 	//
 	virtual UT4GameObjectBase* GetPlayerClientObject() const = 0; // #114 : Only Client
 	virtual IT4PlayerController* GetPlayerController() const = 0;
 
-	virtual bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FVector& OutLocation, FVector& OutDirection) = 0; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
-	virtual bool GetMousePositionToWorldRay(FVector& OutLocation, FVector& OutDirection) = 0; // #113
+	virtual bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FRay& OutWorldRay) = 0; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
+	virtual bool GetScreenPositionToWorldRay(const FVector2D& InScreenPosition, FRay& OutWorldRay) = 0; // #131
+	virtual bool GetMousePositionToWorldRay(FRay& OutWorldRay) = 0; // #113
+
+	virtual bool GetScreenPositionToWorldLocation(const FVector2D& InScreenPosition, FVector& OutWorldLocation) = 0; // #131
 
 	virtual IT4WorldActor* GetMousePickingActor() = 0;
-	virtual IT4WorldActor* GetMousePickingActor(const FVector& InLocation, const FVector& InDirection, FVector& OutHitLocation) = 0; // #111
+	virtual IT4WorldActor* GetWorldRayPickingActor(const FRay& InWorldRay, FVector& OutHitLocation) = 0; // #111
 
 	virtual bool GetMousePickingLocation(FVector& OutLocation) = 0;
 

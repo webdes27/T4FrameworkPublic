@@ -41,6 +41,7 @@ protected:
 class UMaterialInterface;
 class UDecalComponent;
 class UAnimMontage;
+class UAnimSequence;
 class UBlendSpaceBase;
 class UPhysicsAsset;
 class UParticleSystem;
@@ -80,6 +81,15 @@ public:
 	virtual ~FT4AnimMontageLoader() { Reset(); }
 
 	UAnimMontage* GetAnimMontage() const;
+};
+
+class T4ENGINE_API FT4AnimSequenceLoader : public FT4AssetLoader // #131
+{
+public:
+	explicit FT4AnimSequenceLoader() {}
+	virtual ~FT4AnimSequenceLoader() { Reset(); }
+
+	UAnimSequence* GetAnimSequence() const;
 };
 
 class T4ENGINE_API FT4BlendSpaceLoader : public FT4AssetLoader

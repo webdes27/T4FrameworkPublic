@@ -10,6 +10,7 @@
   * http://api.unrealengine.com/KOR/Programming/UnrealArchitecture/Reference/Properties/
  */
 typedef int32 FT4AnimInstanceID;
+typedef uint32 FT4AnimationStackID; // #131
 
 UENUM()
 enum class ET4LayerType : uint8
@@ -121,7 +122,7 @@ enum class ET4CollisionChannel : uint8
 };
 
 UENUM()
-enum class ET4AnimInstance
+enum class ET4AnimInstance : uint8
 {
 	Human_Basic, // #38
 	Human_Paragon, // #131
@@ -136,8 +137,7 @@ enum class ET4AnimInstance
 enum ET4AnimationLayer // #71
 {
 	AnimLayer_Skill,
-	AnimLayer_Overlay,
-	AnimLayer_Default,
+	AnimLayer_System, // #131
 	AnimLayer_State,
 
 	AnimLayer_Nums
@@ -225,10 +225,9 @@ enum class ET4EditorAction : uint8
 {
 	ReloadAttributes, // #81
 
-	ReloadAnimSetSkill, // #81
-	ReloadAnimSetOverlay, // #81
-	ReloadAnimSetDefault, // #81
-	ReloadAnimSetState, // #131
+	ReloadAnimationSkillLayer, // #81
+	ReloadAnimationSystemLayer, // #131
+	ReloadAnimationStateLayer, // #131
 
 	ReloadObject, // #37
 

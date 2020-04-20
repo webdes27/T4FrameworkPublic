@@ -16,7 +16,8 @@
 // ET4ActionType::Teleport
 // ET4ActionType::Jump
 // ET4ActionType::Roll
-// ET4ActionType::Turn
+// ET4ActionType::Rotation
+// ET4ActionType::Turn // #131
 
 // ET4ActionType::MoveStop // #52
 // ET4ActionType::MoveSpeedSync // #52
@@ -222,7 +223,7 @@ public:
 };
 
 USTRUCT()
-struct T4ENGINE_API FT4TurnAction : public FT4ActionCodeCommand
+struct T4ENGINE_API FT4RotationAction : public FT4ActionCodeCommand
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -237,11 +238,40 @@ public:
 	float TargetYawAngle; // #40 : LockOn 에서 방향을 맞출 경우 사용 (only ET4TargetType::TargetCustom)
 
 public:
-	FT4TurnAction()
+	FT4RotationAction()
 		: FT4ActionCodeCommand(StaticActionType())
 		, TargetType(ET4TargetType::Default)
 		, RotationYawRate(0.0f)
 		, TargetYawAngle(0.0f)
+	{
+	}
+
+	static ET4ActionType StaticActionType() { return ET4ActionType::Rotation; }
+
+	FString ToString() const override
+	{
+		return FString(TEXT("RotationAction"));
+	}
+};
+
+// #131
+USTRUCT()
+struct T4ENGINE_API FT4TurnAction : public FT4ActionCodeCommand
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+	bool bTurnRight;
+
+	UPROPERTY(EditAnywhere)
+	float TurnRate;
+
+public:
+	FT4TurnAction()
+		: FT4ActionCodeCommand(StaticActionType())
+		, bTurnRight(false)
+		, TurnRate(500.0f)
 	{
 	}
 

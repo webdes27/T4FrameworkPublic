@@ -113,8 +113,9 @@ public:
 	void GetCameraInfoCached(FRotator& OutRotation, float& OutDistance) override; // #87
 	void SetCameraInfoCached(const FRotator& InRotation, const float& InDistance) override; // #87
 
-	bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FVector& OutStartPosition, FVector& OutStartDirection) override; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
-	bool GetMousePositionToWorldRay(FVector& OutStartPosition, FVector& OutStartDirection) override;
+	bool GetScreenCenterToWorldRay(const FVector2D& InScreenOffset, FRay& OutWorldRay) override; // #121 : Mode 에 따라 마우스 또는 화면 중앙(FPS)의 Ray 를 리턴
+	bool GetScreenPositionToWorldRay(const FVector2D& InScreenPosition, FRay& OutWorldRay) override; // #131
+	bool GetMousePositionToWorldRay(FRay& OutWorldRay) override;
 
 	void SetMouseCursorLock(bool bInLock) override;
 	bool IsMouseCursorLocked() const override { return bMouseCursorLocked; }

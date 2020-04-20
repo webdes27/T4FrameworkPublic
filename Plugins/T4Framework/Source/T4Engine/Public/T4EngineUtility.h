@@ -72,6 +72,7 @@ struct T4ENGINE_API FT4HalfAngleInterpolator
 {
 	FT4HalfAngleInterpolator()
 		: TranslateYawRate(0.0f)
+		, TranslateYawRateScale(1.0f)
 		, CurrentAngle(0.0f)
 		, GoalAngle(0.0f)
 	{
@@ -86,6 +87,11 @@ struct T4ENGINE_API FT4HalfAngleInterpolator
 
 	float GetGoalAngle() const { return GoalAngle; }
 	float GetCurrentAngle() const { return CurrentAngle; }
+
+	void SetTranslateYawRateScale(float InScale)
+	{
+		TranslateYawRateScale = InScale;
+	}
 
 	void SetGoalAndCurrentAngle(float InNewValue)
 	{
@@ -108,7 +114,7 @@ struct T4ENGINE_API FT4HalfAngleInterpolator
 		{
 			return GoalAngle;
 		}
-		const float UpdateYaqAngle = TranslateYawRate * InDeltaTimeSec;
+		const float UpdateYaqAngle = (TranslateYawRate * TranslateYawRateScale) * InDeltaTimeSec;
 		CurrentAngle = FMath::FixedTurn(CurrentAngle, GoalAngle, UpdateYaqAngle);
 		CurrentAngle = FMath::UnwindDegrees(CurrentAngle);
 		if (0.1f >= FMath::Abs(GoalAngle - CurrentAngle))
@@ -119,6 +125,7 @@ struct T4ENGINE_API FT4HalfAngleInterpolator
 	}
 
 	float TranslateYawRate;
+	float TranslateYawRateScale;
 	float CurrentAngle;
 	float GoalAngle;
 };

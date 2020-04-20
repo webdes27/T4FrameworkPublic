@@ -19,6 +19,7 @@
 // ET4ActionType::UnequipWeapon
 // ET4ActionType::Costume // #72
 // ET4ActionType::Hit // #76
+// ET4ActionType::Debuff // #131
 // ET4ActionType::Die // #76
 // ET4ActionType::Resurrect // #76
 
@@ -365,6 +366,44 @@ public:
 	virtual FString ToString() const override
 	{
 		return FString(TEXT("HitAction"));
+	}
+};
+
+// #131
+USTRUCT()
+struct T4ENGINE_API FT4DebuffAction : public FT4ActionCodeCommand
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+	FName ReactionName;
+
+	UPROPERTY(EditAnywhere)
+	FVector ShotDirection;
+
+	UPROPERTY(Transient)
+	bool bTransientPlay;
+
+public:
+	FT4DebuffAction()
+		: FT4ActionCodeCommand(StaticActionType())
+		, ReactionName(NAME_None)
+		, ShotDirection(FVector::ZeroVector)
+		, bTransientPlay(false)
+	{
+	}
+
+	static ET4ActionType StaticActionType() { return ET4ActionType::Debuff; }
+
+	bool Validate(FString& OutMsg) override
+	{
+		return true;
+	}
+
+	virtual FString ToString() const override
+	{
+		return FString(TEXT("DebuffAction"));
 	}
 };
 

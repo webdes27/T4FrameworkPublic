@@ -51,11 +51,11 @@ struct T4ASSET_API FT4EntityCharacterPhysicalData : public FT4EntityPhysicalData
 public:
 	FT4EntityCharacterPhysicalData()
 		: DefaultSpeed(500.0f) // #108
-		, CombatSpeed(300.0f) // #109
-		, CrouchSpeed(200.0f) // #109
+		, CombatSpeed(500.0f) // #109
+		, SprintSpeed(1000.0f) // #131
 		, JumpZVelocity(550.0f) // #46
 		, RollZVelocity(250.0f) // #46
-		, RotationYawRate(520.0f)
+		, RotationYawRate(300.0f)
 	{
 		BoundType = ET4EntityBoundType::Capsule; // #126
 	}
@@ -68,10 +68,10 @@ public:
 	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1000"))
 	float CombatSpeed; // #109
 
-	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1000"))
-	float CrouchSpeed; // #109
+	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1500"))
+	float SprintSpeed; // #131
 
-	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1000"))
+	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "2000"))
 	float JumpZVelocity;
 
 	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "5.0", ClampMax = "500"))
@@ -290,7 +290,8 @@ struct T4ASSET_API FT4EntityCharacterReactionPhysicsStartData
 
 public:
 	FT4EntityCharacterReactionPhysicsStartData()
-		: DelayTimeSec(0.0f)
+		: bUsePhysicsStart(false)
+		, DelayTimeSec(0.0f)
 		, ImpulseMainActionPoint(NAME_None)
 		, ImpulseSubActionPoint(NAME_None)
 		, ImpulsePower(0.0f)
@@ -300,28 +301,31 @@ public:
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	bool bUsePhysicsStart;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	float DelayTimeSec;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	FName ImpulseMainActionPoint;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	FName ImpulseSubActionPoint;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	float ImpulsePower;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	FVector CenterOfMass;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	float MassOverrideInKg;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	bool bSimulateBodiesBelow;
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
 	FT4EntityCharacterReactionPhysicsBlendData BlendData;
 };
 
@@ -333,11 +337,15 @@ struct T4ASSET_API FT4EntityCharacterReactionPhysicsStopData
 
 public:
 	FT4EntityCharacterReactionPhysicsStopData()
-		: DelayTimeSec(0.0f)
+		: bUsePhysicsStop(false)
+		, DelayTimeSec(0.0f)
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	bool bUsePhysicsStop;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStop"))
 	float DelayTimeSec;
 };
 
@@ -349,28 +357,25 @@ struct T4ASSET_API FT4EntityCharacterReactionAnimationData
 
 public:
 	FT4EntityCharacterReactionAnimationData()
-		: DelayTimeSec(0.0f)
-		, StartAnimSectionName(NAME_None)
-		, LoopAnimSectionName(NAME_None)
-		, BlendInTimeSec(T4Const_DefaultAnimBlendTimeSec)
-		, BlendOutTimeSec(T4Const_DefaultAnimBlendTimeSec)
+		: bUseAnimation(false)
+		, DelayTimeSec(0.0f)
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category = Property)
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	bool bUseAnimation;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
 	float DelayTimeSec;
 
-	UPROPERTY(EditAnywhere, Category = Property)
-	FName StartAnimSectionName; // only locomotion layer
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
+	FT4EntityPlayAnimationData StartAnimationData;
 
-	UPROPERTY(EditAnywhere, Category = Property)
-	FName LoopAnimSectionName; // only locomotion layer
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
+	FT4EntityPlayAnimationData LoopAnimationData;
 
-	UPROPERTY(EditAnywhere, Category = Property)
-	float BlendInTimeSec;
-
-	UPROPERTY(EditAnywhere, Category = Property)
-	float BlendOutTimeSec;
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
+	FT4EntityPlayAnimationData LoopEndAnimationData;
 };
 
 // #76
@@ -381,12 +386,9 @@ struct T4ASSET_API FT4EntityCharacterReactionData
 
 public:
 	FT4EntityCharacterReactionData()
-		: ReactionName(NAME_None)
-		, ReactionType(ET4EntityReactionType::None)
+		: ReactionType(ET4EntityReactionType::None)
+		, ReactionName(NAME_None)
 		, MaxPlayTimeSec(0.0f)
-		, bUsePhysicsStart(false)
-		, bUsePhysicsStop(false)
-		, bUseAnimation(false)
 #if WITH_EDITOR
 		, TestShotDirection(FVector::UpVector) // #76
 #endif
@@ -404,31 +406,22 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	FName ReactionName;
+	ET4EntityReactionType ReactionType;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	ET4EntityReactionType ReactionType;
+	FName ReactionName;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float MaxPlayTimeSec;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	bool bUsePhysicsStart;
+	FT4EntityCharacterReactionAnimationData AnimationData;
 
-	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStart"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FT4EntityCharacterReactionPhysicsStartData PhysicsStartData;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	bool bUsePhysicsStop;
-
-	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUsePhysicsStop"))
 	FT4EntityCharacterReactionPhysicsStopData PhysicsStopData;
-
-	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	bool bUseAnimation;
-
-	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
-	FT4EntityCharacterReactionAnimationData AnimationData;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
@@ -470,6 +463,48 @@ public:
 	ET4EntityType GetEntityType() const override { return ET4EntityType::Character; }
 
 #if WITH_EDITOR
+	virtual bool IsSpawnable() override // #131
+	{ 
+		if (SkeletonAsset.IsNull())
+		{
+			return false;
+		}
+		else if (ET4EntityCharacterMeshType::None == MeshType)
+		{
+			return false;
+		}
+		else if (ET4EntityCharacterMeshType::FullBody == MeshType)
+		{
+			if (FullBodyMeshData.DefaultSkinName == NAME_None)
+			{
+				return false;
+			}
+			else if (0 >= FullBodyMeshData.SkinDatas.Num())
+			{
+				return false;
+			}
+			const FT4EntityCharacterFullBodySkinData* FullbodySkinData = FullBodyMeshData.SkinDatas.FindByKey(
+				FullBodyMeshData.DefaultSkinName
+			);
+			if (nullptr == FullbodySkinData)
+			{
+				return false;
+			}
+			if (FullbodySkinData->SkeletalMeshAsset.IsNull())
+			{
+				return false;
+			}
+		}
+		else if (ET4EntityCharacterMeshType::Composite == MeshType)
+		{
+			if (0 >= CopmpositeMeshData.DefaultPartsDatas.Num())
+			{
+				return false;
+			}
+		}
+		return true; 
+	} 
+
 	virtual USkeletalMesh* GetPrimarySkeletalMeshAsset() const override // #81
 	{
 		if (ET4EntityCharacterMeshType::FullBody != MeshType)
