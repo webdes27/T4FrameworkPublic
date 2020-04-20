@@ -4,7 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
-  - **[2020.04.20] [M6] Copying //Private to //Deploy (private commit 1af63fb)**
+  - **[2020.04.20] [M6] Copying //Private to //Deploy (private commit 14a8010)**
+	- #131 [버그수정] Paragon 캐릭터의 Animing 처리가 동작하지 않던 문제 수정
     - #131 [기능추가] Entity Editor, Paragon 점프, 회전, 이동 관련 애니메이션 설정 및 적용
     - #131 [버그수정] Entity Editor, JumpZVelocity 프로퍼티 수정이 반영되지 않던 문제 수정
   - **[2020.04.09] [M6] Copying //Private to //Deploy (private commit ca70105)**
