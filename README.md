@@ -39,7 +39,7 @@
   - Alt + 1~2 : Player Spawn (T4GameBuiltin_Settings : PlayerDataRowName_Key*)
   - Ctrl + 1~7 : NPC Spawn (T4GameBuiltin_Settings : NPCDataRowName_Key*)
   - Del : Control Player Despawn
-  - SpaceBar : Jump or Roll
+  - SpaceBar : Jump
   - Left MouseButton Pressed : Use Skill
   - Right MouseButton Hold : Camera Rotation
   - Ctrl + Right MouseButton Pressed : Change Player Object
