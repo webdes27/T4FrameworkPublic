@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "T4GameTableItemBase.h" // #48
-#include "T4GameTableWeapon.generated.h"
+#include "T4ContentTableItemBase.h" // #48
+#include "T4ContentTableWeapon.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
@@ -31,7 +31,7 @@ public:
 };
 
 USTRUCT()
-struct FT4GameWeaponTableRow : public FT4GameItemTableRowBase
+struct FT4ContentWeaponTableRow : public FT4ContentItemTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -60,7 +60,7 @@ public:
 	TArray<FT4GameWeaponEntityData> SubEntityDatas;
 
 public:
-	FT4GameWeaponTableRow()
+	FT4ContentWeaponTableRow()
 		: AttackRange(0.0f)
 	{
 	}

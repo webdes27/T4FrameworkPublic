@@ -5,17 +5,17 @@
 #include "CoreMinimal.h"
 
 #include "Public/T4GameDataTypes.h" // #48
-#include "Classes/DataTable/T4GameTableMaster.h" // #118
-#include "Classes/DataTable/T4GameTableWorld.h" // #27
-#include "Classes/DataTable/T4GameTablePlayer.h" // #27
-#include "Classes/DataTable/T4GameTableNPC.h" // #31
-#include "Classes/DataTable/T4GameTableWeapon.h" // #27, #48
-#include "Classes/DataTable/T4GameTableCostume.h" // #27, #48
-#include "Classes/DataTable/T4GameTableSkill.h" // #25
-#include "Classes/DataTable/T4GameTableSkillSet.h" // #50
-#include "Classes/DataTable/T4GameTableEffect.h" // #25
-#include "Classes/DataTable/T4GameTableStat.h" // #114
-#include "Classes/DataTable/T4GameTableExperience.h" // #114
+#include "Classes/Table/T4ContentTableMaster.h" // #118
+#include "Classes/Table/T4ContentTableWorld.h" // #27
+#include "Classes/Table/T4ContentTablePlayer.h" // #27
+#include "Classes/Table/T4ContentTableNPC.h" // #31
+#include "Classes/Table/T4ContentTableWeapon.h" // #27, #48
+#include "Classes/Table/T4ContentTableCostume.h" // #27, #48
+#include "Classes/Table/T4ContentTableSkill.h" // #25
+#include "Classes/Table/T4ContentTableSkillSet.h" // #50
+#include "Classes/Table/T4ContentTableEffect.h" // #25
+#include "Classes/Table/T4ContentTableStat.h" // #114
+#include "Classes/Table/T4ContentTableExperience.h" // #114
 
 #if WITH_EDITOR
 #include "UObject/StructOnScope.h" // #118 : Visual Studio Code Link
@@ -93,7 +93,7 @@ struct T4GAMEPLAY_API FT4GameMasterData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameMasterTableRow RawData; // #27
+	FT4ContentMasterTableRow RawData; // #27
 };
 
 struct T4GAMEPLAY_API FT4GameWorldData : public FT4GameDataBase
@@ -113,7 +113,7 @@ struct T4GAMEPLAY_API FT4GameWorldData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameWorldTableRow RawData; // #27
+	FT4ContentWorldTableRow RawData; // #27
 };
 
 struct T4GAMEPLAY_API FT4GamePlayerData : public FT4GameDataBase
@@ -133,7 +133,7 @@ struct T4GAMEPLAY_API FT4GamePlayerData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GamePlayerTableRow RawData; // #27
+	FT4ContentPlayerTableRow RawData; // #27
 };
 
 struct T4GAMEPLAY_API FT4GameNPCData : public FT4GameDataBase
@@ -153,7 +153,7 @@ struct T4GAMEPLAY_API FT4GameNPCData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameNPCTableRow RawData; // #31
+	FT4ContentNPCTableRow RawData; // #31
 };
 
 struct T4GAMEPLAY_API FT4GameWeaponData : public FT4GameDataBase
@@ -173,7 +173,7 @@ struct T4GAMEPLAY_API FT4GameWeaponData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameWeaponTableRow RawData; // #27, #48
+	FT4ContentWeaponTableRow RawData; // #27, #48
 };
 
 struct T4GAMEPLAY_API FT4GameCostumeData : public FT4GameDataBase
@@ -193,7 +193,7 @@ struct T4GAMEPLAY_API FT4GameCostumeData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameCostumeTableRow RawData; // #27, #48
+	FT4ContentCostumeTableRow RawData; // #27, #48
 };
 
 struct T4GAMEPLAY_API FT4GameSkillSetData : public FT4GameDataBase
@@ -213,7 +213,7 @@ struct T4GAMEPLAY_API FT4GameSkillSetData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameSkillSetTableRow RawData; // #27
+	FT4ContentSkillSetTableRow RawData; // #27
 };
 
 struct T4GAMEPLAY_API FT4GameSkillData : public FT4GameDataBase
@@ -233,7 +233,7 @@ struct T4GAMEPLAY_API FT4GameSkillData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameSkillTableRow RawData; // #27
+	FT4ContentSkillTableRow RawData; // #27
 };
 
 struct T4GAMEPLAY_API FT4GameEffectData : public FT4GameDataBase
@@ -253,7 +253,7 @@ struct T4GAMEPLAY_API FT4GameEffectData : public FT4GameDataBase
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameEffectTableRow RawData; // #27
+	FT4ContentEffectTableRow RawData; // #27
 };
 
 #if (WITH_EDITOR || WITH_SERVER_CODE)
@@ -274,7 +274,7 @@ struct T4GAMEPLAY_API FT4GameStatData : public FT4GameDataBase // #114
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameStatTableRow RawData; // #27
+	FT4ContentStatTableRow RawData; // #27
 };
 
 struct T4GAMEPLAY_API FT4GameExperienceData : public FT4GameDataBase // #114
@@ -294,7 +294,7 @@ struct T4GAMEPLAY_API FT4GameExperienceData : public FT4GameDataBase // #114
 	DEFINE_GAME_DATA_COMMON_METHOD()
 #endif
 
-	FT4GameExperienceTableRow RawData; // #27
+	FT4ContentExperienceTableRow RawData; // #27
 };
 #endif
 

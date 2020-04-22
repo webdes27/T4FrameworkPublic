@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 
+#include "T4Engine/Public/Action/T4ActionKey.h"
+
 /**
   * #114
  */

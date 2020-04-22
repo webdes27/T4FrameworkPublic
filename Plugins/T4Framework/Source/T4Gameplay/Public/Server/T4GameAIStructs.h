@@ -18,7 +18,7 @@ struct FT4GameAIStat // #114
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// FT4GameStatTableRow
+	// FT4ContentStatTableRow
 	// Total Stat = InitializeNPCStatDataID + MainWeaponDataID (Stat)
 
 	UPROPERTY(VisibleAnywhere)

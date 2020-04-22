@@ -8,13 +8,13 @@
 
 #include "Classes/Engine/DataTable.h"
 
-#include "T4GameTableBase.generated.h"
+#include "T4ContentTableBase.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
  */
 USTRUCT()
-struct FT4GameTableBase : public FTableRowBase
+struct FT4ContentTableBase : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -31,7 +31,7 @@ public:
 #endif
 
 public:
-	FT4GameTableBase()
+	FT4ContentTableBase()
 #if WITH_EDITORONLY_DATA
 		: ParentRowName(NAME_None) // #122
 		, FolderName(NAME_None) // #122

@@ -637,9 +637,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	float StartTimeSec; // FrameNumber 를 Sec 으로 변환
 
-	UPROPERTY()
-	float DelayTimeSec_DEPRECATED; // FrameNumber 를 Sec 으로 변환
-
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4BuiltInEasing EasingCurve; // #102 : Droplist 선택시 PropertyChanged event 가 와서 변경을 못하는 문제가 있어 하드코딩한 처리가 있음. 이름으로 검색!!
 

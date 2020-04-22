@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Classes/Datatable/T4GameTableBase.h"
+#include "Classes/Table/T4ContentTableBase.h"
 
 #include "Public/T4GameTypes.h" // #116
 
-#include "T4GameTableSkillSet.generated.h"
+#include "T4ContentTableSkillSet.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
@@ -15,7 +15,7 @@
 class UT4ActionSetAsset;
 
 USTRUCT()
-struct FT4GameSkillSetTableRow : public FT4GameTableBase
+struct FT4ContentSkillSetTableRow : public FT4ContentTableBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -41,7 +41,7 @@ public:
 	FT4GameSkillDataID FinishSkillDataID;
 
 public:
-	FT4GameSkillSetTableRow()
+	FT4ContentSkillSetTableRow()
 		: UseType(ET4GameSkillSetUseType::Primary)
 	{
 	}

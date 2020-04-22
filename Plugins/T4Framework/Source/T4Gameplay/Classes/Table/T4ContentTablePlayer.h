@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 
 #include "Public/T4GameDefinitions.h"
-#include "Classes/Datatable/T4GameTableBase.h"
+#include "Classes/Table/T4ContentTableBase.h"
 
-#include "T4GameTablePlayer.generated.h"
+#include "T4ContentTablePlayer.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
@@ -39,7 +39,7 @@ public:
 };
 
 USTRUCT()
-struct FT4GamePlayerTableRow : public FT4GameTableBase
+struct FT4ContentPlayerTableRow : public FT4ContentTableBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -65,8 +65,9 @@ public:
 	TSoftObjectPtr<UT4CharacterEntityAsset> EntityAsset;
 
 public:
-	FT4GamePlayerTableRow()
+	FT4ContentPlayerTableRow()
 		: RaceName(T4Const_DefaultPlayerRaceName) // #104, #114
+		, InitializeLevel(ET4GameStatLevel::Level_1)
 	{
 	}
 };

@@ -3,17 +3,17 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Classes/Datatable/T4GameTableBase.h"
+#include "Classes/Table/T4ContentTableBase.h"
 
 #include "T4Framework/Public/T4FrameworkGameplay.h" // #68
 
-#include "T4GameTableStat.generated.h"
+#include "T4ContentTableStat.generated.h"
 
 /**
   * #114
  */
 USTRUCT()
-struct FT4GameStatTableRow : public FT4GameTableBase
+struct FT4ContentStatTableRow : public FT4ContentTableBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -49,7 +49,7 @@ public:
 	float Result_EXP; // #114 : 경험치
 
 public:
-	FT4GameStatTableRow()
+	FT4ContentStatTableRow()
 		: StatCategory(ET4GameStatCategory::None) // #114 : 사용처를 명시한다.
 		, Health_Point(100.0f)
 		, Mana_Point(100.0f)

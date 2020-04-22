@@ -3,15 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Classes/Datatable/T4GameTableBase.h"
+#include "Classes/Table/T4ContentTableBase.h"
 
-#include "T4GameTableMaster.generated.h"
+#include "T4ContentTableMaster.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
  */
 USTRUCT()
-struct FT4GameMasterTableRow : public FT4GameTableBase
+struct FT4ContentMasterTableRow : public FT4ContentTableBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -28,7 +28,7 @@ public:
 	FGuid Guid; // #118 : Master 는 필요없다.
 
 public:
-	FT4GameMasterTableRow()
+	FT4ContentMasterTableRow()
 		: Type(ET4GameDataType::Master)
 	{
 	}

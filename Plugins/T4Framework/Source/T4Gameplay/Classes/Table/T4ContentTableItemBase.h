@@ -3,16 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Classes/Datatable/T4GameTableBase.h"
+#include "Classes/Table/T4ContentTableBase.h"
 
-#include "T4GameTableItemBase.generated.h"
+#include "T4ContentTableItemBase.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
  */
 class UBehaviorTree;
 USTRUCT()
-struct FT4GameItemTableRowBase : public FT4GameTableBase
+struct FT4ContentItemTableRowBase : public FT4ContentTableBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -21,7 +21,7 @@ public:
 	TSoftObjectPtr<UBehaviorTree> BehaviorTreePath; // DropItem
 
 public:
-	FT4GameItemTableRowBase()
+	FT4ContentItemTableRowBase()
 	{
 	}
 };

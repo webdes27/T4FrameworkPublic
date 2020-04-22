@@ -140,15 +140,6 @@ public:
 	{
 	}
 
-	UPROPERTY()
-	TSoftObjectPtr<USkeletalMesh> SkeletalMeshAsset_DEPRECATED;
-
-	UPROPERTY()
-	FT4EntityMaterialData OverrideMaterialData_DEPRECATED; // #80
-
-	UPROPERTY()
-	TSoftObjectPtr<UPhysicsAsset> OverridePhysicsAsset_DEPRECATED; // #76 : Fullbody SK 라면 기본 세팅된 PhsycisAsset 을 그대로 사용하고, Override 할 경우만 재설정한다.
-
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName DefaultSkinName; // #130
 
@@ -200,9 +191,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4EntityCharacterModularType ModularType; // #72
 
-	UPROPERTY()
-	TMap<FName, FT4EntityCharacterCompositePartMeshData> DefaultPartsData_DEPRECATED; // #37, #124
-
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TArray<FT4EntityCharacterCompositePartMeshData> DefaultPartsDatas; // #37, #124
 };
@@ -250,9 +238,6 @@ public:
 	FT4EntityCharacterStanceSetData()
 	{
 	}
-
-	UPROPERTY()
-	TMap<FName, FT4EntityCharacterStanceData> StanceMap_DEPRECATED; // #124; // #39, #73
 
 	UPROPERTY(EditAnywhere, Category = Asset)
 	TArray<FT4EntityCharacterStanceData> StanceDatas; // #39, #73, #124
@@ -438,9 +423,6 @@ public:
 	FT4EntityCharacterReactionSetData()
 	{
 	}
-
-	UPROPERTY()
-	TMap<FName, FT4EntityCharacterReactionData> ReactionMap_DEPRECATED; // #124;
 
 	UPROPERTY(EditAnywhere)
 	TArray<FT4EntityCharacterReactionData> ReactionDatas; // #124;

@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "T4GameTableItemBase.h" // #48
-#include "T4GameTableCostume.generated.h"
+#include "T4ContentTableItemBase.h" // #48
+#include "T4ContentTableCostume.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
@@ -12,7 +12,7 @@
 class UT4CostumeEntityAsset;
 
 USTRUCT()
-struct FT4GameCostumeTableRow : public FT4GameItemTableRowBase
+struct FT4ContentCostumeTableRow : public FT4ContentItemTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -32,7 +32,7 @@ public:
 	FName ExchangePartName;
 
 public:
-	FT4GameCostumeTableRow()
+	FT4ContentCostumeTableRow()
 	{
 	}
 };

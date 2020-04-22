@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Classes/Datatable/T4GameTableBase.h"
+#include "Classes/Table/T4ContentTableBase.h"
 
 #include "T4Framework/Public/T4FrameworkGameplay.h" // #68
 
-#include "T4GameTableEffect.generated.h"
+#include "T4ContentTableEffect.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
@@ -15,7 +15,7 @@
 class UT4ActionSetAsset;
 
 USTRUCT()
-struct FT4GameEffectTableRow : public FT4GameTableBase
+struct FT4ContentEffectTableRow : public FT4ContentTableBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -45,7 +45,7 @@ public:
 	TSoftObjectPtr<UT4ActionSetAsset> DefaultActionSetAsset;
 
 public:
-	FT4GameEffectTableRow()
+	FT4ContentEffectTableRow()
 		: EffectType(ET4GameplayEffectType::Direct)
 		, HitDelayTimeSec(0.0f)
 		, AreaRange(0.0f)

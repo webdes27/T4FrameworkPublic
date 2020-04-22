@@ -3,14 +3,14 @@
 	"Version": 1,
 	"VersionName": "0.9",
 	"EngineVersion": "4.24.0",
-	"FriendlyName": "T4Framework",
-	"Description": "",
+	"FriendlyName": "T4Framework Plugin",
+	"Description": "MMO Action RPG Framework for UE4",
 	"Category": "",
-	"CreatedBy": "Noh SoonBo",
+	"CreatedBy": "SoonBo Noh",
 	"CreatedByURL": "https://tech4labs.com",
 	"DocsURL": "https://github.com/Tech4Labs/T4FrameworkPublic/wiki",
 	"MarketplaceURL": "",
-	"SupportURL": "https://github.com/Tech4Labs/T4Framework",
+	"SupportURL": "https://github.com/Tech4Labs/T4FrameworkPublic",
 	"EnabledByDefault": false,
 	"CanContainContent": true,
 	"IsBetaVersion": false,
@@ -33,6 +33,11 @@
 		},
 		{
 			"Name": "T4Gameplay",
+			"Type": "Runtime",
+			"LoadingPhase": "PostDefault"
+		},
+		{
+			"Name": "T4RehearsalCommandlet",
 			"Type": "Runtime",
 			"LoadingPhase": "PostDefault"
 		},

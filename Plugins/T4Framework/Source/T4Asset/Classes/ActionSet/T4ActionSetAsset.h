@@ -283,9 +283,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = Default)
 	float TotalPlayTimeSec; // #56
 
-	UPROPERTY()
-	float MaxPlayTimeSec_DEPRECATED; // #56
-
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor, AssetRegistrySearchable)
 	TSoftObjectPtr<UT4EntityAsset> PreviewEntityAsset;

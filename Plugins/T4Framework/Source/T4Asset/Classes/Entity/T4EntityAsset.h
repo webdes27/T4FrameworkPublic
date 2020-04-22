@@ -60,14 +60,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	ET4EntityBoundType BoundType; // #126
 
-	UPROPERTY()
-	float CapsuleHeight_DEPRECATED; // #126
-
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", ClampMax = "1000"))
 	float BoundHeight; // #126
-
-	UPROPERTY()
-	float CapsuleRadius_DEPRECATED; // #126
 
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "10.0", ClampMax = "500"))
 	float BoundRadius; // #126

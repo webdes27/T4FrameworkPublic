@@ -3,9 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Classes/Datatable/T4GameTableBase.h"
+#include "Classes/Table/T4ContentTableBase.h"
 
-#include "T4GameTableWorld.generated.h"
+#include "T4ContentTableWorld.generated.h"
 
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
@@ -13,7 +13,7 @@
 class UT4MapEntityAsset;
 
 USTRUCT()
-struct FT4GameWorldTableRow : public FT4GameTableBase
+struct FT4ContentWorldTableRow : public FT4ContentTableBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -27,7 +27,7 @@ public:
 	TSoftObjectPtr<UT4MapEntityAsset> EntityAsset;
 
 public:
-	FT4GameWorldTableRow()
+	FT4ContentWorldTableRow()
 	{
 	}
 };

@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Classes/Datatable/T4GameTableBase.h"
+#include "Classes/Table/T4ContentTableBase.h"
 
 #include "T4Framework/Public/T4FrameworkGameplay.h" // #68
 
-#include "T4GameTableExperience.generated.h"
+#include "T4ContentTableExperience.generated.h"
 
 /**
   * #114
@@ -15,7 +15,7 @@
 class UT4ActionSetAsset;
 
 USTRUCT()
-struct FT4GameExperienceTableRow : public FT4GameTableBase
+struct FT4ContentExperienceTableRow : public FT4ContentTableBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -39,7 +39,7 @@ public:
 	float Total_Required_EXP; // #114 : 경험치, 절대적, Total Required EXP
 
 public:
-	FT4GameExperienceTableRow()
+	FT4ContentExperienceTableRow()
 		: StatCategory(ET4GameStatCategory::None) // #114 : 사용처를 명시한다.
 		, StatLevel(ET4GameStatLevel::Max)
 		, Required_EXP(0.0f)

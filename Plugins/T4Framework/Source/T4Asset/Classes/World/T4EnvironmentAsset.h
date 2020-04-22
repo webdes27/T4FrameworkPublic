@@ -327,9 +327,6 @@ public:
 	{
 	}
 
-	UPROPERTY()
-	TMap<FName, FT4EnvTimeTagData> TimeTagMap_DEPRECATED; // #123
-
 	UPROPERTY(EditAnywhere)
 	TArray<FT4EnvTimeTagData> TimeTagDatas; // #123
 };

@@ -73,6 +73,14 @@
 			"Type": "SymbolFile"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/T4Framework/Binaries/Win64/UE4Editor-T4RehearsalCommandlet.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/T4Framework/Binaries/Win64/UE4Editor-T4RehearsalCommandlet.pdb",
+			"Type": "SymbolFile"
+		},
+		{
 			"Path": "$(ProjectDir)/Plugins/T4Framework/Binaries/Win64/UE4Editor-T4RehearsalEditor.dll",
 			"Type": "DynamicLibrary"
 		},
