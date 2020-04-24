@@ -15,6 +15,7 @@ namespace UnrealBuildTool.Rules
 					"CoreUObject",
 					"Engine",
 					"UnrealEd",
+					"SourceControl",
 				});
 
 			PrivateIncludePaths.AddRange(

@@ -53,7 +53,7 @@ public:
 		: DefaultSpeed(500.0f) // #108
 		, CombatSpeed(500.0f) // #109
 		, SprintSpeed(1000.0f) // #131
-		, JumpZVelocity(550.0f) // #46
+		, JumpZVelocity(700.0f) // #46
 		, RollZVelocity(250.0f) // #46
 		, RotationYawRate(300.0f)
 	{

@@ -4,9 +4,14 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.04.24] [M6] Copying //Private to //Deploy (private commit 5adb47c)**
+	- #129 [기능추가] T4RehearsalCommandlet 내 T4ParagonMigration Commandlet 추가
+	  - Argument: -run=T4ParagonMigration -hero=All -SourcePath=</Game/...>-OutputPath=</Game/...>
+	- #129 [기능개선] Entity Editor, Multi Entity 선택 후 DragDrop 시 스폰 위치 조정 처리 추가
+	- #131 [버그수정] Entity Editor, DropListView 에서 일부 Item 이 목록이 출력되지 않던 문제 수정
   - **[2020.04.22] [M6] Copying //Private to //Deploy (private commit 5adb47c)**
 	- #129 [기능추가] T4RehearsalCommandlet 모듈 및 T4Asset Resave Commandlet 추가
-	  - Argument : -run=T4AssetResave -proc=All or T4AssetClassName
+	  - Argument: -run=T4AssetResave -proc=All or T4AssetClassName
   - **[2020.04.21] [M6] Copying //Private to //Deploy (private commit c5f82a0)**
 	- #129 [기능개선] T4FrameworkExample.uproject 를 T4FrameworkBuiltin.uproject 로 대체
   - **[2020.04.20] [M6] Copying //Private to //Deploy (private commit 14a8010)**

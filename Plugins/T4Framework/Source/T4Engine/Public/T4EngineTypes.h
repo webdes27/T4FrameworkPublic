@@ -134,15 +134,6 @@ enum class ET4AnimInstance : uint8
 	None
 };
 
-enum ET4AnimationLayer // #71
-{
-	AnimLayer_Skill,
-	AnimLayer_System, // #131
-	AnimLayer_State,
-
-	AnimLayer_Nums
-};
-
 enum ET4AnimStatePriority
 {
 	AnimPriority_High,
