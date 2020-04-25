@@ -1,4 +1,4 @@
-# T4Framework : MMO Action RPG Framework for UE4
+# T4Framework: Open-world MMO/MMORPG Framework for UE4
 
 ![Epic_MegaGrants_Recipient](./Epic_MegaGrants_Recipient.png)
 
