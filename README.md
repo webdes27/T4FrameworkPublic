@@ -1,6 +1,6 @@
 # T4Framework: Open-world MMO/MMORPG Framework for UE4
 
-![Epic_MegaGrants_Recipient](./Epic_MegaGrants_Recipient.png)
+![Epic_MegaGrants_Recipient](./T4Framework_Logo_04_26.png)
 
 - **Supported Engine Versions**
   - 4.24 (Release Version : 4.24.3)
