@@ -14,8 +14,6 @@ namespace UnrealBuildTool.Rules
 					"Core",
 					"CoreUObject",
 					"Engine",
-					"UnrealEd",
-					"SourceControl",
 				});
 
 			PrivateIncludePaths.AddRange(
@@ -33,6 +31,12 @@ namespace UnrealBuildTool.Rules
 					"T4Gameplay",
 				}
 			);
+
+			if (Target.bBuildEditor == true)
+			{
+				PrivateDependencyModuleNames.Add("UnrealEd");
+				PrivateDependencyModuleNames.Add("SourceControl");
+			}
 		}
 	}
 }

@@ -35,5 +35,7 @@ enum class ET4ControlModeType : uint8
 	ShoulderView, // #40
 	FPS, // #121
 
+	Free, // #133
+
 	None UMETA(Hidden),
 };

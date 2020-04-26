@@ -96,6 +96,8 @@ enum class ET4CameraType : uint8
 	ShoulderView, // #40
 	FPS, // #121
 
+	Free, // #133
+
 	Editor 	UMETA(Hidden),
 	None 	UMETA(Hidden),
 };

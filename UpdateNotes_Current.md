@@ -1,9 +1,14 @@
-# T4Framework : MMO Action RPG Framework for UE4
+# T4Framework: Open-world MMO/MMORPG Framework for UE4
 ``` 
 Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.04.26] [M6] Copying //Private to //Deploy (private commit f8a54cd)**
+    - #133 [기능추가] 디버깅용 Free Camera 추가
+	  - '[' or ']' Key : TPS <=> ShoulderView <=> FPS <=> Free
+	- #129 [버그수정] Rehearsal Editor, 일부 Details 창을 닫은 후 액션을 취할 경우 발생하는 크래시 수정
+	- #124 [버그수정] Rehearsal Editor, POI Item Remove 가 동작하지 않던 문제 수정
   - **[2020.04.24] [M6] Copying //Private to //Deploy (private commit 5adb47c)**
 	- #129 [기능추가] T4RehearsalCommandlet 내 T4ParagonMigration Commandlet 추가
 	  - Argument: -run=T4ParagonMigration -hero=All -SourcePath=</Game/...>-OutputPath=</Game/...>

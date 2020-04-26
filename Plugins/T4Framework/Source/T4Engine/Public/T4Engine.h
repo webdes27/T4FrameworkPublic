@@ -400,7 +400,7 @@ public:
 	virtual APlayerCameraManager* GetPlayerCameraManager() const = 0; // #114
 
 	virtual bool HasPlayerActor() const = 0;
-	virtual IT4WorldActor* GetPlayerActor() const = 0;
+	virtual IT4WorldActor* GetPlayerActor() const = 0; // #133 : Free Camera 일 경우 nullptr 이 리턴됨에 유의!! (FreeCam 은 툴 전용이다)
 	virtual bool ComparePlayerActor(const FT4ActorID& InActorID) const = 0;
 	virtual bool ComparePlayerActor(IT4WorldActor* InWorldActor) const = 0;
 

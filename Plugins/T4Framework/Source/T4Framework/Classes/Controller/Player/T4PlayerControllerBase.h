@@ -67,6 +67,11 @@ public:
 	bool SetObserverActor(const FT4ActorID& InNewObserverID) override; // #52
 	void ClearObserverActor() override; // #52
 
+#if WITH_EDITOR
+	bool IsFreeCameraModeEnabled() const override { return bFreeCameraModeEnabled; } // #133
+	void SetFreeCameraMode(bool bInEnable) override; // #133
+#endif
+
 	bool HasAction(const FT4ActionKey& InActionKey) const override; // #20
 	bool IsPlayingAction(const FT4ActionKey& InActionKey) const override; // #20 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
@@ -92,8 +97,12 @@ public:
 	FViewport* GetViewport() const override; // #68
 
 	FRotator GetViewControlRotation() const override;
-
+	
+#if WITH_EDITOR
+	ET4CameraType GetCameraType() const override { return (bFreeCameraModeEnabled) ? ET4CameraType::Free : CameraTypeSelected; } // #40
+#else
 	ET4CameraType GetCameraType() const override { return CameraTypeSelected; } // #40
+#endif
 	float GetCameraFOV() const override { return CameraFOV; } // #40
 	FVector GetCameraLocation() const override;
 	FRotator GetCameraRotation() const override;
@@ -172,6 +181,8 @@ private:
 
 	TWeakObjectPtr<APawn> CachedDefaultPawn;
 
+	ET4InputMode InputModeSelected; // #133
+
 	bool bCameraTypeDirty; // #40
 	ET4CameraType CameraTypeSelected; // #40
 
@@ -196,6 +207,8 @@ private:
 	UT4CameraComponent* CameraComponent;
 
 #if WITH_EDITOR
+	bool bFreeCameraModeEnabled; // #133
+	ET4CameraType PrevCameraTypeSelected; // #133
 	IT4EditorViewportClient* EditorViewportClient; // #30
 	FT4OnViewTargetChanged OnViewTargetChanged; // #39
 #endif

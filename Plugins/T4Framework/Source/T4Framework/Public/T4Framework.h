@@ -72,6 +72,11 @@ public:
 	virtual bool SetObserverActor(const FT4ActorID& InNewObserverID) = 0; // #52
 	virtual void ClearObserverActor() = 0; // #52
 
+#if WITH_EDITOR
+	virtual bool IsFreeCameraModeEnabled() const = 0; // #133
+	virtual void SetFreeCameraMode(bool bInEnable) = 0; // #133
+#endif
+
 	virtual bool HasAction(const FT4ActionKey& InActionKey) const = 0; // #102 : 존재만 해도 true 리턴
 	virtual bool IsPlayingAction(const FT4ActionKey& InActionKey) const = 0; // #20 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
@@ -171,7 +176,6 @@ public:
 	virtual void OnPlayerSpawned(IT4PlayerController* InOwnerPC) = 0;
 
 	virtual void OnProcess(float InDeltaTime) = 0;
-	virtual void OnDrawHUD(FViewport* InViewport, FCanvas* InCanvas, FT4HUDDrawInfo& InOutDrawInfo) = 0; // #68 : Only Client
 
 	virtual void ChangeControlMode(ET4ControlModeType InControlModeType) = 0; // #40, #126
 
@@ -182,8 +186,8 @@ public:
 	virtual IT4EditorGameData* GetEditorGameData() = 0; // #60
 	virtual IT4EditorGameplayCommand* GetEditorGameplayCommand() = 0; // #114
 
-	virtual void SetInputControlLock(bool bLock) = 0; // #30
-	virtual void SetPlayerChangeDisable(bool bDisable) = 0; // #72
+	virtual void SetLockInputControl(bool bLock) = 0; // #30
+	virtual void SetDisableChangePlayer(bool bDisable) = 0; // #72
 #endif
 };
 
@@ -212,6 +216,8 @@ public:
 	virtual void RegisterGameplayInstance(IT4GameplayInstance* InLayerInstance) = 0; // #42
 	virtual IT4GameplayInstance* GetGameplayInstance() const = 0; // #42
 
+	virtual void OnAddDisplayMessage(int32 InKey, float InTimeToDisplay, FColor InColor, const FString& InMessage) = 0; // #133 : Cli => Screen, Srv (TODO) : Console display
+
 	virtual bool OnWorldTravel(const UT4MapEntityAsset* InMapEntityAsset) = 0; // #87
 
 	virtual bool QueryLineTraceLocation(ET4CollisionChannel InChannel, const FRay& InWorldRay, FVector& OutLocation) = 0; // #121
@@ -237,6 +243,8 @@ public:
 	virtual void ClearOutline() = 0; // #115
 	virtual void SetOutlineTarget(const FT4ActorID& InActorID, const FLinearColor& InColor) = 0; // #115
 
+
+	// #114 : Client/Server 모두 사용!
 	virtual bool AddClientObject(const FT4ObjectID& InObjectID, UT4GameObjectBase* InGameObject) = 0; // #114
 	virtual void RemoveClientObject(const FT4ObjectID& InObjectID) = 0; // #114
 	virtual void RemoveAllClientObjects() = 0; // #114
@@ -272,8 +280,8 @@ public:
 	virtual void SetGlboalTimeScale(float InTimeScale) = 0; // #117
 	virtual float GetGlboalTimeScale() const = 0; // #117
 
-	virtual void SetInputControlLock(bool bLock) = 0; // #30
-	virtual void SetPlayerChangeDisable(bool bDisable) = 0; // #72
+	virtual void SetLockInputControl(bool bLock) = 0; // #30
+	virtual void SetDisableChangePlayer(bool bDisable) = 0; // #72
 	virtual void SetEditoAISystemPaused(bool bInPaused) = 0; // #52
 
 	virtual IT4EditorGameplayContoller* GetEditorGameplayController() const = 0; // #60

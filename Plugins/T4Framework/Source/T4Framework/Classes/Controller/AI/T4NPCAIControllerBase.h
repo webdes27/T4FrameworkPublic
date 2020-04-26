@@ -69,6 +69,11 @@ public:
 	bool SetObserverActor(const FT4ActorID& InNewObserverID) override { return false; } // #52 : 서버는 필요없다!
 	void ClearObserverActor() override {} // #52 : 서버는 필요없다!
 
+#if WITH_EDITOR
+	bool IsFreeCameraModeEnabled() const override { return false; } // #133
+	void SetFreeCameraMode(bool bInEnable) override {} // #133
+#endif
+
 	bool HasAction(const FT4ActionKey& InActionKey) const override; // #20
 	bool IsPlayingAction(const FT4ActionKey& InActionKey) const override; // #20 : Playing 중인지를 체크. Paused 면 False 가 리턴됨!
 
