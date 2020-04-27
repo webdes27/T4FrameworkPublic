@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.04.27] [M6] Copying //Private to //Deploy (private commit 110a5ab)**
+    - #129 [기능추가] Entity Editor, Verification Mode 를 통한 테스트 및 검증 환경 추가
   - **[2020.04.26] [M6] Copying //Private to //Deploy (private commit f8a54cd)**
     - #133 [기능추가] 디버깅용 Free Camera 추가
 	  - '[' or ']' Key : TPS <=> ShoulderView <=> FPS <=> Free

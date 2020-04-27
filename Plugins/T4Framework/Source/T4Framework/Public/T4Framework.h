@@ -277,6 +277,9 @@ public:
 	//
 	virtual bool IsPreviewMode() const = 0; // #68
 
+	virtual void SetVerifyMode(bool bInEnable) = 0; // #129 : Entity 에디터에서 데이터 검증
+	virtual bool IsVerifyMode() const = 0; // #129 : Entity 에디터에서 데이터 검증
+
 	virtual void SetGlboalTimeScale(float InTimeScale) = 0; // #117
 	virtual float GetGlboalTimeScale() const = 0; // #117
 

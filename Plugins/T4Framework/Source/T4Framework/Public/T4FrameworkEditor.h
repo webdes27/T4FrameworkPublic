@@ -172,7 +172,7 @@ public:
 
 	virtual bool IsPreviewMode() const = 0;
 
-	virtual void SetUpdateCameraForPlayer(bool bEnable) = 0; // #79
+	virtual void SetCustomCameraControl(bool bEnable) = 0; // #79
 
 	virtual void SetMouseLocation(const int InX, const int InY) = 0;
 	virtual bool GetMousePosition(float& InLocationX, float& InLocationY) = 0;

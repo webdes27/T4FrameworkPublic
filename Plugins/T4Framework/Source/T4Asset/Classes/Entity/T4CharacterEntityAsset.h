@@ -360,7 +360,7 @@ public:
 	FT4EntityPlayAnimationData LoopAnimationData;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
-	FT4EntityPlayAnimationData LoopEndAnimationData;
+	FT4EntityPlayAnimationData EndAnimationData;
 };
 
 // #76
