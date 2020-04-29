@@ -266,20 +266,28 @@ public:
 		const FT4ObjectID& InReservedObjectID
 	) = 0; // #60 : to player
 
-	virtual bool DoEntitySpawn(
+	virtual bool DoSpawnByContentSpawn(
+		UT4ContentSpawnAsset* InSpawnAsset, 
+		const FName& InSpawnActorID, 
+		const FT4ObjectID& InReservedObjectID
+	) = 0; // #126
+	virtual bool DoSpawnByContentSpawn(UT4ContentSpawnAsset* InSpawnAsset) = 0; // #126
+
+	virtual bool DoDespawn(const FT4ObjectID& InObjectID) = 0; // #114
+	virtual bool DoDespawnAll(bool bClearPlayerActor) = 0; // #68
+
+#if WITH_EDITOR
+	// #114 : 툴에서만 호출됨!! Server 류는 Entity 정보가 테이블에 있기 때문에 테이블 데이터 없이 스폰하기 위한 처리임!
+	// #134 : 툴용도의 Server Send => Client Recv 대체 처리. 즉, 아래 코드에서 C/S 모드를 처리하고 있음에 유의!!
+	virtual bool DoSpawnByEntityKey(
+		const FT4ObjectID& InReservedObjectID, // #134 : GetPlayerController()->GetObjectID() 로 비교해 Player 를 판단한다.
 		const FT4EntityKey& InEntityKey,
 		const FVector& InLocation,
 		const FRotator& InRotation,
-		const FT4ObjectID& InReservedObjectID,
-		bool bInPlayer,
 		bool bInClientOnly
-	) = 0; // #114: Action Editor
-
-	virtual bool DoSpawnAsset(UT4ContentSpawnAsset* InSpawnAsset, const FName& InSpawnActorID, const FT4ObjectID& InReservedObjectID) = 0; // #126
-	virtual bool DoSpawnAsset(UT4ContentSpawnAsset* InSpawnAsset) = 0; // #126
-
-	virtual bool DoDespawn(const FT4ObjectID& InObjectID, bool bInClientOnly) = 0; // #114
-	virtual bool DoDespawnAll(bool bClearPlayerActor) = 0; // #68
+	) = 0;
+	virtual bool DoDespawnWithEditorOnly(const FT4ObjectID& InObjectID, bool bInClientOnly) = 0;
+#endif
 
 	virtual bool DoChangeStance(FName InStanceName) = 0;// #73, #114
 	virtual bool DoChangePosture(FName InPostureName) = 0; // #106, #114

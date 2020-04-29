@@ -10,7 +10,7 @@
   * http://api.unrealengine.com/KOR/Programming/UnrealArchitecture/Reference/Properties/
  */
 typedef int32 FT4AnimInstanceID;
-typedef uint32 FT4AnimationStackID; // #131
+typedef uint32 FT4AnimSequentialID; // #131
 
 UENUM()
 enum class ET4LayerType : uint8

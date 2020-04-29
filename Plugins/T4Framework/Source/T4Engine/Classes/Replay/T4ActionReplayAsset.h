@@ -4,12 +4,12 @@
 
 #include "CoreMinimal.h"
 
-#include "Public/Action/T4ActionStatusCommands.h"
-#include "Public/Action/T4ActionMoveCommands.h"
-#include "Public/Action/T4ActionCommonCommands.h"
-#include "Public/Action/T4ActionWorldCommands.h"
+#include "Public/Action/T4ActionCommandStatus.h"
+#include "Public/Action/T4ActionCommandMoves.h"
+#include "Public/Action/T4ActionCommandCommons.h"
+#include "Public/Action/T4ActionCommandWorlds.h"
 #if WITH_EDITOR
-#include "Public/Action/T4ActionEditorCommands.h"
+#include "Public/Action/T4ActionCommandEditors.h"
 #endif
 
 #include "Public/Action/T4ActionParameters.h"
@@ -68,7 +68,7 @@ public:
 	FT4ActorID ActorID;
 
 	UPROPERTY(VisibleAnywhere)
-	ET4ActionType ActionType;
+	ET4ActionCommandType ActionCommandType;
 
 	UPROPERTY(VisibleAnywhere)
 	int32 ActionArrayIndex;
@@ -77,7 +77,7 @@ public:
 	FT4ActionReplayItem()
 		: Time(0.0f)
 		, UniqueKey(INDEX_NONE)
-		, ActionType(ET4ActionType::None)
+		, ActionCommandType(ET4ActionCommandType::None)
 		, ActionArrayIndex(INDEX_NONE)
 	{
 	}
@@ -99,102 +99,102 @@ public:
 	TMap<uint32, FT4ActionParameters> PlayActionParameters; // PlayUniqueKey
 
 
-	// #T4_ADD_ACTION_TAG_CODE
+	// #T4_ADD_ACTION_TAG_CMD
 
-	// T4ActionWorldCommands.h
-
-	UPROPERTY(VisibleAnywhere)
-	TArray<FT4WorldTravelAction> WorldTravelActions;
+	// T4ActionCommandWorlds.h
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4SpawnActorAction> SpawnActorActions;
+	TArray<FT4WorldTravelActionCommand> WorldTravelActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4DespawnActorAction> DespawnActorActions;
-
-
-	// T4ActionMoveCommands.h
+	TArray<FT4WorldSpawnActionCommand> SpawnActorActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4MoveAsyncAction> MoveAsyncActions;
+	TArray<FT4WorldDespawnActionCommand> DespawnActorActions;
+
+
+	// T4ActionCommandMoves.h
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4MoveSyncAction> MoveSyncActions;
+	TArray<FT4MoveAsyncActionCommand> MoveAsyncActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4JumpAction> JumpActions;
+	TArray<FT4MoveSyncActionCommand> MoveSyncActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4RollAction> RollActions;
+	TArray<FT4JumpActionCommand> JumpActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4TeleportAction> TeleportActions;
+	TArray<FT4RollActionCommand> RollActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4RotationAction> RotationActions;
+	TArray<FT4TeleportActionCommand> TeleportActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4MoveStopAction> MoveStopActions;
+	TArray<FT4RotationActionCommand> RotationActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4MoveSpeedSyncAction> MoveSpeedSyncActions;
+	TArray<FT4MoveStopActionCommand> MoveStopActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4LaunchAction> LaunchActions;
-
-
-	// T4ActionStatusCommands.h
+	TArray<FT4MoveSpeedSyncActionCommand> MoveSpeedSyncActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4AimAction> AimActions; // #113
+	TArray<FT4LaunchActionCommand> LaunchActions;
+
+
+	// T4ActionCommandStatus.h
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4LockOnAction> LockOnActions;
+	TArray<FT4AimActionCommand> AimActions; // #113
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4StanceAction> StanceActions; // #73
+	TArray<FT4LockOnActionCommand> LockOnActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4PostureAction> PostureActions; // #106
+	TArray<FT4StanceActionCommand> StanceActions; // #73
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4EquipWeaponAction> EquipWeaponActions;
+	TArray<FT4PostureActionCommand> PostureActions; // #106
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4UnequipWeaponAction> UnequipWeaponActions;
+	TArray<FT4EquipWeaponActionCommand> EquipWeaponActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4CostumeAction> CostumeActions;
+	TArray<FT4UnequipWeaponActionCommand> UnequipWeaponActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4SkinAction> SkinActions; // #130
+	TArray<FT4CostumeActionCommand> CostumeActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4HitAction> HitActions; // #76
+	TArray<FT4SkinActionCommand> SkinActions; // #130
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4DebuffAction> DebuffActions; // #131
+	TArray<FT4HitActionCommand> HitActions; // #76
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4DieAction> DieActions; // #76
+	TArray<FT4DebuffActionCommand> DebuffActions; // #131
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4ResurrectAction> ResurrectActions; // #76
-
-
-	// T4ActionCommonCommands.h
+	TArray<FT4DieActionCommand> DieActions; // #76
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4SetAction> SetActions;
+	TArray<FT4ResurrectActionCommand> ResurrectActions; // #76
+
+
+	// T4ActionCommandCommons.h
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4StopAction> StopActions;
+	TArray<FT4ActionSetActionCommand> SetActions;
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<FT4StopActionCommand> StopActions;
 
 
 #if WITH_EDITORONLY_DATA
-	// T4ActionEditorCommands.h
+	// T4ActionCommandEditors.h
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4EditorAction> EditorActions; // #80
+	TArray<FT4EditorActionCommand> EditorActions; // #80
 #endif
 };
 

@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "T4EngineTypes.h"
 #include "T4Asset/Public/Entity/T4EntityTypes.h" // #94
-#include "T4Asset/Public/Action/T4ActionTypes.h" // #102
+#include "T4Asset/Public/ActionSet/T4ActionSetTypes.h" // #102
 #include "T4Asset/Classes/World/T4EnvironmentAsset.h"
 #include "FinalPostProcessSettings.h" // #98
 

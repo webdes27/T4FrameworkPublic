@@ -16,7 +16,7 @@
 
 static const TCHAR* T4Const_DeveloperActionReplayFilePath = TEXT("ActionReplay/");
 
-struct FT4ActionCommand;
+struct FT4ActionCommandBase;
 struct FT4ActionParameters; // #28
 
 class T4ENGINE_API IT4ActionReplayPlayer // #68
@@ -45,8 +45,8 @@ public:
 
 	virtual float GetRecTimeSec() const = 0;
 
-	virtual bool RecWorldAction(const FT4ActionCommand* InAction, const FT4ActionParameters* InActionParam) = 0;
-	virtual bool RecActorAction(const FT4ActorID& InActorID, const FT4ActionCommand* InAction, const FT4ActionParameters* InActionParam) = 0;
+	virtual bool RecWorldAction(const FT4ActionCommandBase* InAction, const FT4ActionParameters* InActionParam) = 0;
+	virtual bool RecActorAction(const FT4ActorID& InActorID, const FT4ActionCommandBase* InAction, const FT4ActionParameters* InActionParam) = 0;
 };
 
 class T4ENGINE_API IT4ActionPlayerHandler // #68, #114

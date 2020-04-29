@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "T4ActionKey.h"
 #include "Public/T4EngineTypes.h"
-#include "T4Asset/Public/Action/T4ActionTypes.h"
+#include "T4Asset/Public/ActionSet/T4ActionSetTypes.h"
 #include "T4ActionParameters.generated.h"
 
 /**
@@ -384,7 +384,7 @@ public:
 
 // #56 : Only Editor, Action Editor 에서 Invisible or Isolate 로 출력을 제어할 때 더미용으로 사용(delay, duration 동작 보장)
 USTRUCT()
-struct FT4EditorActionContext
+struct FT4EditorActionCommandContext
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -398,13 +398,13 @@ public:
 #endif
 
 public:
-	FT4EditorActionContext()
+	FT4EditorActionCommandContext()
 	{
 	}
 };
 
 #if WITH_EDITOR
 T4ENGINE_API bool HasEditorActionContext(ET4LayerType InLayerType); // #127
-T4ENGINE_API TSharedPtr<FT4EditorActionContext> CreateOrGetEditorActionContext(ET4LayerType InLayerType); // #127
+T4ENGINE_API TSharedPtr<FT4EditorActionCommandContext> CreateOrGetEditorActionContext(ET4LayerType InLayerType); // #127
 T4ENGINE_API void DestroyEditorActionContext(ET4LayerType InLayerType); // #127
 #endif

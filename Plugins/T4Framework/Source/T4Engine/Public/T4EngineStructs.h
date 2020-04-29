@@ -7,7 +7,7 @@
 #include "Public/T4EngineTypes.h"
 #include "Public/T4EngineDefinitions.h"
 
-#include "T4Asset/Public/Action/T4ActionTypes.h"
+#include "T4Asset/Public/ActionSet/T4ActionSetTypes.h"
 #include "T4Asset/Public/Entity/T4EntityTypes.h" // #126
 #include "T4Asset/Public/AnimSet/T4AnimSetTypes.h" // #129
 

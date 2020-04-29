@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Classes/Common/T4CommonAssetStructs.h" // #100
-#include "Public/Action/T4ActionDataCommands.h"
+#include "Public/ActionSet/T4ActionSetDatas.h"
 #include "T4ActionSetAsset.generated.h"
 
 /**
@@ -37,7 +37,7 @@ struct T4ASSET_API FT4ActionHeaderInfo
 
 public:
 	UPROPERTY(VisibleAnywhere)
-	ET4ActionType ActionType;
+	ET4ActionDataType ActionDataType;
 
 	UPROPERTY(VisibleAnywhere)
 	int32 ActionArrayIndex;
@@ -49,7 +49,7 @@ public:
 
 public:
 	FT4ActionHeaderInfo()
-		: ActionType(ET4ActionType::None)
+		: ActionDataType(ET4ActionDataType::None)
 		, ActionArrayIndex(INDEX_NONE)
 #if WITH_EDITORONLY_DATA
 		, FolderName(NAME_None) // #56
@@ -101,46 +101,46 @@ public:
 	// #T4_ADD_ACTION_TAG_DATA
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4BranchAction> BranchActions; // #54
+	TArray<FT4BranchActionData> BranchActions; // #54
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4SpecialMoveAction> SpecialMoveActions; // #54
+	TArray<FT4SpecialMoveActionData> SpecialMoveActions; // #54
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4AnimationAction> AnimationActions;
+	TArray<FT4AnimationActionData> AnimationActions;
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4MeshAction> MeshActions; // #108
+	TArray<FT4MeshActionData> MeshActions; // #108
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4ParticleAction> ParticleActions;
+	TArray<FT4ParticleActionData> ParticleActions;
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4DecalAction> DecalActions; // #54
+	TArray<FT4DecalActionData> DecalActions; // #54
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4ProjectileAction> ProjectileActions; // #63
+	TArray<FT4ProjectileActionData> ProjectileActions; // #63
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4ReactionAction> ReactionActions; // #76
+	TArray<FT4ReactionActionData> ReactionActions; // #76
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4PlayTagAction> PlayTagActions; // #81
+	TArray<FT4PlayTagActionData> PlayTagActions; // #81
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4TimeScaleAction> TimeScaleActions; // ##102
+	TArray<FT4TimeScaleActionData> TimeScaleActions; // ##102
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4CameraWorkAction> CameraWorkActions; // #58
+	TArray<FT4CameraWorkActionData> CameraWorkActions; // #58
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4CameraShakeAction> CameraShakeActions; // #101
+	TArray<FT4CameraShakeActionData> CameraShakeActions; // #101
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4PostProcessAction> PostProcessActions; // #100
+	TArray<FT4PostProcessActionData> PostProcessActions; // #100
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4EnvironmentAction> EnvironmentActions; // #99
+	TArray<FT4EnvironmentActionData> EnvironmentActions; // #99
 
 public:
 	void Reset();
@@ -157,22 +157,15 @@ public:
 
 	template <class T>
 	void CopyAction(
-		const FT4ActionDataCommand* InSourceAction,
+		const FT4ActionDataBase* InSourceAction,
 		T* InOutTargetAction
 	); // #65
 
-	FT4ActionDataCommand* NewAndAddAction(
-		ET4ActionType InNewActionType
-	); // #24, #65
-
-	FT4ActionDataCommand* CloneAndAddAction(
-		uint32 InSourceHeaderKey
-	); // #65
+	FT4ActionDataBase* NewAndAddAction(ET4ActionDataType InActionDataType); // #24, #65
+	FT4ActionDataBase* CloneAndAddAction(uint32 InSourceHeaderKey); // #65
 #endif
 
-	FT4ActionDataCommand* GetActionStruct(
-		uint32 InActionHeaderKey
-	); // #65
+	FT4ActionDataBase* GetActionDataBase(uint32 InActionHeaderKey); // #65
 
 private:
 #if WITH_EDITOR

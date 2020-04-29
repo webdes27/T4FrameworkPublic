@@ -35,6 +35,8 @@ public:
 	virtual bool IsServerObject() const { return false; }
 	virtual bool IsClientObject() const { return false; }
 
+	virtual bool IsEntered() const { return false; } // #134
+
 	virtual ET4ControllerType GetControllerType() const { return ET4ControllerType::Controller_Max; } // #114
 	virtual IT4ObjectController* GetObjectController() const { return nullptr; } // #114 : Server All, Client Player Only
 

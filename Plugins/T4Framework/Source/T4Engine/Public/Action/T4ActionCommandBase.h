@@ -1,0 +1,61 @@
+// Copyright 2019-2020 SoonBo Noh. All Rights Reserved.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "T4ActionKey.h"
+#include "T4ActionTypes.h"
+#include "Public/T4EngineTypes.h"
+#include "T4Asset/Public/ActionSet/T4ActionBase.h"
+#include "T4ActionCommandBase.generated.h"
+
+/**
+  *
+ */
+USTRUCT()
+struct T4ENGINE_API FT4ActionCommandBase : public FT4ActionBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+	ET4ActionCommandType ActionCommandType;
+
+	UPROPERTY(EditAnywhere)
+	FT4ActionKey ActionKey;
+
+	UPROPERTY(Transient)
+	bool bTransient; // #110 : true 일 경우 Action Replay 녹화에 포함되지 않는다.
+
+public:
+	FT4ActionCommandBase()
+		: ActionCommandType(ET4ActionCommandType::None)
+		, bTransient(false) // #110
+	{
+	}
+
+	FT4ActionCommandBase(ET4ActionCommandType InActionCommandType)
+		: ActionCommandType(InActionCommandType)
+		, bTransient(false) // #110
+	{
+	}
+
+	virtual ~FT4ActionCommandBase() {}
+
+	ET4ActionBaseType GetActionBaseType() const override { return ET4ActionBaseType::Command; } // #52
+
+	virtual bool Validate(FString& OutMsg)
+	{
+		return true;
+	}
+
+	virtual FString ToString() const
+	{
+		return FString(TEXT("ActionCommand"));
+	}
+
+	virtual FString ToDisplayText()
+	{
+		return FString(TEXT("Untitled")); // #54
+	}
+};

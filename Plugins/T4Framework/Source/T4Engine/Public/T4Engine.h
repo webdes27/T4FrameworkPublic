@@ -9,7 +9,7 @@
 #include "Public/T4EngineStructs.h"
 #include "Public/Action/T4ActionKey.h"
 
-#include "T4Asset/Public/Action/T4ActionTypes.h"
+#include "T4Asset/Public/ActionSet/T4ActionSetTypes.h"
 #include "T4Asset/Public/Entity/T4EntityKey.h"
 
 #include "Components/SceneComponent.h"
@@ -22,9 +22,11 @@ class IT4WorldSystem;
 class IT4WorldActor;
 
 struct FT4AnimNotifyMessage; // #111
-struct FT4ActionCommand;
-struct FT4StopAction;
-struct FT4SpawnActorAction;
+struct FT4ActionBase;
+struct FT4ActionDataBase; // #134
+struct FT4ActionCommandBase; // #134
+struct FT4StopActionCommand;
+struct FT4WorldSpawnActionCommand;
 struct FT4ActionParameters; // #28
 
 #if !UE_BUILD_SHIPPING
@@ -86,9 +88,14 @@ public:
 	virtual bool StopAnimation(const FName& InAnimMontageName, float InBlendOutTimeSec) = 0; // #38
 	virtual bool StopAnimation(FT4AnimInstanceID InPlayInstanceID, float InBlendOutTimeSec) = 0; // #47
 
-	virtual FT4AnimationStackID AllocAnimParamFromStack(uint32 InNumAlloc, TArray<FT4AnimParam*>& OutParams) = 0; // #131
-	virtual bool PlayAnimationStack(FT4AnimationStackID InAnimInstanceStackID) = 0; // #131
-	virtual void StopAnimationStack(FT4AnimationStackID InAnimInstanceStackID) = 0; // #131
+	virtual FT4AnimSequentialID AllocSequentialAnimation(
+		ET4AnimationLayer InAnimationLayer, 
+		uint32 InNumAlloc,
+		TArray<FT4AnimParam*>& OutParams
+	) = 0; // #131
+
+	virtual bool PlaySequentialAnimation(ET4AnimationLayer InAnimationLayer, FT4AnimSequentialID InAnimSequentialID) = 0; // #131
+	virtual void StopSequentialAnimation(ET4AnimationLayer InAnimationLayer, FT4AnimSequentialID InAnimSequentialID) = 0; // #131
 
 #if !UE_BUILD_SHIPPING
 	virtual void DebugPauseAnimation(FT4AnimInstanceID InPlayInstanceID, bool bInPause) = 0; // #54
@@ -117,8 +124,8 @@ public:
 	virtual IT4ActionNode* GetParentNode() const = 0;
 	virtual const FName GetActionPoint() const = 0; // #63
 
-	virtual IT4ActionNode* AddChildNode(const FT4ActionCommand* InAction, float InOffsetTimeSec) = 0; // #23, #54
-	virtual bool RemoveChildNode(const FT4StopAction* InAction) = 0;
+	virtual IT4ActionNode* AddChildNode(const FT4ActionBase* InAction, float InOffsetTimeSec) = 0; // #23, #54
+	virtual bool RemoveChildNode(const FT4StopActionCommand* InAction) = 0;
 
 	virtual uint32 NumChildActions() const = 0;
 
@@ -177,7 +184,8 @@ public:
 
 	virtual void OnAnimNotifyMessage(const FT4AnimNotifyMessage* InMessage) = 0; // #111
 
-	virtual bool OnExecuteAction(const FT4ActionCommand* InAction, const FT4ActionParameters* InParam = nullptr) = 0; // #76
+	virtual bool OnExecuteActionCommand(const FT4ActionCommandBase* InActionCmd, const FT4ActionParameters* InParam) = 0; // #76
+	virtual bool OnExecuteActionData(const FT4ActionDataBase* InActionData, const FT4ActionParameters* InParam) = 0; // #134 : ActionSet 의 Data 를 다른 대상에게 플레이 시킨다.
 
 	virtual IT4AnimControl* GetAnimControl() const = 0; // #14
 	virtual IT4ActionControl* GetActionControl() = 0; // #20, #76 : Action Public Manager
@@ -376,7 +384,7 @@ public:
 	virtual void OnProcessPre(float InDeltaTime) = 0; // #34 : OnWorldPreActorTick
 	virtual void OnProcessPost(float InDeltaTime) = 0; // #34 : OnWorldPostActorTick
 
-	virtual bool OnExecuteAction(const FT4ActionCommand* InAction, const FT4ActionParameters* InActionParam = nullptr) = 0;
+	virtual bool OnExecuteAction(const FT4ActionCommandBase* InActionCmd, const FT4ActionParameters* InActionParam) = 0;
 
 	virtual ET4WorldSource GetWorldSource() const = 0; // #87
 	virtual const FName GetEntityKeyName() const = 0; // #100 : 현재 로딩된 Entity KeyName 만약, 없다면 NAME_None (preview or Level 을 직접) 로 리턴됨
