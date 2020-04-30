@@ -166,6 +166,39 @@ public:
 	}
 };
 
+// #134
+USTRUCT()
+struct T4ASSET_API FT4ActionAnimSequenceData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName SectionName;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	ET4PlayCount PlayCount;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	float PlayRate;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
+	float BlendInTimeSec;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
+	float BlendOutTimeSec;
+
+public:
+	FT4ActionAnimSequenceData()
+		: SectionName(NAME_None)
+		, PlayCount(ET4PlayCount::OneShot)
+		, PlayRate(1.0f)
+		, BlendInTimeSec(T4Const_DefaultAnimBlendTimeSec)
+		, BlendOutTimeSec(T4Const_DefaultAnimBlendTimeSec)
+	{
+	}
+};
+
 USTRUCT()
 struct T4ASSET_API FT4AnimationActionData : public FT4ActionDataBase
 {
@@ -175,28 +208,25 @@ public:
 	// #39 : FT4ActionDetails::CustomizeAnimationActionDetails
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	FName SectionName;
+	TArray<FT4ActionAnimSequenceData> AnimSequenceDatas; // #134
 
-	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
-	float BlendInTimeSec;
-
-	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
-	float BlendOutTimeSec;
-
-	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	float PlayRate;
-
-	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	int32 LoopCount;
+	void AddAnimSequenceData(
+		FName InSectionName, 
+		ET4PlayCount InPlayCount,
+		float InBlendInTimeSec, 
+		float InBlendOutTimeSec
+	) // #134
+	{
+		FT4ActionAnimSequenceData& AnimSequenceData = AnimSequenceDatas.AddDefaulted_GetRef();
+		AnimSequenceData.SectionName = InSectionName;
+		AnimSequenceData.PlayCount = InPlayCount;
+		AnimSequenceData.BlendInTimeSec = 0.02f;
+		AnimSequenceData.BlendOutTimeSec = 0.02f;
+	}
 
 public:
 	FT4AnimationActionData()
 		: FT4ActionDataBase(StaticActionType())
-		, SectionName(NAME_None)
-		, BlendInTimeSec(T4Const_DefaultAnimBlendTimeSec)
-		, BlendOutTimeSec(T4Const_DefaultAnimBlendTimeSec)
-		, PlayRate(1.0f)
-		, LoopCount(1)
 	{
 	}
 
@@ -209,7 +239,26 @@ public:
 
 	FString ToDisplayText() override
 	{
-		return FString::Printf(TEXT("Animation '%s'"), *(SectionName.ToString())); // #54
+		if (0 >= AnimSequenceDatas.Num())
+		{
+			return FString(TEXT("Empty"));
+		}
+		FString DisplayString;
+		int32 NumDatas = 0;
+		for (const FT4ActionAnimSequenceData& Data : AnimSequenceDatas)
+		{
+			if (0 < NumDatas)
+			{
+				DisplayString += TEXT(" => ");
+			}
+			DisplayString += Data.SectionName.ToString();
+			if (ET4PlayCount::Looping == Data.PlayCount)
+			{
+				DisplayString += TEXT(" (Loop)");
+			}
+			NumDatas++;
+		}
+		return FString::Printf(TEXT("Animation '%s'"), *DisplayString); // #54
 	}
 };
 

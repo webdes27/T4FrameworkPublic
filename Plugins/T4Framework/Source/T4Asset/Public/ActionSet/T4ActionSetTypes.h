@@ -10,7 +10,7 @@
   * http://api.unrealengine.com/KOR/Programming/UnrealArchitecture/Reference/Properties/
  */
 
-static const float T4Const_ContiMaxPlayTimeSec = 10.0f; // #56
+static const float T4Const_ActionSetMaxPlayTimeSec = 10.0f; // #56
 static const float T4Const_EmptyYawAngle = TNumericLimits<float>::Max(); // #113
 
 // WARN : Action 추가 시는 아래 테그를 찾아 추가된 액션을 구현해주어야 함!!
@@ -80,6 +80,23 @@ enum class ET4LoadingPolicy : uint8
 	Sync, // #8, #56 : 사용 제한 필요!!! 만약을 대비해 준비는 해둔 것!
 
 	Default UMETA(Hidden) // Default = Async
+};
+
+// #134
+UENUM()
+enum class ET4PlayCount : uint8
+{
+	Looping,
+	OneShot,
+	Repeat2		UMETA(DisplayName = "Repeat X 2"),
+	Repeat3		UMETA(DisplayName = "Repeat X 3"),
+	Repeat4		UMETA(DisplayName = "Repeat X 4"),
+	Repeat5		UMETA(DisplayName = "Repeat X 5"),
+	Repeat6		UMETA(DisplayName = "Repeat X 6"),
+	Repeat7		UMETA(DisplayName = "Repeat X 7"),
+	Repeat8		UMETA(DisplayName = "Repeat X 8"),
+	Repeat9		UMETA(DisplayName = "Repeat X 9"),
+	Repeat10	UMETA(DisplayName = "Repeat X 10"),
 };
 
 // #54

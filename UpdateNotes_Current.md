@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.04.30] [M6] Copying //Private to //Deploy (private commit 06245ae)**
+    - #134 [버그수정] Action Editor, Animation Action 에서 Sequential Animation 플레이 기능 추가
   - **[2020.04.29] [M6] Copying //Private to //Deploy (private commit ea60943)**
     - #134 [버그수정] Action Editor, 테스트용 초기 캐릭터 Entity 설정시 발생하는 크래시 수정
   - **[2020.04.27] [M6] Copying //Private to //Deploy (private commit 110a5ab)**

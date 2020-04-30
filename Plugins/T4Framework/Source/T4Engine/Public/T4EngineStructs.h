@@ -114,21 +114,23 @@ struct FT4AnimParam // #38
 	FT4AnimParam()
 		: AnimationLayer(AnimLayer_Skill)
 		, SectionName(NAME_None)
+		, PlayCount(ET4PlayCount::OneShot) // #134
 		, PlayRate(1.0f)
 		, OffsetTimeSec(0.0f)
 		, BlendInTimeSec(T4Const_DefaultAnimBlendTimeSec)
 		, BlendOutTimeSec(T4Const_DefaultAnimBlendTimeSec)
-		, LoopCount(1)
+		, MaxLoopPlayTimeSec(0.0f) // #134 : Looping 시간을 지정할 경우, ActionSet Lifecycle = Duration 외에는 사용하지 말것!!
 	{
 	}
 
 	ET4AnimationLayer AnimationLayer;
 	FName SectionName;
+	ET4PlayCount PlayCount; // #134
 	float PlayRate;
 	float OffsetTimeSec;
 	float BlendInTimeSec;
 	float BlendOutTimeSec;
-	int32 LoopCount; // #131 : -1 = Loop
+	float MaxLoopPlayTimeSec; // #134 : Looping 시간을 지정할 경우, ActionSet Lifecycle = Duration 외에는 사용하지 말것!!
 };
 
 class IT4WorldActor;

@@ -61,6 +61,8 @@ class T4ENGINE_API IT4AnimControl
 public:
 	virtual ~IT4AnimControl() {}
 
+	virtual ET4AnimSetTemplate GetUsingTemplate() const = 0; // #134
+
 	// #47
 	virtual const IT4AnimState* GetActiveAnimState() const = 0;
 	virtual const IT4AnimState* GetPendingAnimState() const = 0;
