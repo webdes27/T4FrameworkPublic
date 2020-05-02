@@ -24,18 +24,23 @@ public:
 	UPROPERTY(EditAnywhere)
 	FT4ActionKey ActionKey;
 
+	UPROPERTY(EditAnywhere)
+	float OffsetTimeSec; // 지정 시간을 건너띄어 플레이
+
 	UPROPERTY(Transient)
-	bool bTransient; // #110 : true 일 경우 Action Replay 녹화에 포함되지 않는다.
+	bool bTransient; // #110 : 예) true 일 경우 Action Replay 녹화에 포함되지 않는다.
 
 public:
 	FT4ActionCommandBase()
 		: ActionCommandType(ET4ActionCommandType::None)
+		, OffsetTimeSec(0.0f) // 지정 시간을 건너띄어 플레이
 		, bTransient(false) // #110
 	{
 	}
 
 	FT4ActionCommandBase(ET4ActionCommandType InActionCommandType)
 		: ActionCommandType(InActionCommandType)
+		, OffsetTimeSec(0.0f) // 지정 시간을 건너띄어 플레이
 		, bTransient(false) // #110
 	{
 	}

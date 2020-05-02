@@ -104,7 +104,7 @@ public:
 	TArray<FT4BranchActionData> BranchActions; // #54
 
 	UPROPERTY(EditAnywhere)
-	TArray<FT4SpecialMoveActionData> SpecialMoveActions; // #54
+	TArray<FT4MovementActionData> MovementActions; // #132
 
 	UPROPERTY(EditAnywhere)
 	TArray<FT4AnimationActionData> AnimationActions;

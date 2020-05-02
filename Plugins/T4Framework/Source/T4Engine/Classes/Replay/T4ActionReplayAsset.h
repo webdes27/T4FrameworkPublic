@@ -173,7 +173,7 @@ public:
 	TArray<FT4HitActionCommand> HitActions; // #76
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4DebuffActionCommand> DebuffActions; // #131
+	TArray<FT4CrowdControlActionCommand> CrowdControlActions; // #131
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<FT4DieActionCommand> DieActions; // #76

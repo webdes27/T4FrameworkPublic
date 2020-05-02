@@ -15,7 +15,7 @@
  // #T4_ADD_ACTION_TAG_DATA
 
 // ET4ActionDataType::Branch // #54
-// ET4ActionDataType::SpecialMove
+// ET4ActionDataType::Movement // #132
 // ET4ActionDataType::Animation
 // ET4ActionDataType::Mesh // #108
 // ET4ActionDataType::Particle
@@ -143,26 +143,121 @@ public:
 	}
 };
 
-// #54
+// #132
 USTRUCT()
-struct T4ASSET_API FT4SpecialMoveActionData : public FT4ActionDataBase
+struct T4ASSET_API FT4MovementTestSettings
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #39 : FT4ActionDetails::CustomizeSpecialMoveActionDetails
-
-public:
-	FT4SpecialMoveActionData()
-		: FT4ActionDataBase(StaticActionType())
+	FT4MovementTestSettings()
+#if WITH_EDITORONLY_DATA
+		: TestMoveAngleType(ET4MoveAngleType::Back)
+		, TestMoveDistance(500.0f)
+		, TestInitializeSpeed(500.0f)
+#endif
 	{
 	}
 
-	static ET4ActionDataType StaticActionType() { return ET4ActionDataType::SpecialMove; }
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	ET4MoveAngleType TestMoveAngleType;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	float TestMoveDistance;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	float TestInitializeSpeed; // #132 : 테스트용 초기 속도, AcceleratedMotion 에 따라 반응함
+#endif
+};
+
+// #132
+USTRUCT()
+struct T4ASSET_API FT4MovementActionData : public FT4ActionDataBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	// #39 : FT4ActionDetails::CustomizeMovementActionDetails
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	ET4MovementyType MovementType; // #132
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	ET4AcceleratedMotion AcceleratedMotion; // #127
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	float InitialVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FT4MovementTestSettings TestSettings; // #132
+#endif
+
+public:
+	FT4MovementActionData()
+		: FT4ActionDataBase(StaticActionType())
+		, MovementType(ET4MovementyType::Straight)
+		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
+		, InitialVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+	{
+	}
+
+	static ET4ActionDataType StaticActionType() { return ET4ActionDataType::Movement; }
 
 	FString ToString() const override
 	{
-		return FString(TEXT("SpecialMoveAction"));
+		return FString(TEXT("MovementAction"));
+	}
+
+	FString ToDisplayText() override
+	{
+#if WITH_EDITOR
+		FString DisplayString;
+		switch (MovementType)
+		{
+			case ET4MovementyType::Straight:
+				DisplayString += TEXT("Straight");
+				break;
+
+			case ET4MovementyType::Parabola:
+				DisplayString += TEXT("Parabola");
+				break;
+
+			case ET4MovementyType::Howitzer:
+				DisplayString += TEXT("Howitzer");
+				break;
+
+			case ET4MovementyType::Mortar:
+				DisplayString += TEXT("Mortar");
+				break;
+
+			default:
+				DisplayString += TEXT("None");
+				break;
+		};
+		switch (AcceleratedMotion)
+		{
+			case ET4AcceleratedMotion::Uniform:
+				DisplayString += TEXT(" (Uniform)");
+				break;
+
+			case ET4AcceleratedMotion::Acceleration:
+				DisplayString += TEXT(" (Accel)");
+				break;
+
+			case ET4AcceleratedMotion::Deceleration:
+				DisplayString += TEXT(" (Decel)");
+				break;
+
+			default:
+				DisplayString += TEXT(" (None)");
+				break;
+		}
+		return FString::Printf(TEXT("Movement '%s'"), *DisplayString); // #132
+#else
+		return FString();
+#endif
 	}
 };
 
@@ -479,7 +574,7 @@ public:
 	ET4LoadingPolicy LoadingPolicy;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	ET4ProjectileMotion ProjectileMotion; // #127
+	ET4MovementyType ProjectileMotion; // #127
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AcceleratedMotion AcceleratedMotion; // #127
@@ -525,7 +620,7 @@ public:
 		: FT4ActionDataBase(StaticActionType())
 		, ActionPoint(NAME_None)
 		, LoadingPolicy(ET4LoadingPolicy::Default)
-		, ProjectileMotion(ET4ProjectileMotion::Straight) // #127
+		, ProjectileMotion(ET4MovementyType::Straight) // #127
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
 		, InitialVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
 		, bRandomRollAngle(false) // #127

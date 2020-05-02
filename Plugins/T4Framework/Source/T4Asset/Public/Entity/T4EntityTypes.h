@@ -69,7 +69,7 @@ UENUM()
 enum class ET4EntityReactionType : uint8 // #76
 {
 	Hit,
-	Debuff,
+	CrowdControl,
 
 	Die,
 	Resurrect,

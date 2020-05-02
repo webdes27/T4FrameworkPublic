@@ -342,6 +342,7 @@ public:
 };
 
 // #63
+class UT4ActionSetAsset;
 USTRUCT()
 struct T4ENGINE_API FT4LaunchActionCommand : public FT4ActionCommandBase
 {
@@ -352,7 +353,7 @@ public:
 	FT4ActorID OwnerActorID; // #112
 
 	UPROPERTY(EditAnywhere)
-	TSoftObjectPtr<class UT4ActionSetAsset> HeadActionSetAsset;
+	TSoftObjectPtr<UT4ActionSetAsset> HeadActionSetAsset;
 
 	UPROPERTY(EditAnywhere)
 	TSoftObjectPtr<UT4ActionSetAsset> EndActionSetAsset;
@@ -364,7 +365,10 @@ public:
 	float MaxPlayTimeSec; // #63 : Conti 의 MaxPlaytTimeSec 또는 서버에서 계산된 Hit 시간까지의 ProjectileDurationSec
 
 	UPROPERTY(EditAnywhere)
-	ET4ProjectileMotion ProjectileMotion; // #127
+	float PlayOffsetTimeSec; // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
+
+	UPROPERTY(EditAnywhere)
+	ET4MovementyType MovementType; // #127
 
 	UPROPERTY(EditAnywhere)
 	ET4AcceleratedMotion AcceleratedMotion; // #127
@@ -397,17 +401,23 @@ public:
 	float OscillateRange; // #127 : 흔들림 크기
 
 	UPROPERTY(EditAnywhere)
-	float ProjectileLength; // #112 : Projectile 의 길이, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
-
-	UPROPERTY(EditAnywhere)
-	float ThrowOffsetTimeSec; // #63 : Projectile 로딩시간이 길어져 이미 발사 되었을 경우의 타이밍 맞추기
+	float BoundLength; // #112 : Projectile 의 길이, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
 	
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(Transient)
+	FVector TestTargetLocation; // #132 : 테스트용 targetLocation
+
+	UPROPERTY(Transient)
+	float TestInitializeSpeed; // #132 : 테스트용 초기 속도, AcceleratedMotion 에 따라 반응함
+#endif
+
 public:
 	FT4LaunchActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, LoadingPolicy(ET4LoadingPolicy::Default)
 		, MaxPlayTimeSec(0.0f)
-		, ProjectileMotion(ET4ProjectileMotion::Straight) // #127
+		, PlayOffsetTimeSec(0.0f) // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
+		, MovementType(ET4MovementyType::Straight) // #127
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
 		, InitialVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
 		, bRandomRollAngle(false) // #127
@@ -417,8 +427,11 @@ public:
 		, bEnableBounceOut(false) // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
 		, bUseOscillate(false) // #127 : 흔들림 여부
 		, OscillateRange(0.0f) // #127 : 흔들림 크기
-		, ProjectileLength(80.0f) // #112
-		, ThrowOffsetTimeSec(0.0f)
+		, BoundLength(80.0f) // #112
+#if WITH_EDITORONLY_DATA
+		, TestTargetLocation(FVector::ZeroVector) // #132 : 테스트용 targetLocation
+		, TestInitializeSpeed(100.0f) // #132 : 테스트용 초기 속도, AcceleratedMotion 에 따라 반응함
+#endif
 	{
 	}
 

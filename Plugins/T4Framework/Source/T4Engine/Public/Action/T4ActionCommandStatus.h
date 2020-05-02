@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "T4ActionCommandBase.h"
+#include "T4Asset/Public/Entity/T4EntityTypes.h" // #132
 #include "T4ActionCommandStatus.generated.h"
 
 /**
@@ -19,9 +20,10 @@
 // ET4ActionCommandType::UnequipWeapon
 // ET4ActionCommandType::Costume // #72
 // ET4ActionCommandType::Hit // #76
-// ET4ActionCommandType::Debuff // #131
+// ET4ActionCommandType::CrowdControl // #131
 // ET4ActionCommandType::Die // #76
 // ET4ActionCommandType::Resurrect // #76
+// ET4ActionCommandType::ReactionStop // #132
 
 // #113
 USTRUCT()
@@ -342,17 +344,13 @@ public:
 	FName ReactionName;
 
 	UPROPERTY(EditAnywhere)
-	FVector ShotDirection;
-
-	UPROPERTY(Transient)
-	bool bTransientPlay;
+	FVector ShootDirection;
 
 public:
 	FT4HitActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, ReactionName(NAME_None)
-		, ShotDirection(FVector::ZeroVector)
-		, bTransientPlay(false)
+		, ShootDirection(FVector::ZeroVector)
 	{
 	}
 
@@ -371,7 +369,7 @@ public:
 
 // #131
 USTRUCT()
-struct T4ENGINE_API FT4DebuffActionCommand : public FT4ActionCommandBase
+struct T4ENGINE_API FT4CrowdControlActionCommand : public FT4ActionCommandBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -380,21 +378,17 @@ public:
 	FName ReactionName;
 
 	UPROPERTY(EditAnywhere)
-	FVector ShotDirection;
-
-	UPROPERTY(Transient)
-	bool bTransientPlay;
+	FVector ShootDirection;
 
 public:
-	FT4DebuffActionCommand()
+	FT4CrowdControlActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, ReactionName(NAME_None)
-		, ShotDirection(FVector::ZeroVector)
-		, bTransientPlay(false)
+		, ShootDirection(FVector::ZeroVector)
 	{
 	}
 
-	static ET4ActionCommandType StaticActionType() { return ET4ActionCommandType::Debuff; }
+	static ET4ActionCommandType StaticActionType() { return ET4ActionCommandType::CrowdControl; }
 
 	bool Validate(FString& OutMsg) override
 	{
@@ -403,7 +397,7 @@ public:
 
 	virtual FString ToString() const override
 	{
-		return FString(TEXT("DebuffAction"));
+		return FString(TEXT("CrowdControlAction"));
 	}
 };
 
@@ -418,13 +412,13 @@ public:
 	FName ReactionName;
 
 	UPROPERTY(EditAnywhere)
-	FVector ShotDirection;
+	FVector ShootDirection;
 
 public:
 	FT4DieActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, ReactionName(NAME_None)
-		, ShotDirection(FVector::ZeroVector)
+		, ShootDirection(FVector::ZeroVector)
 	{
 	}
 
@@ -451,14 +445,10 @@ public:
 	UPROPERTY(EditAnywhere)
 	FName ReactionName;
 
-	UPROPERTY(Transient)
-	bool bTransientPlay;
-
 public:
 	FT4ResurrectActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, ReactionName(NAME_None)
-		, bTransientPlay(false)
 	{
 	}
 
@@ -472,5 +462,39 @@ public:
 	virtual FString ToString() const override
 	{
 		return FString(TEXT("ResurrectAction"));
+	}
+};
+
+// #132
+USTRUCT()
+struct T4ENGINE_API FT4ReactionStopActionCommand : public FT4ActionCommandBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(EditAnywhere)
+	FName ReactionName;
+
+	UPROPERTY(EditAnywhere)
+	ET4EntityReactionType ReactionType;
+
+public:
+	FT4ReactionStopActionCommand()
+		: FT4ActionCommandBase(StaticActionType())
+		, ReactionName(NAME_None)
+		, ReactionType(ET4EntityReactionType::None)
+	{
+	}
+
+	static ET4ActionCommandType StaticActionType() { return ET4ActionCommandType::ReactionStop; }
+
+	bool Validate(FString& OutMsg) override
+	{
+		return true;
+	}
+
+	virtual FString ToString() const override
+	{
+		return FString(TEXT("ReactionStopAction"));
 	}
 };

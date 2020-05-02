@@ -21,14 +21,14 @@ public:
 	ET4LifecycleType LifecycleType;
 
 	UPROPERTY(EditAnywhere)
-	float StartTimeSec;
+	float StartTimeSec; // Delay Time, 즉 이 시간 후 플레이되는 것, Offset 개념과 다름에 유의! (Offset = 지정 시간을 건너띄어 플레이)
 
 	UPROPERTY(EditAnywhere)
 	float DurationSec; // #20 : TotalTimeSec = StartTimeSec + DurationSec;
 
 public:
 	FT4ActionBase()
-		: LifecycleType(ET4LifecycleType::Default)
+		: LifecycleType(ET4LifecycleType::Default) // Default => Auto
 		, StartTimeSec(0.0f)
 		, DurationSec(0.0f)
 	{

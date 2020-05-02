@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.05.02] [M6] Copying //Private to //Deploy (private commit 6f7be3a)**
+    - #132 [기능추가] Action Editor, Movement Action 추가 (Knockback 등의 이동기 처리)
   - **[2020.04.30] [M6] Copying //Private to //Deploy (private commit 06245ae)**
     - #134 [버그수정] Action Editor, Animation Action 내 Sequential Animation 플레이 기능 추가
   - **[2020.04.29] [M6] Copying //Private to //Deploy (private commit ea60943)**

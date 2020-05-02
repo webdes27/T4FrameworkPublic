@@ -49,9 +49,10 @@ enum class ET4ActionCommandType : uint32
 
 	Hit, // #76
 
-	Debuff, // #131
+	CrowdControl, // #131
 	Die, // #76
 	Resurrect, // #76
+	ReactionStop, // #132
 
 	ActionSet, // #24, #127 : ActionSetAsset
 

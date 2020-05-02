@@ -96,7 +96,11 @@ public:
 		TArray<FT4AnimParam*>& OutParams
 	) = 0; // #131
 
-	virtual bool PlaySequentialAnimation(ET4AnimationLayer InAnimationLayer, FT4AnimSequentialID InAnimSequentialID) = 0; // #131
+	virtual bool PlaySequentialAnimation(
+		ET4AnimationLayer InAnimationLayer, 
+		FT4AnimSequentialID InAnimSequentialID,
+		float InOffsetTimeSec // #132
+	) = 0; // #131
 	virtual void StopSequentialAnimation(ET4AnimationLayer InAnimationLayer, FT4AnimSequentialID InAnimSequentialID) = 0; // #131
 
 #if !UE_BUILD_SHIPPING

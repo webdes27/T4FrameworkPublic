@@ -32,7 +32,7 @@ enum class ET4ActionDataType : uint32
 	// #62 : Begin Data Format // #T4_ADD_ACTION_TAG_DATA
 	Branch, // #54
 
-	SpecialMove, // #54
+	Movement, // #132
 
 	Animation,
 	
@@ -139,7 +139,7 @@ enum class ET4PlayTagType : uint8 // #81
 };
 
 UENUM()
-enum class ET4ProjectileMotion : uint8 // #127
+enum class ET4MovementyType : uint8 // #127, #132
 {
 	Straight, // #63
 	Parabola, // #127 : 포물선
@@ -153,4 +153,17 @@ enum class ET4AcceleratedMotion : uint8 // #127
 	Uniform,
 	Acceleration,
 	Deceleration,
+};
+
+UENUM()
+enum class ET4MoveAngleType : uint8 // #132
+{
+	Back,
+	Back_Left,
+	Back_Right,
+	Front,
+	Front_Left,
+	Front_Right,
+	Left,
+	Right,
 };

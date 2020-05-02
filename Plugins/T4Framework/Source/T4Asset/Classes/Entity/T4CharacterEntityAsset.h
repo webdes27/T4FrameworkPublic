@@ -375,7 +375,7 @@ public:
 		, ReactionName(NAME_None)
 		, MaxPlayTimeSec(0.0f)
 #if WITH_EDITOR
-		, TestShotDirection(FVector::UpVector) // #76
+		, TestShootDirection(FVector::UpVector) // #76
 #endif
 	{
 	}
@@ -410,7 +410,7 @@ public:
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = Editor)
-	FVector TestShotDirection; // #76
+	FVector TestShootDirection; // #76
 #endif
 };
 
