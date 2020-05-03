@@ -143,7 +143,7 @@ public:
 	}
 };
 
-// #132
+// #132 : 네이밍에 명시적으로 Test prefix 를 붙일 것! 사용중 혼란을 야기할 수 있음
 USTRUCT()
 struct T4ASSET_API FT4MovementTestSettings
 {
@@ -181,13 +181,19 @@ public:
 	// #39 : FT4ActionDetails::CustomizeMovementActionDetails
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	ET4MovementyType MovementType; // #132
+	ET4MovementType MovementType; // #132
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AcceleratedMotion AcceleratedMotion; // #127
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	float InitialVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+	float ParabolaVerticalSpeed; // #127 : 높이에서 사용될 초기 수직 속도 (Parabola)
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "5.0", UIMin = "5.0", UIMax = "1500.0"))
+	float AirborneMaxHeight; // #132 : 에어본 최대 높이
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0", UIMin = "0.0", UIMax = "1.0"))
+	float AirborneFlightTimeRatio; // #132 : 정점에서 유지할 체공시간 비율
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
@@ -197,9 +203,11 @@ public:
 public:
 	FT4MovementActionData()
 		: FT4ActionDataBase(StaticActionType())
-		, MovementType(ET4MovementyType::Straight)
+		, MovementType(ET4MovementType::Straight)
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
-		, InitialVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+		, ParabolaVerticalSpeed(300.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+		, AirborneMaxHeight(200.0f) // #132 : 에어본 최대 높이
+		, AirborneFlightTimeRatio(0.0f) // #132 : 정점에서 유지할 체공시간
 	{
 	}
 
@@ -216,20 +224,24 @@ public:
 		FString DisplayString;
 		switch (MovementType)
 		{
-			case ET4MovementyType::Straight:
+			case ET4MovementType::Straight:
 				DisplayString += TEXT("Straight");
 				break;
 
-			case ET4MovementyType::Parabola:
+			case ET4MovementType::Parabola:
 				DisplayString += TEXT("Parabola");
 				break;
 
-			case ET4MovementyType::Howitzer:
+			case ET4MovementType::Howitzer:
 				DisplayString += TEXT("Howitzer");
 				break;
 
-			case ET4MovementyType::Mortar:
+			case ET4MovementType::Mortar:
 				DisplayString += TEXT("Mortar");
+				break;
+
+			case ET4MovementType::Airborne:
+				DisplayString += TEXT("Airborne");
 				break;
 
 			default:
@@ -550,6 +562,26 @@ public:
 	}
 };
 
+// #132 : 네이밍에 명시적으로 Test prefix 를 붙일 것! 사용중 혼란을 야기할 수 있음
+USTRUCT()
+struct T4ASSET_API FT4ProjectileTestSettings
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4ProjectileTestSettings()
+#if WITH_EDITORONLY_DATA
+		: TestInitializeSpeed(500.0f)
+#endif
+	{
+	}
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	float TestInitializeSpeed; // #132 : 테스트용 초기 속도, AcceleratedMotion 에 따라 반응함
+#endif
+};
+
 // #63
 USTRUCT()
 struct T4ASSET_API FT4ProjectileActionData : public FT4ActionDataBase
@@ -574,13 +606,13 @@ public:
 	ET4LoadingPolicy LoadingPolicy;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	ET4MovementyType ProjectileMotion; // #127
+	ET4MovementType ProjectileMotion; // #127
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AcceleratedMotion AcceleratedMotion; // #127
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0", UIMin = "0.0", UIMax = "1000"))
-	float InitialVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+	float ParabolaVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bRandomRollAngle; // #127
@@ -613,16 +645,21 @@ public:
 	float ThrowDelayTimeSec; // Play 이후 ActionPoint 에서 떨어지는 시간!
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	float CastingStopDelayTimeSec; // ThrowDelayTimeSec 이후 Casting Conti 가 삭제될 시간
+	float CastingStopDelayTimeSec; // ThrowDelayTimeSec 이후 Casting ActionSet 가 삭제될 시간
+
+#if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FT4ProjectileTestSettings TestSettings; // #132
+#endif
 
 public:
 	FT4ProjectileActionData()
 		: FT4ActionDataBase(StaticActionType())
 		, ActionPoint(NAME_None)
 		, LoadingPolicy(ET4LoadingPolicy::Default)
-		, ProjectileMotion(ET4MovementyType::Straight) // #127
+		, ProjectileMotion(ET4MovementType::Straight) // #127
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
-		, InitialVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+		, ParabolaVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
 		, bRandomRollAngle(false) // #127
 		, InitialRollAngle(0.0f) // #127
 		, bEnableHitAttached(false)// #112
@@ -660,10 +697,18 @@ public:
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	FName ReactionName;
 
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	bool bUseRotation; // #132 : Shoot 방향으로 회전 사용 여부
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseRotation"))
+	bool bInverseRotation; // #132 : Shoot 방향으로 회전 사용시 역방향
+
 public:
 	FT4ReactionActionData()
 		: FT4ActionDataBase(StaticActionType())
 		, ReactionName(NAME_None)
+		, bUseRotation(false)
+		, bInverseRotation(false)
 	{
 	}
 

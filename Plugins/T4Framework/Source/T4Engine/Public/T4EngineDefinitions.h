@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
+#include "Public/Action/T4ActionKey.h" // #132
 #include "T4Asset/Public/T4AssetDefinitions.h" // #62
 
 /**
@@ -35,3 +35,8 @@ static const FName T4Const_WorldTimeTagNightName = TEXT("Night");		// Hour : 20 
 static const FName T4Const_WorldTimeTagSunriseName = TEXT("Sunrise");	// Hour : 7 ~ 9
 
 static const FName T4Const_WorldTimeTagFallbackName = T4Const_WorldTimeTagDayName; // #123 : Day 를 Fallback 으로 사용한다. 별도로 세팅하지 않음
+
+
+// #132 : Action Key
+static const FT4ActionKey T4Const_WorldActorRotationPrimaryKey(TEXT("T4ActionOverrideRotationPrimaryKey"), true, true); // #132
+static const FT4ActionKey T4Const_WorldActorStancePlayTagKey(TEXT("T4Const_WorldActorStancePlayTagKey")); // #74

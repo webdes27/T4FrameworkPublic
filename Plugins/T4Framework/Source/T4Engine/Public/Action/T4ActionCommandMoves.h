@@ -349,6 +349,35 @@ struct T4ENGINE_API FT4LaunchActionCommand : public FT4ActionCommandBase
 	GENERATED_USTRUCT_BODY()
 
 public:
+	// Common Properties
+	//
+	UPROPERTY(EditAnywhere)
+	ET4MovementType MovementType; // #127
+
+	UPROPERTY(EditAnywhere)
+	float PlayOffsetTimeSec; // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
+
+	UPROPERTY(EditAnywhere)
+	ET4AcceleratedMotion AcceleratedMotion; // #127
+
+	UPROPERTY(EditAnywhere)
+	float BoundLength; // #112 : Projectile 의 길이, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
+
+
+	// Movement Properties
+	//
+	UPROPERTY(EditAnywhere)
+	float ParabolaVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+
+	UPROPERTY(EditAnywhere)
+	float AirborneMaxHeight; // #132 : 에어본 최대 높이
+
+	UPROPERTY(EditAnywhere)
+	float AirborneFlightTimeRatio; // #132 : 정점에서 유지할 체공시간 비율
+
+
+	// Projectile Properties
+	//
 	UPROPERTY(EditAnywhere)
 	FT4ActorID OwnerActorID; // #112
 
@@ -360,21 +389,6 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	ET4LoadingPolicy LoadingPolicy;
-
-	UPROPERTY(EditAnywhere)
-	float MaxPlayTimeSec; // #63 : Conti 의 MaxPlaytTimeSec 또는 서버에서 계산된 Hit 시간까지의 ProjectileDurationSec
-
-	UPROPERTY(EditAnywhere)
-	float PlayOffsetTimeSec; // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
-
-	UPROPERTY(EditAnywhere)
-	ET4MovementyType MovementType; // #127
-
-	UPROPERTY(EditAnywhere)
-	ET4AcceleratedMotion AcceleratedMotion; // #127
-
-	UPROPERTY(EditAnywhere)
-	float InitialVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
 
 	UPROPERTY(EditAnywhere)
 	bool bRandomRollAngle; // #127
@@ -400,12 +414,12 @@ public:
 	UPROPERTY(EditAnywhere, meta = (EditCondition = "bUseOscillate"))
 	float OscillateRange; // #127 : 흔들림 크기
 
-	UPROPERTY(EditAnywhere)
-	float BoundLength; // #112 : Projectile 의 길이, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
-	
+
+	// Editor Properties
+	//
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(Transient)
-	FVector TestTargetLocation; // #132 : 테스트용 targetLocation
+	FVector TestTargetLocation; // #132 : 테스트용 TargetLocation
 
 	UPROPERTY(Transient)
 	float TestInitializeSpeed; // #132 : 테스트용 초기 속도, AcceleratedMotion 에 따라 반응함
@@ -414,12 +428,14 @@ public:
 public:
 	FT4LaunchActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
-		, LoadingPolicy(ET4LoadingPolicy::Default)
-		, MaxPlayTimeSec(0.0f)
+		, MovementType(ET4MovementType::Straight) // #127
 		, PlayOffsetTimeSec(0.0f) // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
-		, MovementType(ET4MovementyType::Straight) // #127
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
-		, InitialVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+		, BoundLength(80.0f) // #112
+		, ParabolaVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+		, AirborneMaxHeight(200.0f) // #132 : 에어본 최대 높이
+		, AirborneFlightTimeRatio(0.0f) // #132 : 정점에서 유지할 체공시간 비율
+		, LoadingPolicy(ET4LoadingPolicy::Default)
 		, bRandomRollAngle(false) // #127
 		, InitialRollAngle(0.0f) // #127
 		, bEnableHitAttached(false)// #112
@@ -427,7 +443,6 @@ public:
 		, bEnableBounceOut(false) // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
 		, bUseOscillate(false) // #127 : 흔들림 여부
 		, OscillateRange(0.0f) // #127 : 흔들림 크기
-		, BoundLength(80.0f) // #112
 #if WITH_EDITORONLY_DATA
 		, TestTargetLocation(FVector::ZeroVector) // #132 : 테스트용 targetLocation
 		, TestInitializeSpeed(100.0f) // #132 : 테스트용 초기 속도, AcceleratedMotion 에 따라 반응함

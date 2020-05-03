@@ -139,12 +139,13 @@ enum class ET4PlayTagType : uint8 // #81
 };
 
 UENUM()
-enum class ET4MovementyType : uint8 // #127, #132
+enum class ET4MovementType : uint8 // #127, #132
 {
 	Straight, // #63
 	Parabola, // #127 : 포물선
 	Howitzer, // #127 : 곡사포
 	Mortar, // #127 : 박격포
+	Airborne, // #132 : 부유
 };
 
 UENUM()

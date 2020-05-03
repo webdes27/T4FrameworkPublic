@@ -4,6 +4,9 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.05.03] [M6] Copying //Private to //Deploy (private commit 0d27150)**
+    - #132 [기능추가] Action Editor, Movement Action 내 Airborne MovementType 추가
+	- #132 [버그수정] Action Editor, 신규 캐릭터 설정시 랜덤하게 스폰이 되지 않던 문제 수정
   - **[2020.05.02] [M6] Copying //Private to //Deploy (private commit 6f7be3a)**
     - #132 [기능추가] Action Editor, Movement Action 추가 (Knockback 등의 이동기 처리)
   - **[2020.04.30] [M6] Copying //Private to //Deploy (private commit 06245ae)**
