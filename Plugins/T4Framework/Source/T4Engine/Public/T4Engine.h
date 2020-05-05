@@ -332,6 +332,26 @@ public:
 		const FCollisionQueryParams& InCollisionQueryParams,
 		FT4HitSingleResult& OutHitResult
 	) = 0;
+
+	virtual bool QuerySweetSingle(
+		ET4CollisionChannel InCollisionChannel,
+		const FVector& InStartLocation,
+		const FVector& InEndLocation,
+		const FQuat& InRotation,
+		const FCollisionShape& InCollisionShape,
+		const FCollisionQueryParams& InCollisionQueryParams,
+		FT4HitSingleResult& OutHitResult 
+	) = 0; // #132
+
+	virtual bool QuerySweetSingle(
+		ET4CollisionChannel InCollisionChannel,
+		const FRay& InWorldRay,
+		const float InMaxDistance,
+		const FQuat& InRotation,
+		const FCollisionShape& InCollisionShape,
+		const FCollisionQueryParams& InCollisionQueryParams,
+		FT4HitSingleResult& OutHitResult
+	) = 0; // #132
 };
 
 class T4ENGINE_API IT4WorldNavigation // #87

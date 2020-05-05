@@ -707,7 +707,7 @@ public:
 	FT4ReactionActionData()
 		: FT4ActionDataBase(StaticActionType())
 		, ReactionName(NAME_None)
-		, bUseRotation(false)
+		, bUseRotation(true)
 		, bInverseRotation(false)
 	{
 	}

@@ -161,10 +161,10 @@ public:
 };
 
 // #42
-class T4FRAMEWORK_API IT4GameplayInstance
+class T4FRAMEWORK_API IT4GameMainFrame
 {
 public:
-	virtual ~IT4GameplayInstance() {}
+	virtual ~IT4GameMainFrame() {}
 
 	virtual ET4FrameworkType GetFrameworkType() const = 0;
 
@@ -185,9 +185,6 @@ public:
 
 	virtual IT4EditorGameData* GetEditorGameData() = 0; // #60
 	virtual IT4EditorGameplayCommand* GetEditorGameplayCommand() = 0; // #114
-
-	virtual void SetLockInputControl(bool bLock) = 0; // #30
-	virtual void SetDisableChangePlayer(bool bDisable) = 0; // #72
 #endif
 };
 
@@ -213,8 +210,8 @@ public:
 	virtual UWorld* GetWorld() const = 0;
 	virtual IT4WorldSystem* GetWorldSystem() const = 0;
 
-	virtual void RegisterGameplayInstance(IT4GameplayInstance* InLayerInstance) = 0; // #42
-	virtual IT4GameplayInstance* GetGameplayInstance() const = 0; // #42
+	virtual void RegisterGameMainFrame(IT4GameMainFrame* InLayerInstance) = 0; // #42
+	virtual IT4GameMainFrame* GetGameMainFrame() const = 0; // #42
 
 	virtual void OnAddDisplayMessage(int32 InKey, float InTimeToDisplay, FColor InColor, const FString& InMessage) = 0; // #133 : Cli => Screen, Srv (TODO) : Console display
 
@@ -277,15 +274,23 @@ public:
 	//
 	virtual bool IsPreviewMode() const = 0; // #68
 
-	virtual void SetVerifyMode(bool bInEnable) = 0; // #129 : Entity 에디터에서 데이터 검증
+	virtual bool IsEditMode() const = 0; // #132 : Rehearsal 에디터에서 Simulation 사용 여부
+	virtual void SetEditMode(bool bInEnable) = 0; // #132 : Rehearsal 에디터에서 Simulation 사용 여부
+
 	virtual bool IsVerifyMode() const = 0; // #129 : Entity 에디터에서 데이터 검증
+	virtual void SetVerifyMode(bool bInEnable) = 0; // #129 : Entity 에디터에서 데이터 검증
 
-	virtual void SetGlboalTimeScale(float InTimeScale) = 0; // #117
 	virtual float GetGlboalTimeScale() const = 0; // #117
+	virtual void SetGlboalTimeScale(float InTimeScale) = 0; // #117
 
-	virtual void SetLockInputControl(bool bLock) = 0; // #30
-	virtual void SetDisableChangePlayer(bool bDisable) = 0; // #72
-	virtual void SetEditoAISystemPaused(bool bInPaused) = 0; // #52
+	virtual bool IsInputControlLocked() const = 0;
+	virtual void SetLockInputControl(bool bInLock) = 0; // #30
+
+	virtual bool IsChangePlayerDisabled() const = 0;
+	virtual void SetDisableChangePlayer(bool bInDisable) = 0; // #72
+
+	virtual bool IsEditorAISystemPaused() const = 0;
+	virtual void SetEditorPauseAISystem(bool bInPause) = 0; // #52
 
 	virtual IT4EditorGameplayContoller* GetEditorGameplayController() const = 0; // #60
 	virtual void SetEditorGameplayContoller(IT4EditorGameplayContoller* bInGameplayHandler) = 0; // #60
@@ -299,14 +304,16 @@ public:
 };
 
 // #42
-DECLARE_DELEGATE_TwoParams(FT4OnRegisterGameplayLayerInstancce, ET4FrameworkType, IT4Framework*); // #42
+DECLARE_DELEGATE_TwoParams(FT4OnPreCreateFramework, ET4FrameworkType, IT4Framework*); // #42
+DECLARE_DELEGATE_TwoParams(FT4OnPostCreateFramework, ET4FrameworkType, IT4Framework*); // #42
 #if WITH_EDITOR
 DECLARE_DELEGATE_OneParam(FT4OnCreateEditorPlayerController, IT4Framework*); // #42
 #endif
 class T4FRAMEWORK_API FT4FrameworkDelegates
 {
 public:
-	static FT4OnRegisterGameplayLayerInstancce OnCreateGameplayInstancce;
+	static FT4OnPreCreateFramework OnPreCreateFramework;
+	static FT4OnPreCreateFramework OnPostCreateFramework;
 
 #if WITH_EDITOR
 	static FT4OnCreateEditorPlayerController OnCreateEditorPlayerController;
