@@ -185,6 +185,8 @@ public:
 	virtual bool IsLoaded() const = 0; // #57 : 모든 로딩이 완료 된 상태
 	virtual bool HasPlayer() const = 0;
 
+	virtual ENetRole GetNetRole() const = 0; // #136
+
 	virtual APawn* GetPawn() = 0;
 	virtual IT4WorldSystem* GetWorldSystem() const = 0; // #100
 
@@ -333,7 +335,7 @@ public:
 		FT4HitSingleResult& OutHitResult
 	) = 0;
 
-	virtual bool QuerySweetSingle(
+	virtual bool QuerySweepSingle(
 		ET4CollisionChannel InCollisionChannel,
 		const FVector& InStartLocation,
 		const FVector& InEndLocation,
@@ -343,7 +345,7 @@ public:
 		FT4HitSingleResult& OutHitResult 
 	) = 0; // #132
 
-	virtual bool QuerySweetSingle(
+	virtual bool QuerySweepSingle(
 		ET4CollisionChannel InCollisionChannel,
 		const FRay& InWorldRay,
 		const float InMaxDistance,

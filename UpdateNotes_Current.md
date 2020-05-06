@@ -4,6 +4,11 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.05.06] [M6] Copying //Private to //Deploy (private commit 4a3f89a)**
+    - #136 [기능개선] T4Framework 전용 New MovementComponent 적용
+	  - Replicated 사용 배제 및 이후 확장성 문제로 UCharacterMovementComponent 사용이 제거됨
+    - #136 [버그수정] 캐릭터 이동시 간헐적으로 특정 위치에서 움직이지 못하던 문제 수정
+    - #136 [기능개선] Entity/Action Editor, Toolbar 에 RespawnPlayer 기능 추가
   - **[2020.05.05] [M6] Copying //Private to //Deploy (private commit 8fa8073)**
     - #132 [기능개선] Action Editor, SpaceBar 를 통한 Toggle Play 기능 처리 추가 (Simul 에서는 점프)
     - #132 [버그수정] Action Editor, Movement Action 이동이 지형지물을 뚫고 지나가던 문제 수정
