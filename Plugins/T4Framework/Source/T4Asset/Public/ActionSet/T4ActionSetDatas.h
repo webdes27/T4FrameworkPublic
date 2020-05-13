@@ -290,6 +290,9 @@ public:
 	float PlayRate;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
+	float PlayCutOffTimeSec; // #134 : 플레이중인 애니를 짜르고 들어간다. Sequential 에서만 사용됨
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
 	float BlendInTimeSec;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0"))
@@ -300,6 +303,7 @@ public:
 		: SectionName(NAME_None)
 		, PlayCount(ET4PlayCount::OneShot)
 		, PlayRate(1.0f)
+		, PlayCutOffTimeSec(0.0f) // #134 : 플레이중인 애니를 짜르고 들어간다. Sequential 에서만 사용됨
 		, BlendInTimeSec(T4Const_DefaultAnimBlendTimeSec)
 		, BlendOutTimeSec(T4Const_DefaultAnimBlendTimeSec)
 	{
@@ -327,8 +331,8 @@ public:
 		FT4ActionAnimSequenceData& AnimSequenceData = AnimSequenceDatas.AddDefaulted_GetRef();
 		AnimSequenceData.SectionName = InSectionName;
 		AnimSequenceData.PlayCount = InPlayCount;
-		AnimSequenceData.BlendInTimeSec = 0.02f;
-		AnimSequenceData.BlendOutTimeSec = 0.02f;
+		AnimSequenceData.BlendInTimeSec = InBlendInTimeSec;
+		AnimSequenceData.BlendOutTimeSec = InBlendOutTimeSec;
 	}
 
 public:

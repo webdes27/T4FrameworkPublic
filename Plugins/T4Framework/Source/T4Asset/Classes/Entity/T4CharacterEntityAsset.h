@@ -344,6 +344,7 @@ public:
 	FT4EntityCharacterReactionAnimationData()
 		: bUseAnimation(false)
 		, DelayTimeSec(0.0f)
+		, bUseAdditive(false) // #138
 	{
 	}
 
@@ -352,6 +353,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
 	float DelayTimeSec;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
+	bool bUseAdditive; // #138
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseAnimation"))
 	FT4EntityPlayAnimationData StartAnimationData;

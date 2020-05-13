@@ -119,6 +119,7 @@ struct FT4AnimParam // #38
 		, OffsetTimeSec(0.0f)
 		, BlendInTimeSec(T4Const_DefaultAnimBlendTimeSec)
 		, BlendOutTimeSec(T4Const_DefaultAnimBlendTimeSec)
+		, PlayCutOffTimeSec(0.0f) // #134 : 플레이중인 애니를 짜르고 들어간다. Sequential 에서만 사용됨
 		, MaxLoopPlayTimeSec(0.0f) // #134 : Looping 시간을 지정할 경우, ActionSet Lifecycle = Duration 외에는 사용하지 말것!!
 	{
 	}
@@ -130,6 +131,7 @@ struct FT4AnimParam // #38
 	float OffsetTimeSec;
 	float BlendInTimeSec;
 	float BlendOutTimeSec;
+	float PlayCutOffTimeSec; // #134 : 플레이중인 애니를 짜르고 들어간다. Sequential 에서만 사용됨
 	float MaxLoopPlayTimeSec; // #134 : Looping 시간을 지정할 경우, ActionSet Lifecycle = Duration 외에는 사용하지 말것!!
 };
 

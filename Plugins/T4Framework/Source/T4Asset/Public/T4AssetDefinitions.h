@@ -26,6 +26,7 @@ static const FName T4Const_DefaultStanceName = T4Const_DefaultName;
 
 static const FName T4Const_DefaultPostureName = T4Const_DefaultName;
 static const FName T4Const_CombatPostureName = TEXT("Combat"); // #108
+static const FName T4Const_NonCombatPostureName = TEXT("NonCombat"); // #135
 static const FName T4Const_SprintPostureName = TEXT("Sprint"); // #131
 
 
@@ -41,8 +42,10 @@ static const float T4Const_DefaultAnimBlendTimeSec = 0.1f;
 
 static const FName T4Const_ItemBlendSpaceName = TEXT("Item_Default"); // #107
 
+static const FName T4Const_AdditiveAnimMontageName = TEXT("Additive"); // #138 : System UI 를 사용하고, 내부적으로만 사용되는 Layer (Hit 류)
 static const FName T4Const_SkillAnimMontageName = TEXT("Skill");
 static const FName T4Const_SystemAnimMontageName = TEXT("System"); // #131
 
-static const FName T4Const_SkillAnimMontageSlotName = TEXT("SkillSlot"); // #39, #107
-static const FName T4Const_SystemAnimMontageSlotName = TEXT("DefaultSlot"); // #131
+static const FName T4Const_AdditiveAnimMontageSlotName = TEXT("T4AdditiveSlot"); // #138
+static const FName T4Const_SkillAnimMontageSlotName = TEXT("T4SkillSlot"); // #39, #107
+static const FName T4Const_SystemAnimMontageSlotName = TEXT("T4DefaultSlot"); // #131

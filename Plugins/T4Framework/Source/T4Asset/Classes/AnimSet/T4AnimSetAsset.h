@@ -49,7 +49,11 @@ public:
 	FT4AnimSetAnimSequenceData()
 		: Name(NAME_None)
 		, PostureName(T4Const_DefaultPostureName) // #131
+		, bAdditiveAnimType(false) // #138
 		, DurationSec(0.0f)
+#if WITH_EDITORONLY_DATA
+		, bUseEndLoop(false) // #135 : System 의 Death 류 사용, End Looping 추가 (시퀄스의 끝에서 루핑되는 Section 을 만들어준다.)
+#endif
 	{
 	}
 
@@ -70,22 +74,56 @@ public:
 	FName PostureName; // #131
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
+	bool bAdditiveAnimType; // #138 : Local Space Base
+
+	UPROPERTY(VisibleAnywhere, Category = Common)
 	float DurationSec;
 
 #if WITH_EDITORONLY_DATA
+	UPROPERTY(EditAnywhere, Category = Editor)
+	bool bUseEndLoop; // #135 : System 의 Death 류 사용, End Looping 추가 (시퀄스의 끝에서 루핑되는 Section 을 만들어준다.)
+
 	UPROPERTY(EditAnywhere, Category = Editor)
 	TSoftObjectPtr<UAnimSequence> AnimSequenceAsset;
 #endif
 };
 
-// #131
 USTRUCT()
-struct T4ASSET_API FT4AnimSetSequenceLayerData
+struct T4ASSET_API FT4AnimSetBlendSpaceData
 {
 	GENERATED_USTRUCT_BODY()
 
 public:
-	FT4AnimSetSequenceLayerData()
+	FT4AnimSetBlendSpaceData()
+		: Name(NAME_None)
+	{
+	}
+
+	FORCEINLINE bool operator==(const FName& InKey) const
+	{
+		return (Name == InKey) ? true : false;
+	}
+
+	FORCEINLINE bool operator==(const FT4AnimSetBlendSpaceData& InRhs) const
+	{
+		return (Name == InRhs.Name) ? true : false;
+	}
+
+	UPROPERTY(VisibleAnywhere, Category = Common)
+	FName Name;
+
+	UPROPERTY(VisibleAnywhere, Category = Common)
+	TSoftObjectPtr<UBlendSpaceBase> BlendSpaceAsset;
+};
+
+// #131
+USTRUCT()
+struct T4ASSET_API FT4AnimSetSkillLayerData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4AnimSetSkillLayerData()
 		: bAnimMontageAutoGen(true)
 	{
 	}
@@ -127,11 +165,11 @@ public:
 
 	// FT4CharacterAnimationDataLoader::ProcessPre() // #111
 
-	UPROPERTY(VisibleAnywhere, Category = Default)
+	UPROPERTY(VisibleAnywhere, Category = Common)
 	FName PostureName;
 
-	UPROPERTY(EditAnywhere, Category = GroundState)
-	TMap<FName, TSoftObjectPtr<UAnimSequence>> AnimSequenceMap;
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TArray<FT4AnimSetAnimSequenceData> AnimSequenceArray;
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(VisibleAnywhere, Category = Hide)
@@ -151,7 +189,10 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UAnimMontage> AnimMontageAsset; // #69
+	TSoftObjectPtr<UAnimMontage> SystemAnimMontageAsset; // #69
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	TSoftObjectPtr<UAnimMontage> AdditiveAnimMontageAsset; // #138
 
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
@@ -190,10 +231,10 @@ public:
 	FName PostureName;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TMap<FName, TSoftObjectPtr<UAnimSequence>> AnimSequenceMap;
+	TArray<FT4AnimSetAnimSequenceData> AnimSequenceArray;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	TMap<FName, TSoftObjectPtr<UBlendSpaceBase>> BlendSpaceMap;
+	TArray<FT4AnimSetBlendSpaceData> BlendSpaceArray;
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TMap<FName, float> StateParameterMap; // #131
@@ -282,7 +323,7 @@ public:
 	// CustomizeSkillLayerDetails
 
 	UPROPERTY(EditAnywhere, Category = SkillLayer)
-	FT4AnimSetSequenceLayerData SkillLayerData; // #131
+	FT4AnimSetSkillLayerData SkillLayerData; // #131
 
 	// CustomizeSystemLayerDetails
 

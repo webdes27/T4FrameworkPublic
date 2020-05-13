@@ -4,6 +4,12 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.05.13] [M6] Copying //Private to //Deploy (private commit dfa707b)**
+    - #135 [기능개선] AnimSequence 의 마지막 프레임으로 AnimMontage Section 을 만들 수 있도록 기능 추가
+    - #135 [기능개선] Sequential Animation 처리시 PlayCutOffTimeSec 을 통한 애니메이션 조정 기능 추가
+    - #135 [버그수정] AnimSquence PlayRate 가 지정된 시퀀스의 애니메이션 비정상 출력 문제 수정
+    - #138 [기능추가] Local Space AdditiveAnimType AnimSequence 플레이 처리 추가
+    - #131 [기능개선] Paragon 캐릭터 FootIK 동작 추가
   - **[2020.05.06] [M6] Copying //Private to //Deploy (private commit 4a3f89a)**
     - #136 [기능개선] T4Framework 전용 New MovementComponent 적용
 	  - Replicated 사용 배제 및 이후 확장성 문제로 UCharacterMovementComponent 사용이 제거됨
