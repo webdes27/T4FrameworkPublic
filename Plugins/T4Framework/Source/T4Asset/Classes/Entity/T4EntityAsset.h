@@ -21,7 +21,7 @@ public:
 	FT4EntityEditorThumbnailData()
 #if WITH_EDITORONLY_DATA
 		: Rotation(FRotator(0.0f, 180.0f, 0.0f))
-		, Location(FVector(500.0f, 0.0f, 100.0f))
+		, Location(FVector(500.0f, 0.0f, 110.0f))
 #endif
 	{
 	}

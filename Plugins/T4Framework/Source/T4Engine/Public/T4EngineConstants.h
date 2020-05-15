@@ -65,9 +65,11 @@ enum ET4EngineConstantTable
 struct T4ENGINE_API FT4ConstantDataRow
 {
 	FT4ConstantDataRow()
-		: Name(NAME_None)
+		: Key(NAME_None)
+		, Name(NAME_None)
 	{
 	}
+	FName Key;
 	FName Name;
 	union 
 	{
