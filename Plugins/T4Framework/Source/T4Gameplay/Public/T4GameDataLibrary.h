@@ -308,10 +308,8 @@ public:
 	virtual bool Refresh(ET4GameDataType InGameDataType) = 0; // #125
 
 	virtual bool HasGameData(const FT4GameDataID& InGameDataID) const = 0;
-	virtual bool HasGameData(const FGuid& InGuid) const = 0;
 
 	virtual const FT4GameDataBase* GetDataConst(const FT4GameDataID& InGameDataID) const = 0;
-	virtual const FT4GameDataBase* GetDataConst(const FGuid& InDataGuid) const = 0;
 
 	virtual const FT4GameWorldData* GetWorldData(const FT4GameDataID& InGameDataID) const = 0;
 	virtual const FT4GamePlayerData* GetPlayerData(const FT4GameDataID& InGameDataID) const = 0;

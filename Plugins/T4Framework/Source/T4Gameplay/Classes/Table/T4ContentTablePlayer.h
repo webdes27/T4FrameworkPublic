@@ -46,8 +46,8 @@ struct FT4ContentPlayerTableRow : public FT4ContentTableBase
 public:
 	// FT4DataTablePlayerRowDetails::CustomizeDetails
 
-	UPROPERTY(VisibleAnywhere, Category = Common)
-	FGuid Guid;
+	UPROPERTY(EditAnywhere, Category = Common)
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category = Common)
 	FName RaceName; // #104, #114
@@ -66,7 +66,8 @@ public:
 
 public:
 	FT4ContentPlayerTableRow()
-		: RaceName(T4Const_DefaultPlayerRaceName) // #104, #114
+		: Version(0) // #135
+		, RaceName(T4Const_DefaultPlayerRaceName) // #104, #114
 		, InitializeLevel(ET4GameStatLevel::Level_1)
 	{
 	}

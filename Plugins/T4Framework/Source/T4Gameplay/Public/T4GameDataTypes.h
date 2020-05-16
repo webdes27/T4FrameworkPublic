@@ -10,6 +10,9 @@
 /**
   * #48
  */
+
+static const FName T4Const_DefaultGameContentName = TEXT("Default"); // #135
+
 // #T4_ADD_GAME_DATATABLE
 UENUM()
 enum class ET4GameDataType : uint8

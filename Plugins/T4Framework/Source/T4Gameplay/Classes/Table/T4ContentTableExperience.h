@@ -23,8 +23,8 @@ public:
 	// FT4ContentDatabaseExperienceDetails::CustomizeDetails
 
 	// #T4_ADD_EXPERIENCE_CONTENT_TAG
-	UPROPERTY(VisibleAnywhere, Category = Common)
-	FGuid Guid;
+	UPROPERTY(EditAnywhere, Category = Common)
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	ET4GameStatCategory StatCategory; // #114 : 사용처를 명시한다.
@@ -40,7 +40,8 @@ public:
 
 public:
 	FT4ContentExperienceTableRow()
-		: StatCategory(ET4GameStatCategory::None) // #114 : 사용처를 명시한다.
+		: Version(0) // #135
+		, StatCategory(ET4GameStatCategory::None) // #114 : 사용처를 명시한다.
 		, StatLevel(ET4GameStatLevel::Max)
 		, Required_EXP(0.0f)
 		, Total_Required_EXP(0.0f)

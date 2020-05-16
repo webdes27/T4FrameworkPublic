@@ -22,8 +22,8 @@ struct FT4ContentSkillSetTableRow : public FT4ContentTableBase
 public:
 	// FT4DataTableSkillSetRowDetails::CustomizeDetails
 
-	UPROPERTY(VisibleAnywhere, Category = Common)
-	FGuid Guid;
+	UPROPERTY(EditAnywhere, Category = Common)
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category= Common)
 	ET4GameSkillSetUseType UseType; // #113, #116 : false = PrimarySkillNameID
@@ -42,7 +42,8 @@ public:
 
 public:
 	FT4ContentSkillSetTableRow()
-		: UseType(ET4GameSkillSetUseType::Primary)
+		: Version(0) // #135
+		, UseType(ET4GameSkillSetUseType::Primary)
 	{
 	}
 };

@@ -23,8 +23,8 @@ public:
 	// FT4DataTableEffectRowDetails::CustomizeDetails
 
 	// #T4_ADD_EFFECT_CONTENT_TAG
-	UPROPERTY(VisibleAnywhere, Category = Common)
-	FGuid Guid;
+	UPROPERTY(EditAnywhere, Category = Common)
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	FT4GameEffectStatDataID EffectStatDataID; // #114 : 기본 Stat
@@ -46,7 +46,8 @@ public:
 
 public:
 	FT4ContentEffectTableRow()
-		: EffectType(ET4GameplayEffectType::Direct)
+		: Version(0) // #135
+		, EffectType(ET4GameplayEffectType::Direct)
 		, HitDelayTimeSec(0.0f)
 		, AreaRange(0.0f)
 	{

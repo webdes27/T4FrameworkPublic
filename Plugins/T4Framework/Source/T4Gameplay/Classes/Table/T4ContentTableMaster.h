@@ -8,7 +8,7 @@
 #include "T4ContentTableMaster.generated.h"
 
 /**
-  * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
+  * #135
  */
 USTRUCT()
 struct FT4ContentMasterTableRow : public FT4ContentTableBase
@@ -19,17 +19,45 @@ public:
 	// FT4DataTableMasterRowDetails::CustomizeDetails
 
 	UPROPERTY(EditAnywhere, Category = Common)
-	ET4GameDataType Type;
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category = Common)
-	TSoftObjectPtr<UDataTable> Table;
+	FName ContentName;
 
-	UPROPERTY(Transient)
-	FGuid Guid; // #118 : Master 는 필요없다.
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> WorldTableAsset;
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> PlayerTableAsset;
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> NPCTableAsset;
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> WeaponTableAsset; // #48
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> CostumeTableAsset; // #48
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> SkillSetTableAsset; // #50
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> SkillTableAsset;
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> EffectTableAsset;
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> StatTableAsset; // #114
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> ExperienceTableAsset; // #114
 
 public:
 	FT4ContentMasterTableRow()
-		: Type(ET4GameDataType::Master)
+		: Version(0) // #135
+		, ContentName(T4Const_DefaultGameContentName)
 	{
 	}
 };

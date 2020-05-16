@@ -20,14 +20,15 @@ struct FT4ContentWorldTableRow : public FT4ContentTableBase
 public:
 	// FT4DataTableWorldRowDetails::CustomizeDetails
 
-	UPROPERTY(VisibleAnywhere, Category = Common)
-	FGuid Guid;
+	UPROPERTY(EditAnywhere, Category = Common)
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category= ClientOnly)
 	TSoftObjectPtr<UT4MapEntityAsset> EntityAsset;
 
 public:
 	FT4ContentWorldTableRow()
+		: Version(0) // #135
 	{
 	}
 };

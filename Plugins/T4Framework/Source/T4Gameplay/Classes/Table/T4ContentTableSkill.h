@@ -89,8 +89,8 @@ public:
 	// FT4DataTableSkillRowDetails::CustomizeDetails
 
 	// #T4_ADD_SKILL_CONTENT_TAG 
-	UPROPERTY(VisibleAnywhere, Category = Common)
-	FGuid Guid;
+	UPROPERTY(EditAnywhere, Category = Common)
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category = Common)
 	FT4GameSkillShapeData SkillShapeData;
@@ -115,6 +115,7 @@ public:
 
 public:
 	FT4ContentSkillTableRow()
+		: Version(0) // #135
 	{
 	}
 };

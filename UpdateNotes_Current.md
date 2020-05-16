@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.05.16] [M6] Copying //Private to //Deploy (private commit 6659c27)**
+    - #135 [기능개선] Multi Content Table 관리를 위한 연결 구조 정리
   - **[2020.05.15] [M6] Copying //Private to //Deploy (private commit 42555ca)**
     - #135 [기능개선] Action Editor, ActionPoint DropListView 의 Item Description 개선
     - #135 [기능개선] Action Editor, Browser 의 Item 더블클릭시 MainViewport 의 캐릭터에 Play 기능 추가

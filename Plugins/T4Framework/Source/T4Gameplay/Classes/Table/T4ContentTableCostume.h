@@ -19,8 +19,8 @@ struct FT4ContentCostumeTableRow : public FT4ContentItemTableRowBase
 public:
 	// FT4DataTableCostumeRowDetails::CustomizeDetails
 
-	UPROPERTY(VisibleAnywhere, Category = Common)
-	FGuid Guid;
+	UPROPERTY(EditAnywhere, Category = Common)
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	FT4GameItemStatDataID ItemStatDataID; // #114 : 기본 Stat
@@ -33,6 +33,7 @@ public:
 
 public:
 	FT4ContentCostumeTableRow()
+		: Version(0) // #135
 	{
 	}
 };

@@ -38,8 +38,8 @@ struct FT4ContentWeaponTableRow : public FT4ContentItemTableRowBase
 public:
 	// FT4DataTableWeaponRowDetails::CustomizeDetails
 
-	UPROPERTY(VisibleAnywhere, Category = Common)
-	FGuid Guid;
+	UPROPERTY(EditAnywhere, Category = Common)
+	uint32 Version;
 
 	UPROPERTY(EditAnywhere, Category = Common)
 	float AttackRange; // #50
@@ -61,7 +61,8 @@ public:
 
 public:
 	FT4ContentWeaponTableRow()
-		: AttackRange(0.0f)
+		: Version(0) // #135
+		, AttackRange(0.0f)
 	{
 	}
 };
