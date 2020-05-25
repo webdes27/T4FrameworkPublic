@@ -11,9 +11,12 @@
 UENUM()
 enum class ET4GameplayAttackType : uint8 // #63
 {
-	Melee,
-	Ranged,
-	Area,
+	Swing,
+	Throw,
+	Launch, // #135, 특수, 발사체와 반동이 함께 있음 (TODO : 적당한 이름이 있다면 수정할 것)
+
+	Air, // #135 : Jump Attack
+	Dash, // #135
 
 	None,
 };
@@ -21,8 +24,12 @@ enum class ET4GameplayAttackType : uint8 // #63
 UENUM()
 enum class ET4GameplayEffectType : uint8 // #68
 {
-	Direct,
-	Area,
+	DirectDamage,
+	AreaDamage,
+
+	Knockback, // CC
+	Airborne, // CC
+	Stun, // CC
 
 	None UMETA(Hidden),
 };

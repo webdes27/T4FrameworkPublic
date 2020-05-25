@@ -73,7 +73,7 @@ public:
 	float ActiveOrKeepAggroTimeSec;
 
 	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_AgentRadius"))
-	float AgentRadius; // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
+	float AgentRadius; // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용 (WorldActor = BoundRadius)
 
 	UPROPERTY(EditAnywhere, meta = (editcondition = "bOverride_SensoryRange"))
 	float SensoryRange;
@@ -96,7 +96,7 @@ public:
 		, EnemyType(ET4GameEnemyType::None) // #104
 		, bAggressive(false)
 		, ActiveOrKeepAggroTimeSec(0.0f)
-		, AgentRadius(0.0f) // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
+		, AgentRadius(0.0f) // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용 (WorldActor = BoundRadius)
 		, SensoryRange(0.0f)
 		, RomaingRange(0.0f)
 		, RoamingRate(0.0f)

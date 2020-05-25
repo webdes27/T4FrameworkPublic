@@ -35,6 +35,9 @@ enum class ET4OverrideParamBits // #112
 	DurationBit,
 	OffsetTimeBit, // #56
 
+	MovementSpeedBit, // #135
+	MovementReverseAngleBit, // #135
+
 	ProjectileSpeedBit, // #63
 	ProjectileHitTargetBit, // #127 : 타겟(Actor or Location)에 명중되었을 경우. DurationBit 와 함께 켜진다.
 	ProjectileDurationBit, // #63
@@ -120,6 +123,9 @@ public:
 	float OffsetTimeSec; // #56
 
 	UPROPERTY(EditAnywhere)
+	float MovementSpeed; // #135
+
+	UPROPERTY(EditAnywhere)
 	float ProjectileSpeed; // #63
 
 	UPROPERTY(EditAnywhere)
@@ -148,6 +154,7 @@ public:
 		: SetBits(0)
 		, DurectionSec(0.0f)
 		, OffsetTimeSec(0.0f) // #56
+		, MovementSpeed(0.0f)
 		, ProjectileSpeed(0.0f) // #63
 		, bProjectileHitTarget(false) // #127 : 타겟(Actor or Location)에 명중되었을 경우. DurationBit 와 함께 켜진다.
 		, ProjectileDurationSec(0.0f) // #63
@@ -304,6 +311,19 @@ public:
 		OverrideParams.OffsetTimeSec = InOffsetTimeSec;
 		OverrideParams.SetBits |= BIT_LEFTSHIFT(ET4OverrideParamBits::OffsetTimeBit); // #56
 		bDirty = true; // #68
+	}
+
+	FORCEINLINE void SetOverrideMovementSpeed(const float& InMovementSpeed) // #135
+	{
+		OverrideParams.MovementSpeed = InMovementSpeed;
+		OverrideParams.SetBits |= BIT_LEFTSHIFT(ET4OverrideParamBits::MovementSpeedBit);
+		bDirty = true;
+	}
+
+	FORCEINLINE void SetOverrideMovementReverseAngle() // #135
+	{
+		OverrideParams.SetBits |= BIT_LEFTSHIFT(ET4OverrideParamBits::MovementReverseAngleBit);
+		bDirty = true;
 	}
 
 	FORCEINLINE void SetOverrideProjectileSpeed(const float& InProjectileSpeed) // #63

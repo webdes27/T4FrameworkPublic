@@ -214,6 +214,16 @@ enum class ET4FootstepType : uint8 // #111
 };
 
 UENUM()
+enum class ET4MovementTargetType : uint8 // #135
+{
+	Actor,
+	Location,
+	Infinity,
+
+	InPlace, // #132 : Airborne
+};
+
+UENUM()
 enum class ET4EditorAction : uint8
 {
 	ReloadAttributes, // #81

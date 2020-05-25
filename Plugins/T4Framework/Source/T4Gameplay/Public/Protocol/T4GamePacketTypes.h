@@ -96,6 +96,9 @@ enum class ET4GamePacketSC : uint32
 
 	EffectDirect,
 	EffectArea, // #68
+	EffectKnockback, // #135
+	EffectAirborne, // #135
+	EffectStun, // #135
 
 	Die, // #76
 	Resurrect, // #76

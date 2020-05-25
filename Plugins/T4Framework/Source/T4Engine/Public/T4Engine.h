@@ -102,6 +102,7 @@ public:
 		float InOffsetTimeSec // #132
 	) = 0; // #131
 	virtual void StopSequentialAnimation(ET4AnimationLayer InAnimationLayer, FT4AnimSequentialID InAnimSequentialID) = 0; // #131
+	virtual void StopAllSequentialAnimation(ET4AnimationLayer InAnimationLayer) = 0; // #135 : Die, Knockback 등의 CC 발동시 동작중인 스킬 애니메이션 강제 정지 처리
 
 #if !UE_BUILD_SHIPPING
 	virtual void DebugPauseAnimation(FT4AnimInstanceID InPlayInstanceID, bool bInPause) = 0; // #54
@@ -209,6 +210,7 @@ public:
 	virtual bool IsTurning() const = 0; // #46
 	virtual bool IsCombat() const = 0; // #109
 	virtual bool IsAiming() const = 0; // #113
+	virtual bool IsCustomMoving() const = 0; // #135
 
 	virtual bool HasPlayingAnimState(const FName& InAnimStateName) const = 0; // #47
 
@@ -290,6 +292,7 @@ public:
 
 	virtual bool QueryNearestWorldActors(
 		const FVector& InOriginLocation,
+		const float InMinDistance,
 		const float InMaxDistance,
 		TArray<IT4WorldActor*>& OutActors
 	) = 0; // #34

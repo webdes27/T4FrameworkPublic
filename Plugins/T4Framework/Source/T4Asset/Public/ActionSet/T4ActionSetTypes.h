@@ -155,16 +155,3 @@ enum class ET4AcceleratedMotion : uint8 // #127
 	Acceleration,
 	Deceleration,
 };
-
-UENUM()
-enum class ET4MoveAngleType : uint8 // #132
-{
-	Back,
-	Back_Left,
-	Back_Right,
-	Front,
-	Front_Left,
-	Front_Right,
-	Left,
-	Right,
-};

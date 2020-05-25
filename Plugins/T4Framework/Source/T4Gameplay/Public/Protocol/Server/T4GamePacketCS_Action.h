@@ -113,23 +113,27 @@ public:
 	FT4GameDataID SkillDataID;
 
 	UPROPERTY(VisibleAnywhere)
-	ET4GameAttackTarget TargetType; // #112
+	ET4GameTargetParamType TargetType; // #112
 
 	UPROPERTY(VisibleAnywhere)
 	FT4ObjectID TargetObjectID; // #63 : 타겟이 있으면 먼저 체크! 없으면 Direct 을 사용한다.
 
 	UPROPERTY(VisibleAnywhere)
-	FName TargetHitBone; // #112 : TargetObjectID Valid 일 경우만, 현재는 순수 비쥬얼 용도
+	FVector TargetLocation; // #49, #68 : Area, #112
 
 	UPROPERTY(VisibleAnywhere)
-	FVector TargetLocationOrDirection; // #49, #68 : Area, #112
+	FVector TargetDirection; // #49, #68 : Area, #112, #135
+
+	UPROPERTY(VisibleAnywhere)
+	FName TargetHitBone; // #112 : TargetObjectID Valid 일 경우만, 현재는 순수 비쥬얼 용도
 
 public:
 	FT4GamePacketCS_SkillTarget()
 		: FT4GamePacketCS_Base(ET4GamePacketCS::SkillTarget)
-		, TargetType(ET4GameAttackTarget::None)
+		, TargetType(ET4GameTargetParamType::None)
+		, TargetLocation(FVector::ZeroVector)
+		, TargetDirection(FVector::ZeroVector)
 		, TargetHitBone(NAME_None) // #112
-		, TargetLocationOrDirection(FVector::ZeroVector)
 	{
 	}
 
@@ -145,8 +149,8 @@ public:
 			OutMsg = TEXT("Invalid SkillDataID!");
 			return false;
 		}
-		if (ET4GameAttackTarget::ObjectID == TargetType ||
-			ET4GameAttackTarget::ObjectIDAndLocation == TargetType)
+		if (ET4GameTargetParamType::ObjectID == TargetType ||
+			ET4GameTargetParamType::ObjectIDAndLocation == TargetType)
 		{
 			if (!TargetObjectID.IsValid())
 			{
@@ -154,17 +158,17 @@ public:
 				return false;
 			}
 		}
-		else if (ET4GameAttackTarget::Location == TargetType)
+		else if (ET4GameTargetParamType::Location == TargetType)
 		{
-			if (TargetLocationOrDirection.IsNearlyZero())
+			if (TargetLocation.IsNearlyZero())
 			{
 				OutMsg = TEXT("Invalid Target Location");
 				return false;
 			}
 		}
-		else if (ET4GameAttackTarget::Direction == TargetType)
+		else if (ET4GameTargetParamType::Direction == TargetType)
 		{
-			if (TargetLocationOrDirection.IsNearlyZero())
+			if (TargetDirection.IsNearlyZero())
 			{
 				OutMsg = TEXT("Invalid Target Direction");
 				return false;

@@ -69,7 +69,10 @@ UENUM()
 enum class ET4EntityReactionType : uint8 // #76
 {
 	Hit,
-	CrowdControl,
+	
+	Knockback, // #135 : CrowdControl 에서 세부 Type 으로 분리
+	Airborne, // #135 : CrowdControl 에서 세부 Type 으로 분리
+	Stun, // #135 : CrowdControl 에서 세부 Type 으로 분리
 
 	Die,
 	Resurrect,

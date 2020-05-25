@@ -378,12 +378,16 @@ public:
 	FName ReactionName;
 
 	UPROPERTY(EditAnywhere)
+	ET4EntityReactionType ReactionType; // #135 : Knockback & Airborne & Stun
+
+	UPROPERTY(EditAnywhere)
 	FVector ShootDirection;
 
 public:
 	FT4CrowdControlActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, ReactionName(NAME_None)
+		, ReactionType(ET4EntityReactionType::None) // #135 : Knockback & Airborne & Stun
 		, ShootDirection(FVector::ZeroVector)
 	{
 	}

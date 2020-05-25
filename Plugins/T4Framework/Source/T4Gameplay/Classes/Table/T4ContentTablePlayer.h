@@ -39,7 +39,7 @@ public:
 };
 
 USTRUCT()
-struct FT4ContentPlayerTableRow : public FT4ContentTableBase
+struct FT4ContentPlayerTableRow : public FT4ContentTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 

@@ -14,7 +14,7 @@
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
  */
 USTRUCT()
-struct FT4ContentTableBase : public FTableRowBase
+struct FT4ContentTableRowBase : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -31,7 +31,7 @@ public:
 #endif
 
 public:
-	FT4ContentTableBase()
+	FT4ContentTableRowBase()
 #if WITH_EDITORONLY_DATA
 		: ParentRowName(NAME_None) // #122
 		, FolderName(NAME_None) // #122

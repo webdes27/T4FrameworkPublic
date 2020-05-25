@@ -195,6 +195,15 @@ private:
 	void SC_RecvPacket_EffectArea(const FT4GamePacketSC_EffectArea& InPacket); // #68
 
 	UFUNCTION(Reliable, client)
+	void SC_RecvPacket_EffectKnockback(const FT4GamePacketSC_EffectKnockback& InPacket); // #135
+
+	UFUNCTION(Reliable, client)
+	void SC_RecvPacket_EffectAirborne(const FT4GamePacketSC_EffectAirborne& InPacket); // #135
+
+	UFUNCTION(Reliable, client)
+	void SC_RecvPacket_EffectStun(const FT4GamePacketSC_EffectStun& InPacket); // #135
+
+	UFUNCTION(Reliable, client)
 	void SC_RecvPacket_Die(const FT4GamePacketSC_Die& InPacket); // #76
 
 	UFUNCTION(Reliable, client)

@@ -26,8 +26,10 @@ enum class ET4GameDataType : uint8
 	Weapon, // #48
 	Costume, // #48
 
-	Skill,
 	SkillSet, // #50
+	Skill,
+
+	EffectSet, // #135
 	Effect,
 
 	Stat, // #114
@@ -64,16 +66,6 @@ enum class ET4GameStatLevel : uint8 // #114
 	Level_10,
 
 	Max UMETA(Hidden),
-};
-
-UENUM()
-enum class ET4GameSkillSetUseType : uint8 // #116
-{
-	Primary,
-	Sequential,
-	HotKey,
-
-	None UMETA(Hidden),
 };
 
 UENUM()
@@ -221,8 +213,9 @@ public:
 			TEXT("NPC"),
 			TEXT("Weapon"), // #37
 			TEXT("Costume"),
-			TEXT("Skill"),
 			TEXT("SkillSet"), // #50
+			TEXT("Skill"),
+			TEXT("EffectSet"), // #135
 			TEXT("Effect"),
 			TEXT("Stat"), // #114
 			TEXT("Experience"), // #114
@@ -308,6 +301,37 @@ public:
 	}
 };
 
+// #50
+USTRUCT()
+struct FT4GameSkillSetDataID : public FT4GameDataID
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4GameSkillSetDataID()
+		: FT4GameDataID(ET4GameDataType::SkillSet)
+	{
+	}
+
+	FT4GameSkillSetDataID(const FName& InRowName)
+		: FT4GameDataID(ET4GameDataType::SkillSet, InRowName)
+	{
+	}
+
+	FORCEINLINE FT4GameDataID operator=(const FT4GameSkillSetDataID& InRhs)
+	{
+		Type = InRhs.Type;
+		RowName = InRhs.RowName;
+		return *this;
+	}
+
+	FORCEINLINE FT4GameSkillSetDataID operator=(const FT4GameDataID& InRhs)
+	{
+		RowName = InRhs.RowName;
+		return *this;
+	}
+};
+
 USTRUCT()
 struct FT4GameSkillDataID : public FT4GameDataID
 {
@@ -331,6 +355,37 @@ public:
 	}
 
 	FORCEINLINE FT4GameSkillDataID operator=(const FT4GameDataID& InRhs)
+	{
+		RowName = InRhs.RowName;
+		return *this;
+	}
+};
+
+// #135
+USTRUCT()
+struct FT4GameEffectSetDataID : public FT4GameDataID
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4GameEffectSetDataID()
+		: FT4GameDataID(ET4GameDataType::EffectSet)
+	{
+	}
+
+	FT4GameEffectSetDataID(const FName& InRowName)
+		: FT4GameDataID(ET4GameDataType::EffectSet, InRowName)
+	{
+	}
+
+	FORCEINLINE FT4GameDataID operator=(const FT4GameEffectSetDataID& InRhs)
+	{
+		Type = InRhs.Type;
+		RowName = InRhs.RowName;
+		return *this;
+	}
+
+	FORCEINLINE FT4GameEffectSetDataID operator=(const FT4GameDataID& InRhs)
 	{
 		RowName = InRhs.RowName;
 		return *this;
@@ -392,37 +447,6 @@ public:
 	}
 
 	FORCEINLINE FT4GameWeaponDataID operator=(const FT4GameDataID& InRhs)
-	{
-		RowName = InRhs.RowName;
-		return *this;
-	}
-};
-
-// #50
-USTRUCT()
-struct FT4GameSkillSetDataID : public FT4GameDataID
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	FT4GameSkillSetDataID()
-		: FT4GameDataID(ET4GameDataType::SkillSet)
-	{
-	}
-
-	FT4GameSkillSetDataID(const FName& InRowName)
-		: FT4GameDataID(ET4GameDataType::SkillSet, InRowName)
-	{
-	}
-
-	FORCEINLINE FT4GameDataID operator=(const FT4GameSkillSetDataID& InRhs)
-	{
-		Type = InRhs.Type;
-		RowName = InRhs.RowName;
-		return *this;
-	}
-
-	FORCEINLINE FT4GameSkillSetDataID operator=(const FT4GameDataID& InRhs)
 	{
 		RowName = InRhs.RowName;
 		return *this;

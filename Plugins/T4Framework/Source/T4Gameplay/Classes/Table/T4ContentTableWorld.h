@@ -13,7 +13,7 @@
 class UT4MapEntityAsset;
 
 USTRUCT()
-struct FT4ContentWorldTableRow : public FT4ContentTableBase
+struct FT4ContentWorldTableRow : public FT4ContentTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 

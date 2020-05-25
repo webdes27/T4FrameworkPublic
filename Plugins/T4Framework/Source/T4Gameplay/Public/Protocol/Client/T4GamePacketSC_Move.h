@@ -38,7 +38,7 @@ public:
 	FT4ObjectID ObjectID;
 
 	UPROPERTY(VisibleAnywhere)
-	FVector MoveToLocation; // #52 : Velocity * (1.0f / GameplayDefaultNetworkLatencySec) / 레이턴시 감안 복원
+	FVector MoveToLocation; // #52 : Velocity * (1.0f / DefaultNetworkLatencySec) / 레이턴시 감안 복원
 
 	UPROPERTY(VisibleAnywhere)
 	float HeadYawAngle; // #40 : 필요할 때 3D 로 확장. #50 : 이동 방향과 Head 방향이 다를 경우를 대비해 존재

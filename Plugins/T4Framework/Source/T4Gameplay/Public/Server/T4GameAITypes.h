@@ -23,6 +23,7 @@ enum class ET4GameAITaskState : uint8 // #114
 {
 	None,
 	Dead,
+	Abnormal, // #135
 	FindNearestEnemy,
 	Approach,
 	Attack,

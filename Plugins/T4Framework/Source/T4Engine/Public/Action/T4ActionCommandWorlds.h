@@ -83,6 +83,9 @@ public:
 	FSoftObjectPath EntityAssetPath;
 
 	UPROPERTY(EditAnywhere)
+	FName SkinName; // #135 : 기본 스킨
+
+	UPROPERTY(EditAnywhere)
 	FName StanceName; // #73 : 초기 애니메이션 로딩 타임이 있음으로 가급적 스폰시에도 설정하도록 처리한다.
 	
 	UPROPERTY(EditAnywhere)
@@ -105,6 +108,7 @@ public:
 		: FT4ActionCommandBase(StaticActionType())
 		, Name(NAME_None)
 		, EntityType(ET4EntityType::None)
+		, SkinName(NAME_None) // #135
 		, StanceName(NAME_None) // #73
 		, PostureName(NAME_None) // #73, #111
 		, SpawnLocation(FVector::ZeroVector)

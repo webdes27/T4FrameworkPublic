@@ -51,3 +51,19 @@ enum class ET4BuiltInEasing : uint8
 	CircOut UMETA(Grouping = Circular), 
 	CircInOut UMETA(Grouping = Circular),
 };
+
+UENUM()
+enum class ET4MoveAngleType : uint8 // #132
+{
+	Back,
+	Back_Left,
+	Back_Right,
+	Front,
+	Front_Left,
+	Front_Right,
+	Left,
+	Right,
+
+	Up,
+	InPlace,
+};

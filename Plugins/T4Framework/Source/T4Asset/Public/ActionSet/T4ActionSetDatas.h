@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "T4ActionBase.h"
 #include "Public/T4AssetDefinitions.h"
+#include "Public/Entity/T4EntityTypes.h"
 #include "Engine/Scene.h" // #100
 #include "Camera/CameraShake.h" // #101
 #include "T4ActionSetDatas.generated.h"
@@ -671,7 +672,7 @@ public:
 		, bEnableBounceOut(false) // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
 		, bUseOscillate(false) // #127
 		, OscillateRange(0.0f) // #127
-		, ProjectileLength(80.0f) // #112
+		, ProjectileLength(50.0f) // #112
 		, ThrowDelayTimeSec(0.0f)
 		, CastingStopDelayTimeSec(0.2f)
 	{
@@ -699,20 +700,32 @@ struct T4ASSET_API FT4ReactionActionData : public FT4ActionDataBase
 public:
 	// #39 : FT4ActionDetails::CustomizeReactionActionDetails
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	FName ReactionName;
+	ET4EntityReactionType ReactionType;
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName ReactionName_A; // hit : Back (뒤로 기울임), knockback : Back (뒤로 밀림)
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName ReactionName_B; // hit : Front (앞으로 기울임), knockback : Front (앞으로 밀림)
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName ReactionName_C; // hit : Right (우측으로), knockback : Up (공중으로)
+
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName ReactionName_D; // hit : Left (좌측으로)
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bUseRotation; // #132 : Shoot 방향으로 회전 사용 여부
 
-	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bUseRotation"))
-	bool bInverseRotation; // #132 : Shoot 방향으로 회전 사용시 역방향
-
 public:
 	FT4ReactionActionData()
 		: FT4ActionDataBase(StaticActionType())
-		, ReactionName(NAME_None)
-		, bUseRotation(true)
-		, bInverseRotation(false)
+		, ReactionType(ET4EntityReactionType::None) // #135
+		, ReactionName_A(NAME_None)
+		, ReactionName_B(NAME_None)
+		, ReactionName_C(NAME_None)
+		, ReactionName_D(NAME_None)
+		, bUseRotation(false) // #132 : 맞는 방향으로 회전한다. (방향이 있는 넉백류만 사용)
 	{
 	}
 
@@ -725,7 +738,7 @@ public:
 
 	FString ToDisplayText() override
 	{
-		return FString::Printf(TEXT("Reaction '%s'"), *(ReactionName.ToString())); // #67
+		return FString::Printf(TEXT("Reaction '%s'"), *(ReactionName_A.ToString())); // #67
 	}
 };
 

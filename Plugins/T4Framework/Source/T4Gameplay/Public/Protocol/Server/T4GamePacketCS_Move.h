@@ -34,7 +34,7 @@ public:
 	FT4ObjectID SenderID;
 
 	UPROPERTY(VisibleAnywhere)
-	FVector MoveToLocation; // #52 : Normal + (MoveSpeed * GameplayDefaultNetworkLatencySec) / 레이턴시 감안 거리
+	FVector MoveToLocation; // #52 : Normal + (MoveSpeed * DefaultNetworkLatencySec) / 레이턴시 감안 거리
 
 	UPROPERTY(VisibleAnywhere)
 	float HeadYawAngle; // #40 : 필요하다면 3D 로 확장. 이동 패킷은 량이 많음을 고려.

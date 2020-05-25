@@ -12,7 +12,7 @@
  */
 class UBehaviorTree;
 USTRUCT()
-struct FT4ContentItemTableRowBase : public FT4ContentTableBase
+struct FT4ContentItemTableRowBase : public FT4ContentTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 

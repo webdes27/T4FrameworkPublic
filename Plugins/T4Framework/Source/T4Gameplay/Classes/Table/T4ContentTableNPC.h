@@ -7,6 +7,7 @@
 #include "Public/T4GameDefinitions.h"
 #include "Classes/Table/T4ContentTableBase.h"
 
+#include "T4Asset/Public/T4AssetDefinitions.h"
 #include "T4Framework/Public/T4FrameworkGameplay.h" // #104
 
 #include "T4ContentTableNPC.generated.h"
@@ -30,13 +31,21 @@ public:
 	float Combat; // #109
 
 	UPROPERTY(EditAnywhere)
-	float Crouch; // #109
+	float Sprint; // #109
+
+	UPROPERTY(EditAnywhere)
+	float JumpZVelocity; // #135
+
+	UPROPERTY(EditAnywhere)
+	float RotationYawRate; // #135
 
 public:
 	FT4GameNPCSpeedData()
 		: Default(500.0f)
-		, Combat(300.0f)
-		, Crouch(200.0f)
+		, Combat(400.0f)
+		, Sprint(800.0f)
+		, JumpZVelocity(700.0f)
+		, RotationYawRate(300.0f)
 	{
 	}
 };
@@ -62,7 +71,7 @@ public:
 	float ActiveOrKeepAggroTimeSec; // #50
 
 	UPROPERTY(EditAnywhere)
-	float AgentRadius; // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
+	float AgentRadius; // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용 (WorldActor = BoundRadius)
 
 	UPROPERTY(EditAnywhere)
 	float SensoryRange; // #50
@@ -78,7 +87,7 @@ public:
 		: EnemyType(ET4GameEnemyType::NoEnemy) // #104
 		, bAggressive(false)
 		, ActiveOrKeepAggroTimeSec(5.0f/*60.0f * 5.0f*/)
-		, AgentRadius(50.0f) // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
+		, AgentRadius(50.0f) // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용 (WorldActor = BoundRadius)
 		, SensoryRange(1000.0f)
 		, RomaingRange(1000.0f)
 		, RoamingRate(0.5f)
@@ -87,7 +96,7 @@ public:
 };
 
 USTRUCT()
-struct FT4ContentNPCTableRow : public FT4ContentTableBase
+struct FT4ContentNPCTableRow : public FT4ContentTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -109,7 +118,7 @@ public:
 	UPROPERTY(EditAnywhere, Category = ServerOnly)
 	FT4GameNPCStatDataID InitializeNPCStatDataID; // #114 : 기본 Stat
 
-	UPROPERTY(EditAnywhere, Category = ServerOnly)
+	UPROPERTY(EditAnywhere, Category = ServerOnly, meta = (EditCondition = "bUseMainWeapon"))
 	FT4GameWeaponDataID MainWeaponDataID; // #50
 
 	UPROPERTY(EditAnywhere, Category= ServerOnly)
@@ -121,11 +130,15 @@ public:
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActorEntityAsset> EntityAsset;
 
+	UPROPERTY(EditAnywhere, Category = ClientOnly)
+	FName InitializeSkinName; // #135
+
 public:
 	FT4ContentNPCTableRow()
 		: Version(0) // #135
 		, RaceName(T4Const_DefaultNPCRaceName) // #104, #114
 		, InitializeLevel(ET4GameStatLevel::Level_1) // #114
+		, InitializeSkinName(NAME_None) // #135
 	{
 	}
 };

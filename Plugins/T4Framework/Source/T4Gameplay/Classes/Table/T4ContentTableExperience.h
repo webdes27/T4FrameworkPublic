@@ -15,7 +15,7 @@
 class UT4ActionSetAsset;
 
 USTRUCT()
-struct FT4ContentExperienceTableRow : public FT4ContentTableBase
+struct FT4ContentExperienceTableRow : public FT4ContentTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 

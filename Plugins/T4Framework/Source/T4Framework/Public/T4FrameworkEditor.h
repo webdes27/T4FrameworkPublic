@@ -34,6 +34,16 @@ enum class ET4EditorPlayRole : uint8
 class UT4ActionSetAsset;
 
 USTRUCT()
+struct FT4EditorNPCDataInfo // #135
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	UPROPERTY(VisibleAnywhere, Category = Common)
+	FName InitializeSkinName;
+};
+
+USTRUCT()
 struct FT4EditorSkillDataInfo
 {
 	GENERATED_USTRUCT_BODY()
@@ -54,6 +64,9 @@ public:
 	float DurationSec;
 
 	UPROPERTY(EditAnywhere, Category = Common)
+	float MovementSpeed; // #135
+
+	UPROPERTY(EditAnywhere, Category = Common)
 	float ProjectileSpeed; // #63
 
 	UPROPERTY(EditAnywhere, Category = Common)
@@ -69,19 +82,22 @@ public:
 	ET4GameplayFindTarget FindTargetType; // #117 : 공객 대상을 찾을 경우에 대한 옵션 (TODO : Tribe or Enemy)
 
 	UPROPERTY(VisibleAnywhere, Category = Common)
-	FName ResultEffectDataID;
+	FName ResultEffectSetDataID; // #68, #135
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	bool bAiming; // #113
+	bool bCasting; // #113, #135
 
-	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bAiming", ClampMin = "-45.0", ClampMax = "45.0"))
+	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (EditCondition = "bCasting", ClampMin = "-45.0", ClampMax = "45.0"))
 	float AimingPitchAngle; // #127
 
 	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionSetAsset> DefaultActionSetAsset;
 
-	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
-	TSoftObjectPtr<UT4ActionSetAsset> AimingActionSetAsset;
+	UPROPERTY(VisibleAnywhere, Category = ClientOnly, meta = (EditCondition = "bCasting"))
+	TSoftObjectPtr<UT4ActionSetAsset> CastingActionSetAsset;
+
+	UPROPERTY(VisibleAnywhere, Category = ClientOnly, meta = (EditCondition = "bCasting"))
+	TSoftObjectPtr<UT4ActionSetAsset> CancelActionSetAsset; // #135
 
 	UPROPERTY(VisibleAnywhere, Category = ClientOnly)
 	TSoftObjectPtr<UT4ActionSetAsset> IndicateActionSetAsset; // #116
@@ -95,16 +111,17 @@ public:
 	void Reset()
 	{
 		Name = NAME_None;
-		AttackType = ET4GameplayAttackType::Melee;
+		AttackType = ET4GameplayAttackType::Swing;
 		HitDelayTimeSec = 0.0f;
 		DurationSec = 0.0f;;
+		MovementSpeed = 0.0f; // #135
 		ProjectileSpeed = 0.0f; // #63
 		bMoveable = false;
 		bLockOn = false; // #113
-		bAiming = false; // #113
+		bCasting = false; // #113
 		AimingPitchAngle = 0.0f; // #127
 		RotationRateSpeed = 1.0f; // #113
-		ResultEffectDataID = NAME_None;
+		ResultEffectSetDataID = NAME_None;
 		FindTargetType = ET4GameplayFindTarget::All; // #117
 	}
 };
@@ -115,7 +132,7 @@ struct FT4EditorEffectDataInfo
 	GENERATED_USTRUCT_BODY()
 
 public:
-	// #T4_ADD_EFFECT_CONTENT_TAG
+	// #T4_ADD_EFFECT_TAG_DATA
 
 	UPROPERTY(VisibleAnywhere)
 	FName Name;
@@ -127,10 +144,19 @@ public:
 	float HitDelayTimeSec;
 
 	UPROPERTY(EditAnywhere)
-	float AreaRange;
+	float DurationSec;
+
+	UPROPERTY(EditAnywhere)
+	float MinMoveDistance; // #135 : Area or Knockback
+
+	UPROPERTY(EditAnywhere)
+	float MaxMoveDistance; // #135 : Area or Knockback
+
+	UPROPERTY(EditAnywhere)
+	float MaxMoveHeight; // #135 : Area or Knockback, Airborne
 
 	UPROPERTY(VisibleAnywhere)
-	FName DamageEffectDataID;
+	FName ChainEffectDataID;
 
 	UPROPERTY(VisibleAnywhere)
 	TSoftObjectPtr<UT4ActionSetAsset> ActionSetAsset;
@@ -144,10 +170,13 @@ public:
 	void Reset()
 	{
 		Name = NAME_None;
-		EffectType = ET4GameplayEffectType::Direct;
+		EffectType = ET4GameplayEffectType::None;
 		HitDelayTimeSec = 0.0f;
-		AreaRange = 0.0f;
-		DamageEffectDataID = NAME_None;
+		DurationSec = 0.0f;
+		MinMoveDistance = 0.0f;
+		MaxMoveDistance = 0.0f;
+		MaxMoveHeight = 0.0f;
+		ChainEffectDataID = NAME_None;
 	}
 };
 
@@ -210,8 +239,9 @@ public:
 	virtual UT4EntityAsset* GetWeaponEntityAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0; // #120
 	virtual UT4ActionSetAsset* GetActionSetAssetInGameData(ET4EditorGameDataType InEditorGameDataType, const FName& InDataNameID) = 0; // #120
 
-	virtual bool GetSkillDataInfo(const FName& InSkillDataNameID, FT4EditorSkillDataInfo& OutSkillData) = 0;
-	virtual bool GetEffectDataInfo(const FName& InEffectDataNameID, FT4EditorEffectDataInfo& OutEffectData) = 0;
+	virtual bool GetNPCDataInfo(const FName& InDataNameID, FT4EditorNPCDataInfo& OutData) = 0; // #135
+	virtual bool GetSkillDataInfo(const FName& InDataNameID, FT4EditorSkillDataInfo& OutData) = 0;
+	virtual bool GetEffectDataInfo(const FName& InDataNameID, FT4EditorEffectDataInfo& OutData) = 0;
 };
 
 static const FName T4Editor_SkillDataNameID = TEXT("T4Editor_SkillDataNameID");

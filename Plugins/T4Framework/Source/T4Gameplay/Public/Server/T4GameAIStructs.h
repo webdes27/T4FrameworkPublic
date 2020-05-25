@@ -44,7 +44,11 @@ public:
 
 public:
 	FT4GameAIStat()
+#if WITH_EDITOR
+		: Health_Point(1000000000.0f) // #135 : 아무 세팅이 없으면 죽지 말자
+#else
 		: Health_Point(0.0f)
+#endif
 		, Mana_Point(0.0f)
 		, Striking_Power(0.0f)
 		, Defensive_Power(0.0f)
@@ -76,7 +80,7 @@ public:
 	float ActiveOrKeepAggroTimeSec; // #50
 
 	UPROPERTY(VisibleAnywhere)
-	float AgentRadius; // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
+	float AgentRadius; // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용 (WorldActor = BoundRadius)
 
 	UPROPERTY(VisibleAnywhere)
 	float SensoryRange; // #50
@@ -92,7 +96,7 @@ public:
 		: EnemyType(ET4GameEnemyType::NoEnemy) // #104
 		, bAggressive(false)
 		, ActiveOrKeepAggroTimeSec(5.0f/*60.0f * 5.0f*/)
-		, AgentRadius(50.0f) // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용. WorldActor 의 CapsuleRadius 보다 커야함
+		, AgentRadius(50.0f) // #114 : Agent 크기 및 Attack/Stop Distance 에서 겹치지 않기 위한 값으로 사용 (WorldActor = BoundRadius)
 		, SensoryRange(1000.0f)
 		, RomaingRange(1000.0f)
 		, RoamingRate(30.0f)
@@ -120,14 +124,29 @@ struct FT4GameAIMemory // #50 : 필요하다면 Blackboard 로 변경하겠지�
 		PostureName = T4Const_DefaultPostureName; // #106
 		MoveSpeedSelected = 0.0f;
 
-		bActiveAttack = false;
-		AttackDurationSec = 0.0f;
-		ActiveAttackClearTimeLeft = 0.0f;
+		bActiveAbnormalStatus = false; // #135
+		ActiveAbnormalStatusClearTimeLeft = 0.0f; // #135 : bActiveAbnormalStatus Clear 시간
+
+		bActiveSkillCasting = false;
+		bActiveSkillPending = false;
+		SkillCastingDurationSec = 0.0f;
+		ActiveSkillCastingClearTimeLeft = 0.0f;
+
+		bActiveSkillUsing = false;
+		SkillUsingDurationSec = 0.0f;
+		ActiveSkillUsingClearTimeLeft = 0.0f;
+
+		bActiveApproaching = false; // #135
+		ActiveApproachingClearTimeLeft = 0.0f; // #135 : 타겟 위치로 지정 시간동안 도착하지 못하면 재타겟 하도록 처리 (제자리 걸음)
 
 		bActiveAggro = false;
 		ActiveOrKeepAggroTimeLeft = 0.0f;
 
-		Health_Point = 0.0f;
+#if WITH_EDITOR
+		Health_Point = 1000000000.0f; // #135 : 아무 세팅이 없으면 죽지 말자
+#else
+		Health_Point = 0.0f; // #135 : 아무 세팅이 없으면 죽지 말자
+#endif
 	}
 
 	ET4GameAIState AIState;
@@ -141,9 +160,22 @@ struct FT4GameAIMemory // #50 : 필요하다면 Blackboard 로 변경하겠지�
 	FName PostureName; // #106
 	float MoveSpeedSelected; // #106
 
-	bool bActiveAttack;
-	float AttackDurationSec; // #114 : Skill Duration
-	float ActiveAttackClearTimeLeft; // #114 : bActiveAttack Clear 시간
+	bool bActiveAbnormalStatus; // #135
+	float ActiveAbnormalStatusClearTimeLeft; // #135 : bActiveAbnormalStatus Clear 시간
+
+	FT4GameSkillDataID SkillDataIDSelected; // #135
+
+	bool bActiveSkillCasting;
+	bool bActiveSkillPending;
+	float SkillCastingDurationSec; // #114 : Skill Duration
+	float ActiveSkillCastingClearTimeLeft; // #114 : bActiveAttack Clear 시간
+
+	bool bActiveSkillUsing;
+	float SkillUsingDurationSec; // #114 : Skill Duration
+	float ActiveSkillUsingClearTimeLeft; // #114 : bActiveAttack Clear 시간
+
+	bool bActiveApproaching; // #135
+	float ActiveApproachingClearTimeLeft; // #135 : 타겟 위치로 지정 시간동안 도착하지 못하면 재타겟 하도록 처리 (제자리 걸음)
 
 	bool bActiveAggro; // #114 : Hit 를 당할 경우
 	float ActiveOrKeepAggroTimeLeft; // #114 : Aggro 유지 시간

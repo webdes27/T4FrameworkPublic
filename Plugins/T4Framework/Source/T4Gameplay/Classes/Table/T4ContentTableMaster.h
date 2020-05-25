@@ -11,7 +11,7 @@
   * #135
  */
 USTRUCT()
-struct FT4ContentMasterTableRow : public FT4ContentTableBase
+struct FT4ContentMasterTableRow : public FT4ContentTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -44,6 +44,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = Common)
 	TSoftObjectPtr<UDataTable> SkillTableAsset;
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	TSoftObjectPtr<UDataTable> EffectSetTableAsset; // #135
 
 	UPROPERTY(EditAnywhere, Category = Common)
 	TSoftObjectPtr<UDataTable> EffectTableAsset;

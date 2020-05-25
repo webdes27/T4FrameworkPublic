@@ -12,10 +12,8 @@
 /**
   * http://api.unrealengine.com/KOR/Gameplay/DataDriven/
  */
-class UT4ActionSetAsset;
-
 USTRUCT()
-struct FT4ContentSkillSetTableRow : public FT4ContentTableBase
+struct FT4ContentSkillSetTableRow : public FT4ContentTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -25,25 +23,48 @@ public:
 	UPROPERTY(EditAnywhere, Category = Common)
 	uint32 Version;
 
-	UPROPERTY(EditAnywhere, Category= Common)
-	ET4GameSkillSetUseType UseType; // #113, #116 : false = PrimarySkillNameID
+	// #T4_ADD_SKILL_TAG_DATA
 
 	UPROPERTY(EditAnywhere, Category= Common)
-	FT4GameSkillDataID PrimarySkillDataID;
+	FT4GameSkillDataID AttackDataID_A;
 
 	UPROPERTY(EditAnywhere, Category= Common)
-	FT4GameSkillDataID SecondarySkillDataID;
+	FT4GameSkillDataID AttackDataID_B;
 
 	UPROPERTY(EditAnywhere, Category= Common)
-	FT4GameSkillDataID TertiarySkillDataID;
+	FT4GameSkillDataID AttackDataID_C;
 
 	UPROPERTY(EditAnywhere, Category= Common)
-	FT4GameSkillDataID FinishSkillDataID;
+	FT4GameSkillDataID AttackDataID_D;
+
+	UPROPERTY(EditAnywhere, Category= Common)
+	FT4GameSkillDataID AttackDataID_E;
+
+	UPROPERTY(EditAnywhere, Category= Common)
+	FT4GameSkillDataID AttackDataID_F;
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	FT4GameSkillDataID AttackDataID_Air;
+
+	UPROPERTY(EditAnywhere, Category = Common)
+	FT4GameSkillDataID AttackDataID_Dash;
+
+
+	UPROPERTY(EditAnywhere, Category= Common)
+	FT4GameSkillDataID AbilityDataID_A; // Q
+
+	UPROPERTY(EditAnywhere, Category= Common)
+	FT4GameSkillDataID AbilityDataID_B; // E
+
+	UPROPERTY(EditAnywhere, Category= Common)
+	FT4GameSkillDataID AbilityDataID_C; // R
+
+	UPROPERTY(EditAnywhere, Category= Common)
+	FT4GameSkillDataID AbilityDataID_D; // RMB
 
 public:
 	FT4ContentSkillSetTableRow()
 		: Version(0) // #135
-		, UseType(ET4GameSkillSetUseType::Primary)
 	{
 	}
 };

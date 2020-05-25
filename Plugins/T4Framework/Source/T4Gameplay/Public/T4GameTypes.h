@@ -15,25 +15,32 @@ enum ET4GameHotKeyType // #116
 	HotKey2_Pressed,
 	HotKey3_Pressed,
 	HotKey4_Pressed,
+
+	None,
 };
 
 UENUM()
 enum class ET4GameSkillSequence : uint8
 {
 	Ready, // #48
-	Primary,
-	Secondary,
-	Tertiary,
-	Finish, // #48
+
+	Sequence_A,
+	Sequence_B,
+	Sequence_C,
+	Sequence_D,
+	Sequence_E,
+	Sequence_F,
 
 	Nums,
 };
 
 UENUM()
-enum class ET4GameAttackTarget : uint8 // #112
+enum class ET4GameTargetParamType : uint8 // #112
 {
 	ObjectID,
 	ObjectIDAndLocation, // #126
+	ObjectIDAndDirection, // #135
+
 	Location,
 	Direction,
 

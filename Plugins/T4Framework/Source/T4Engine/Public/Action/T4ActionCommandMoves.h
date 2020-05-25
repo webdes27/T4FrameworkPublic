@@ -22,7 +22,7 @@
 // ET4ActionCommandType::MoveStop // #52
 // ET4ActionCommandType::MoveSpeedSync // #52
 
-// ET4ActionCommandType::Launch // #63 : Only Projectile
+// ET4ActionCommandType::Launch // #63 : Only Projectile & Movement
 
 // #40
 USTRUCT()
@@ -355,6 +355,24 @@ public:
 	ET4MovementType MovementType; // #127
 
 	UPROPERTY(EditAnywhere)
+	ET4MovementTargetType MoveTargetType; // #135
+
+	UPROPERTY(EditAnywhere)
+	float InitializeSpeed; // #135 : ProjecitleSpeed or MovementSpeed
+
+	UPROPERTY(EditAnywhere)
+	FT4ActorID TargetActorID; // #135
+
+	UPROPERTY(EditAnywhere)
+	FVector ShootDirection; // #135
+
+	UPROPERTY(EditAnywhere)
+	FVector GoalLocation; // #135
+
+	UPROPERTY(EditAnywhere)
+	FName TargetBoneName; // #135
+
+	UPROPERTY(EditAnywhere)
 	float PlayOffsetTimeSec; // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
 
 	UPROPERTY(EditAnywhere)
@@ -414,21 +432,15 @@ public:
 	UPROPERTY(EditAnywhere, meta = (EditCondition = "bUseOscillate"))
 	float OscillateRange; // #127 : 흔들림 크기
 
-
-	// Editor Properties
-	//
-#if WITH_EDITORONLY_DATA
-	UPROPERTY(Transient)
-	FVector TestTargetLocation; // #132 : 테스트용 TargetLocation
-
-	UPROPERTY(Transient)
-	float TestInitializeSpeed; // #132 : 테스트용 초기 속도, AcceleratedMotion 에 따라 반응함
-#endif
-
 public:
 	FT4LaunchActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, MovementType(ET4MovementType::Straight) // #127
+		, MoveTargetType(ET4MovementTargetType::InPlace) // #135
+		, InitializeSpeed(0.0f) // #135 : ProjecitleSpeed or MovementSpeed
+		, ShootDirection(FVector::ZeroVector) // #135
+		, GoalLocation(FVector::ZeroVector) // #135
+		, TargetBoneName(NAME_None) // #135
 		, PlayOffsetTimeSec(0.0f) // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
 		, BoundLength(80.0f) // #112
@@ -443,10 +455,6 @@ public:
 		, bEnableBounceOut(false) // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
 		, bUseOscillate(false) // #127 : 흔들림 여부
 		, OscillateRange(0.0f) // #127 : 흔들림 크기
-#if WITH_EDITORONLY_DATA
-		, TestTargetLocation(FVector::ZeroVector) // #132 : 테스트용 targetLocation
-		, TestInitializeSpeed(100.0f) // #132 : 테스트용 초기 속도, AcceleratedMotion 에 따라 반응함
-#endif
 	{
 	}
 

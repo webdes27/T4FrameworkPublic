@@ -11,8 +11,9 @@
 #include "Classes/Table/T4ContentTableNPC.h" // #31
 #include "Classes/Table/T4ContentTableWeapon.h" // #27, #48
 #include "Classes/Table/T4ContentTableCostume.h" // #27, #48
-#include "Classes/Table/T4ContentTableSkill.h" // #25
 #include "Classes/Table/T4ContentTableSkillSet.h" // #50
+#include "Classes/Table/T4ContentTableSkill.h" // #25
+#include "Classes/Table/T4ContentTableEffectSet.h" // #135
 #include "Classes/Table/T4ContentTableEffect.h" // #25
 #include "Classes/Table/T4ContentTableStat.h" // #114
 #include "Classes/Table/T4ContentTableExperience.h" // #114
@@ -27,7 +28,7 @@
 class FStructOnScope;
 struct T4GAMEPLAY_API FT4GameDataBase
 {
-	FT4GameDataBase(const FName& InRowName)
+	FT4GameDataBase(const FName InRowName)
 		: RowName(InRowName)
 #if WITH_EDITOR
 		, bDirtyed(false)
@@ -77,7 +78,7 @@ struct T4GAMEPLAY_API FT4GameDataBase
 
 struct T4GAMEPLAY_API FT4GameMasterData : public FT4GameDataBase
 {
-	FT4GameMasterData(const FName& InRowName)
+	FT4GameMasterData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -98,7 +99,7 @@ struct T4GAMEPLAY_API FT4GameMasterData : public FT4GameDataBase
 
 struct T4GAMEPLAY_API FT4GameWorldData : public FT4GameDataBase
 {
-	FT4GameWorldData(const FName& InRowName)
+	FT4GameWorldData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -118,7 +119,7 @@ struct T4GAMEPLAY_API FT4GameWorldData : public FT4GameDataBase
 
 struct T4GAMEPLAY_API FT4GamePlayerData : public FT4GameDataBase
 {
-	FT4GamePlayerData(const FName& InRowName)
+	FT4GamePlayerData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -138,7 +139,7 @@ struct T4GAMEPLAY_API FT4GamePlayerData : public FT4GameDataBase
 
 struct T4GAMEPLAY_API FT4GameNPCData : public FT4GameDataBase
 {
-	FT4GameNPCData(const FName& InRowName)
+	FT4GameNPCData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -158,7 +159,7 @@ struct T4GAMEPLAY_API FT4GameNPCData : public FT4GameDataBase
 
 struct T4GAMEPLAY_API FT4GameWeaponData : public FT4GameDataBase
 {
-	FT4GameWeaponData(const FName& InRowName)
+	FT4GameWeaponData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -178,7 +179,7 @@ struct T4GAMEPLAY_API FT4GameWeaponData : public FT4GameDataBase
 
 struct T4GAMEPLAY_API FT4GameCostumeData : public FT4GameDataBase
 {
-	FT4GameCostumeData(const FName& InRowName)
+	FT4GameCostumeData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -198,7 +199,7 @@ struct T4GAMEPLAY_API FT4GameCostumeData : public FT4GameDataBase
 
 struct T4GAMEPLAY_API FT4GameSkillSetData : public FT4GameDataBase
 {
-	FT4GameSkillSetData(const FName& InRowName)
+	FT4GameSkillSetData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -218,7 +219,7 @@ struct T4GAMEPLAY_API FT4GameSkillSetData : public FT4GameDataBase
 
 struct T4GAMEPLAY_API FT4GameSkillData : public FT4GameDataBase
 {
-	FT4GameSkillData(const FName& InRowName)
+	FT4GameSkillData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -236,9 +237,30 @@ struct T4GAMEPLAY_API FT4GameSkillData : public FT4GameDataBase
 	FT4ContentSkillTableRow RawData; // #27
 };
 
+// #135
+struct T4GAMEPLAY_API FT4GameEffectSetData : public FT4GameDataBase
+{
+	FT4GameEffectSetData(const FName InRowName)
+		: FT4GameDataBase(InRowName)
+	{
+	}
+	ET4GameDataType GetType() const override { return ET4GameDataType::EffectSet; }
+
+#if WITH_EDITOR
+	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
+	bool CheckValidationAll() override;
+	bool CheckValidationBy(FName InPropertyName) override;
+	bool HasError() const override;
+
+	DEFINE_GAME_DATA_COMMON_METHOD()
+#endif
+
+	FT4ContentEffectSetTableRow RawData;
+};
+
 struct T4GAMEPLAY_API FT4GameEffectData : public FT4GameDataBase
 {
-	FT4GameEffectData(const FName& InRowName)
+	FT4GameEffectData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -259,7 +281,7 @@ struct T4GAMEPLAY_API FT4GameEffectData : public FT4GameDataBase
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 struct T4GAMEPLAY_API FT4GameStatData : public FT4GameDataBase // #114
 {
-	FT4GameStatData(const FName& InRowName)
+	FT4GameStatData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -279,7 +301,7 @@ struct T4GAMEPLAY_API FT4GameStatData : public FT4GameDataBase // #114
 
 struct T4GAMEPLAY_API FT4GameExperienceData : public FT4GameDataBase // #114
 {
-	FT4GameExperienceData(const FName& InRowName)
+	FT4GameExperienceData(const FName InRowName)
 		: FT4GameDataBase(InRowName)
 	{
 	}
@@ -304,6 +326,11 @@ class T4GAMEPLAY_API IT4GameDataLibrary
 public:
 	virtual ~IT4GameDataLibrary() {}
 
+	virtual bool Initialize(const FSoftObjectPath& InGameMasterTablePath, const FName InGameContentSelected) = 0; // #135
+	virtual void Finalize() = 0; // #135
+
+	virtual bool IsInitialized() const = 0; // #135
+
 	virtual void Reload() = 0; // #125
 	virtual bool Refresh(ET4GameDataType InGameDataType) = 0; // #125
 
@@ -318,6 +345,7 @@ public:
 	virtual const FT4GameCostumeData* GetCostumeData(const FT4GameDataID& InGameDataID) const = 0;
 	virtual const FT4GameSkillSetData* GetSkillSetData(const FT4GameDataID& InGameDataID) const = 0;
 	virtual const FT4GameSkillData* GetSkillData(const FT4GameDataID& InGameDataID) const = 0;
+	virtual const FT4GameEffectSetData* GetEffectSetData(const FT4GameDataID& InGameDataID) const = 0;
 	virtual const FT4GameEffectData* GetEffectData(const FT4GameDataID& InGameDataID) const = 0;
 #if (WITH_EDITOR || WITH_SERVER_CODE)
 	virtual const FT4GameStatData* GetStatData(const FT4GameDataID& InGameDataID) const = 0;
@@ -330,21 +358,19 @@ public:
 
 	virtual UDataTable* GetDataTable(ET4GameDataType InGameDataType) const = 0;
 
-	virtual const TArray<FT4GameDataBase*>& GetDataBases(
-		ET4GameDataType InGameDataType,
-		bool bInCheckValidation
-	) = 0;
+	virtual const TArray<FT4GameDataBase*>& GetDataBases(ET4GameDataType InGameDataType, bool bInCheckValidation) = 0;
 	virtual FT4GameDataBase* GetDataBase(const FT4GameDataID& InGameDataID) = 0;
 
-	virtual void DataTableAddRow(ET4GameDataType InGameDataType, const FName& InSourceRowName, const FName& InRowName, bool bInFolder) = 0;
-	virtual void DataTableRemoveRow(ET4GameDataType InGameDataType, const FName& InRowName) = 0;
-	virtual void DataTableRenameRow(ET4GameDataType InGameDataType, const FName& InOldRowName, const FName& InNewRowName) = 0;
-	virtual void DataTableDuplicateRow(ET4GameDataType InGameDataType, const FName& InSourceRowName, const FName& InNewRowName) = 0;
-	virtual void DataTableMoveRow(ET4GameDataType InGameDataType, const FName& InTargetRowName, const FName& InSourceRowName) = 0;
+	virtual bool DataTableAddFolder(ET4GameDataType InGameDataType, const FName InNewFolderName, const FName InRefRowName) = 0;
+	virtual FT4ContentTableRowBase* DataTableAddRow(ET4GameDataType InGameDataType, const FName InNewRowName, const FName InRefRowName) = 0;
+	virtual void DataTableRemoveRow(ET4GameDataType InGameDataType, const FName InRowName) = 0;
+	virtual void DataTableRenameRow(ET4GameDataType InGameDataType, const FName InOldRowName, const FName InNewRowName) = 0;
+	virtual FT4ContentTableRowBase* DataTableDuplicateRow(ET4GameDataType InGameDataType, const FName InSourceRowName, const FName InNewRowName) = 0;
+	virtual void DataTableMoveRow(ET4GameDataType InGameDataType, const FName InTargetRowName, const FName InSourceRowName) = 0;
 	virtual void DataTableWriteRowFromGameData(const FT4GameDataID& InGameDataID) = 0; // GameData to RawData
 
-	virtual void DataTableSetTreeExpansion(ET4GameDataType InGameDataType, const FName& InRowName, bool bInExpand) = 0; // #122
-	virtual bool DataTableIsTreeExpanded(ET4GameDataType InGameDataType, const FName& InRowName) const = 0; // #122
+	virtual void DataTableSetTreeExpansion(ET4GameDataType InGameDataType, const FName InRowName, bool bInExpand) = 0; // #122
+	virtual bool DataTableIsTreeExpanded(ET4GameDataType InGameDataType, const FName InRowName) const = 0; // #122
 	// ~#118
 #endif
 };

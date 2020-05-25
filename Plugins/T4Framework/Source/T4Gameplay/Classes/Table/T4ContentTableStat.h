@@ -13,7 +13,7 @@
   * #114
  */
 USTRUCT()
-struct FT4ContentStatTableRow : public FT4ContentTableBase
+struct FT4ContentStatTableRow : public FT4ContentTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 

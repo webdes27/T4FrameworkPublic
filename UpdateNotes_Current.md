@@ -4,6 +4,13 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.05.25] [M6] Copying //Private to //Deploy (private commit e88345c)**
+    - #135 [기능개선] T4ParagonMigration Commandlet 을 통한 파라곤 전투 데이터 설정 기능 추가
+	- #135 [기능개선] Content Editor, DataTable TreeView 의 Item 을 DragDrop 을 통해 스폰 지원
+	- #135 [기능개선] NPC AI 기능 개선
+      - 스킬 Casting/Use/Cancel 및 점프 스킬 기능 추가
+	  - NormalHit, Knockback, Stun, Airborne 등의 효과 추가
+	- #135 [버그수정] Coantent Editor, 기본 WorldDataID 변경이 적용되지 않던 문제 수정
   - **[2020.05.16] [M6] Copying //Private to //Deploy (private commit 6659c27)**
     - #135 [기능개선] Multi Content Table 관리를 위한 연결 구조 정리
   - **[2020.05.15] [M6] Copying //Private to //Deploy (private commit 42555ca)**
