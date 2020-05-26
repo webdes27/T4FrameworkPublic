@@ -4,6 +4,8 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.05.26] [M6] Copying //Private to //Deploy (private commit d349b09)**
+    - #137 [버그수정] NPC AI 전투시 간헐적으로 발생하던 크래시 수정
   - **[2020.05.25] [M6] Copying //Private to //Deploy (private commit e88345c)**
     - #135 [기능개선] T4ParagonMigration Commandlet 을 통한 파라곤 전투 데이터 설정 기능 추가
 	- #135 [기능개선] Content Editor, DataTable TreeView 의 Item 을 DragDrop 을 통해 스폰 지원
