@@ -125,9 +125,6 @@ public:
 	TArray<FT4JumpActionCommand> JumpActions;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<FT4RollActionCommand> RollActions;
-
-	UPROPERTY(VisibleAnywhere)
 	TArray<FT4TeleportActionCommand> TeleportActions;
 
 	UPROPERTY(VisibleAnywhere)

@@ -130,12 +130,16 @@ public:
 	FName PostureName;
 
 	UPROPERTY(EditAnywhere)
+	float MoveSpeed; // #140 : InMoveSpeed per Posture
+
+	UPROPERTY(EditAnywhere)
 	bool bImmediate; // #111
 
 public:
 	FT4PostureActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, PostureName(NAME_None)
+		, MoveSpeed(0.0f) // #140 : InMoveSpeed per Posture
 		, bImmediate(false)  // #111
 	{
 	}

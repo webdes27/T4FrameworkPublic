@@ -121,6 +121,7 @@ struct FT4GameAIMemory // #50 : 필요하다면 Blackboard 로 변경하겠지�
 
 		IdleWaitTime = 5.0f;
 
+		StanceName = T4Const_DefaultStanceName; // #140
 		PostureName = T4Const_DefaultPostureName; // #106
 		MoveSpeedSelected = 0.0f;
 
@@ -157,6 +158,7 @@ struct FT4GameAIMemory // #50 : 필요하다면 Blackboard 로 변경하겠지�
 
 	float IdleWaitTime;
 
+	FName StanceName; // #140
 	FName PostureName; // #106
 	float MoveSpeedSelected; // #106
 

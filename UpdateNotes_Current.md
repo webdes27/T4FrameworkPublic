@@ -4,6 +4,10 @@ Powerful toolset and Flexible layer solution
 ``` 
 
 - Release Notes (2020.03 ~ 2020.ING)
+  - **[2020.05.29] [M6] Copying //Private to //Deploy (private commit 1e813cb)**
+    - #140 [기능개선] Entity Editor, Test Map Entity 설정시 자동으로 맵이 오픈되도록 기능 추가
+    - #140 [기능개선] Rehearsal Viewport Toolbar 내 캐릭터 점프시 궤적을 표시하도록 기능 추가
+	- #140 [버그수정] Rehearsal Viewport Toolbar 의 Speed 옵션 후 카메라 회전 이상 문제 수정
   - **[2020.05.26] [M6] Copying //Private to //Deploy (private commit d349b09)**
     - #137 [버그수정] NPC AI 전투시 간헐적으로 발생하던 크래시 수정
   - **[2020.05.25] [M6] Copying //Private to //Deploy (private commit e88345c)**

@@ -50,32 +50,12 @@ struct T4ASSET_API FT4EntityCharacterPhysicalData : public FT4EntityPhysicalData
 
 public:
 	FT4EntityCharacterPhysicalData()
-		: DefaultSpeed(500.0f) // #108
-		, CombatSpeed(500.0f) // #109
-		, SprintSpeed(1000.0f) // #131
-		, JumpZVelocity(700.0f) // #46
-		, RollZVelocity(250.0f) // #46
-		, RotationYawRate(300.0f)
+		: RotationYawRate(300.0f)
 	{
 		BoundType = ET4EntityBoundType::Capsule; // #126
 	}
 
 	// CustomizeCharacterEntityDetails
-
-	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1000"))
-	float DefaultSpeed; // #108
-
-	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1000"))
-	float CombatSpeed; // #109
-
-	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1500"))
-	float SprintSpeed; // #131
-
-	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "2000"))
-	float JumpZVelocity;
-
-	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "5.0", ClampMax = "500"))
-	float RollZVelocity; // #46
 
 	UPROPERTY(EditAnywhere, Category = Physical, meta = (ClampMin = "10.0", ClampMax = "1500"))
 	float RotationYawRate;
@@ -92,6 +72,43 @@ public:
 	}
 
 	// CustomizeCharacterEntityDetails
+};
+
+class UT4MapEntityAsset;
+USTRUCT()
+struct T4ASSET_API FT4EntityCharacterTestingData
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+	FT4EntityCharacterTestingData()
+		: TestDefaultSpeed(500.0f) // #108
+		, TestCombatSpeed(500.0f) // #109
+		, TestSprintSpeed(1000.0f) // #131
+		, TestJumpMaxHeight(200.0f) // #140
+		, TestJumpMaxSpeedXY(250.0f) // #140
+	{
+	}
+
+	// FT4CharacterEntityDetails::SubCustomizeDetails
+
+	UPROPERTY(EditAnywhere, Category = Testing)
+	TSoftObjectPtr<UT4MapEntityAsset> TestMapEntityAsset; // #140
+
+	UPROPERTY(EditAnywhere, Category = Testing, meta = (ClampMin = "10.0", ClampMax = "1000"))
+	float TestDefaultSpeed; // #108
+
+	UPROPERTY(EditAnywhere, Category = Testing, meta = (ClampMin = "10.0", ClampMax = "1000"))
+	float TestCombatSpeed; // #109
+
+	UPROPERTY(EditAnywhere, Category = Testing, meta = (ClampMin = "10.0", ClampMax = "1500"))
+	float TestSprintSpeed; // #131
+
+	UPROPERTY(EditAnywhere, Category = Testing, meta = (ClampMin = "50.0", ClampMax = "5000"))
+	float TestJumpMaxHeight; // #140
+
+	UPROPERTY(EditAnywhere, Category = Testing, meta = (ClampMin = "50.0", ClampMax = "5000"))
+	float TestJumpMaxSpeedXY; // #140
 };
 
 USTRUCT()
@@ -543,4 +560,7 @@ public:
 
 	UPROPERTY(EditAnywhere, Category= Rendering)
 	FT4EntityCharacterRenderingData Rendering;
+
+	UPROPERTY(EditAnywhere, Category= Testing)
+	FT4EntityCharacterTestingData Testing;
 };

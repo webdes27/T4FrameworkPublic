@@ -13,7 +13,6 @@
 
 // ET4GamePacketSC::Move
 // ET4GamePacketSC::Jump
-// ET4GamePacketSC::Roll // #46
 // ET4GamePacketSC::Rotation // #40
 // ET4GamePacketSC::Teleport
 
@@ -98,12 +97,28 @@ public:
 	FT4ObjectID ObjectID;
 
 	UPROPERTY(VisibleAnywhere)
-	FVector JumpVelocity;
+	FVector GoalLocation; // #140
+
+	UPROPERTY(VisibleAnywhere)
+	float DurationSec; // #140
+
+	UPROPERTY(VisibleAnywhere)
+	float OffsetTimeSec; // #140
+
+	UPROPERTY(VisibleAnywhere)
+	FVector CollideLocation; // #140 : 점프시 첫번째 부딪히는 지점이 있을 경우. 없으면 Zero
+
+	UPROPERTY(VisibleAnywhere)
+	float CollideTimeSec; // #140 : 점프시 첫번째 부딪히는 지점까지의 시간. 없으면 Zero
 
 public:
 	FT4GamePacketSC_Jump()
 		: FT4GamePacketSC_Base(ET4GamePacketSC::Jump)
-		, JumpVelocity(FVector::ZeroVector)
+		, GoalLocation(0.0f)
+		, DurationSec(0.0f)
+		, OffsetTimeSec(0.0f)
+		, CollideLocation(FVector::ZeroVector) // #140
+		, CollideTimeSec(0.0f) // #140
 	{
 	}
 
@@ -114,9 +129,14 @@ public:
 			OutMsg = TEXT("Invalid ObjectID");
 			return false;
 		}
-		if (JumpVelocity.IsNearlyZero())
+		if (GoalLocation.IsNearlyZero())
 		{
-			OutMsg = TEXT("Invalid JumpVelocity!");
+			OutMsg = TEXT("GoalLocation is Zero!");
+			return false;
+		}
+		if (0.0f >= DurationSec)
+		{
+			OutMsg = TEXT("DurationSec is Zero!");
 			return false;
 		}
 		return true;
@@ -125,47 +145,6 @@ public:
 	FString ToString() const override
 	{
 		return FString(TEXT("SC_Packet:JumpTo"));
-	}
-};
-
-// #46
-USTRUCT()
-struct FT4GamePacketSC_Roll : public FT4GamePacketSC_Base
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	UPROPERTY(VisibleAnywhere)
-	FT4ObjectID ObjectID;
-
-	UPROPERTY(VisibleAnywhere)
-	FVector RollVelocity;
-
-public:
-	FT4GamePacketSC_Roll()
-		: FT4GamePacketSC_Base(ET4GamePacketSC::Roll)
-		, RollVelocity(FVector::ZeroVector)
-	{
-	}
-
-	bool Validate(FString& OutMsg) override
-	{
-		if (!ObjectID.IsValid())
-		{
-			OutMsg = TEXT("Invalid ObjectID");
-			return false;
-		}
-		if (RollVelocity.IsNearlyZero())
-		{
-			OutMsg = TEXT("Invalid RollVelocity!");
-			return false;
-		}
-		return true;
-	}
-
-	FString ToString() const override
-	{
-		return FString(TEXT("SC_Packet:RollTo"));
 	}
 };
 

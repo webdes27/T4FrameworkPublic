@@ -98,6 +98,9 @@ public:
 	FRotator SpawnRotation;
 
 	UPROPERTY(EditAnywhere)
+	float MoveSpeed; // #140
+
+	UPROPERTY(EditAnywhere)
 	FName GameDataIDName;
 
 	UPROPERTY(EditAnywhere)
@@ -113,6 +116,7 @@ public:
 		, PostureName(NAME_None) // #73, #111
 		, SpawnLocation(FVector::ZeroVector)
 		, SpawnRotation(FRotator::ZeroRotator)
+		, MoveSpeed(0.0f) // #140
 		, GameDataIDName(NAME_None)
 		, bPlayer(false)
 	{

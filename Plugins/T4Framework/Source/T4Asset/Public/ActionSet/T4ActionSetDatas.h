@@ -187,11 +187,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	ET4AcceleratedMotion AcceleratedMotion; // #127
 
-	UPROPERTY(EditAnywhere, Category = ClientOnly)
-	float ParabolaVerticalSpeed; // #127 : 높이에서 사용될 초기 수직 속도 (Parabola)
-
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "5.0", UIMin = "5.0", UIMax = "1500.0"))
-	float AirborneMaxHeight; // #132 : 에어본 최대 높이
+	float MaxHeight; // #127, #132 : 포물선에서 사용될 최대 높이
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0", UIMin = "0.0", UIMax = "1.0"))
 	float AirborneFlightTimeRatio; // #132 : 정점에서 유지할 체공시간 비율
@@ -206,8 +203,7 @@ public:
 		: FT4ActionDataBase(StaticActionType())
 		, MovementType(ET4MovementType::Straight)
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
-		, ParabolaVerticalSpeed(300.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
-		, AirborneMaxHeight(200.0f) // #132 : 에어본 최대 높이
+		, MaxHeight(50.0f) // #127, #132 : 포물선에서 사용될 최대 높이
 		, AirborneFlightTimeRatio(0.0f) // #132 : 정점에서 유지할 체공시간
 	{
 	}
@@ -617,7 +613,7 @@ public:
 	ET4AcceleratedMotion AcceleratedMotion; // #127
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly, meta = (ClampMin = "0.0", UIMin = "0.0", UIMax = "1000"))
-	float ParabolaVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+	float MaxHeight; // #127 : 포물선(Parabola) 에서 사용될 최대 높이
 
 	UPROPERTY(EditAnywhere, Category = ClientOnly)
 	bool bRandomRollAngle; // #127
@@ -664,7 +660,7 @@ public:
 		, LoadingPolicy(ET4LoadingPolicy::Default)
 		, ProjectileMotion(ET4MovementType::Straight) // #127
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
-		, ParabolaVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+		, MaxHeight(0.0f) // #127 : 포물선(Parabola) 에서 사용될 최대 높이
 		, bRandomRollAngle(false) // #127
 		, InitialRollAngle(0.0f) // #127
 		, bEnableHitAttached(false)// #112

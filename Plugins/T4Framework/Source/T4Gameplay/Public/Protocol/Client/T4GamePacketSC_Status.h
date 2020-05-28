@@ -66,10 +66,14 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	FName PostureName;
 
+	UPROPERTY(VisibleAnywhere)
+	float MoveSpeed; // #140
+
 public:
 	FT4GamePacketSC_Posture()
 		: FT4GamePacketSC_Base(ET4GamePacketSC::Posture)
 		, PostureName(NAME_None)
+		, MoveSpeed(0.0f) // #140
 	{
 	}
 

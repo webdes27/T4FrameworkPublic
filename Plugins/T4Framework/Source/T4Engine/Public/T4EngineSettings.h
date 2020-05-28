@@ -54,9 +54,6 @@ public:
 	float SkillPressedKeepTimeSec; // #116 : Skill Block 이후 Pressed 사용을 위한 허용 시간
 
 	UPROPERTY(config, EditAnywhere, Category = GeneralControlSettting)
-	float RollHoldTimeSec; // #46
-
-	UPROPERTY(config, EditAnywhere, Category = GeneralControlSettting)
 	float JumpHoldTimeSec; // #46
 
 	UPROPERTY(config, EditAnywhere, Category=GeneralCameraSettting)

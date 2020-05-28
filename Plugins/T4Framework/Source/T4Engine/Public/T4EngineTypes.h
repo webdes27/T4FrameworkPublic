@@ -214,10 +214,11 @@ enum class ET4FootstepType : uint8 // #111
 };
 
 UENUM()
-enum class ET4MovementTargetType : uint8 // #135
+enum class ET4MovementPathType : uint8 // #135
 {
 	Actor,
 	Location,
+	Gravity, // #140 : Jump, Knockdown 등, 캐릭터 이동
 	Infinity,
 
 	InPlace, // #132 : Airborne
@@ -246,7 +247,8 @@ enum class ET4EditorAction : uint8
 #if !UE_BUILD_SHIPPING
 enum ET4EngineDebugFlag // #76
 {
-	DebugActor_Bound_Bit = (1 << 0),
+	DebugFlag_ShowBound_Bit = (1 << 0),
+	DebugFlag_ShowJumpTrajectory_Bit = (1 << 1), // #140
 };
 #endif
 

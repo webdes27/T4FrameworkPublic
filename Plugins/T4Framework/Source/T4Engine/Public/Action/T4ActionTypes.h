@@ -26,7 +26,6 @@ enum class ET4ActionCommandType : uint32
 	MoveSync, // #40
 
 	Jump,
-	Roll, // #46
 	Teleport,
 	Rotation, // #137 : WorldActor 회전 (C/S 동기화!)
 	Turn, // #131 : 캐릭터의 회전 연출(애니) 처리

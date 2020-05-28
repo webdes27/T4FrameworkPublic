@@ -178,6 +178,7 @@ public:
 	virtual void SetOwnerID(const FT4ObjectID& InObjectID) = 0; // #114
 	virtual void ClearOwnerID() = 0; // #114
 
+	virtual const FName GetSkinName() const = 0; // #140
 	virtual const FName GetStanceName() const = 0; // #73 : StanceNameTable
 	virtual const FName GetPostureName() const = 0; // #106 : PostureNameTable
 
@@ -201,12 +202,10 @@ public:
 	virtual const FT4WorldActorProperty& GetPropertyConst() const = 0; // #34
 
 	virtual float GetLifeTimeSec() const = 0; // #102
-	virtual float GetTimeScale() const = 0; // #102
+	virtual float GetEnvironmentTimeScale() const = 0; // #102
 
 	virtual bool IsLockOn() const = 0; // #33
 	virtual bool IsFalling() const = 0;
-	virtual bool IsFlying() const = 0;
-	virtual bool IsRolling() const = 0; // #46
 	virtual bool IsTurning() const = 0; // #46
 	virtual bool IsCombat() const = 0; // #109
 	virtual bool IsAiming() const = 0; // #113
@@ -383,17 +382,20 @@ public:
 
 	virtual UWorld* GetWorld() const = 0;
 
+	virtual void SetWorldTimeDilation(float InValue) = 0; // #140
+	virtual float GetWorldTimeDilation() const = 0; // #140
+
 	// #93
-	virtual FName GetActiveTimeTag() const = 0;
-	virtual bool SetActiveTimeTag(FName InTimeTag) = 0; // #118
+	virtual FName GetEnvironmentActiveTimeTag() const = 0;
+	virtual bool SetEnvironmentActiveTimeTag(FName InTimeTag) = 0; // #118
 
-	virtual void SetTimeHour(float InHour) = 0;
-	virtual float GetTimeHour() const = 0;
+	virtual void SetEnvironmentTimeHour(float InHour) = 0;
+	virtual float GetEnvironmentTimeHour() const = 0;
 
-	virtual void SetTimeScale(float InScale) = 0;
-	virtual float GetTimeScale() const = 0;
+	virtual void SetEnvironmentTimeScale(float InScale) = 0;
+	virtual float GetEnvironmentTimeScale() const = 0;
 
-	virtual FString GetTimeString() = 0;
+	virtual FString GetEnvironmentTimeString() = 0;
 	// ~#93
 
 #if WITH_EDITOR

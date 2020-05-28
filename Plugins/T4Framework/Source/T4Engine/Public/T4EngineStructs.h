@@ -40,9 +40,6 @@ struct FT4WorldActorProperty // #34
 		MoveSpeed[(uint8)ET4MoveMode::Async] = 0.0f;
 		MoveAccelerationScale = 1.0f; // #38, #52 (0.1 ~ 1)
 		
-		JumpZVelocity = 550.0f; // #109
-		RollZVelocity = 300.0f; // #109
-
 		RotationYawRate = 520.0f; // #44, #46
 
 		BoundType = ET4EntityBoundType::None; // #126
@@ -53,6 +50,14 @@ struct FT4WorldActorProperty // #34
 		RelativeLocation = FVector::ZeroVector; // #126
 		RelativeRotation = FRotator::ZeroRotator;
 		RelativeScale3D = FVector::OneVector; // #37
+
+#if WITH_EDITOR // #140
+		TestDefaultMoveSpeed = 0.0f;
+		TestCombatMoveSpeed = 0.0f;
+		TestSprintMoveSpeed = 0.0f;
+		TestJumpMaxHeight = 0.0f; // #140
+		TestJumpMaxSpeedXY = 0.0f; // #140
+#endif
 	}
 
 	const float GetMoveSpeed(const ET4MoveMode InMoveType) const
@@ -70,8 +75,6 @@ struct FT4WorldActorProperty // #34
 	float MoveSpeed[(uint8)ET4MoveMode::Count]; // #33
 	float MoveAccelerationScale; // #38, #52 (0.1 ~ 1)
 	
-	float JumpZVelocity; // #109
-	float RollZVelocity; // #109
 	float RotationYawRate; // #46
 
 	ET4EntityBoundType BoundType; // #126
@@ -82,6 +85,14 @@ struct FT4WorldActorProperty // #34
 	FVector RelativeLocation; // #126
 	FRotator RelativeRotation; // #30, #126
 	FVector RelativeScale3D; // #37
+
+#if WITH_EDITOR // #140
+	float TestDefaultMoveSpeed;
+	float TestCombatMoveSpeed;
+	float TestSprintMoveSpeed;
+	float TestJumpMaxHeight;
+	float TestJumpMaxSpeedXY;
+#endif // ~#140
 };
 
 #if !UE_BUILD_SHIPPING

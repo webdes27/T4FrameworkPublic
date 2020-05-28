@@ -21,19 +21,31 @@ struct FT4GamePlayerSpeedData // #108
 
 public:
 	UPROPERTY(EditAnywhere)
-	float Default; // #50, #108
+	float DefaultSpeed; // #50, #108
 
 	UPROPERTY(EditAnywhere)
-	float Combat; // #109
+	float CombatSpeed; // #109
 
 	UPROPERTY(EditAnywhere)
-	float Crouch; // #109
+	float SprintSpeed; // #109
+
+	UPROPERTY(EditAnywhere)
+	float JumpMaxHeight; // #140
+
+	UPROPERTY(EditAnywhere)
+	float JumpMaxSpeedXY; // #140
+
+	UPROPERTY(EditAnywhere)
+	float RotationYawRate; // #135
 
 public:
 	FT4GamePlayerSpeedData()
-		: Default(500.0f)
-		, Combat(300.0f)
-		, Crouch(200.0f)
+		: DefaultSpeed(500.0f)
+		, CombatSpeed(400.0f)
+		, SprintSpeed(800.0f)
+		, JumpMaxHeight(200.0f)
+		, JumpMaxSpeedXY(250.0f)
+		, RotationYawRate(300.0f)
 	{
 	}
 };

@@ -13,7 +13,6 @@
 
 // ET4GamePacketCS::Move
 // ET4GamePacketCS::Jump
-// ET4GamePacketCS::Roll // 46
 // ET4GamePacketCS::Rotation // #40
 // ET4GamePacketCS::LockOn
 // ET4GamePacketCS::LockOff
@@ -78,12 +77,12 @@ public:
 	FT4ObjectID SenderID;
 
 	UPROPERTY(VisibleAnywhere)
-	FVector JumpDirection;
+	FVector GoalLocation; // #140
 
 public:
 	FT4GamePacketCS_Jump()
 		: FT4GamePacketCS_Base(ET4GamePacketCS::Jump)
-		, JumpDirection(FVector::ZeroVector)
+		, GoalLocation(FVector::ZeroVector)
 	{
 	}
 
@@ -94,9 +93,9 @@ public:
 			OutMsg = TEXT("Invalid Send ObjectID!");
 			return false;
 		}
-		if (JumpDirection.IsNearlyZero())
+		if (GoalLocation.IsNearlyZero())
 		{
-			OutMsg = TEXT("Invalid JumpDirection!");
+			OutMsg = TEXT("Goal Location is Zero!");
 			return false;
 		}
 		return true;
@@ -105,47 +104,6 @@ public:
 	FString ToString() const override
 	{
 		return FString(TEXT("CS_Packet:Jump"));
-	}
-};
-
-// #46
-USTRUCT()
-struct FT4GamePacketCS_Roll : public FT4GamePacketCS_Base
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	UPROPERTY(VisibleAnywhere)
-	FT4ObjectID SenderID;
-
-	UPROPERTY(VisibleAnywhere)
-	FVector RollDirection;
-
-public:
-	FT4GamePacketCS_Roll()
-		: FT4GamePacketCS_Base(ET4GamePacketCS::Roll)
-		, RollDirection(FVector::ZeroVector)
-	{
-	}
-
-	bool Validate(FString& OutMsg) override
-	{
-		if (!SenderID.IsValid())
-		{
-			OutMsg = TEXT("Invalid Send ObjectID!");
-			return false;
-		}
-		if (RollDirection.IsNearlyZero())
-		{
-			OutMsg = TEXT("Invalid RollDirection!");
-			return false;
-		}
-		return true;
-	}
-
-	FString ToString() const override
-	{
-		return FString(TEXT("CS_Packet:Roll"));
 	}
 };
 

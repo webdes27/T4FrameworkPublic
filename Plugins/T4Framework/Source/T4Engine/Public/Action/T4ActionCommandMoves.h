@@ -15,7 +15,6 @@
 // ET4ActionCommandType::MoveSync
 // ET4ActionCommandType::Teleport
 // ET4ActionCommandType::Jump
-// ET4ActionCommandType::Roll
 // ET4ActionCommandType::Rotation
 // ET4ActionCommandType::Turn // #131
 
@@ -125,12 +124,28 @@ struct T4ENGINE_API FT4JumpActionCommand : public FT4ActionCommandBase
 
 public:
 	UPROPERTY(EditAnywhere)
-	FVector JumpVelocity;
+	FVector GoalLocation; // #140 : Musb be FT4ActionBase::DurationSec, Ref FT4ActionCommandBase::OffsetTimeSec
+
+	UPROPERTY(EditAnywhere)
+	FVector CollideLocation; // #140 : 점프시 첫번째 부딪히는 지점이 있을 경우. 없으면 Zero
+
+	UPROPERTY(EditAnywhere)
+	float CollideTimeSec; // #140 : 점프시 첫번째 부딪히는 지점까지의 시간. 없으면 Zero
+
+	UPROPERTY(EditAnywhere)
+	float MaxSpeedXY; // #140
+
+	UPROPERTY(EditAnywhere)
+	float MaxHeight; // #140
 
 public:
 	FT4JumpActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
-		, JumpVelocity(FVector::ZeroVector)
+		, GoalLocation(FVector::ZeroVector)
+		, CollideLocation(FVector::ZeroVector) // #140
+		, CollideTimeSec(0.0f) // #140
+		, MaxSpeedXY(0.0f)
+		, MaxHeight(0.0f)
 	{
 	}
 
@@ -138,9 +153,19 @@ public:
 
 	bool Validate(FString& OutMsg) override
 	{
-		if (JumpVelocity.IsNearlyZero())
+		if (GoalLocation.IsNearlyZero())
 		{
-			OutMsg = TEXT("Invalid JumpVelocity");
+			OutMsg = TEXT("Invalid Jump GoalLocation");
+			return false;
+		}
+		if (0.0f >= MaxSpeedXY)
+		{
+			OutMsg = TEXT("MaxSpeedXY is zero");
+			return false;
+		}
+		if (0.0f >= MaxHeight)
+		{
+			OutMsg = TEXT("MaxHeight is zero");
 			return false;
 		}
 		return true;
@@ -149,41 +174,6 @@ public:
 	FString ToString() const override
 	{
 		return FString(TEXT("JumpToAction"));
-	}
-};
-
-// #46
-USTRUCT()
-struct T4ENGINE_API FT4RollActionCommand : public FT4ActionCommandBase
-{
-	GENERATED_USTRUCT_BODY()
-
-public:
-	UPROPERTY(EditAnywhere)
-	FVector RollVelocity;
-
-public:
-	FT4RollActionCommand()
-		: FT4ActionCommandBase(StaticActionType())
-		, RollVelocity(FVector::ZeroVector)
-	{
-	}
-
-	static ET4ActionCommandType StaticActionType() { return ET4ActionCommandType::Roll; }
-
-	bool Validate(FString& OutMsg) override
-	{
-		if (RollVelocity.IsNearlyZero())
-		{
-			OutMsg = TEXT("Invalid RollVelocity");
-			return false;
-		}
-		return true;
-	}
-
-	FString ToString() const override
-	{
-		return FString(TEXT("RollToAction"));
 	}
 };
 
@@ -355,10 +345,13 @@ public:
 	ET4MovementType MovementType; // #127
 
 	UPROPERTY(EditAnywhere)
-	ET4MovementTargetType MoveTargetType; // #135
+	ET4MovementPathType MovementPathType; // #135
 
 	UPROPERTY(EditAnywhere)
-	float InitializeSpeed; // #135 : ProjecitleSpeed or MovementSpeed
+	float InitializeSpeed; // #135 : ProjecitleSpeed or MovementSpeed (수평)
+
+	UPROPERTY(EditAnywhere)
+	float MaxHeight; // #132, #140 : 최대 높이 (MaxHeight 로 수직 속도를 얻는다.)
 
 	UPROPERTY(EditAnywhere)
 	FT4ActorID TargetActorID; // #135
@@ -370,25 +363,19 @@ public:
 	FVector GoalLocation; // #135
 
 	UPROPERTY(EditAnywhere)
-	FName TargetBoneName; // #135
-
-	UPROPERTY(EditAnywhere)
-	float PlayOffsetTimeSec; // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
-
-	UPROPERTY(EditAnywhere)
 	ET4AcceleratedMotion AcceleratedMotion; // #127
 
 	UPROPERTY(EditAnywhere)
-	float BoundLength; // #112 : Projectile 의 길이, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
+	float BoundLength; // #112 : Projectile 의 길이, 캐릭터 BoundHeight, 충돌 계산에서 Offset 으로 사용. (원점 에서의 길이)
 
 
 	// Movement Properties
 	//
 	UPROPERTY(EditAnywhere)
-	float ParabolaVerticalSpeed; // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
+	FVector CollideLocation; // #140 : 점프시 첫번째 부딪히는 지점이 있을 경우. 없으면 Zero
 
 	UPROPERTY(EditAnywhere)
-	float AirborneMaxHeight; // #132 : 에어본 최대 높이
+	float CollideTimeSec; // #140 : 점프시 첫번째 부딪히는 지점까지의 시간. 없으면 Zero
 
 	UPROPERTY(EditAnywhere)
 	float AirborneFlightTimeRatio; // #132 : 정점에서 유지할 체공시간 비율
@@ -421,6 +408,9 @@ public:
 	float HitAttachedTimeSec; // #112 : 충돌 지점에 잔상 시간
 
 	UPROPERTY(EditAnywhere)
+	FName HitTargetBoneName; // #135 : Actor 충돌이라면 본 위치를 참조
+
+	UPROPERTY(EditAnywhere)
 	bool bEnableBounceOut; // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
 
 	UPROPERTY(EditAnywhere, meta = (EditCondition = "bEnableBounceOut"))
@@ -436,22 +426,22 @@ public:
 	FT4LaunchActionCommand()
 		: FT4ActionCommandBase(StaticActionType())
 		, MovementType(ET4MovementType::Straight) // #127
-		, MoveTargetType(ET4MovementTargetType::InPlace) // #135
+		, MovementPathType(ET4MovementPathType::InPlace) // #135
 		, InitializeSpeed(0.0f) // #135 : ProjecitleSpeed or MovementSpeed
+		, MaxHeight(0.0f) // #127, #140 : 포물선(Parabola) 에서 사용될 최대 높이 (MaxHeight 로 수직 속도를 얻는다.)
 		, ShootDirection(FVector::ZeroVector) // #135
 		, GoalLocation(FVector::ZeroVector) // #135
-		, TargetBoneName(NAME_None) // #135
-		, PlayOffsetTimeSec(0.0f) // #63, #132 : 로딩시간이 길거나 C/S 동기화를 위한 OffsetTime 이 있다면 이 시간을 감안한 처리를 해주도록 처리
 		, AcceleratedMotion(ET4AcceleratedMotion::Uniform) // #127
 		, BoundLength(80.0f) // #112
-		, ParabolaVerticalSpeed(0.0f) // #127 : 곡사포(Parabola) 에서 사용될 초기 수직 속도
-		, AirborneMaxHeight(200.0f) // #132 : 에어본 최대 높이
+		, CollideLocation(FVector::ZeroVector) // #140 : 점프시 첫번째 부딪히는 지점이 있을 경우. 없으면 Zero
+		, CollideTimeSec(0.0f) // #140 : 점프시 첫번째 부딪히는 지점까지의 시간. 없으면 Zero
 		, AirborneFlightTimeRatio(0.0f) // #132 : 정점에서 유지할 체공시간 비율
 		, LoadingPolicy(ET4LoadingPolicy::Default)
 		, bRandomRollAngle(false) // #127
 		, InitialRollAngle(0.0f) // #127
 		, bEnableHitAttached(false)// #112
 		, HitAttachedTimeSec(1.0f) // #112
+		, HitTargetBoneName(NAME_None) // #135
 		, bEnableBounceOut(false) // #127 : 명확한 타겟없이 무한대로 발사될 경우 부딪히는 효과 처리 사용 여부
 		, bUseOscillate(false) // #127 : 흔들림 여부
 		, OscillateRange(0.0f) // #127 : 흔들림 크기

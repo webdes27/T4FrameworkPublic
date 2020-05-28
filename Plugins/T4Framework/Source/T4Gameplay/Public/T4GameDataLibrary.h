@@ -125,6 +125,19 @@ struct T4GAMEPLAY_API FT4GamePlayerData : public FT4GameDataBase
 	}
 	ET4GameDataType GetType() const override { return ET4GameDataType::Player; } // #48
 
+	float GetMaxMoveSpeed(FName InPostureName) const // #140
+	{
+		if (InPostureName == T4Const_CombatPostureName)
+		{
+			return RawData.MoveSpeedData.CombatSpeed;
+		}
+		else if (InPostureName == T4Const_SprintPostureName)
+		{
+			return RawData.MoveSpeedData.SprintSpeed; // #109
+		}
+		return RawData.MoveSpeedData.DefaultSpeed; // AIMemory.PostureName == NAME_None || AIMemory.PostureName == T4Const_DefaultPostureName
+	}
+
 #if WITH_EDITOR
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;
 	bool CheckValidationAll() override;
@@ -144,6 +157,19 @@ struct T4GAMEPLAY_API FT4GameNPCData : public FT4GameDataBase
 	{
 	}
 	ET4GameDataType GetType() const override { return ET4GameDataType::NPC; } // #48
+
+	float GetMaxMoveSpeed(FName InPostureName) const // #140
+	{
+		if (InPostureName == T4Const_CombatPostureName)
+		{
+			return RawData.MoveSpeedData.CombatSpeed;
+		}
+		else if (InPostureName == T4Const_SprintPostureName)
+		{
+			return RawData.MoveSpeedData.SprintSpeed; // #109
+		}
+		return RawData.MoveSpeedData.DefaultSpeed; // AIMemory.PostureName == NAME_None || AIMemory.PostureName == T4Const_DefaultPostureName
+	}
 
 #if WITH_EDITOR
 	TSharedPtr<FStructOnScope> GetRawDataStruct() override;

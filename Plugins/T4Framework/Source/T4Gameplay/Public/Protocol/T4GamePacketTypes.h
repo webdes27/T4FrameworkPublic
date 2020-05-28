@@ -17,7 +17,6 @@ enum class ET4GamePacketCS : uint32
 {
 	Move,
 	Jump,
-	Roll, // #46
 	Rotation, // #40
 
 	LockOn, // #40
@@ -71,7 +70,6 @@ enum class ET4GamePacketSC : uint32
 
 	Move,
 	Jump,
-	Roll, // #46
 	Rotation, // #40
 	Teleport,
 
